@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -21,5 +22,52 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
+	}
+
+	public function login()
+	{
+		$this->load->view('template/header');
+		$this->load->view('login');
+		$this->load->view('template/footer');
+	}
+
+	public function admin_index()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/index');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
+
+	public function admin_setting()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/setting');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
+
+	public function admin_week()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/week');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
+
+	public function admin_user()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/user');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
 	}
 }
