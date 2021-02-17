@@ -23,32 +23,41 @@
                         <table class="table table-bordered" id="table-role" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Nama</th>
+                                    <th>Role</th>
+                                    <th>Departement</th>
+                                    <th>Divisi</th>
                                     <th>Username</th>
                                     <th>Password</th>
-                                    <th>Full Name</th>
-                                    <th>Profile Picture</th>
-                                    <th>Departement</th>
-                                    <th>Divison</th>
+                                    <th>Login</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>Nama</th>
+                                    <th>Role</th>
+                                    <th>Departement</th>
+                                    <th>Divisi</th>
                                     <th>Username</th>
                                     <th>Password</th>
-                                    <th>Full Name</th>
-                                    <th>Profile Picture</th>
-                                    <th>Departement</th>
-                                    <th>Divison</th>
+                                    <th>Login</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <tr>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
+                                    <td>Ilham Sagita Putra</td>
+                                    <td>Supervisor</td>
+                                    <td>Ngalur Ngidul</td>
+                                    <td>Jalanan</td>
+                                    <td>isap</td>
+                                    <td>****</td>
+                                    <td>1</td>
+                                    <td>
+                                        <a href="<?= base_url('welcome/admin_user_edit'); ?>" class="btn btn-primary">Edit</a>
+                                        <button type="button" class="btn btn-danger">Hapus</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

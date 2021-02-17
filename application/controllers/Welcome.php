@@ -66,7 +66,37 @@ class Welcome extends CI_Controller
 		$this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('template/admin/topbar');
-		$this->load->view('admin/user');
+		$this->load->view('admin/master_user/user');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
+
+	public function admin_user_edit()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/master_user/user_edit');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
+
+	public function admin_form()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/master_form/form');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
+
+	public function admin_form_edit()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/master_form/form_edit');
 		$this->load->view('template/admin/modal');
 		$this->load->view('template/admin/footer');
 	}

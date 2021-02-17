@@ -130,33 +130,86 @@
             </div>
             <div class="modal-body">
                 <div class="col">
+                    <input type="text" class="form-control" placeholder="Nama">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <select class="custom-select">
+                        <option selected>Role</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <select class="custom-select">
+                        <option selected>Departement</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <select class="custom-select">
+                        <option selected>Divisi</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="col">
                     <input type="text" class="form-control" placeholder="Username">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="col">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" placeholder="Password">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form Table Modal -->
+<div class="modal fade" id="formTableModal" tabindex="-1" aria-labelledby="formTableModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formTableModal">Add Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Nama Tabel">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Full Name">
+                    <input type="text" class="form-control" placeholder="No Doc">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Departement">
+                    <input type="text" class="form-control" placeholder="Nama Form">
                 </div>
             </div>
             <div class="modal-body">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Division">
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label mx-3" for="customFile">Profile Picture</label>
+                    <input type="text" class="form-control" placeholder="Section Form">
                 </div>
             </div>
 
