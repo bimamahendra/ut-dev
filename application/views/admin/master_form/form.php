@@ -20,7 +20,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="table-role" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="tableForm" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Nama Tabel</th>
@@ -46,8 +46,12 @@
                             <td>Snack</td>
                             <td>asdf</td>
                             <td>
-                                <a href="<?= site_url('form/edit'); ?>" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                                <a href="<?= site_url('form/edit'); ?>" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
