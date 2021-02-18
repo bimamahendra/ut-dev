@@ -49,7 +49,7 @@
                                 <a href="<?= site_url('form/edit'); ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-sm">
+                                <button type="button" data-toggle="modal" data-target="#deleteFormItem" class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
