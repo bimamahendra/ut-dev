@@ -55,7 +55,7 @@
                                     <td>****</td>
                                     <td>1</td>
                                     <td>
-                                        <a href="<?= base_url('welcome/admin_user_edit'); ?>" class="btn btn-primary">Edit</a>
+                                        <a href="<?= site_url('user/edit'); ?>" class="btn btn-primary">Edit</a>
                                         <button type="button" class="btn btn-danger">Hapus</button>
                                     </td>
                                 </tr>

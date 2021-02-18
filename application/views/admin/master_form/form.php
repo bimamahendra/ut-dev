@@ -46,7 +46,7 @@
                             <td>Snack</td>
                             <td>asdf</td>
                             <td>
-                                <a href="<?= base_url('welcome/admin_form_edit'); ?>" class="btn btn-primary">Edit</a>
+                                <a href="<?= site_url('form/edit'); ?>" class="btn btn-primary">Edit</a>
                                 <button type="button" class="btn btn-danger">Hapus</button>
                             </td>
                         </tr>

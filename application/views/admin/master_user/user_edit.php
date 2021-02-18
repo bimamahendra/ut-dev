@@ -65,7 +65,7 @@
                         <input type="text" class="form-control" id="inputPassword">
                     </div>
                 </div>
-                <a href="<?= base_url('welcome/admin_user') ?>" class="btn btn-secondary">Batal</a>
+                <a href="<?= site_url('user') ?>" class="btn btn-secondary">Batal</a>
                 <button type="submit" class="btn btn-warning">Simpan</button>
             </form>
         </div>

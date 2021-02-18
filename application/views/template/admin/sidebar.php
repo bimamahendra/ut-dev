@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('welcome/admin_index'); ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
         <div class="sidebar-brand-icon">
             <i class="fas fa-chart-line"></i>
         </div>
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('welcome/admin_setting'); ?>">
+        <a class="nav-link" href="<?= site_url('setting'); ?>">
             <i class="fas fa-cog"></i>
             <span>Setting</span>
         </a>
@@ -24,7 +24,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('welcome/admin_week'); ?>">
+        <a class="nav-link" href="<?= site_url('week'); ?>">
             <i class="fas fa-calendar-alt"></i>
             <span>Week</span>
         </a>
@@ -34,7 +34,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('welcome/admin_user'); ?>">
+        <a class="nav-link" href="<?= site_url('user'); ?>">
             <i class="fas fa-user"></i>
             <span>User</span>
         </a>
@@ -44,7 +44,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('welcome/admin_form'); ?>">
+        <a class="nav-link" href="<?= site_url('form'); ?>">
             <i class="fas fa-align-justify"></i>
             <span>Form</span>
         </a>

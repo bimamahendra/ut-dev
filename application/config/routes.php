@@ -49,6 +49,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'AuthController/vlogin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Auth
+$route['login']                 = 'AuthController/login';
+$route['logout']                = 'AuthController/logout';
+
+// Dashboard
+$route['dashboard']             = 'DashboardController/vDashboard';
+
+//Setting
+$route['setting']               = 'SettingController/vSetting';
+$route['setting/store']         = 'SettingController/store';
+$route['setting/update']        = 'SettingController/update';
+$route['setting/destroy']       = 'SettingController/destroy';
+
+// Week
+$route['week']                  = 'WeekController/vWeek';
+$route['week/store']            = 'WeekController/store';
+$route['week/update']           = 'WeekController/update';
+$route['week/destroy']          = 'WeekController/destroy';
+
+// User
+$route['user']                  = 'UserController/vUser';
+$route['user/edit']             = 'UserController/vUserEdit';
+$route['user/store']            = 'UserController/store';
+$route['user/update']           = 'UserController/update';
+$route['user/destroy']          = 'UserController/destroy';
+
+// Form
+$route['form']                  = 'FormController/vForm';
+$route['form/edit']             = 'FormController/vFormEdit';
+$route['form/store']            = 'FormController/store';
+$route['form/update']           = 'FormController/update';
+$route['form/destroy']          = 'FormController/destroy';
