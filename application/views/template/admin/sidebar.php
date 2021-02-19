@@ -4,6 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
         <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
+        <div class="sidebar-brand-text mx-3">United Tractor</div>
     </a>
 
     <!-- Divider -->
@@ -11,9 +12,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('setting'); ?>">
-            <i class="fas fa-cog"></i>
-            <span>Setting</span>
+        <a class="nav-link" href="<?= site_url('dashboard'); ?>">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
         </a>
     </li>
 
@@ -21,9 +22,9 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('week'); ?>">
-            <i class="fas fa-calendar-alt"></i>
-            <span>Week</span>
+        <a class="nav-link" href="<?= site_url('form'); ?>">
+            <i class="fas fa-align-justify"></i>
+            <span>Form</span>
         </a>
     </li>
 
@@ -41,9 +42,9 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('form'); ?>">
-            <i class="fas fa-align-justify"></i>
-            <span>Form</span>
+        <a class="nav-link" href="<?= site_url('week'); ?>">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Week</span>
         </a>
     </li>
 

@@ -128,7 +128,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= site_url('user/store')?>" method="post">
+            <form action="<?= site_url('user/store') ?>" method="post">
                 <div class="modal-body">
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Nama" name="NAMA_USERS" required>
@@ -239,7 +239,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('user/destroy')?>" method="post">
+                <form action="<?= site_url('user/destroy') ?>" method="post">
                     <input type="hidden" id="mdlDelete_itemId" name="ID_USERS" />
                     <button type="submit" class="btn btn-danger">Hapus</button>
                 </form>
@@ -290,10 +290,44 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('user/reset-password')?>" method="post">
+                <form action="<?= site_url('user/reset-password') ?>" method="post">
                     <input type="hidden" id="mdlRstPassUserItem_itemId" name="ID_USERS" />
                     <button type="submit" class="btn btn-success">Reset</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form Item Setting Modal -->
+<div class="modal fade" id="settingFormItem" tabindex="-1" aria-labelledby="settingFormItem" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingFormItem">Setting Form untuk Table 1</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <select class="custom-select" required>
+                        <option value="" selected>Divisi</option>
+                        <option>Project Management</option>
+                        <option>General Service</option>
+                        <option>Maintenance Management</option>
+                    </select>
+                    <hr>
+                </div>
+                <div class="col mb-3">
+                    <button type="button" class="btn btn-primary" onclick="addFlowItem()">Add Flow</button>
+                </div>
+                <div class="col" id="formFlow"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-success">Simpan</button>
             </div>
         </div>
     </div>
