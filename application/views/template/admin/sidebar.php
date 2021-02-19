@@ -3,10 +3,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
-        <div class="sidebar-brand-icon">
-            <i class="fas fa-chart-line"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">United Tractor</div>
+        <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
     </a>
 
     <!-- Divider -->
