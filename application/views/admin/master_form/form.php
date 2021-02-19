@@ -40,6 +40,10 @@
                                 <a href="<?= site_url('form/edit'); ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>
+                                <!-- Setting flow -->
+                                <button type="button" data-toggle="modal" data-target="#settingFormItem" class="btn btn-info btn-sm">
+                                    <i class="fa fa-cog"></i>
+                                </button>
                                 <button type="button" data-toggle="modal" data-target="#deleteFormItem" class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash"></i>
                                 </button>

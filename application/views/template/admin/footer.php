@@ -61,6 +61,7 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables.js'); ?>"></script>
+<script src="<?= base_url('assets/js/formFlow.js'); ?>"></script>
 
 </body>
 
