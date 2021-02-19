@@ -40,42 +40,31 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Role</th>
-                            <th>Departement</th>
-                            <th>Divisi</th>
-                            <th>Username</th>
-                            <th>Login</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <?php
-                            foreach($listData as $item){
-                                echo '
+                        foreach ($listData as $item) {
+                            echo '
                                     <tr>
-                                        <td>'.$item->NAMA_USERS.'</td>
-                                        <td>'.$item->ROLE_USERS.'</td>
-                                        <td>'.$item->DEPT_USERS.'</td>
-                                        <td>'.$item->DIV_USERS.'</td>
-                                        <td>'.$item->USER_USERS.'</td>
-                                        <td style="text-align: center;">'.$item->LOGIN_USERS.'</td>
+                                        <td>' . $item->NAMA_USERS . '</td>
+                                        <td>' . $item->ROLE_USERS . '</td>
+                                        <td>' . $item->DEPT_USERS . '</td>
+                                        <td>' . $item->DIV_USERS . '</td>
+                                        <td>' . $item->USER_USERS . '</td>
+                                        <td style="text-align: center;">' . $item->LOGIN_USERS . '</td>
                                         <td>
-                                            <a href="'.site_url("user/edit/".$item->ID_USERS).'" class="btn btn-primary btn-sm">
+                                            <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <button type="button" data-toggle="modal" data-id="'.$item->ID_USERS.'" data-name="'.$item->NAMA_USERS.'" data-target="#rstPassUserItem" class="btn btn-secondary btn-sm mdlRstPassUserItem">
+                                            <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#rstPassUserItem" class="btn btn-secondary btn-sm mdlRstPassUserItem">
                                                 <i class="fa fa-key"></i>
                                             </button>
-                                            <button type="button" data-toggle="modal" data-id="'.$item->ID_USERS.'" data-name="'.$item->NAMA_USERS.'" data-target="#deleteUserItem" class="btn btn-danger btn-sm mdlDelete">
+                                            <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#deleteUserItem" class="btn btn-danger btn-sm mdlDelete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
                                 ';
-                            }
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -92,23 +81,23 @@
 <!-- Custom Javascript -->
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         // $('.toast').toast('show')
         <?php
-            if(empty($notif)){
-                echo "$('.toast').toast('show')";
-            }
+        if (empty($notif)) {
+            echo "$('.toast').toast('show')";
+        }
         ?>
     })
-    $('#tableUser tbody').on('click', '.mdlDelete', function(){
-        const id    = $(this).data('id')
-        const name  = $(this).data('name')
+    $('#tableUser tbody').on('click', '.mdlDelete', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
         $('#mdlDelete_item').html(name)
         $('#mdlDelete_itemId').val(id)
     })
-    $('#tableUser tbody').on('click', '.mdlRstPassUserItem', function(){
-        const id    = $(this).data('id')
-        const name  = $(this).data('name')
+    $('#tableUser tbody').on('click', '.mdlRstPassUserItem', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
         $('#mdlRstPassUserItem_item').html(name)
         $('#mdlRstPassUserItem_itemId').val(id)
 

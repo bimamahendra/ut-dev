@@ -30,15 +30,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nama Tabel</th>
-                            <th>No Doc</th>
-                            <th>Nama Form</th>
-                            <th>Section Form</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <tr>
                             <td>Table 1</td>
