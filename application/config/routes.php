@@ -74,9 +74,10 @@ $route['week/destroy']          = 'WeekController/destroy';
 
 // User
 $route['user']                  = 'UserController/vUser';
-$route['user/edit']             = 'UserController/vUserEdit';
+$route['user/edit/(:any)']      = 'UserController/vUserEdit/$1';
 $route['user/store']            = 'UserController/store';
 $route['user/update']           = 'UserController/update';
+$route['user/reset-password']   = 'UserController/resetPassword';
 $route['user/destroy']          = 'UserController/destroy';
 
 // Form

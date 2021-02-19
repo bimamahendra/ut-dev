@@ -128,56 +128,56 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama">
+            <form action="<?= site_url('user/store')?>" method="post">
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Nama" name="NAMA_USERS" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <select class="custom-select">
-                        <option selected>Role</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <div class="modal-body">
+                    <div class="col">
+                        <select class="custom-select" name="ROLE_USERS" required>
+                            <option value="" selected>Role</option>
+                            <option value="Head">Head</option>
+                            <option value="Staff">Staff</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <select class="custom-select">
-                        <option selected>Departement</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <div class="modal-body">
+                    <div class="col">
+                        <select class="custom-select" name="DEPT_USERS" required>
+                            <option value="" selected>Departement</option>
+                            <option value="General">General</option>
+                            <option value="Affairs">Affairs</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <select class="custom-select">
-                        <option selected>Divisi</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                <div class="modal-body">
+                    <div class="col">
+                        <select class="custom-select" name="DIV_USERS" required>
+                            <option value="" selected>Divisi</option>
+                            <option value="Asset">Asset</option>
+                            <option value="Project Management">Project Management</option>
+                            <option value="General Service & Maintenances">General Service & Maintenance</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Username">
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="text" class="form-control" name="USER_USERS" placeholder="Username" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Password">
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="text" class="form-control" value="123ut456" placeholder="Password" disabled>
+                        <input type="hidden" name="PASS_USERS" value="123ut456" />
+                    </div>
                 </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-warning">Save changes</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -233,13 +233,16 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menghapus item "Ilham Sagita Putra"
+                    Anda akan menghapus item <span id="mdlDelete_item">asdfs</span>
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
+                <form action="<?= site_url('user/destroy')?>" method="post">
+                    <input type="hidden" id="mdlDelete_itemId" name="ID_USERS" />
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
             </div>
         </div>
     </div>
@@ -264,6 +267,33 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="button" class="btn btn-danger">Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User Reset Password Modal -->
+<div class="modal fade" id="rstPassUserItem" tabindex="-1" aria-labelledby="rstPassUserItem" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reset Password Item?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan mereset password item <span id="mdlRstPassUserItem_item"></span>
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?= site_url('user/reset-password')?>" method="post">
+                    <input type="hidden" id="mdlRstPassUserItem_itemId" name="ID_USERS" />
+                    <button type="submit" class="btn btn-success">Reset</button>
+                </form>
             </div>
         </div>
     </div>
