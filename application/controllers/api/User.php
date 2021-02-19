@@ -29,6 +29,13 @@ class User extends RestController {
                     'required'      => 'Password wajib diisi',
                     'min_length'    => 'Password minimal 8 karakter'
                 ]
+            ],
+            [
+                'field'     => 'token',
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'      => 'Token wajib diisi',
+                ]
             ]
         );
 
@@ -43,7 +50,7 @@ class User extends RestController {
             )->result();
 
             if($resLogin != null){
-                $this->db->where('USER_USERS', $data['username'])->update('USERS', ['LOGIN_USERS' => 1]);
+                $this->db->where('USER_USERS', $data['username'])->update('USERS', ['LOGIN_USERS' => 1, 'TOKEN_USERS' => $data['token']]);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditemukan' , 'data' => $resLogin[0]], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Username atau password salah' , 'data' => []], 200);
@@ -68,7 +75,7 @@ class User extends RestController {
         if($this->form_validation->run()==FALSE){
             $this->response(['status' => false, 'message' => $this->form_validation->error_array(), 'data' => []], 200);
         }else{
-            $this->db->where('ID_USERS', $data['idUser'])->update('USERS', ['LOGIN_USERS' => 0]);
+            $this->db->where('ID_USERS', $data['idUser'])->update('USERS', ['LOGIN_USERS' => 0, 'TOKEN_USERS' => null]);
             $this->response(['status' => true, 'message' => 'Berhasil logout', 'data' => []], 200);
         }
     }
