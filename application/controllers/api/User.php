@@ -44,7 +44,7 @@ class User extends RestController {
 
             if($resLogin != null){
                 $this->db->where('USER_USERS', $data['username'])->update('USERS', ['LOGIN_USERS' => 1]);
-                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan' , 'data' => $resLogin], 200);
+                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan' , 'data' => $resLogin[0]], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Username atau password salah' , 'data' => []], 200);
             }
