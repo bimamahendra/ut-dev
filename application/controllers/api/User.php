@@ -42,7 +42,7 @@ class User extends RestController {
         $data = $this->input->post();
         $this->form_validation->set_rules($config);
         if($this->form_validation->run()==FALSE){
-            $this->response(['status' => false, 'message' => $this->form_validation->error_array(), 'data' => []], 200);
+            $this->response(['status' => false, 'message' => $this->form_validation->error_array()], 200);
         }else{
             $resLogin = $this->db->get_where(
                 'USERS', 
@@ -55,7 +55,7 @@ class User extends RestController {
                 $resLogin[0]->TOKEN_USERS = $data['token'];
                 $this->response(['status' => true, 'message' => 'Data berhasil ditemukan' , 'data' => $resLogin[0]], 200);
             }else{
-                $this->response(['status' => false, 'message' => 'Username atau password salah' , 'data' => []], 200);
+                $this->response(['status' => false, 'message' => 'Username atau password salah' ], 200);
             }
         }
 
@@ -75,10 +75,10 @@ class User extends RestController {
         $data = $this->input->post();
         $this->form_validation->set_rules($config);
         if($this->form_validation->run()==FALSE){
-            $this->response(['status' => false, 'message' => $this->form_validation->error_array(), 'data' => []], 200);
+            $this->response(['status' => false, 'message' => $this->form_validation->error_array()], 200);
         }else{
             $this->db->where('ID_USERS', $data['idUser'])->update('USERS', ['LOGIN_USERS' => 0, 'TOKEN_USERS' => null]);
-            $this->response(['status' => true, 'message' => 'Berhasil logout', 'data' => []], 200);
+            $this->response(['status' => true, 'message' => 'Berhasil logout'], 200);
         }
     }
 
