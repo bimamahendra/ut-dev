@@ -48,7 +48,7 @@
                             <option value="">Divisi</option>
                             <option value="Project Management" <?= $dataUser[0]->DIV_USERS == 'Project Management'? 'selected' : 'asd' ?>>Project Management</option>
                             <option value="General Service & Maintenances Management" <?= $dataUser[0]->DIV_USERS == 'General Service & Maintenances Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
-                            <option value="Budget, Asset & Building Management" <?= $dataUser[0]->DIV_USERS == 'Budget, Asset & Building Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
+                            <option value="Budget, Asset & Building Management" <?= $dataUser[0]->DIV_USERS == 'Budget, Asset & Building Management'? 'selected' : 'asd' ?>>Budget, Asset & Building Management</option>
                         </select>
                     </div>
                 </div>

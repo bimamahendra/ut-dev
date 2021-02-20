@@ -29,18 +29,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Section Head</td>
-                            <td>
-                                <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                            foreach($flows as $item){
+                                echo '
+                                    <tr>
+                                        <td>1</td>
+                                        <td>'.$item->ID_MAPPING.'</td>
+                                        <td>
+                                            <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -82,7 +82,8 @@ $route['user/destroy']          = 'UserController/destroy';
 
 // Form
 $route['form']                  = 'FormController/vForm';
-$route['form/edit']             = 'FormController/vFormEdit';
+$route['form/edit/(:any)']      = 'FormController/vFormEdit/$1';
 $route['form/store']            = 'FormController/store';
 $route['form/update']           = 'FormController/update';
 $route['form/destroy']          = 'FormController/destroy';
+$route['form/flow/(:any)']      = 'FormController/vFlow/$1';
