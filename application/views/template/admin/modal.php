@@ -195,7 +195,12 @@
             </div>
             <div class="modal-body">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Tabel">
+                    <select class="custom-select" required>
+                        <option value="" selected>Nama Tabel</option>
+                        <option>Tabel 1</option>
+                        <option>Tabel 2</option>
+                        <option>Tabel 3</option>
+                    </select>
                 </div>
             </div>
             <div class="modal-body">
@@ -210,7 +215,12 @@
             </div>
             <div class="modal-body">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Section Form">
+                    <select class="custom-select" name="DIV_USERS" required>
+                        <option value="" selected>Divisi</option>
+                        <option value="Project Management">Project Management</option>
+                        <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
+                        <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
+                    </select>
                 </div>
             </div>
 
@@ -300,12 +310,12 @@
     </div>
 </div>
 
-<!-- Form Item Setting Modal -->
-<div class="modal fade" id="settingFormItem" tabindex="-1" aria-labelledby="settingFormItem" aria-hidden="true">
+<!-- Setting List Approval Modal -->
+<div class="modal fade" id="settingListApproval" tabindex="-1" aria-labelledby="settingListApproval" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="settingFormItem">Setting Form untuk Table 1</h5>
+                <h5 class="modal-title" id="settingListApproval">Setting List Approval</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -318,17 +328,65 @@
                         <option>General Service</option>
                         <option>Maintenance Management</option>
                     </select>
-                    <hr>
                 </div>
-                <div class="col mb-3">
-                    <button type="button" class="btn btn-primary" onclick="addFlowItem()">Add Flow</button>
-                </div>
-                <div class="col" id="formFlow"></div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-success">Simpan</button>
+                <button type="button" class="btn btn-warning">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit List Approval Modal -->
+<div class="modal fade" id="editListApproval" tabindex="-1" aria-labelledby="editListApproval" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editListApproval">Edit List Approval</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <select class="custom-select" required>
+                        <option value="" selected>Divisi</option>
+                        <option>Project Management</option>
+                        <option>General Service</option>
+                        <option>Maintenance Management</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-warning">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hapus List Approval Modal -->
+<div class="modal fade" id="deleteListApproval" tabindex="-1" aria-labelledby="deleteListApproval" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteListApproval">Delete List Approval?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan menghapus list Approval "Section Head"
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-danger">Hapus</button>
             </div>
         </div>
     </div>
