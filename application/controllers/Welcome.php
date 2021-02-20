@@ -110,4 +110,14 @@ class Welcome extends CI_Controller
 		$this->load->view('template/admin/modal');
 		$this->load->view('template/admin/footer');
 	}
+
+	public function transaksi()
+	{
+		$this->load->view('template/admin/header');
+		$this->load->view('template/admin/sidebar');
+		$this->load->view('template/admin/topbar');
+		$this->load->view('admin/master_transaksi/transaksi');
+		$this->load->view('template/admin/modal');
+		$this->load->view('template/admin/footer');
+	}
 }
