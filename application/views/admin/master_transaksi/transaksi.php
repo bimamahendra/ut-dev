@@ -61,7 +61,7 @@
             <form method="post">
                 <div class="modal-body">
                     <div class="col">
-                        <select class="custom-select" required>
+                        <select class="custom-select select2" style="width: 100%;" required>
                             <option value="" selected>Nama Form</option>
                             <option>Form 1</option>
                             <option>Form 2</option>
