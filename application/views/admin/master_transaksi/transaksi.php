@@ -9,8 +9,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning">Transaction Table</h6>
-                <button class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Transaction Table</h6>
+                <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
                     Add
                 </button>
@@ -69,6 +69,16 @@
                         </select>
                     </div>
                 </div>
+                <div class="modal-body">
+                    <div class="col">
+                        <select class="custom-select select2" style="width: 100%;" required>
+                            <option value="" selected>Nama User</option>
+                            <option>Ilham</option>
+                            <option>Zidan</option>
+                            <option>Kurir siCepat</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning">Save changes</button>
@@ -101,3 +111,13 @@
         </div>
     </div>
 </div>
+
+<script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            width: 'resolve'
+        });
+    });
+</script>
