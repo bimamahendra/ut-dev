@@ -26,6 +26,7 @@
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="">Role</option>
                             <option value="Head" <?= $dataUser[0]->ROLE_USERS == 'Head'?'selected' : '' ?> >Head</option>
+                            <option value="Section Head" <?= $dataUser[0]->ROLE_USERS == 'Section Head'?'selected' : '' ?> >Head</option>
                             <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'? 'selected' : '' ?> >Staff</option>
                         </select>
                     </div>
@@ -45,9 +46,9 @@
                         <label for="inputDivisi">Divisi</label>
                         <select class="custom-select" name="DIV_USERS" required>
                             <option value="">Divisi</option>
-                            <option value="Asset" <?= $dataUser[0]->DIV_USERS == 'Asset'? 'selected' : 'asd' ?>>Asset</option>
                             <option value="Project Management" <?= $dataUser[0]->DIV_USERS == 'Project Management'? 'selected' : 'asd' ?>>Project Management</option>
-                            <option value="General Service & Maintenances" <?= $dataUser[0]->DIV_USERS == 'General Service & Maintenances'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
+                            <option value="General Service & Maintenances Management" <?= $dataUser[0]->DIV_USERS == 'General Service & Maintenances Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
+                            <option value="Budget, Asset & Building Management" <?= $dataUser[0]->DIV_USERS == 'Budget, Asset & Building Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
                         </select>
                     </div>
                 </div>

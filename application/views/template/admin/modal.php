@@ -139,6 +139,7 @@
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="" selected>Role</option>
                             <option value="Head">Head</option>
+                            <option value="Section Head">Section Head</option>
                             <option value="Staff">Staff</option>
                         </select>
                     </div>
@@ -156,9 +157,9 @@
                     <div class="col">
                         <select class="custom-select" name="DIV_USERS" required>
                             <option value="" selected>Divisi</option>
-                            <option value="Asset">Asset</option>
                             <option value="Project Management">Project Management</option>
-                            <option value="General Service & Maintenances">General Service & Maintenance</option>
+                            <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
+                            <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
                         </select>
                     </div>
                 </div>
