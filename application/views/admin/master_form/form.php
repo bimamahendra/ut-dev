@@ -31,24 +31,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Table 1</td>
-                            <td>351263572</td>
-                            <td>Snack</td>
-                            <td>asdf</td>
-                            <td>
-                                <a href="<?= site_url('form/edit'); ?>" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <!-- Setting flow -->
-                                <a href="<?= site_url('welcome/list_approval'); ?>" class="btn btn-info btn-sm">
-                                    <i class="fa fa-cog"></i>
-                                </a>
-                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                            foreach ($forms as $item) {
+                                echo '
+                                    <tr>
+                                        <td>'.$item->NAMA_TABEL.'</td>
+                                        <td>'.$item->NO_DOC.'</td>
+                                        <td>'.$item->NAMA_FORM.'k</td>
+                                        <td>'.$item->SECTION_FORM.'</td>
+                                        <td>
+                                            <a href="'.site_url('form/edit/'.$item->ID_MAPPING).'" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <!-- Setting flow -->
+                                            <a href="'.site_url('welcome/list_approval').'" class="btn btn-info btn-sm">
+                                                <i class="fa fa-cog"></i>
+                                            </a>
+                                            <button type="button" data-toggle="modal" data-id="'.$item->ID_MAPPING.'" data-name="'.$item->NAMA_FORM.'" data-target="#mdlDelete" class="btn btn-danger btn-sm mdlDelete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -73,41 +79,47 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="col">
-                    <select class="custom-select" required>
-                        <option value="" selected>Nama Tabel</option>
-                        <option>Tabel 1</option>
-                        <option>Tabel 2</option>
-                        <option>Tabel 3</option>
-                    </select>
+            <form action="<?= site_url('form/store')?>" method="post">
+                <div class="modal-body">
+                    <div class="col">
+                        <select class="custom-select" name="NAMA_TABEL" required>
+                            <option value="" selected>Nama Tabel</option>
+                            <?php
+                                foreach($tables as $item){
+                                    echo '
+                                        <option value="'.$item->table_name.'">'.$item->table_name.'</option>
+                                    ';
+                                }
+                            ?>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="No Doc">
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="text" class="form-control" name="NO_DOC" placeholder="No Doc" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Form">
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="text" class="form-control" name="NAMA_FORM" placeholder="Nama Form" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="col">
-                    <select class="custom-select" name="DIV_USERS" required>
-                        <option value="" selected>Divisi</option>
-                        <option value="Project Management">Project Management</option>
-                        <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
-                        <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
-                    </select>
+                <div class="modal-body">
+                    <div class="col">
+                        <select class="custom-select" name="SECTION_FORM" required>
+                            <option value="" selected>Divisi</option>
+                            <option value="Project Management">Project Management</option>
+                            <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
+                            <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-warning">Save changes</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -124,14 +136,28 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menghapus item "Table 1"
+                    Anda akan menghapus item <span id="mdlDelete_item">asdfs</span>
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
+                <form action="<?= site_url('form/destroy') ?>" method="post">
+                    <input type="hidden" id="mdlDelete_itemId" name="ID_MAPPING" />
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- CUSTOM JAVASCRIPT -->
+<script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
+<script>
+    $('#tableForm tbody').on('click', '.mdlDelete', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        $('#mdlDelete_item').html(name)
+        $('#mdlDelete_itemId').val(id)
+    })
+</script>
