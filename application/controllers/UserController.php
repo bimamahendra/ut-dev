@@ -30,27 +30,27 @@ class UserController extends CI_Controller
     }
 
     public function store(){
-        $datas                  = $_POST;
-        $datas['ID_USERS']      = substr(md5(time()), 0, 8);
-        $datas['PASS_USERS']    = hash('sha256', md5($datas['PASS_USERS']));
+        $param                  = $_POST;
+        $param['ID_USERS']      = substr(md5(time()), 0, 8);
+        $param['PASS_USERS']    = hash('sha256', md5($param['PASS_USERS']));
 
-        $this->User->insert($datas);
+        $this->User->insert($param);
         redirect('user');
     }
     public function update(){
-        $datas = $_POST;
-        $this->User->update($datas);
+        $param = $_POST;
+        $this->User->update($param);
         redirect('user');
     }
     public function destroy(){
-        $datas = $_POST;
-        $this->User->delete($datas);
+        $param = $_POST;
+        $this->User->delete($param);
         redirect('user');
     }
     public function resetPassword(){
-        $datas = $_POST;
-        $datas['PASS_USERS']    = hash('sha256', md5('123ut456'));
-        $this->User->update($datas);
+        $param = $_POST;
+        $param['PASS_USERS']    = hash('sha256', md5('123ut456'));
+        $this->User->update($param);
 
         $notif['status'] = 'Success';
         $notif['message'] = 'Berhasil reset password.';
