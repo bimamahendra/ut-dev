@@ -45,19 +45,16 @@
                             <td>Verified</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="<?= base_url('welcome/detail_transaksi'); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Detail">
+                                    <a href="<?= base_url('welcome/detail_transaksi'); ?>" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="top" title="Detail">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <span data-toggle="modal" data-target="#mdlDelete">
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Approve">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                    </span>
-                                    <span data-toggle="modal" data-target="#mdlDelete">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Reject">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </span>
+                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="top" title="Reject">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+
                                 </div>
                             </td>
                         </tr>
