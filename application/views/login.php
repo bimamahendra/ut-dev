@@ -16,12 +16,8 @@
                             <label for="inputPassword" class="form-label">Password</label>
                             <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="checkIngatSaya">
-                            <label class="form-check-label" for="checkIngatSaya">Remember Me</label>
-                        </div>
                         <div>
-                            <a href="<?= site_url('login') ?>" class="btn btn-warning btn-block" type="button">Login</a>
+                            <a href="<?= site_url('login') ?>" class="btn btn-warning btn-block" type="submit">Login</a>
                         </div>
                     </form>
                 </div>
