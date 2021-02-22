@@ -9,19 +9,14 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <div>
-                    <h6 class="m-0 font-weight-bold text-warning mb-2">Transaction Table</h6>
-                    <select class="custom-select" required>
-                        <option value="" selected>Divisi</option>
-                        <option>Project Management</option>
-                        <option>General Service & Maintenance Management</option>
-                        <option>Budget, Asset & Building Management</option>
-                    </select>
-                </div>
-                <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
-                    <i class="fas fa-plus fa-sm text-white-50"></i>
-                    Add
-                </button>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Transaction List</h6>
+                <div style="width: 10%;"></div>
+                <select class="custom-select" required>
+                    <option value="" selected>Divisi</option>
+                    <option>Project Management</option>
+                    <option>General Service & Maintenance Management</option>
+                    <option>Budget, Asset & Building Management</option>
+                </select>
             </div>
         </div>
         <div class="card-body">
@@ -30,19 +25,39 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Mapping</th>
-                            <th>Aksi</th>
+                            <th>Applicant</th>
+                            <th>Form</th>
+                            <th>Timestamp</th>
+                            <th>Link</th>
+                            <th>Flag</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>32178</td>
+                            <td>Ilham</td>
+                            <td>FORM_MOBDIN</td>
+                            <td>36217</td>
+                            <td>http://[::1]/ut-dev/form</td>
+                            <td>0</td>
+                            <td>Verified</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                    <a href="<?= base_url('welcome/detail_transaksi'); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Detail">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <span data-toggle="modal" data-target="#mdlDelete">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Approve">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    </span>
+                                    <span data-toggle="modal" data-target="#mdlDelete">
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Reject">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </td>
                         </tr>
