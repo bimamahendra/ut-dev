@@ -14,18 +14,18 @@ class User extends RestController {
     }
 
     public function login_post(){
-        $datas = $this->input->post();
-        if(!empty($datas['username']) && !empty($datas['password'])){
-            $checkData = $this->db->get_where('USERS', ['USER_USERS' => $datas['username']])->result();
-            if($checkData != null){
+        $param = $this->post();
+        if(!empty($param['username']) && !empty($param['password'])){
+            $user = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
+            if($user != null){
                 $resLogin = $this->db->get_where(
                     'USERS', 
-                    ['USER_USERS' => $datas['username'], 'PASS_USERS' => hash('sha256', md5($datas['password']))]
+                    ['USER_USERS' => $param['username'], 'PASS_USERS' => hash('sha256', md5($param['password']))]
                 )->result();
                 if($resLogin != null){
-                    $this->db->where('USER_USERS', $datas['username'])->update('USERS', ['LOGIN_USERS' => 1, 'TOKEN_USERS' => $datas['token']]);
+                    $this->db->where('USER_USERS', $param['username'])->update('USERS', ['LOGIN_USERS' => 1, 'TOKEN_USERS' => $param['token']]);
                     $resLogin[0]->LOGIN_USERS = '1';
-                    $resLogin[0]->TOKEN_USERS = $datas['token'];
+                    $resLogin[0]->TOKEN_USERS = $param['token'];
                     $this->response(['status' => true, 'message' => 'Data berhasil ditemukan' , 'data' => $resLogin[0]], 200);
                 }else{
                     $this->response(['status' => false, 'message' => 'Username atau password salah' ], 200);
@@ -39,11 +39,11 @@ class User extends RestController {
     }
 
     public function logout_post(){
-        $datas = $this->input->post();
-        if(!empty($datas['idUser'])){
-            $checkData = $this->db->get_where('USERS', ['ID_USERS' => $datas['idUser']])->result();
-            if($checkData != null){
-                $this->db->where('ID_USERS', $datas['idUser'])->update('USERS', ['LOGIN_USERS' => 0, 'TOKEN_USERS' => null]);
+        $param = $this->post();
+        if(!empty($param['idUser'])){
+            $user = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
+            if($user != null){
+                $this->db->where('ID_USERS', $param['idUser'])->update('USERS', ['LOGIN_USERS' => 0, 'TOKEN_USERS' => null]);
                 $this->response(['status' => true, 'message' => 'Berhasil logout'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Id User tidak ditemukan'], 200);

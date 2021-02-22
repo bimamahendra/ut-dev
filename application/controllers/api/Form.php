@@ -10,11 +10,11 @@ class Form extends RestController {
     }
 
     public function index_get(){
-        $datas = $this->input->get();
-        if(!empty($datas['divisi'])){
-            $resForm = $this->db->get_where('MAPPING', ['SECTION_FORM' => $datas['divisi']])->result();
-            if($resForm != null){
-                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $resForm], 200);
+        $param = $this->get();
+        if(!empty($param['divisi'])){
+            $forms = $this->db->get_where('MAPPING', ['SECTION_FORM' => $param['divisi']])->result();
+            if($forms != null){
+                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $forms], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data form tidak ditemukan'], 200);
             }
