@@ -11,8 +11,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning">List Approval</h6>
-                <button class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Form Snack</h6>
+                <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
                     Add
                 </button>
@@ -30,22 +30,24 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach($flows as $item){
-                                echo '
+                        foreach ($flows as $item) {
+                            echo '
                                     <tr>
                                         <td>1</td>
-                                        <td>'.$item->ID_MAPPING.'</td>
+                                        <td>' . $item->ID_MAPPING . '</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            <div class="btn-group" role="group">
+                                                <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ';
-                            }
+                        }
                         ?>
                     </tbody>
                 </table>
