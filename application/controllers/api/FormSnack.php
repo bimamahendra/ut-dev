@@ -22,7 +22,7 @@ class FormSnack extends RestController {
 
     public function index_post(){
         $param = $this->post();
-        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['tglSnack']) && !empty($param['divisiSnack']) && !empty($param['keperluanSnack']) && !empty($param['tglOutSnack']) && !empty($param['detSnack'])){
+        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['tglSnack']) && !empty($param['divisiSnack']) && !empty($param['keperluanSnack']) && !empty($param['detSnack'])){
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
@@ -39,7 +39,7 @@ class FormSnack extends RestController {
                 $storeFrmSnack['TGL_SNACK']         = $param['tglSnack'];
                 $storeFrmSnack['DIVISI_SNACK']      = $param['divisiSnack'];
                 $storeFrmSnack['KEPERLUAN_SNACK']   = $param['keperluanSnack'];
-                $storeFrmSnack['TGLOUT_SNACK']      = $param['tglOutSnack'];
+                $storeFrmSnack['TGLOUT_SNACK']      = date('Y-m-d');
                 $this->db->insert('FORM_SNACK', $storeFrmSnack);
 
                 foreach($param['detSnack'] as $item){
