@@ -37,10 +37,10 @@
                                         <td>' . $item->ID_MAPPING . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm">
+                                                <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm rounded mr-1">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm">
+                                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>

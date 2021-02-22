@@ -10,8 +10,7 @@
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-warning mb-2">Transaction List</h6>
-                <div style="width: 10%;"></div>
-                <select class="custom-select" required>
+                <select class="custom-select" style="width: 30%;" required>
                     <option value="" selected>Divisi</option>
                     <option>Project Management</option>
                     <option>General Service & Maintenance Management</option>
@@ -45,16 +44,15 @@
                             <td>Verified</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="<?= base_url('welcome/detail_transaksi'); ?>" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                    <a href="<?= base_url('welcome/detail_transaksi'); ?>" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Detail">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-success btn-sm mx-1 rounded" data-tooltip="tooltip" data-placement="top" title="Approve">
                                         <i class="fa fa-check"></i>
                                     </button>
-                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="top" title="Reject">
+                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Reject">
                                         <i class="fa fa-times"></i>
                                     </button>
-
                                 </div>
                             </td>
                         </tr>

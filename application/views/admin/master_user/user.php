@@ -51,13 +51,13 @@
                                         <td>' . $item->USER_USERS . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm">
+                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mdlRstPassUserItem">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mx-1 rounded mdlRstPassUserItem">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm mdlDelete">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>

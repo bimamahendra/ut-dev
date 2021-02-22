@@ -41,14 +41,14 @@
                                         <td>' . $item->SECTION_FORM . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="' . site_url('form/edit/' . $item->ID_MAPPING) . '" class="btn btn-primary btn-sm">
+                                                <a href="' . site_url('form/edit/' . $item->ID_MAPPING) . '" class="btn btn-primary btn-sm rounded">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <!-- Setting flow -->
-                                                <a href="' . site_url('welcome/list_approval') . '" class="btn btn-info btn-sm">
+                                                <a href="' . site_url('welcome/list_approval') . '" class="btn btn-info btn-sm rounded mx-1">
                                                     <i class="fa fa-cog"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_MAPPING . '" data-name="' . $item->NAMA_FORM . '" data-target="#mdlDelete" class="btn btn-danger btn-sm mdlDelete">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_MAPPING . '" data-name="' . $item->NAMA_FORM . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
