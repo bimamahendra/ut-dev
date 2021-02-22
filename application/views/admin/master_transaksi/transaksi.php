@@ -11,7 +11,7 @@
             <div class="d-sm-flex align-items-center justify-content-between">
                 <div>
                     <h6 class="m-0 font-weight-bold text-warning mb-2">Transaction Table</h6>
-                    <select class="custom-select" required>
+                    <select class="custom-select mb-2" required>
                         <option value="" selected>Divisi</option>
                         <option>Project Management</option>
                         <option>General Service & Maintenance Management</option>
