@@ -19,7 +19,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">User Table</h6>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">User List</h6>
                 <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
                     Add
@@ -31,12 +31,12 @@
                 <table class="table table-bordered" id="tableUser" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nama</th>
+                            <th>Name</th>
                             <th>Role</th>
                             <th>Departement</th>
-                            <th>Divisi</th>
+                            <th>Division</th>
                             <th>Username</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
