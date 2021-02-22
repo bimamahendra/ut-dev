@@ -19,8 +19,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning">User Table</h6>
-                <button class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
+                <h6 class="m-0 font-weight-bold text-warning mb-2">User Table</h6>
+                <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
                     Add
                 </button>
@@ -36,7 +36,6 @@
                             <th>Departement</th>
                             <th>Divisi</th>
                             <th>Username</th>
-                            <th>Login</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -50,17 +49,18 @@
                                         <td>' . $item->DEPT_USERS . '</td>
                                         <td>' . $item->DIV_USERS . '</td>
                                         <td>' . $item->USER_USERS . '</td>
-                                        <td style="text-align: center;">' . $item->LOGIN_USERS . '</td>
                                         <td>
-                                            <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mdlRstPassUserItem">
-                                                <i class="fa fa-key"></i>
-                                            </button>
-                                            <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm mdlDelete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            <div class="btn-group" role="group">
+                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mdlRstPassUserItem">
+                                                    <i class="fa fa-key"></i>
+                                                </button>
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm mdlDelete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ';
