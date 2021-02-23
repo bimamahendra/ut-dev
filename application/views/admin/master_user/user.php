@@ -134,7 +134,7 @@
                         <input type="hidden" name="PASS_USERS" value="123ut456" />
                     </div>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
                         <input type="file" name="imageTtd" class="custom-file-input" id="image-source" onchange="previewImage();">
                         <label class="custom-file-label" for="image-source">Upload Signature</label>
