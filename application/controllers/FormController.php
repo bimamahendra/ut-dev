@@ -51,7 +51,7 @@ class FormController extends CI_Controller
     }
 
     public function vFlow($id){
-        $datas['flows'] = $this->Form->getFlowAll();
+        $datas['flows'] = $this->Form->getFlow(['filter' => ['ID_MAPPING' => $id]]);
 
         $this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');

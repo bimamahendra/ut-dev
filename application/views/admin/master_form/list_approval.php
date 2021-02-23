@@ -30,24 +30,27 @@
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($flows as $item) {
-                            echo '
-                                    <tr>
-                                        <td>1</td>
-                                        <td>' . $item->ID_MAPPING . '</td>
+                            for ($x = 1; $x <= 15; $x++) {
+                                $approval = "APP_".$x;
+                                if(!empty($flows[0]->$approval)){
+                                    echo '
+                                        <tr>
+                                        <td>APP_'.$x.'</td>
+                                        <td>' . $flows[0]->$approval . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm rounded mr-1">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
+                                            <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm rounded mr-1">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                             </div>
                                         </td>
                                     </tr>
                                 ';
-                        }
+                                }                            
+                            }     
                         ?>
                     </tbody>
                 </table>
