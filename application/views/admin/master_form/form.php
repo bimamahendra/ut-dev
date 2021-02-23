@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>' . $item->NAMA_TABEL . '</td>
                                         <td>' . $item->NO_DOC . '</td>
-                                        <td>' . $item->NAMA_FORM . 'k</td>
+                                        <td>' . $item->NAMA_FORM . '</td>
                                         <td>' . $item->SECTION_FORM . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -45,7 +45,7 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <!-- Setting flow -->
-                                                <a href="' . site_url('welcome/list_approval') . '" class="btn btn-info btn-sm rounded mx-1">
+                                                <a href="' . site_url('form/flow/'.$item->ID_MAPPING) . '" class="btn btn-info btn-sm rounded mx-1">
                                                     <i class="fa fa-cog"></i>
                                                 </a>
                                                 <button type="button" data-toggle="modal" data-id="' . $item->ID_MAPPING . '" data-name="' . $item->NAMA_FORM . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete">
