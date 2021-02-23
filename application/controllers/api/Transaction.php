@@ -20,7 +20,7 @@ class Transaction extends RestController {
                 $this->db->order_by('TS_TRANS', 'DESC');
                 $limit = $param['limit'] != '-1'? $param['limit'] : '';
                 if($user[0]->ROLE_USERS == 'Staff'){
-                    $trans = $this->db->not_like('STAT_TRANS', '0')->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
+                    $trans = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
                 }else{
                     $trans = $this->db->not_like('STAT_TRANS', '0')->get('V_TRANSACTION', $limit)->result();
                 }
