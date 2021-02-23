@@ -160,7 +160,7 @@
 				<tr>					
 					<td>( <?= $listSnack[0]->NAMA_USERS?> )</td>
 					<td style="width:20%">&nbsp;</td>
-					<td>(&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp )</td>
+					<td>(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</td>
 				</tr>
 			</table>
 		</div>
