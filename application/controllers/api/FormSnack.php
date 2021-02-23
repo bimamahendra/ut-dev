@@ -9,6 +9,21 @@ class FormSnack extends RestController {
         $this->load->library(array('upload', 'image_lib'));
     }
 
+    public function index_get(){
+        $param = $this->get();
+        if(!empty($param['idTrans'])){
+            $formSnack = $this->db->get_where('V_FORM_SNACK', ['ID_TRANS' => $param['idTrans']])->result();
+            if($formSnack != null){
+                $formSnack[0]->DETAIL_SNACK = $this->db->get_where('DETAIL_SNACK', ['ID_SNACK' => $formSnack[0]->ID_SNACK])->result();
+                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $formSnack[0]], 200);
+            }else{
+                $this->response(['status' => false, 'message' => 'Data tidak ditemukan'], 200);
+            }
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
+    }
+
     public function detail_get($idSnack){
         $detSnacks = $this->db->get_where('V_DETAIL_SNACK', ['ID_SNACK' => $idSnack])->result();
         if($detSnacks != null){
@@ -26,8 +41,8 @@ class FormSnack extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTransaksi    = 'TRANS_'.substr(md5(time()), 0, 14);
-                $idSnack        = 'SNACK_'.substr(md5(time()), 0, 14);
+                $idTransaksi    = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
+                $idSnack        = 'SNACK_'.substr(md5(time()."snack"), 0, 14);
                 
                 $storeTransaksi['ID_TRANS']         = $idTransaksi;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];
