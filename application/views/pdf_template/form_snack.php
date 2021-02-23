@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FORM PEMBELIAN SNACK</title>
+        <title>PEMBELIAN SNACK</title>
         <style>			
 			table.ttd {
 				position: absolute;
@@ -77,7 +77,7 @@
 					</tr>
 					<tr>
 						<td class="tg-z9cd">Hal</td>
-						<td class="tg-z9cd">: … Dari : …</td>
+						<td class="tg-z9cd">: 1 Dari : 1</td>
 					</tr>
 				</tbody>
 			</table>
@@ -92,17 +92,17 @@
 				<tr>
 					<td style="width: 15%">Tanggal</td>
 					<td style="width: 5%">:</td>
-					<td>&nbsp;</td>
+					<td><?= $listSnack[0]->TGLOUT_SNACK?></td>
 				</tr>
 				<tr>
 					<td>Divisi</td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $listSnack[0]->DIVISI_SNACK?></td>
 				</tr>
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $listSnack[0]->KEPERLUAN_SNACK?></td>
 				</tr>
 			</table>
 		</div>
@@ -121,15 +121,26 @@
 					<td>&nbsp;</td>
 				</tr>
 				<?php 
-					for ($x = 1; $x <= 8; $x++) 
+					for ($x = 0; $x < 8; $x++) 
 					{
-						echo "
-						<tr>
-							<td>$x.</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						";
+						$no = $x + 1;
+						if(!empty($listSnack[$x])){
+							echo '
+								<tr>
+									<td>'.$no.'</td>
+									<td style="padding-left:40px">'.$listSnack[$x]->JENIS_SNACK.'</td>
+									<td style="text-align:center;">'.$listSnack[$x]->JML_SNACK.'</td>
+								</tr>
+							';							
+						}else{
+							echo '
+								<tr>
+									<td>'.$no.'</td>
+									<td style="padding-left:40px">&nbsp;</td>
+									<td style="text-align:center;">&nbsp;</td>
+								</tr>
+							';	
+						}							
 					} 
 				?>				
 			</table>
@@ -147,9 +158,9 @@
 				<tr><td>&nbsp;</td></tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>					
-					<td>(............................................)</td>
+					<td>( <?= $listSnack[0]->NAMA_USERS?> )</td>
 					<td style="width:20%">&nbsp;</td>
-					<td>(............................................)</td>
+					<td>(&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp )</td>
 				</tr>
 			</table>
 		</div>
