@@ -22,7 +22,7 @@ class Transaction extends RestController {
                 if($user[0]->ROLE_USERS == 'Staff'){
                     $trans = $this->db->not_like('STAT_TRANS', '0')->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
                 }else{
-                    $trans = $this->db->not_like('STAT_TRANS', '0')->get_where('V_TRANSACTION', ['CONFIRM_ACTIVE' => $user[0]->ROLE_USERS], $limit)->result();
+                    $trans = $this->db->not_like('STAT_TRANS', '0')->get('V_TRANSACTION', $limit)->result();
                 }
                 if($trans != null){
                     $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $trans], 200);
