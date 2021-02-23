@@ -88,7 +88,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= site_url('user/store') ?>" method="post">
+            <form action="<?= site_url('user/store') ?>" enctype="multipart/form-data" method="post">
                 <div class="modal-body">
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Nama" name="NAMA_USERS" required>
@@ -132,6 +132,12 @@
                     <div class="col">
                         <input type="text" class="form-control" value="123ut456" placeholder="Password" disabled>
                         <input type="hidden" name="PASS_USERS" value="123ut456" />
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="file" name="imageTtd" class="custom-file-input" id="image-source" onchange="previewImage();">
+                        <label class="custom-file-label" for="image-source">Upload Signature</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -199,7 +205,12 @@
 
 <!-- Custom Javascript -->
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
-<script>
+<script>    
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
     $(document).ready(function() {
         // $('.toast').toast('show')
         <?php
