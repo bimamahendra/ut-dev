@@ -4,7 +4,6 @@
             <div class="card p-3">
                 <div class="card-body">
                     <i class="fas fa-user"></i>
-                    <br>
                     <h2 class="card-title mb-3">Login</h2>
                     <form action="<?= site_url('login') ?>" method="post">
                         <div class="form-group">
