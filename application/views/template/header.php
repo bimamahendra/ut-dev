@@ -16,7 +16,7 @@
     <link rel="icon" href="<?= base_url('assets/img/favicon/favicon-16x16.png'); ?>" sizes="16x16">
     <link rel="icon" href="<?= base_url('assets/img/favicon/favicon-32x32.png'); ?>" sizes="32x32">
 
-    <title>United Tractor - Login</title>
+    <title>United Tractor</title>
 </head>
 
 <body>
