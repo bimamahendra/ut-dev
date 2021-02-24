@@ -36,6 +36,7 @@
                             <th>Departement</th>
                             <th>Division</th>
                             <th>Username</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,6 +50,7 @@
                                         <td>' . $item->DEPT_USERS . '</td>
                                         <td>' . $item->DIV_USERS . '</td>
                                         <td>' . $item->USER_USERS . '</td>
+                                        <td> Verified / Unverified </td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Edit">
