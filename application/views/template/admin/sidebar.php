@@ -42,7 +42,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('welcome/transaksi'); ?>">
+        <a class="nav-link" href="<?= site_url('transaction'); ?>">
             <i class="fas fa-chart-bar"></i>
             <span>Transaction</span>
         </a>
