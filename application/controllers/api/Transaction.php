@@ -54,7 +54,7 @@ class Transaction extends RestController {
             $user   = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
             if($trans != null && $user != null){
                 $transDetail = $this->db->get_where('V_TRANSACTION_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->result();
-                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $transDetail], 200);
+                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $transDetail[0]], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data transaction / user tidak ditemukan'], 200);
             }
