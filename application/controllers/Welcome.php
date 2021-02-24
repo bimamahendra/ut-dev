@@ -24,6 +24,13 @@ class Welcome extends CI_Controller
 		$this->load->view('welcome_message');
 	}
 
+	public function landing()
+	{
+		$this->load->view('template/header');
+		$this->load->view('landing');
+		$this->load->view('template/footer');
+	}
+
 	public function register()
 	{
 		$this->load->view('template/header');
