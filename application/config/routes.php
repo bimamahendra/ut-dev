@@ -95,4 +95,4 @@ $route['transaction/approve']   = 'TransactionController/approve';
 $route['transaction/reject']    = 'TransactionController/reject';
 
 //Snack
-$route['snack/(:any)']                  = 'SnackController/vSnack/$1';
+$route['snack/(:any)']          = 'SnackController/vSnack/$1';

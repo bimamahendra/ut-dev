@@ -61,7 +61,7 @@ class Transaction extends RestController {
             $transaction    = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
             if($user != null && $transaction != null){
                 if($transaction[0]->STAT_TRANS == '1' && $transaction[0]->CONFIRM_STATE_TRANS == $user[0]->ROLE_USERS){
-                    if($param['isApprove'] == "2"){
+                    if($param['isApprove'] == "1"){
                         $flow               = $this->db->get_where('FLOW', ['ID_MAPPING' => $transaction[0]->ID_MAPPING])->result_array();
                         $flowWillApprove    = $transaction[0]->FLAG_TRANS + 2; 
                         if(!empty($flow[0]['APP_'.$flowWillApprove]) && $flow[0]['APP_'.$flowWillApprove] != null){
@@ -80,7 +80,7 @@ class Transaction extends RestController {
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
                         }
                         $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
-                    }else{
+                    }else if("2"){
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['STAT_TRANS' => '3']);
                         $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "3" WHERE ID_TRANS = "'.$param['idTrans'].'"');
                         $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0', 'KETERANGAN' => $param['keterangan']]);
