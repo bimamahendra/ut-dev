@@ -8,13 +8,6 @@ class Transaction extends RestController {
         $this->load->helper("url");
         $this->load->library(array('notification'));
     }
-
-    public function tes_post(){
-        $notif['title'] = 'Tes';
-        $notif['message'] = 'tesciuysdf';
-        $notif['regisIds'][0] = 'cLOifR2CTxmvJkFBkGGxY7:APA91bH6ezExw1rh-39OEDRn8KymCgudla_hmjZ1RxSdOUVCq53PTC2Xq7f_O2Java4prvaq8d-H23p4FfW6ptTkGp-5mQ1Dy9EKpc8p7F5wyd8SH1K3u8x5nJHIUbWYrAZ0LTll7rjj';
-        $this->notification->push($notif);
-    }
     public function index_get($username){
         $param = $this->get();
         if(!empty($param['limit'])){
@@ -36,7 +29,7 @@ class Transaction extends RestController {
                         $transNew[$x]['PATH_TRANS']             = $item->PATH_TRANS;
                         $transNew[$x]['TS_TRANS']               = $item->TS_TRANS;
                         $transNew[$x]['FLAG_TRANS']             = $item->FLAG_TRANS;
-                        $transNew[$x]['CONFIRM_STATE_TRANS']    = $item->FLAG_TRANS;
+                        $transNew[$x]['CONFIRM_STATE_TRANS']    = $item->CONFIRM_STATE_TRANS;
                         $transNew[$x]['STAT_TRANS']             = $item->ISAPPROVE_APP;
                         $x++;
                     }
@@ -49,6 +42,21 @@ class Transaction extends RestController {
                 }
             }else{
                 $this->response(['status' => false, 'message' => 'Data user tidak ditemukan'], 200);
+            }
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
+    }
+    public function detail_get(){
+        $param = $this->get();
+        if(!empty($param['idTrans']) && !empty($param['username'])){
+            $trans  = $this->db->get_where('TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
+            $user   = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
+            if($trans != null && $user != null){
+                $transDetail = $this->db->get_where('V_TRANSACTION_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->result();
+                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $transDetail], 200);
+            }else{
+                $this->response(['status' => false, 'message' => 'Data transaction / user tidak ditemukan'], 200);
             }
         }else{
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
@@ -83,7 +91,8 @@ class Transaction extends RestController {
                     }else if("2"){
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['STAT_TRANS' => '3']);
                         $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "3" WHERE ID_TRANS = "'.$param['idTrans'].'"');
-                        $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0', 'KETERANGAN' => $param['keterangan']]);
+                        $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0']);
+                        $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['KETERANGAN_TRANS' => $param['keterangan']]);
                         
                         $this->response(['status' => true, 'message' => 'Data berhasil ditolak'], 200);
                     }
