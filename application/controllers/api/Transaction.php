@@ -53,8 +53,16 @@ class Transaction extends RestController {
             $trans  = $this->db->get_where('TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
             $user   = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
             if($trans != null && $user != null){
-                $transDetail = $this->db->get_where('V_TRANSACTION_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->result();
-                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $transDetail[0]], 200);
+                if($user[0]->ROLE_USERS != 'Staff'){
+                    $transDetail = $this->db->get_where('V_TRANSACTION_APPROVAL_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->result();
+                }else{
+                    $transDetail = $this->db->get_where('V_TRANSACTION_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ID_USERS' => $user[0]->ID_USERS])->result();
+                }
+                if($transDetail != null){
+                    $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $transDetail[0]], 200);
+                }else{
+                    $this->response(['status' => false, 'message' => 'Data tidak ditemukan'], 200);
+                }
             }else{
                 $this->response(['status' => false, 'message' => 'Data transaction / user tidak ditemukan'], 200);
             }
