@@ -142,7 +142,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?php site_url('transaction/approve')?>" method="post">
+                <form action="<?= site_url('transaction/approve')?>" method="post">
                     <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
                     <button type="submit" class="btn btn-success">Approve</button>
                 </form>

@@ -26,7 +26,7 @@ class TransactionController extends CI_Controller
     }
 
     public function approve(){
-        
+        var_dump($_POST);
     }
     public function reject(){
 
