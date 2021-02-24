@@ -20,7 +20,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="tableUser" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -34,28 +34,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Ilham</td>
-                            <td>FORM_MOBDIN</td>
-                            <td>36217</td>
-                            <td>http://[::1]/ut-dev/form</td>
-                            <td>0</td>
-                            <td>Verified</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a href="<?= base_url('welcome/detail_transaksi'); ?>" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Detail">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-success btn-sm mx-1 rounded" data-tooltip="tooltip" data-placement="top" title="Approve">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Reject">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php
+                            foreach ($trans as $item) {
+                                if($item->STAT_TRANS == '0'){
+                                    $status = 'Unverified';
+                                }else if($item->STAT_TRANS == '1'){
+                                    $status = 'Verified';
+                                }else if($item->STAT_TRANS == '2'){
+                                    $status = 'Finished';
+                                }else if($item->STAT_TRANS == '3'){
+                                    $status = 'Rejected';
+                                }
+
+                                echo '
+                                    <tr>
+                                        <td>1</td>
+                                        <td>'.$item->NAMA_USERS.'</td>
+                                        <td>'.$item->NAMA_FORM.'</td>
+                                        <td>'.$item->TS_TRANS.'</td>
+                                        <td>'.$item->PATH_TRANS.'</td>
+                                        <td>'.$item->FLAG_TRANS.'</td>
+                                        <td>'.$status.'</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="'.$item->ID_TRANS.'" class="btn btn-success btn-sm mx-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Reject">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -108,7 +124,33 @@
     </div>
 </div>
 
-<!-- Modal Delete -->
+<!-- Modal Approve -->
+<div class="modal fade" id="mdlApprove" tabindex="-1" aria-labelledby="mdlApprove" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlApprove">Approve Item?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan mensetujui item ?
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?php site_url('transaction/approve')?>" method="post">
+                    <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Reject -->
 <div class="modal fade" id="mdlDelete" tabindex="-1" aria-labelledby="mdlDelete" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -140,4 +182,8 @@
             width: 'resolve'
         });
     });
+    $('#tableTransaction tbody').on('click', '.mdlApprove', function(){
+        const id = $(this).data("id")
+        $('#mdlApprove_id').val(id)
+    })
 </script>

@@ -8,10 +8,12 @@ class TransactionController extends CI_Controller
         $this->load->model('Transaction');
     }
     public function vTrans(){
+        $datas['trans'] = $this->Transaction->getAll();
+
         $this->load->view('template/admin/header');
 		$this->load->view('template/admin/sidebar');
 		$this->load->view('template/admin/topbar');
-		$this->load->view('admin/master_transaksi/transaksi');
+		$this->load->view('admin/master_transaksi/transaksi', $datas);
 		$this->load->view('template/admin/modal');
 		$this->load->view('template/admin/footer');
     }
@@ -21,5 +23,12 @@ class TransactionController extends CI_Controller
     public function update(){
     }
     public function destroy(){
+    }
+
+    public function approve(){
+        
+    }
+    public function reject(){
+
     }
 }
