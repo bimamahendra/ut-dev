@@ -51,13 +51,16 @@
                                         <td>' . $item->USER_USERS . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded">
+                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mx-1 rounded mdlRstPassUserItem">
+                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mr-1 rounded mdlRstPassUserItem" data-tooltip="tooltip" data-placement="top" title="Reset">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Delete">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
@@ -149,6 +152,32 @@
     </div>
 </div>
 
+<!-- Modal Approve -->
+<div class="modal fade" id="mdlApprove" tabindex="-1" aria-labelledby="mdlApprove" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlApprove">Approve Item?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan mensetujui item ?
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form method="post">
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Reset -->
 <div class="modal fade" id="mdlReset" tabindex="-1" aria-labelledby="mdlReset" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -205,7 +234,7 @@
 
 <!-- Custom Javascript -->
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
-<script>    
+<script>
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
