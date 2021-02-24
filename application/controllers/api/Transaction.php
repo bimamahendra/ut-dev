@@ -56,7 +56,7 @@ class Transaction extends RestController {
     }
     public function confirm_put(){
         $param = $this->put();
-        if(!empty($param['username']) && !empty($param['idTrans']) && !empty($param['isApprove'])){
+        if(!empty($param['username']) && !empty($param['idTrans']) && !empty($param['isApprove']) && !empty($param['keterangan'])){
             $user           = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
             $transaction    = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
             if($user != null && $transaction != null){
@@ -82,14 +82,10 @@ class Transaction extends RestController {
                         $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
                     }else{
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['STAT_TRANS' => '3']);
-                        if(!empty($param['keterangan'])){
-                            $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "3" WHERE ID_TRANS = "'.$param['idTrans'].'"');
-                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0', 'KETERANGAN' => $param['keterangan']]);
-                            
-                            $this->response(['status' => true, 'message' => 'Data berhasil ditolak'], 200);
-                        }else{
-                            $this->response(['status' => false, 'message' => 'Field keterangan wajib diisi'], 200);
-                        }
+                        $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "3" WHERE ID_TRANS = "'.$param['idTrans'].'"');
+                        $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0', 'KETERANGAN' => $param['keterangan']]);
+                        
+                        $this->response(['status' => true, 'message' => 'Data berhasil ditolak'], 200);
                     }
                 }else{
                     $this->response(['status' => false, 'message' => 'Anda tidak diijinkan untuk melakukan aksi ini'], 200);
