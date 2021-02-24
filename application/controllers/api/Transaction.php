@@ -86,8 +86,8 @@ class Transaction extends RestController {
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ROLE_USERS' => $flow[0]['APP_'.$flowWillApprove]])->result_array();
                             
-                            $notif['title']     = 'Pengajuan '.$transaction[0]->NAMA_FORM;
-                            $notif['message']   = 'Pengajuan form baru';
+                            $notif['title']     = 'Pengajuan Baru';
+                            $notif['message']   = 'Terdapat pengajuan form '.$transaction[0]->NAMA_FORM;
                             $notif['regisIds']  = $userReceiveNotifs;
                             $res = $this->notification->push($notif);
                             $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
