@@ -17,7 +17,7 @@ class ContentPdf extends CI_Model{
         $data['user']                   = $user[0];	
 		       
         $file_pdf = $trans[0]->NAMA_USERS.'_'.$mappPdf[0]->NAMA_FORM.'_'.time();
-        $path_pdf = base_url('uploads/transaction/'.$user[0]->USER_USERS.'/'.$file_pdf.'.pdf');
+        $path_pdf = 'uploads/transaction/'.$user[0]->USER_USERS.'/'.$file_pdf.'.pdf';
 		
         $paper = 'A4';
         $orientation = "portrait";
@@ -25,8 +25,8 @@ class ContentPdf extends CI_Model{
 		$html = $this->load->view($mappPdf[0]->PATH_TEMPLATE_PDF, $data, true);	    
 
         $resPdf = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
-        if(!is_dir(base_url('uploads/transaction/'.$user[0]->USER_USERS))){
-            mkdir(base_url('uploads/transaction/'.$user[0]->USER_USERS), 0777, TRUE);
+        if(!is_dir('./uploads/transaction/'.$user[0]->USER_USERS)){
+            mkdir('./uploads/transaction/'.$user[0]->USER_USERS, 0777, TRUE);
         }
         file_put_contents($path_pdf, $resPdf);
         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => $path_pdf]);
