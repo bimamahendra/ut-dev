@@ -64,14 +64,14 @@ class FormSnack extends RestController {
                     $this->db->insert('DETAIL_SNACK', $storeDetFrmSnack);
                 }
                 
-                $this->ContentPdf->generate(['idTrans' => $idTrans]);
-
+                
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
                 for($i = 1; $i <= 15; $i++){
                     if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){
                         $this->db->insert('DETAIL_APPROVAL', ['ID_TRANS' => $idTrans, 'ROLE_APP' => $flow[0]['APP_'.$i]]);
                     }
                 }
+                $this->ContentPdf->generate(['idTrans' => $idTrans]);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau mapping tidak ditemukan'], 200);
