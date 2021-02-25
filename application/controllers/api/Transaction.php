@@ -6,7 +6,8 @@ class Transaction extends RestController {
     public function __construct() {
         parent::__construct();
         $this->load->helper("url");
-        $this->load->library(array('notification'));
+        $this->load->model("ContentPdf");
+        $this->load->library(array('notification', 'pdfgenerator'));
     }
     public function index_get($username){
         $param = $this->get();
@@ -46,6 +47,26 @@ class Transaction extends RestController {
         }else{
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
+    }
+    public function generate_get(){
+        $param      = $this->get();
+        $trans      = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
+        $mappPdf    = $this->db->get_where('V_MAPPING_PDF', ['ID_MAPPING' => $trans[0]->ID_MAPPING])->result();
+        
+        // $data['list'] = $this->ContentPdf->getData($);				
+        $data['title_pdf'] = $mappPdf[0]->NAMA_FORM;	
+		$username = $trans[0]->NAMA_USERS;  
+		       
+        $file_pdf = "$username".'_'.$mappPdf[0]->NAMA_FORM.'_'.date('m-d-Y');
+		
+        $paper = 'A4';
+        $orientation = "portrait";
+        
+		$html = $this->load->view($mappPdf[0]->PATH_TEMPLATE_PDF, $data, true);	    
+
+        $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
+        // $res = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
+        // $this->response($res, 200);
     }
     public function detail_get(){
         $param = $this->get();
@@ -87,7 +108,7 @@ class Transaction extends RestController {
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ROLE_USERS' => $flow[0]['APP_'.$flowWillApprove]])->result_array();
                             
                             $notif['title']     = 'Pengajuan Baru';
-                            $notif['message']   = 'Terdapat pengajuan form '.$transaction[0]->NAMA_FORM;
+                            $notif['message']   = 'Terdapat Pengajuan Form '.$transaction[0]->NAMA_FORM;
                             $notif['regisIds']  = $userReceiveNotifs;
                             $res = $this->notification->push($notif);
                             $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
