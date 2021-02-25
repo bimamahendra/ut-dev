@@ -6,6 +6,7 @@ class TransactionController extends CI_Controller
     function __construct(){
         parent::__construct();
         $this->load->model('Transaction');
+        $this->load->library('notification');
     }
     public function vTrans(){
         $datas['trans'] = $this->Transaction->getAll();
@@ -26,9 +27,26 @@ class TransactionController extends CI_Controller
     }
 
     public function approve(){
-        var_dump($_POST);
+        $param                  = $_POST;
+        $param['STAT_TRANS']    = '1';
+        $this->Transaction->update($param);
+
+        $transaction        = $this->Transaction->get(['filter' => ['ID_TRANS' => $param['ID_TRANS']]]);
+        $notif['title']     = 'Pengajuan Baru';
+        $notif['message']   = 'Terdapat Pengajuan Form '.$transaction[0]->NAMA_FORM;
+        $notif['regisIds']  = $this->db->get_where('USERS', ['ROLE_USERS' => $transaction[0]->CONFIRM_STATE_TRANS])->result_array();
+        $this->notification->push($notif);
+        redirect('transaction');
     }
     public function reject(){
+        $param                  = $_POST;
+        $param['STAT_TRANS']    = '3';
+        $this->Transaction->update($param);
 
+        $transaction        = $this->Transaction->get(['filter' => ['ID_TRANS' => $param['ID_TRANS']]]);
+        $notif['title']     = 'Info Pengajuan Form';
+        $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Tertolak';
+        $notif['regisIds']  = $this->db->get_where('USERS', ['ROLE_USERS' => $transaction[0]->ID_USERS])->result_array();
+        redirect('transaction');
     }
 }

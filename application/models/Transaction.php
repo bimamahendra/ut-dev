@@ -12,7 +12,7 @@ class Transaction extends CI_Model{
     }
     public function get($param){
         $filter = !empty($param['filter'])? $param['filter'] : '';
-        $res    = $this->db->get_where('TRANSACTION', $filter)->result();
+        $res    = $this->db->get_where('V_TRANSACTION', $filter)->result();
         return $res;
     }
     public function insert($param){
