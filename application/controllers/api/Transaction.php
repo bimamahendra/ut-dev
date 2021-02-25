@@ -53,18 +53,22 @@ class Transaction extends RestController {
         $trans      = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
         $mappPdf    = $this->db->get_where('V_MAPPING_PDF', ['ID_MAPPING' => $trans[0]->ID_MAPPING])->result();
         
-        // $data['list'] = $this->ContentPdf->getData($);				
+        $data['list'] = $this->ContentPdf->get(['table' => $mappPdf[0]->NAMA_TABEL, 'idTrans' => $param['idTrans']]);				
         $data['title_pdf'] = $mappPdf[0]->NAMA_FORM;	
-		$username = $trans[0]->NAMA_USERS;  
 		       
-        $file_pdf = "$username".'_'.$mappPdf[0]->NAMA_FORM.'_'.date('m-d-Y');
+        $file_pdf = $trans[0]->NAMA_USERS.'_'.$mappPdf[0]->NAMA_FORM.'_'.time();
 		
         $paper = 'A4';
         $orientation = "portrait";
         
 		$html = $this->load->view($mappPdf[0]->PATH_TEMPLATE_PDF, $data, true);	    
 
-        $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
+        $resPdf = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
+        if(!is_dir('./uploads/transaction/'.$trans[0]->NAMA_USERS)){
+            mkdir('./uploads/transaction/'.$trans[0]->NAMA_USERS, 0777, TRUE);
+        }
+        file_put_contents('./uploads/transaction/'.$trans[0]->NAMA_USERS.'/'.$file_pdf.'.pdf', $resPdf);
+
         // $res = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
         // $this->response($res, 200);
     }

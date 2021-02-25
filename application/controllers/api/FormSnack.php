@@ -41,7 +41,7 @@ class FormSnack extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans    = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
+                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
                 $idSnack        = 'SNACK_'.substr(md5(time()."snack"), 0, 14);
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
@@ -63,6 +63,9 @@ class FormSnack extends RestController {
                     $storeDetFrmSnack['JML_SNACK']      = $item['jmlSnack'];
                     $this->db->insert('DETAIL_SNACK', $storeDetFrmSnack);
                 }
+                
+                $this->ContentPdf->generate(['idTrans' => $idTrans]);
+
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
                 for($i = 1; $i <= 15; $i++){
                     if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){

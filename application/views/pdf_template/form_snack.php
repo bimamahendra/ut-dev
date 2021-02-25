@@ -92,17 +92,22 @@
 				<tr>
 					<td style="width: 15%">Tanggal</td>
 					<td style="width: 5%">:</td>
-					<td><?= $listSnack[0]->TGLOUT_SNACK?></td>
+					<td>
+						<?php 
+							$date = date_create($list[0]->TGLOUT_SNACK);
+							echo date_format($date, 'd-m-Y');
+						?>
+					</td>
 				</tr>
 				<tr>
 					<td>Divisi</td>
 					<td>:</td>
-					<td><?= $listSnack[0]->DIVISI_SNACK?></td>
+					<td><?= $list[0]->DIVISI_SNACK?></td>
 				</tr>
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
-					<td><?= $listSnack[0]->KEPERLUAN_SNACK?></td>
+					<td><?= $list[0]->KEPERLUAN_SNACK?></td>
 				</tr>
 			</table>
 		</div>
@@ -124,12 +129,12 @@
 					for ($x = 0; $x < 8; $x++) 
 					{
 						$no = $x + 1;
-						if(!empty($listSnack[$x])){
+						if(!empty($list[$x])){
 							echo '
 								<tr>
 									<td>'.$no.'</td>
-									<td style="padding-left:40px">'.$listSnack[$x]->JENIS_SNACK.'</td>
-									<td style="text-align:center;">'.$listSnack[$x]->JML_SNACK.'</td>
+									<td style="padding-left:40px">'.$list[$x]->JENIS_SNACK.'</td>
+									<td style="text-align:center;">'.$list[$x]->JML_SNACK.'</td>
 								</tr>
 							';							
 						}else{
@@ -152,13 +157,13 @@
 					<td style="width:20%">&nbsp;</td>
 					<td>Disetujui oleh GAD</td>
 				</tr>
-				<tr><td>&nbsp;</td></tr>
-				<tr><td>&nbsp;</td></tr>
-				<tr><td>&nbsp;</td></tr>
-				<tr><td>&nbsp;</td></tr>
-				<tr><td>&nbsp;</td></tr>
+				<tr>
+					<td>
+						<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+					</td>
+				</tr>
 				<tr>					
-					<td>( <?= $listSnack[0]->NAMA_USERS?> )</td>
+					<td>( <?= $list[0]->NAMA_USERS?> )</td>
 					<td style="width:20%">&nbsp;</td>
 					<td>(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</td>
 				</tr>
