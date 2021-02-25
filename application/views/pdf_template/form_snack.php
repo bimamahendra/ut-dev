@@ -166,7 +166,7 @@
 						<?php
 							if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 								echo '
-									<img src="'.$approvals[0]->PATH_TRANS.'" width="100px" height="100px" />
+									<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
 								';
 							}
 						?>
