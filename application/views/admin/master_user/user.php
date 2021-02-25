@@ -150,7 +150,8 @@
                         <input type="file" name="imageTtd" class="custom-file-input" id="image-source" onchange="previewImage();">
                         <label class="custom-file-label" for="image-source">Upload Signature</label>
                     </div>
-                </div>
+                </div>                
+                <input type="hidden" name="STAT_USERS" value="1" />
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning">Save changes</button>
