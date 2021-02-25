@@ -57,6 +57,9 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login']                 = 'AuthController/login';
 $route['logout']                = 'AuthController/logout';
 
+// Register
+$route['register']              = 'Welcome/register';
+
 // Dashboard
 $route['dashboard']             = 'DashboardController/vDashboard';
 
