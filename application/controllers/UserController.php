@@ -65,16 +65,26 @@ class UserController extends CI_Controller
         redirect('user');
     }
     public function register(){
-        $imageTtd = $this->upload_image();
+        $this->form_validation->set_rules('USER_USERS', 'USER_USERS','is_unique[USERS.USER_USERS]');
 
-        $param                  = $_POST;
-        $param['ID_USERS']      = substr(md5(time()), 0, 8);
-        $param['PASS_USERS']    = hash('sha256', md5($param['PASS_USERS']));        
-        $param['PATH_TTD']      = $imageTtd;
+        if ($this->form_validation->run()==true)
+	   	{
+            $imageTtd = $this->upload_image();
 
-        $this->User->insert($param);
+            $param                  = $_POST;
+            $param['ID_USERS']      = substr(md5(time()), 0, 8);
+            $param['PASS_USERS']    = hash('sha256', md5($param['PASS_USERS']));        
+            $param['PATH_TTD']      = $imageTtd;
 
-        redirect('register');
+            $this->User->insert($param);
+            $this->session->set_flashdata('success_register','Proses Pendaftaran User Berhasil');
+
+            redirect('register');
+        }else
+		{
+            $this->session->set_flashdata('error','Username telah digunakan');
+			redirect('register');
+		}
     }
     public function resetPassword(){
         $param = $_POST;
