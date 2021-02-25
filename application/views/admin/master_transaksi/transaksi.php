@@ -52,7 +52,7 @@
                                         <td>'.$item->NAMA_USERS.'</td>
                                         <td>'.$item->NAMA_FORM.'</td>
                                         <td>'.$item->TS_TRANS.'</td>
-                                        <td><a href="'.base_url($item->PATH_TRANS).'">'.base_url($item->PATH_TRANS).'</a></td>
+                                        <td><a href="'.$item->PATH_TRANS.'">'.$item->PATH_TRANS.'</a></td>
                                         <td>'.$item->FLAG_TRANS.'</td>
                                         <td>'.$status.'</td>
                                         <td>
