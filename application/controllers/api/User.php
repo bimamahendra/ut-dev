@@ -54,8 +54,8 @@ class User extends RestController {
                 $storeUser['PASS_USERS']    = hash('sha256', md5($param['password']));
                 $storeUser['PATH_TTD']      = $signature;
 
-                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
                 $this->db->insert('USERS', $storeUser);
+                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Username telah digunakan'], 200);
             }
