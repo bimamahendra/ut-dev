@@ -29,7 +29,7 @@ class ContentPdf extends CI_Model{
             mkdir('./uploads/transaction/'.$user[0]->USER_USERS, 0777, TRUE);
         }
         file_put_contents($path_pdf, $resPdf);
-        $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => $path_pdf]);
+        $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($path_pdf)]);
         return true;
     }
 
