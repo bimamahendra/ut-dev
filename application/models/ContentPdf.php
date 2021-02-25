@@ -30,6 +30,7 @@ class ContentPdf extends CI_Model{
         }
         file_put_contents($path_pdf, $resPdf);
         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => $path_pdf]);
+        return true;
     }
 
     public function get($param){
