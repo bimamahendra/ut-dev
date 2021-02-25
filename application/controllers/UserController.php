@@ -58,6 +58,18 @@ class UserController extends CI_Controller
 
         redirect('user');
     }
+    public function register(){
+        $imageTtd = $this->upload_image();
+
+        $param                  = $_POST;
+        $param['ID_USERS']      = substr(md5(time()), 0, 8);
+        $param['PASS_USERS']    = hash('sha256', md5($param['PASS_USERS']));        
+        $param['PATH_TTD']      = $imageTtd;
+
+        $this->User->insert($param);
+
+        redirect('register');
+    }
     public function resetPassword(){
         $param = $_POST;
         $param['PASS_USERS']    = hash('sha256', md5('123ut456'));

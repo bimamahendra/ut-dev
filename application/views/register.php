@@ -4,7 +4,7 @@
             <div class="card p-3">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Register</h2>
-                    <form action="<?= site_url('login') ?>" method="post">
+                    <form action="<?= site_url('user/register') ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Nama" name="NAMA_USERS" required>
                         </div>
@@ -35,7 +35,7 @@
                             <input type="text" class="form-control" name="USER_USERS" placeholder="Username" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" name="PASS_USERS" placeholder="Password">
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
@@ -43,6 +43,7 @@
                                 <label class="custom-file-label" for="image-source">Upload Signature</label>
                             </div>
                         </div>
+                        <input type="hidden" name="STAT_USERS" value="0" />
                         <div>
                             <button class="btn btn-warning btn-block" type="submit">Register</button>
                         </div>
