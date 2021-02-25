@@ -43,7 +43,7 @@ class User extends RestController {
         if(!empty('username') && !empty('namaLengkap') && !empty('role') && !empty('department') && !empty('division') && !empty('password') && !empty('signature')){
             $this->form_validation->set_rules('username', 'USER_USERS','is_unique[USERS.USER_USERS]');
             if($this->form_validation->run()==TRUE){
-                $imageTtd = $this->upload_image();
+                $signature = $this->upload_image();
                 
                 $storeUser['ID_USERS']      = substr(md5(time()), 0, 8);
                 $storeUser['NAMA_USERS']    = $param['namaLengkap'];
@@ -52,7 +52,7 @@ class User extends RestController {
                 $storeUser['DEPT_USERS']    = $param['departement'];
                 $storeUser['DIV_USERS']     = $param['division'];
                 $storeUser['PASS_USERS']    = hash('sha256', md5($param['password']));
-                $storeUser['PATH_TTD']      = $imageTtd;
+                $storeUser['PATH_TTD']      = $signature;
 
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
                 $this->db->insert('USERS', $storeUser);
@@ -85,7 +85,7 @@ class User extends RestController {
         $this->upload->initialize($config);
         if(!empty($_FILES['signature']['name'])){
  
-            if ($this->upload->do_upload('imageTtd')){
+            if ($this->upload->do_upload('signature')){
                 $gbr = $this->upload->data();
                 //Compress Image
                 $config['image_library']='gd2';
