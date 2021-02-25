@@ -51,7 +51,7 @@
                                         <td>1</td>
                                         <td>'.$item->NAMA_USERS.'</td>
                                         <td>'.$item->NAMA_FORM.'</td>
-                                        <td>'.$item->TS_TRANS.'</td>
+                                        <td>'.base_url($item->TS_TRANS).'</td>
                                         <td>'.$item->PATH_TRANS.'</td>
                                         <td>'.$item->FLAG_TRANS.'</td>
                                         <td>'.$status.'</td>
