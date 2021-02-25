@@ -51,6 +51,13 @@ class UserController extends CI_Controller
         $this->User->delete($param);
         redirect('user');
     }
+    public function verif(){
+        $param = $_POST;
+        $param['STAT_USERS']    = 1;
+        $this->User->update($param);
+
+        redirect('user');
+    }
     public function resetPassword(){
         $param = $_POST;
         $param['PASS_USERS']    = hash('sha256', md5('123ut456'));
