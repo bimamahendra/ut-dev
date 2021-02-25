@@ -50,15 +50,21 @@
                                         <td>' . $item->DEPT_USERS . '</td>
                                         <td>' . $item->DIV_USERS . '</td>
                                         <td>' . $item->USER_USERS . '</td>
-                                        <td> Verified / Unverified </td>
+                                        <td>'.($item->STAT_USERS == 0 ? 'Unverified' : 'Verified' ).'</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded" data-tooltip="tooltip" data-placement="top" title="Approve">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
+                                                '.($item->STAT_USERS == 0 ? 
+                                                    '<button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>'
+                                                    :
+                                                    '<button type="button" data-toggle="modal" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove d-none" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>'
+                                                ).'                                                
                                                 <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mr-1 rounded mdlRstPassUserItem" data-tooltip="tooltip" data-placement="top" title="Reset">
                                                     <i class="fa fa-key"></i>
                                                 </button>
@@ -166,13 +172,14 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan mensetujui item ?
+                    Anda akan mensetujui item ? <span id="mdlApprove_item"></span>
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form method="post">
+                <form action="<?= site_url('user/verif') ?>" method="post">
+                    <input type="hidden" id="mdlApprove_itemId" name="ID_USERS" />
                     <button type="submit" class="btn btn-success">Approve</button>
                 </form>
             </div>
@@ -261,6 +268,13 @@
         const name = $(this).data('name')
         $('#mdlRstPassUserItem_item').html(name)
         $('#mdlRstPassUserItem_itemId').val(id)
+
+    })
+    $('#tableUser tbody').on('click', '.mdlApprove', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        $('#mdlApprove_item').html(name)
+        $('#mdlApprove_itemId').val(id)
 
     })
 </script>
