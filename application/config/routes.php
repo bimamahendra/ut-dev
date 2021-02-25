@@ -79,6 +79,7 @@ $route['user/store']            = 'UserController/store';
 $route['user/update']           = 'UserController/update';
 $route['user/reset-password']   = 'UserController/resetPassword';
 $route['user/destroy']          = 'UserController/destroy';
+$route['user/verif']            = 'UserController/verif';
 
 // Form
 $route['form']                  = 'FormController/vForm';
