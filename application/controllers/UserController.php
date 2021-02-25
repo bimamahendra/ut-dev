@@ -6,7 +6,7 @@ class UserController extends CI_Controller
     function __construct(){
         parent::__construct();
         $this->load->model('User');
-        $this->load->library('upload');
+        $this->load->library(array('upload', 'notification'));
     }
     public function vUser(){
         $data['listData'] = $this->User->getAll();
@@ -52,9 +52,15 @@ class UserController extends CI_Controller
         redirect('user');
     }
     public function verif(){
-        $param = $_POST;
+        $param                  = $_POST;
         $param['STAT_USERS']    = 1;
+
         $this->User->update($param);
+
+        $notif['title']     = 'Konfirmasi Akun';
+        $notif['message']   = 'Selamat Akun Anda Berhasil Terverifikasi !';
+        $notif['regisIds']  = $this->db->get_where('USERS', ['ID_USERS' => $param['ID_USERS']])->result_array();
+        $this->notification->push($notif);
 
         redirect('user');
     }
