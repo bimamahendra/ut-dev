@@ -36,8 +36,17 @@
                     <tbody>
                         <?php
                             foreach ($trans as $item) {
+                                $approvalBtn = '';
                                 if($item->STAT_TRANS == '0'){
                                     $status = 'Unverified';
+                                    $approvalBtn = '
+                                        <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="'.$item->ID_TRANS.'" class="btn btn-success btn-sm mx-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        <button type="button" data-toggle="modal" data-target="#mdlReject" data-id="'.$item->ID_TRANS.'" class="btn btn-danger btn-sm rounded mdlReject" data-tooltip="tooltip" data-placement="top" title="Reject">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    ';
                                 }else if($item->STAT_TRANS == '1'){
                                     $status = 'Verified';
                                 }else if($item->STAT_TRANS == '2'){
@@ -57,15 +66,10 @@
                                         <td>'.$status.'</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                <button type="button" data-toggle="modal" data-target="#mdlView" data-src="'.$item->PATH_TRANS.'" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
-                                                </a>
-                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="'.$item->ID_TRANS.'" class="btn btn-success btn-sm mx-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Approve">
-                                                    <i class="fa fa-check"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Reject">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                                '.$approvalBtn.'
                                             </div>
                                         </td>
                                     </tr>
@@ -83,46 +87,6 @@
 <!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
-
-<!-- Modal Add -->
-<div class="modal fade" id="mdlAdd" tabindex="-1" aria-labelledby="mdlAdd" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mdlAdd">Add Transaction</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post">
-                <div class="modal-body">
-                    <div class="col">
-                        <select class="custom-select select2" style="width: 100%;" required>
-                            <option value="" selected>Nama Form</option>
-                            <option>Form 1</option>
-                            <option>Form 2</option>
-                            <option>Form 3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="col">
-                        <select class="custom-select select2" style="width: 100%;" required>
-                            <option value="" selected>Nama User</option>
-                            <option>Ilham</option>
-                            <option>Zidan</option>
-                            <option>Kurir siCepat</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- Modal Approve -->
 <div class="modal fade" id="mdlApprove" tabindex="-1" aria-labelledby="mdlApprove" aria-hidden="true">
@@ -151,24 +115,49 @@
     </div>
 </div>
 <!-- Modal Reject -->
-<div class="modal fade" id="mdlDelete" tabindex="-1" aria-labelledby="mdlDelete" aria-hidden="true">
+<div class="modal fade" id="mdlReject" tabindex="-1" aria-labelledby="mdlReject" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mdlReject">Reject Item?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form action="<?= site_url('transaction/reject')?>" method="post">
+                    <div class="form-group">
+                        <label for="inputKeterangan">Keterangan</label>
+                        <textarea name="KETERANGAN_TRANS" class="form-control" required></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- Modal View PDF -->
+<div class="modal fade" id="mdlView" tabindex="-1" aria-labelledby="mdlView" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlDelete">Delete Item?</h5>
+                <h5 class="modal-title" id="mdlReject"> View Transaction</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>
-                    Anda akan menghapus item ?
-                </p>
+                <iframe id="mdlView_src" src="" frameborder="0" width="100%" height="500px"></iframe>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
@@ -185,5 +174,13 @@
     $('#tableTransaction tbody').on('click', '.mdlApprove', function(){
         const id = $(this).data("id")
         $('#mdlApprove_id').val(id)
+    })
+    $('#tableTransaction tbody').on('click', '.mdlReject', function(){
+        const id = $(this).data("id")
+        $('#mdlReject_id').val(id)
+    })
+    $('#tableTransaction tbody').on('click', '.mdlView', function(){
+        const src = $(this).data("src")
+        $('#mdlView_src').attr('src', src);
     })
 </script>
