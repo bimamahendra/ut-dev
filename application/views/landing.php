@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
     <div class="d-flex justify-content-between w-100">
         <a class="navbar-brand my-2 my-sm-0" href="#">United Tractors</a>
-        <a class="btn btn-warning my-2 my-sm-0" href="<?= site_url('welcome/register'); ?>">Register</a>
+        <a class="btn btn-warning my-2 my-sm-0" href="<?= site_url('register'); ?>">Register</a>
     </div>
 </nav>
 
