@@ -17,6 +17,13 @@
     <link rel="icon" href="<?= base_url('assets/img/favicon/favicon-32x32.png'); ?>" sizes="32x32">
 
     <title>United Tractor</title>
+
+    <style>
+        .bg-image-ut {
+            background: url('<?= base_url('assets/img/landing/bg_ut.png'); ?>') no-repeat center;
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>

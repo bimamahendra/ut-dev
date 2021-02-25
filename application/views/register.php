@@ -1,7 +1,16 @@
-<div style="background: url('<?= base_url('assets/img/bg/bg_regist.png'); ?>') no-repeat center; background-size: cover;">
+<div class="bg-image-ut">
     <div class="container">
-        <div class="d-flex flex-row justify-content-end align-items-center min-vh-100">
-            <div class="card p-3">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center min-vh-100">
+            <div class="my-4">
+                <img src="<?= base_url('assets/img/landing/motto_ut.png') ?>" width="300" alt="Motto UT">
+                <h5 class="text-white mt-4">
+                    The strength of the company <br>
+                    lies on the quality of its products and services, <br>
+                    the best solutions offered, and good <br>
+                    relationship with customers.
+                </h5>
+            </div>
+            <div class="card p-3 mb-4">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Register</h2>
                     <form action="<?= site_url('login') ?>" method="post">
