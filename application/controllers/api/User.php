@@ -38,6 +38,30 @@ class User extends RestController {
         }
     }
 
+    public function register_post(){
+        $param = $this->post();        
+        if(!empty('username') && !empty('namaLengkap') && !empty('role') && !empty('department') && !empty('division') && !empty('password') && !empty('signature')){
+            $this->form_validation->set_rules('username', 'USER_USERS','is_unique[USERS.USER_USERS]');
+            if($this->form_validation->run()==TRUE){
+                $imageTtd = $this->upload_image();
+                
+                $storeUser['ID_USERS']      = substr(md5(time()), 0, 8);
+                $storeUser['NAMA_USERS']    = $param['namaLengkap'];
+                $storeUser['USER_USERS']    = $param['username'];
+                $storeUser['ROLE_USERS']    = $param['role'];
+                $storeUser['DEPT_USERS']    = $param['departement'];
+                $storeUser['DIV_USERS']     = $param['division'];
+                $storeUser['PASS_USERS']    = hash('sha256', md5($param['password']));
+                $storeUser['PATH_TTD']      = $imageTtd;
+
+                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
+                $this->db->insert('USERS', $storeUser);
+            }else{
+                $this->response(['status' => false, 'message' => 'Username telah digunakan'], 200);
+            }
+        }
+    }
+
     public function logout_post(){
         $param = $this->post();
         if(!empty($param['idUser'])){
@@ -51,6 +75,38 @@ class User extends RestController {
         }else{
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200); 
         }
+    }
+
+    function upload_image(){
+        $config['upload_path'] = './images/ttd/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+ 
+        $this->upload->initialize($config);
+        if(!empty($_FILES['signature']['name'])){
+ 
+            if ($this->upload->do_upload('imageTtd')){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library']='gd2';
+                $config['source_image']='./images/ttd/'.$gbr['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= true;
+                // $config['quality']= '100%';
+                $config['width']= 600;
+                // $config['height']= 400;
+                $config['new_image']= './images/ttd/'.$gbr['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+ 
+                $gambar=$gbr['file_name'];
+
+                return base_url('images/ttd/'.$gambar);
+            }
+                      
+        }else{
+            return base_url('images/ttd/default.png');
+        }         
     }
 
 }
