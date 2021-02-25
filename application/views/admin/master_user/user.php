@@ -37,7 +37,8 @@
                             <th>Division</th>
                             <th>Username</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Action</th>                            
+                            <th>TS</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +74,7 @@
                                                 </button>
                                             </div>
                                         </td>
+                                        <td>' . $item->TS_USERS . '</td>
                                     </tr>
                                 ';
                         }
@@ -258,6 +260,12 @@
         }
         ?>
     })
+    $(document).ready( function () {
+        var table = $('#tableUser').DataTable({
+        "aaSorting": [[ 7, "desc" ]],
+        "aoColumnDefs": [{ "bVisible": false, "aTargets": [7] }]
+        });
+    } );
     $('#tableUser tbody').on('click', '.mdlDelete', function() {
         const id = $(this).data('id')
         const name = $(this).data('name')
