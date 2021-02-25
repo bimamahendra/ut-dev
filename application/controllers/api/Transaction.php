@@ -120,6 +120,8 @@ class Transaction extends RestController {
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
                         }
+                        unlink($transaction[0]->PATH_TRANS);
+                        $this->ContentPdf->generate(['idTrans' => $idTrans]);
                         $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
                     }else if("2"){
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['STAT_TRANS' => '3']);

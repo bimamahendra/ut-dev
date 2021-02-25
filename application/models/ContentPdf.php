@@ -11,10 +11,12 @@ class ContentPdf extends CI_Model{
         $trans      = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
         $mappPdf    = $this->db->get_where('V_MAPPING_PDF', ['ID_MAPPING' => $trans[0]->ID_MAPPING])->result();
         $user       = $this->db->get_where('USERS', ['ID_USERS' => $trans[0]->ID_USERS])->result();
+        $approvals  = $this->db->get_where('V_APPROVAL_SIGNATURE', ['ID_TRANS' => $param['idTrans']])->result();
         
         $data['list']                   = $this->get(['table' => $mappPdf[0]->NAMA_TABEL, 'idTrans' => $param['idTrans']]);				
         $data['title_pdf']              = $mappPdf[0]->NAMA_FORM;
         $data['user']                   = $user[0];	
+        $data['approvals']              = $approvals;
 		       
         $file_pdf = $trans[0]->NAMA_USERS.'_'.$mappPdf[0]->NAMA_FORM.'_'.time();
         $path_pdf = 'uploads/transaction/'.$user[0]->USER_USERS.'/'.$file_pdf.'.pdf';
