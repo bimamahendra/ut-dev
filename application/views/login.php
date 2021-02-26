@@ -13,7 +13,7 @@
             <div class="card p-3" style="min-width: 370px;">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Login</h2>
-                    <form action="<?= site_url('login') ?>" method="post">
+                    <form action="<?= site_url('flogin') ?>" method="post">
                         <div class="form-group">
                             <label for="inputUsername" class="form-label">Username</label>
                             <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>
