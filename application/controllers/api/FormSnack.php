@@ -80,4 +80,9 @@ class FormSnack extends RestController {
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
     }
+
+    public function test_get(){
+        $this->db->insert('NewTable', ['Nama' => 'Ilham']);
+        $this->pusherjs->push();
+    }
 }

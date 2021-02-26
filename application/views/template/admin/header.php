@@ -25,21 +25,7 @@
     <link rel="icon" href="<?= base_url('assets/img/favicon/favicon-32x32.png'); ?>" sizes="32x32">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script>
-
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('8cf91b33222fdfca79e1', {
-        cluster: 'ap1'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-        alert(JSON.stringify(data));
-        });
-    </script>
+    
 </head>
 
 <body id="page-top">
