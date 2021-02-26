@@ -32,8 +32,20 @@ class FormController extends CI_Controller
     }
 
     public function store(){
+        $file = null;
+        $this->load->library(array('upload'));
+        $config = [
+            'upload_path' => './application/views/pdf_template/', 
+            'allowed_types' => '*', 
+            'max_size' => 1024];            
+        $this->upload->initialize($config);
+        if($this->upload->do_upload('PATH_TEMPLATE_PDF')){
+            $dataUpload = $this->upload->data();
+            $file    = 'pdf_template/' .substr($dataUpload['file_name'],0,-4) ;
+        }
         $datas = $_POST;
-        $datas['ID_MAPPING']      = 'MAPP_'.substr(md5(time()), 0, 45);
+        $datas['ID_MAPPING']             = 'MAPP_'.substr(md5(time()), 0, 45);
+        $datas['PATH_TEMPLATE_PDF']     = $file;
 
         $retId = $this->Form->insert($datas);
         redirect('form');
@@ -59,5 +71,26 @@ class FormController extends CI_Controller
 		$this->load->view('admin/master_form/list_approval', $datas);
 		$this->load->view('template/admin/modal');
 		$this->load->view('template/admin/footer');
+    }
+
+    public function updateFlow(){
+        $datas = $_POST;
+        
+        $this->Form->updateFlow($datas);
+        redirect('form/flow/'.$datas['ID_MAPPING']);
+    }
+
+    public function deleteFlow(){
+        $datas = $_POST;
+        
+        $this->Form->deleteFlow($datas);
+        redirect('form/flow/'.$datas['ID_MAPPING']);
+    }
+
+    public function editFlow(){
+        $datas = $_POST;
+        
+        $this->Form->editFlow($datas);
+        redirect('form/flow/'.$datas['ID_MAPPING']);
     }
 }

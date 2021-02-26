@@ -81,7 +81,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= site_url('form/store') ?>" method="post">
+            <form action="<?= site_url('form/store') ?>" enctype="multipart/form-data" method="post">
                 <div class="modal-body">
                     <div class="col">
                         <select class="custom-select" name="NAMA_TABEL" required>
@@ -115,7 +115,12 @@
                         </select>
                     </div>
                 </div>
-
+                <div class="modal-body" style="padding-left:6%;padding-right:6%;">
+                    <div class="col">
+                        <input type="file" name="PATH_TEMPLATE_PDF" class="custom-file-input" id="image-source" onchange="previewImage();">
+                        <label class="custom-file-label" for="image-source">Upload Template</label>
+                    </div>
+                </div>           
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning">Save changes</button>
@@ -155,6 +160,10 @@
 <!-- CUSTOM JAVASCRIPT -->
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script>
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
     $('#tableForm tbody').on('click', '.mdlDelete', function() {
         const id = $(this).data('id')
         const name = $(this).data('name')
