@@ -25,9 +25,9 @@
                         <label for="inputRole">Role</label>
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="">Role</option>
-                            <option value="Head" <?= $dataUser[0]->ROLE_USERS == 'Head'?'selected' : '' ?> >Head</option>
-                            <option value="Section Head" <?= $dataUser[0]->ROLE_USERS == 'Section Head'?'selected' : '' ?> >Head</option>
-                            <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'? 'selected' : '' ?> >Staff</option>
+                            <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'?'selected' : '' ?> >Staff</option>
+                            <option value="Section Head" <?= $dataUser[0]->ROLE_USERS == 'Section Head'?'selected' : '' ?> >Section Head</option>
+                            <option value="Departement Head" <?= $dataUser[0]->ROLE_USERS == 'Departement Head'? 'selected' : '' ?> >Departement Head</option>
                         </select>
                     </div>
                 </div>
