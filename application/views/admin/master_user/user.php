@@ -111,9 +111,9 @@
                     <div class="col">
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="" selected>Role</option>
-                            <option value="Head">Head</option>
-                            <option value="Section Head">Section Head</option>
                             <option value="Staff">Staff</option>
+                            <option value="Department Head">Department Head</option>
+                            <option value="Section Head">Section Head</option>
                         </select>
                     </div>
                 </div>
