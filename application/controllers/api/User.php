@@ -40,7 +40,7 @@ class User extends RestController {
 
     public function register_post(){
         $param = $this->post();        
-        if(!empty('username') && !empty('namaLengkap') && !empty('role') && !empty('department') && !empty('division') && !empty('password') && !empty('signature')){
+        if(!empty('username') && !empty('namaLengkap') && !empty('role') && !empty('department') && !empty('division') && !empty('password') && !empty('signature') && !empty('token')){
             $this->form_validation->set_rules('username', 'USER_USERS','is_unique[USERS.USER_USERS]');
             if($this->form_validation->run()==TRUE){
                 $signature = $this->upload_image();
@@ -53,6 +53,7 @@ class User extends RestController {
                 $storeUser['DIV_USERS']     = $param['division'];
                 $storeUser['PASS_USERS']    = hash('sha256', md5($param['password']));
                 $storeUser['PATH_TTD']      = $signature;
+                $storeUser['TOKEN_USERS']   = $param['token'];
 
                 $this->db->insert('USERS', $storeUser);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);

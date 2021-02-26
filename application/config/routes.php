@@ -93,7 +93,9 @@ $route['form/store']            = 'FormController/store';
 $route['form/update']           = 'FormController/update';
 $route['form/destroy']          = 'FormController/destroy';
 $route['form/flow/(:any)']      = 'FormController/vFlow/$1';
-$route['form/ilham']            = 'FormController/supali';
+$route['form/flow/store']       = 'FormController/flowStore';
+$route['form/flow/reset']       = 'FormController/flowReset';
+$route['form/flow/destroy']     = 'FormController/flowDestroy';
 
 // Transaction
 $route['transaction']           = 'TransactionController/vTrans';

@@ -183,7 +183,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <form action="<?= site_url('user/verif') ?>" method="post">
                     <input type="hidden" id="mdlApprove_itemId" name="ID_USERS" />
-                    <button type="submit" class="btn btn-success">Approve</button>
+                    <button type="submit" class="btn btn-warning">Approve</button>
                 </form>
             </div>
         </div>
@@ -210,7 +210,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <form action="<?= site_url('user/reset-password') ?>" method="post">
                     <input type="hidden" id="mdlRstPassUserItem_itemId" name="ID_USERS" />
-                    <button type="submit" class="btn btn-success">Reset</button>
+                    <button type="submit" class="btn btn-warning">Reset</button>
                 </form>
             </div>
         </div>
