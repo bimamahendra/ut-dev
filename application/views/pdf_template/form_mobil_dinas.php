@@ -146,27 +146,27 @@
 			<table class="tp">	
 				<tr>
 					<td><b>PEMINJAN</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->PEMINJAM_MOBDIN?></td>
 					<td><b>DIVISI / DEPT</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->DD_MOBDIN?></td>
 				</tr>
 				<tr>
 					<td><b>PENGEMUDI</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->PENGEMUDI_MOBDIN?></td>
 					<td><b>NO. POLISI</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->NOPOL_MOBDIN?></td>
 				</tr>
 				<tr>
 					<td><b>TGL. PEMINJAMAN</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->TGLPINJAM_MOBDIN?></td>
 					<td><b>JAM BERANGKAT</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->JAMBERANGKAT_MOBDIN?></td>
 				</tr>
 				<tr>
 					<td><b>TGL. PENGEMBALIAN</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->TGLAMBIL_MOBDIN?></td>
 					<td><b>JAM PULANG</b></td>
-					<td>&nbsp;</td>
+					<td><?= $list[0]->JAMPULANG_MOBDIN?></td>
 				</tr>
 			</table>
 		</div>
@@ -182,32 +182,51 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>1.</td>
-					<td></td>
-					<td></td>
-					<td rowspan="5"></td>
-				</tr>
-				<tr>
-					<td>2.</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>3.</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>4.</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>5.</td>
-					<td></td>
-					<td></td>
-				</tr>
+				<?php 
+					for ($x = 0; $x < 5; $x++) 
+					{
+						$no = $x + 1;
+						if($no == 1){
+							echo '
+								<tr>
+									<td>'.$no.'.</td>
+									<td></td>
+									<td></td>
+									<td rowspan="5">
+										'.$list[0]->CATATAN_MOBDIN.'
+									</td>
+								</tr>
+							';
+						}else{
+							echo '
+								<tr>
+									<td>'.$no.'.</td>
+									<td></td>
+									<td></td>
+									<td rowspan="5"></td>
+								</tr>
+							';
+						}
+
+						if(!empty($list[$x])){
+							echo '
+								<tr>
+									<td>'.$no.'</td>
+									<td style="padding-left:40px">'.$list[$x]->TUJUAN_MOBDIN.'</td>
+									<td style="text-align:center;">'.$list[$x]->KEPERLUAN_MOBDIN.'</td>
+								</tr>
+							';							
+						}else{
+							echo '
+							<tr>
+								<td>'.$no.'.</td>
+								<td></td>
+								<td></td>
+							</tr>
+							';	
+						}							
+					} 
+				?>
 				</tbody>
 			</table>
 		</div>
@@ -223,14 +242,51 @@
 				<td class="thd-tha"><b>GAD Head</b></td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
-				<td class="thd-td2">&nbsp;<br>&nbsp;<br>&nbsp;</td>
-				<td class="thd-td2">&nbsp;</td>
-				<td class="thd-td2">&nbsp;</td>				
+				<td class="thd-td2">
+					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+				</td>
+				<td class="thd-td2">
+					<?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
+				</td>
+				<td class="thd-td2">
+					<?php
+						if($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[1]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
+				</td>				
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2">( <?= $list[0]->NAMA_USERS?> )</td>
+				<?php
+					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+
+					if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[1]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 		</div>
