@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
         <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
-        <div class="sidebar-brand-text mx-3">United Tractor</div>
+        <div class="sidebar-brand-text mx-3">United Tractors</div>
     </a>
 
     <!-- Divider -->
