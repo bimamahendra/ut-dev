@@ -48,30 +48,6 @@ class Transaction extends RestController {
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
     }
-    public function generate_get(){
-        $param      = $this->get();
-        $trans      = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
-        $mappPdf    = $this->db->get_where('V_MAPPING_PDF', ['ID_MAPPING' => $trans[0]->ID_MAPPING])->result();
-        
-        $data['list'] = $this->ContentPdf->get(['table' => $mappPdf[0]->NAMA_TABEL, 'idTrans' => $param['idTrans']]);				
-        $data['title_pdf'] = $mappPdf[0]->NAMA_FORM;	
-		       
-        $file_pdf = $trans[0]->NAMA_USERS.'_'.$mappPdf[0]->NAMA_FORM.'_'.time();
-		
-        $paper = 'A4';
-        $orientation = "portrait";
-        
-		$html = $this->load->view($mappPdf[0]->PATH_TEMPLATE_PDF, $data, true);	    
-
-        $resPdf = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
-        if(!is_dir('./uploads/transaction/'.$trans[0]->NAMA_USERS)){
-            mkdir('./uploads/transaction/'.$trans[0]->NAMA_USERS, 0777, TRUE);
-        }
-        file_put_contents('./uploads/transaction/'.$trans[0]->NAMA_USERS.'/'.$file_pdf.'.pdf', $resPdf);
-
-        // $res = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
-        // $this->response($res, 200);
-    }
     public function detail_get(){
         $param = $this->get();
         if(!empty($param['idTrans']) && !empty($param['username'])){
@@ -115,7 +91,6 @@ class Transaction extends RestController {
                             $notif['message']   = 'Terdapat Pengajuan Form '.$transaction[0]->NAMA_FORM;
                             $notif['regisIds']  = $userReceiveNotifs;
                             $res = $this->notification->push($notif);
-                            $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
                         }else{
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
