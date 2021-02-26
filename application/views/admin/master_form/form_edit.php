@@ -46,10 +46,9 @@
                     <div class="form-group col-md-6">
                         <label for="inputSectionForm">Section Form</label>
                         <select class="custom-select" name="SECTION_FORM" required>
-                            <option value="">Divisi</option>
-                            <option value="Project Management" <?= $form[0]->SECTION_FORM == 'Project Management'? 'selected' : 'asd' ?>>Project Management</option>
-                            <option value="General Service & Maintenances Management" <?= $form[0]->SECTION_FORM == 'General Service & Maintenances Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
-                            <option value="Budget, Asset & Building Management" <?= $form[0]->SECTION_FORM == 'Budget, Asset & Building Management'? 'selected' : 'asd' ?>>Budget, Asset & Building Management</option>
+                            <option value="" selected>Departement</option>
+                            <option value="General Affairs" <?= $form[0]->SECTION_FORM == 'General Affairs'? 'selected' : 'asd' ?>>General Affairs</option>
+                            <option value="Others" <?= $form[0]->SECTION_FORM == 'Others'? 'selected' : 'asd' ?>>Others</option>
                         </select>
                     </div>
                 </div>

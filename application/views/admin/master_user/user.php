@@ -121,8 +121,8 @@
                     <div class="col">
                         <select class="custom-select" name="DEPT_USERS" required>
                             <option value="" selected>Departement</option>
-                            <option value="General">General</option>
-                            <option value="Affairs">Affairs</option>
+                            <option value="General Affairs">General Affairs</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
                 </div>
@@ -133,6 +133,7 @@
                             <option value="Project Management">Project Management</option>
                             <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
                             <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
                 </div>

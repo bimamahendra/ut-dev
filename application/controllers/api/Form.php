@@ -11,8 +11,8 @@ class Form extends RestController {
 
     public function index_get(){
         $param = $this->get();
-        if(!empty($param['divisi'])){
-            $forms = $this->db->get_where('MAPPING', ['SECTION_FORM' => $param['divisi']])->result();
+        if(!empty($param['department'])){
+            $forms = $this->db->get_where('MAPPING', ['SECTION_FORM' => $param['department']])->result();
             if($forms != null){
                 $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $forms], 200);
             }else{
