@@ -109,10 +109,9 @@
                 <div class="modal-body">
                     <div class="col">
                         <select class="custom-select" name="SECTION_FORM" required>
-                            <option value="" selected>Divisi</option>
-                            <option value="Project Management">Project Management</option>
-                            <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
-                            <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
+                            <option value="" selected>Departement</option>
+                            <option value="General Affairs">General Affairs</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
                 </div>
