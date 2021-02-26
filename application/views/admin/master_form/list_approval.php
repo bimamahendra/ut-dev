@@ -83,10 +83,8 @@
                 <div class="col">
                     <select class="custom-select" required>
                         <option value="" selected>Role</option>
-                        <option>Head</option>
                         <option>Section Head</option>
-                        <option>Department Head</option>
-                        <option>Division Head</option>
+                        <option>Department Head</option>                        
                     </select>
                 </div>
             </div>

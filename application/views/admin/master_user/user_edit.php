@@ -33,11 +33,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputDepartemen">Departemen</label>
+                        <label for="inputDepartemen">Departement</label>
                         <select class="custom-select" name="DEPT_USERS" required>
                             <option value="" >Departement</option>
-                            <option value="General" <?= $dataUser[0]->DEPT_USERS == 'General'? 'selected' : '' ?>>General</option>
-                            <option value="Affairs" <?= $dataUser[0]->DEPT_USERS == 'Affairs'? 'selected' : '' ?>>Affairs</option>
+                            <option value="General Affairs" <?= $dataUser[0]->DEPT_USERS == 'General Affairs'? 'selected' : '' ?>>General Affairs</option>
+                            <option value="Others" <?= $dataUser[0]->DEPT_USERS == 'Others'? 'selected' : '' ?>>Others</option>
                         </select>
                     </div>
                 </div>
@@ -49,6 +49,7 @@
                             <option value="Project Management" <?= $dataUser[0]->DIV_USERS == 'Project Management'? 'selected' : 'asd' ?>>Project Management</option>
                             <option value="General Service & Maintenances Management" <?= $dataUser[0]->DIV_USERS == 'General Service & Maintenances Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
                             <option value="Budget, Asset & Building Management" <?= $dataUser[0]->DIV_USERS == 'Budget, Asset & Building Management'? 'selected' : 'asd' ?>>Budget, Asset & Building Management</option>
+                            <option value="Others" <?= $dataUser[0]->DIV_USERS == 'Others'? 'selected' : '' ?>>Others</option>
                         </select>
                     </div>
                 </div>
