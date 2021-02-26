@@ -36,9 +36,9 @@
                         <div class="form-group">
                             <select class="custom-select" name="ROLE_USERS" required>
                                 <option value="" selected>Role</option>
-                                <option value="Head">Head</option>
+                                <option value="Head">Staff</option>
                                 <option value="Section Head">Section Head</option>
-                                <option value="Staff">Staff</option>
+                                <option value="Staff">Departement Head</option>
                             </select>
                         </div>
                         <div class="form-group">
