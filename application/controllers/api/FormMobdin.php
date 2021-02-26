@@ -11,7 +11,7 @@ class FormMobdin extends RestController {
 
     public function index_post(){
         $param = $this->post();
-        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['pengemudi']) && !empty($param['tglPinjam']) && !empty($param['tglKembali']) && !empty($param['divDept']) && !empty($param['nopol']) && !empty($param['jamBerangkat']) && !empty($param['jamPulang']) && !empty($param['detMobdin'])){
+        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['pengemudi']) && !empty($param['tglPinjam']) && !empty($param['tglKembali']) && !empty($param['divDept']) && !empty($param['nopol']) && !empty($param['jamBerangkat']) && !empty($param['jamPulang']) && !empty($param['kmAwal']) && !empty($param['kmAkhir']) && !empty($param['keterangan']) && !empty($param['detMobdin'])){
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
@@ -37,8 +37,8 @@ class FormMobdin extends RestController {
 
                 foreach($param['detMobdin'] as $item){
                     $storeDetMobdin['ID_MOBDIN']        = $idMobdin;
-                    $storeDetMobdin['TUJUAN_MOBDIN']    = $item['jenisSnack'];
-                    $storeDetMobdin['KEPERLUAN_MOBDIN'] = $item['jmlSnack'];
+                    $storeDetMobdin['TUJUAN_MOBDIN']    = $item['tujuan'];
+                    $storeDetMobdin['KEPERLUAN_MOBDIN'] = $item['keperluan'];
                     $this->db->insert('DETAIL_MOBDIN', $storeDetMobdin);
                 }
                 
