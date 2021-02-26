@@ -11,7 +11,7 @@ class FormMobdin extends RestController {
 
     public function index_post(){
         $param = $this->post();
-        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['pengemudi']) && !empty($param['tglPinjam']) && !empty($param['tglKembali']) && !empty($param['divDept']) && !empty($param['nopol']) && !empty($param['jamBerangkat']) && !empty($param['jamPulang']) && !empty($param['kmAwal']) && !empty($param['kmAkhir']) && !empty($param['keterangan']) && !empty($param['detMobdin'])){
+        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['pengemudi']) && !empty($param['tglPinjam']) && !empty($param['tglKembali']) && !empty($param['divDept']) && !empty($param['nopol']) && !empty($param['jamBerangkat']) && !empty($param['jamPulang']) && $param['kmAwal'] != '' && $param['kmAkhir'] != '' && !empty($param['catatan']) && !empty($param['detMobdin'])){
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
@@ -26,13 +26,16 @@ class FormMobdin extends RestController {
                 $storeMobdin['ID_MOBDIN']           = $idMobdin;
                 $storeMobdin['ID_TRANS']            = $idTrans;
                 $storeMobdin['PEMINJAM_MOBDIN']     = $user[0]->NAMA_USERS;
-                $storeMobdin['PENGEMUDI_MODBIN']    = $param['pengemudi'];
+                $storeMobdin['PENGEMUDI_MOBDIN']    = $param['pengemudi'];
                 $storeMobdin['TGLPINJAM_MOBDIN']    = $param['tglPinjam'];
                 $storeMobdin['TGLAMBIL_MOBDIN']     = $param['tglKembali'];
                 $storeMobdin['DD_MOBDIN']           = $param['divDept'];
                 $storeMobdin['NOPOL_MOBDIN']        = $param['nopol'];
                 $storeMobdin['JAMBERANGKAT_MOBDIN'] = $param['jamBerangkat'];
                 $storeMobdin['JAMPULANG_MOBDIN']    = $param['jamPulang'];
+                $storeMobdin['KMAWAL_MOBDIN']       = $param['jamPulang'];
+                $storeMobdin['KMAKHIR_MOBDIN']      = $param['jamPulang'];
+                $storeMobdin['CATATAN_MOBDIN']      = $param['jamPulang'];
                 $this->db->insert('FORM_MOBDIN', $storeMobdin);
 
                 foreach($param['detMobdin'] as $item){
