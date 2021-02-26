@@ -48,7 +48,7 @@ class FormSnack extends RestController {
                 $storeTransaksi['ID_USERS']         = $param['idUser'];
                 $storeTransaksi['ID_MAPPING']       = $param['idMapping'];
                 $this->db->insert('TRANSACTION', $storeTransaksi);
-
+                
                 $storeFrmSnack['ID_SNACK']          = $idSnack;
                 $storeFrmSnack['ID_TRANS']          = $idTrans;
                 $storeFrmSnack['TGL_SNACK']         = $param['tglSnack'];
@@ -64,13 +64,13 @@ class FormSnack extends RestController {
                     $this->db->insert('DETAIL_SNACK', $storeDetFrmSnack);
                 }
                 
-                
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
                 for($i = 1; $i <= 15; $i++){
                     if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){
                         $this->db->insert('DETAIL_APPROVAL', ['ID_TRANS' => $idTrans, 'ROLE_APP' => $flow[0]['APP_'.$i]]);
                     }
                 }
+                
                 $this->ContentPdf->generate(['idTrans' => $idTrans]);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
