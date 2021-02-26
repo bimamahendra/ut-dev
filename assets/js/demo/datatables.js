@@ -2,4 +2,5 @@
 $(document).ready(function() {
   $('#tableUser').DataTable();
   $('#tableForm').DataTable();
+  $('#tableTransaction').DataTable();
 });
