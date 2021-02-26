@@ -62,7 +62,30 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/app.js'); ?>"></script>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
 
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('8cf91b33222fdfca79e1', {
+    cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+        xhr = $.ajax({
+            method: 'POST',
+            url: "<?= site_url('notif') ?>",
+            success: function(response) {
+                $('.notifs').html(response);
+            }
+        })
+    });
+    $('.notifs').on('click', '.notifikasi', function(e) {
+        console.log("Clicked");
+    });
+</script>
 </body>
 
 </html>
