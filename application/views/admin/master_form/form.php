@@ -26,7 +26,7 @@
                             <th>Table Name</th>
                             <th>No Doc</th>
                             <th>Form Name</th>
-                            <th>Division</th>
+                            <th>Departement</th>
                             <th>Action</th>
                         </tr>
                     </thead>

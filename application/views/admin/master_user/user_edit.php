@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputDepartemen">Departemen</label>
+                        <label for="inputDepartemen">Departement</label>
                         <select class="custom-select" name="DEPT_USERS" required>
                             <option value="" >Departement</option>
                             <option value="General Affairs" <?= $dataUser[0]->DEPT_USERS == 'General Affairs'? 'selected' : '' ?>>General Affairs</option>
