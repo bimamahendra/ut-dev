@@ -109,8 +109,8 @@ class Transaction extends RestController {
 
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1 WHERE ID_TRANS = "'.$param['idTrans'].'"');
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
-                            $userReceiveNotifs = $this->db->get_where('USERS', ['ROLE_USERS' => $flow[0]['APP_'.$flowWillApprove]])->result_array();
                             
+                            $userReceiveNotifs = $this->db->get_where('USERS', ['ROLE_USERS' => $flow[0]['APP_'.$flowWillApprove]])->result_array();
                             $notif['title']     = 'Pengajuan Baru';
                             $notif['message']   = 'Terdapat Pengajuan Form '.$transaction[0]->NAMA_FORM;
                             $notif['regisIds']  = $userReceiveNotifs;
@@ -119,6 +119,12 @@ class Transaction extends RestController {
                         }else{
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
+                            
+                            $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
+                            $notif['title']     = 'Info Pengajuan Form';
+                            $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Telah Disetujui';
+                            $notif['regisIds']  = $userReceiveNotifs;
+                            $this->notification->push($notif);
                         }
                         // unlink($transaction[0]->PATH_TRANS);
                         $this->ContentPdf->generate(['idTrans' => $param['idTrans']]);
@@ -128,6 +134,12 @@ class Transaction extends RestController {
                         $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "3" WHERE ID_TRANS = "'.$param['idTrans'].'"');
                         $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0']);
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['KETERANGAN_TRANS' => $param['keterangan']]);
+
+                        $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
+                        $notif['title']     = 'Info Pengajuan Form';
+                        $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Tertolak';
+                        $notif['regisIds']  = $userReceiveNotifs;
+                        $this->notification->push($notif);
                         
                         $this->response(['status' => true, 'message' => 'Data berhasil ditolak'], 200);
                     }
