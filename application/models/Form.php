@@ -48,8 +48,18 @@ class Form extends CI_Model{
         $this->db->where('ID_FLOW', $param['ID_FLOW'])->update('FLOW', $param);
         return true;
     }
-    public function deleteFlow($param){
-        $this->db->where($param)->delete('FLOW');
+    public function deleteFlow($param){        
+        $this->db->set($param['APP'], null);
+        $this->db->where('ID_FLOW', $param['ID_FLOW']);
+        $this->db->update('FLOW');
+
+        return true;
+    }
+    public function editFlow($param){        
+        $this->db->set($param['APP'], $param['ROLE']);
+        $this->db->where('ID_FLOW', $param['ID_FLOW']);
+        $this->db->update('FLOW');
+
         return true;
     }
 }

@@ -9,8 +9,6 @@
         <h1 class="h3 mb-0 text-gray-800">List Approval</h1>
     </div>
 
-
-
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
@@ -32,20 +30,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                        <?php   
+                        $inApproval = "APP_1";              
                         for ($x = 1; $x <= 15; $x++) {
-                            $approval = "APP_" . $x;
-                            if (!empty($flows[0]->$approval)) {
+                            $approval = "APP_" . $x;                          
+                            if (!empty($flows[0]->$approval)) {                                
+                                $a = $x + 1;
+                                $inApproval = "APP_". $a;
+                                
                                 echo '
                                         <tr>
                                         <td>APP_' . $x . '</td>
                                         <td>' . $flows[0]->$approval . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                            <button type="button" data-toggle="modal" data-target="#mdlEdit" class="btn btn-primary btn-sm rounded mr-1">
+                                            <button type="button" data-toggle="modal" data-app="'.$approval.'" data-id="' . $flows[0]->ID_FLOW . '" data-name="' . $flows[0]->$approval . '" data-target="#mdlEdit" class="btn btn-primary btn-sm rounded mr-1 mdlEdit">
                                                 <i class="fa fa-edit"></i>
                                             </button>
-                                            <button type="button" data-toggle="modal" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded">
+                                            <button type="button" data-toggle="modal" data-app="'.$approval.'" data-id="' . $flows[0]->ID_FLOW . '" data-name="' . $flows[0]->$approval . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                             </div>
@@ -79,19 +81,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="<?= site_url('form/updateFlow') ?>" method="post">
             <div class="modal-body">
                 <div class="col">
-                    <select class="custom-select" required>
+                    <select class="custom-select" name="<?= $inApproval ?>" required>
                         <option value="" selected>Role</option>
-                        <option>Section Head</option>
-                        <option>Department Head</option>                        
+                        <option value="Section Head">Section Head</option>
+                        <option value="Department Head">Department Head</option>                        
                     </select>
                 </div>
             </div>
+            <input type="hidden" name="ID_FLOW" value="<?= $flows[0]->ID_FLOW ?>"/>            
+            <input type="hidden" name="ID_MAPPING" value="<?= $flows[0]->ID_MAPPING ?>"/>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-warning">Save Changes</button>
+                <button type="submit" class="btn btn-warning">Save Changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -106,21 +112,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="<?= site_url('form/editFlow') ?>" method="post"> 
             <div class="modal-body">
                 <div class="col">
-                    <select class="custom-select" required>
-                        <option value="" selected>Divisi</option>
-                        <option>Project Management</option>
-                        <option>General Service</option>
-                        <option>Maintenance Management</option>
+                    <select class="custom-select" name="ROLE" required>
+                        <option value="" selected>Role</option>
+                        <option value="Section Head">Section Head</option>
+                        <option value="Department Head">Department Head</option>
                     </select>
                 </div>
             </div>
-
+                <input type="hidden" name="ID_FLOW" value="<?= $flows[0]->ID_FLOW ?>"/>            
+                <input type="hidden" name="ID_MAPPING" value="<?= $flows[0]->ID_MAPPING ?>"/>
+                <input type="hidden" id="mdlEdit_app" name="APP" />
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-warning">Save Changes</button>
+                <button type="submit" class="btn btn-warning">Save Changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -137,14 +146,38 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menghapus list Approval "Section Head"
+                    Anda akan menghapus list Approval <span id="mdlDelete_item">
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
+                <form action="<?= site_url('form/deleteFlow') ?>" method="post">                        
+                    <input type="hidden" name="ID_FLOW" value="<?= $flows[0]->ID_FLOW ?>"/>            
+                    <input type="hidden" name="ID_MAPPING" value="<?= $flows[0]->ID_MAPPING ?>"/>
+                    <input type="hidden" id="mdlDelete_app" name="APP" />
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
+<script>    
+    $('#tableForm tbody').on('click', '.mdlDelete', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        const app = $(this).data('app')
+        $('#mdlDelete_item').html(name)
+        $('#mdlDelete_app').val(app)
+        $('#mdlDelete_itemId').val(id)
+    })
+    $('#tableForm tbody').on('click', '.mdlEdit', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        const app = $(this).data('app')
+        $('#mdlEdit_item').html(name)
+        $('#mdlEdit_app').val(app)
+        $('#mdlEdit_itemId').val(id)
+    })
+</script>
