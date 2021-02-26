@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 // Auth
 $route['login']                 = 'AuthController/vLogin';
 $route['logout']                = 'AuthController/logout';
+$route['flogin']                = 'AuthController/login';
 
 // Notif
 $route['notif']                 = 'NotificationController/getAll';
