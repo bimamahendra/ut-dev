@@ -29,14 +29,15 @@
                             <th>Applicant</th>
                             <th>Form</th>
                             <th>Timestamp</th>
-                            <th>Keterangan</th>
-                            <th>Flag</th>
+                            <th>Description</th>
+                            <th>Approval</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        $no = 1;
                         foreach ($trans as $item) {
                             $approvalBtn = '';
                             if ($item->STAT_TRANS == '0') {
@@ -59,7 +60,7 @@
 
                             echo '
                                     <tr>
-                                        <td>1</td>
+                                        <td>' . $no++ . '</td>
                                         <td>' . $item->NAMA_USERS . '</td>
                                         <td>' . $item->NAMA_FORM . '</td>
                                         <td>' . $item->TS_TRANS . '</td>
