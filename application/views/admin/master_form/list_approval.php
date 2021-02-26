@@ -2,7 +2,10 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-start mb-4">
+        <a href="<?= site_url('form') ?>" class="rounded border-0 btn btn-warning mr-3">
+            <i class="fas fa-arrow-left"></i>
+        </a>
         <h1 class="h3 mb-0 text-gray-800">List Approval</h1>
     </div>
 
@@ -30,12 +33,12 @@
                     </thead>
                     <tbody>
                         <?php
-                            for ($x = 1; $x <= 15; $x++) {
-                                $approval = "APP_".$x;
-                                if(!empty($flows[0]->$approval)){
-                                    echo '
+                        for ($x = 1; $x <= 15; $x++) {
+                            $approval = "APP_" . $x;
+                            if (!empty($flows[0]->$approval)) {
+                                echo '
                                         <tr>
-                                        <td>APP_'.$x.'</td>
+                                        <td>APP_' . $x . '</td>
                                         <td>' . $flows[0]->$approval . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -49,8 +52,8 @@
                                         </td>
                                     </tr>
                                 ';
-                                }                            
-                            }     
+                            }
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -82,7 +85,7 @@
                         <option value="" selected>Role</option>
                         <option>Head</option>
                         <option>Section Head</option>
-                        <option>Department Head</option>                        
+                        <option>Department Head</option>
                         <option>Division Head</option>
                     </select>
                 </div>
