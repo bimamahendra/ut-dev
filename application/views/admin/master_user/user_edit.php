@@ -27,7 +27,7 @@
                             <option value="">Role</option>
                             <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'?'selected' : '' ?> >Staff</option>
                             <option value="Section Head" <?= $dataUser[0]->ROLE_USERS == 'Section Head'?'selected' : '' ?> >Section Head</option>
-                            <option value="Departement Head" <?= $dataUser[0]->ROLE_USERS == 'Department Head'? 'selected' : '' ?> >Department Head</option>
+                            <option value="Department Head" <?= $dataUser[0]->ROLE_USERS == 'Department Head'? 'selected' : '' ?> >Department Head</option>
                         </select>
                     </div>
                 </div>
