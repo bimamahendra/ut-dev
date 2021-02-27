@@ -33,9 +33,9 @@ class FormMobdin extends RestController {
                 $storeMobdin['NOPOL_MOBDIN']        = $param['nopol'];
                 $storeMobdin['JAMBERANGKAT_MOBDIN'] = $param['jamBerangkat'];
                 $storeMobdin['JAMPULANG_MOBDIN']    = $param['jamPulang'];
-                $storeMobdin['KMAWAL_MOBDIN']       = $param['jamPulang'];
-                $storeMobdin['KMAKHIR_MOBDIN']      = $param['jamPulang'];
-                $storeMobdin['CATATAN_MOBDIN']      = $param['jamPulang'];
+                $storeMobdin['KMAWAL_MOBDIN']       = $param['kmAwal'];
+                $storeMobdin['KMAKHIR_MOBDIN']      = $param['kmAkhir'];
+                $storeMobdin['CATATAN_MOBDIN']      = $param['catatan'];
                 $this->db->insert('FORM_MOBDIN', $storeMobdin);
 
                 foreach($param['detMobdin'] as $item){

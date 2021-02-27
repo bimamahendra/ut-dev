@@ -17,6 +17,7 @@ class ContentPdf extends CI_Model{
         $data['title_pdf']              = $mapping[0]->NAMA_FORM;
         $data['user']                   = $user[0];	
         $data['approvals']              = $approvals;
+        $data['noDoc']                  = $mapping[0]->NO_DOC;
 		       
         $file_pdf = $trans[0]->NAMA_USERS.'_'.$mapping[0]->NAMA_FORM.'_'.time();
         $path_pdf = 'uploads/transaction/'.$user[0]->USER_USERS.'/'.$file_pdf.'.pdf';
