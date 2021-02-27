@@ -22,7 +22,7 @@ class Transaction extends RestController {
                     $trans = $this->db->not_like('STAT_TRANS', '0')->get_where('V_TRANSACTION_APPROVAL', ['ROLE_APP' => $user[0]->ROLE_USERS], $limit)->result();
                     $x = 0;
                     foreach ($trans as $item) {
-                        if($item->CONFIRM_STATE_TRANS == $user[0]->ROLE_USERS || $item->ISAPPROVE_APP != NULL){
+                        if(($item->CONFIRM_STATE_TRANS == $user[0]->ROLE_USERS && $item->STAT_TRANS != '3') || $item->ISAPPROVE_APP != NULL){
                             $transNew[$x]['ID_TRANS']               = $item->ID_TRANS;
                             $transNew[$x]['ID_MAPPING']             = $item->ID_MAPPING;
                             $transNew[$x]['ID_USERS']               = $item->ID_USERS;
