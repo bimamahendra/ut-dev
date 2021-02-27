@@ -123,7 +123,7 @@
 				<tbody>
 					<tr>
 						<td class="tg-z9od" width="13%">No. Dokumen</td>
-						<td class="tg-z9od" width="33%"> : FORM 003/PROS-MFP-MLK3-013</td>
+						<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 						<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 														14001 : 2004 ; OHSAS<br>
 														18001 : 2007 &amp; SMK3</td>
@@ -158,15 +158,51 @@
 				</tr>
 				<tr>
 					<td><b>TGL. PEMINJAMAN</b></td>
-					<td><?= $list[0]->TGLPINJAM_MOBDIN?></td>
+					<td>
+						<?php 
+							$date = date_create($list[0]->TGLPINJAM_MOBDIN);
+							echo date_format($date, 'd-m-Y');
+						?>
+					</td>
 					<td><b>JAM BERANGKAT</b></td>
-					<td><?= $list[0]->JAMBERANGKAT_MOBDIN?></td>
+					<td>
+						<table style="border: none;">
+							<tr>
+								<td style="border: none;">
+									<?php 
+										$time = date_create($list[0]->JAMBERANGKAT_MOBDIN);
+										echo date_format($date, 'H:i');
+									?>
+								</td>
+								<td style="border: none;"><b>KM. Awal</b></td>
+								<td style="border: none;"><?= $list[0]->KMAWAL_MOBDIN?></td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 				<tr>
 					<td><b>TGL. PENGEMBALIAN</b></td>
-					<td><?= $list[0]->TGLAMBIL_MOBDIN?></td>
+					<td>
+						<?php 
+							$date = date_create($list[0]->TGLAMBIL_MOBDIN);
+							echo date_format($date, 'd-m-Y');
+						?>
+					</td>
 					<td><b>JAM PULANG</b></td>
-					<td><?= $list[0]->JAMPULANG_MOBDIN?></td>
+					<td>
+						<table style="border: none;">
+							<tr>
+								<td style="border: none;">
+									<?php 
+										$time = date_create($list[0]->JAMPULANG_MOBDIN);
+										echo date_format($date, 'H:i');
+									?>
+								</td>
+								<td style="border: none;"><b>KM. Akhir</b></td>
+								<td style="border: none;"><?= $list[0]->KMAKHIR_MOBDIN?></td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			</table>
 		</div>

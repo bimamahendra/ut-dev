@@ -66,7 +66,7 @@
 				<tbody>
 					<tr>
 						<td class="tg-z9od" width="13%">No. Dokumen</td>
-						<td class="tg-z9od" width="33%"> : FORM 002/PROS-MFP-MLK3-013</td>
+						<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 						<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 														14001 : 2004 ; OHSAS<br>
 														18001 : 2007 &amp; SMK3</td>
