@@ -171,7 +171,7 @@
 								<td style="border: none;">
 									<?php 
 										$time = date_create($list[0]->JAMBERANGKAT_MOBDIN);
-										echo date_format($date, 'H:i');
+										echo date_format($time, 'H:i');
 									?>
 								</td>
 								<td style="border: none;"><b>KM. Awal</b></td>
@@ -195,7 +195,7 @@
 								<td style="border: none;">
 									<?php 
 										$time = date_create($list[0]->JAMPULANG_MOBDIN);
-										echo date_format($date, 'H:i');
+										echo date_format($time, 'H:i');
 									?>
 								</td>
 								<td style="border: none;"><b>KM. Akhir</b></td>
