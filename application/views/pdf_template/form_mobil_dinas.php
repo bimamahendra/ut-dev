@@ -206,25 +206,27 @@
 									<td rowspan="5"></td>
 								</tr>
 							';
+							if($no != 1){
+								if(!empty($list[$x])){
+									echo '
+										<tr>
+											<td>'.$no.'</td>
+											<td style="padding-left:40px">'.$list[$x]->TUJUAN_MOBDIN.'</td>
+											<td style="text-align:center;">'.$list[$x]->KEPERLUAN_MOBDIN.'</td>
+										</tr>
+									';							
+								}else{
+									echo '
+									<tr>
+										<td>'.$no.'.</td>
+										<td></td>
+										<td></td>
+									</tr>
+									';	
+								}							
+							}
 						}
 
-						if(!empty($list[$x])){
-							echo '
-								<tr>
-									<td>'.$no.'</td>
-									<td style="padding-left:40px">'.$list[$x]->TUJUAN_MOBDIN.'</td>
-									<td style="text-align:center;">'.$list[$x]->KEPERLUAN_MOBDIN.'</td>
-								</tr>
-							';							
-						}else{
-							echo '
-							<tr>
-								<td>'.$no.'.</td>
-								<td></td>
-								<td></td>
-							</tr>
-							';	
-						}							
 					} 
 				?>
 				</tbody>
