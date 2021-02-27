@@ -186,18 +186,18 @@
 					for ($x = 0; $x < 5; $x++) 
 					{
 						$no = $x + 1;
-						if($no == 1){
+						if(!empty($list[$x]) && $no == 1){
 							echo '
 								<tr>
 									<td>'.$no.'.</td>
-									<td></td>
-									<td></td>
+									<td>'.$list[$x]->TUJUAN_MOBDIN.'</td>
+									<td>'.$list[$x]->KEPERLUAN_MOBDIN.'</td>
 									<td rowspan="5">
 										'.$list[0]->CATATAN_MOBDIN.'
 									</td>
 								</tr>
 							';
-						}else{
+						}else if($no == 1){
 							echo '
 								<tr>
 									<td>'.$no.'.</td>
@@ -206,27 +206,25 @@
 									<td rowspan="5"></td>
 								</tr>
 							';
-							if($no != 1){
-								if(!empty($list[$x])){
-									echo '
-										<tr>
-											<td>'.$no.'</td>
-											<td style="padding-left:40px">'.$list[$x]->TUJUAN_MOBDIN.'</td>
-											<td style="text-align:center;">'.$list[$x]->KEPERLUAN_MOBDIN.'</td>
-										</tr>
-									';							
-								}else{
-									echo '
-									<tr>
-										<td>'.$no.'.</td>
-										<td></td>
-										<td></td>
-									</tr>
-									';	
-								}							
-							}
 						}
 
+						if(!empty($list[$x]) && $no != 1){
+							echo '
+								<tr>
+									<td>'.$no.'</td>
+									<td>'.$list[$x]->TUJUAN_MOBDIN.'</td>
+									<td>'.$list[$x]->KEPERLUAN_MOBDIN.'</td>
+								</tr>
+							';							
+						}else if($no != 1){
+							echo '
+							<tr>
+								<td>'.$no.'.</td>
+								<td></td>
+								<td></td>
+							</tr>
+							';	
+						}							
 					} 
 				?>
 				</tbody>
