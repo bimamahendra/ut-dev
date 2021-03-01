@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Form</h1>
+        <h1 class="h3 mb-0 text-gray-800">Formulir</h1>
     </div>
 
 
@@ -11,10 +11,10 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">Form List</h6>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Formulir</h6>
                 <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
-                    Add
+                    Tambah
                 </button>
             </div>
         </div>
@@ -23,11 +23,11 @@
                 <table class="table table-bordered" id="tableForm" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Table Name</th>
-                            <th>No Doc</th>
-                            <th>Form Name</th>
-                            <th>Departement</th>
-                            <th>Action</th>
+                            <th>Nama Tabel</th>
+                            <th>No Dokumen</th>
+                            <th>Nama Formulir</th>
+                            <th>Departemen</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                                         <td>' . $item->SECTION_FORM . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="' . site_url('form/edit/' . $item->ID_MAPPING) . '" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Edit">
+                                                <a href="' . site_url('form/edit/' . $item->ID_MAPPING) . '" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <!-- Setting flow -->
-                                                <a href="' . site_url('form/flow/' . $item->ID_MAPPING) . '" class="btn btn-info btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Setting">
+                                                <a href="' . site_url('form/flow/' . $item->ID_MAPPING) . '" class="btn btn-info btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Pengaturan">
                                                     <i class="fa fa-cog"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_MAPPING . '" data-name="' . $item->NAMA_FORM . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Edit">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_MAPPING . '" data-name="' . $item->NAMA_FORM . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
@@ -76,7 +76,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlAdd">Add Form</h5>
+                <h5 class="modal-title" id="mdlAdd">Tambah Formulir</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -98,18 +98,18 @@
                 </div>
                 <div class="modal-body">
                     <div class="col">
-                        <input type="text" class="form-control" name="NO_DOC" placeholder="No Doc" required>
+                        <input type="text" class="form-control" name="NO_DOC" placeholder="No Dokumen" required>
                     </div>
                 </div>
                 <div class="modal-body">
                     <div class="col">
-                        <input type="text" class="form-control" name="NAMA_FORM" placeholder="Nama Form" required>
+                        <input type="text" class="form-control" name="NAMA_FORM" placeholder="Nama Formulir" required>
                     </div>
                 </div>
                 <div class="modal-body">
                     <div class="col">
                         <select class="custom-select" name="SECTION_FORM" required>
-                            <option value="" selected>Departement</option>
+                            <option value="" selected>Departemen</option>
                             <option value="General Affairs">General Affairs</option>
                             <option value="Others">Others</option>
                         </select>
@@ -118,12 +118,12 @@
                 <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
                         <input type="file" name="PATH_TEMPLATE_PDF" class="custom-file-input" id="image-source" onchange="previewImage();">
-                        <label class="custom-file-label" for="image-source">Upload Template</label>
+                        <label class="custom-file-label" for="image-source">Unggah Template</label>
                     </div>
                 </div>           
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             </form>
         </div>
@@ -135,7 +135,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlDelete">Delete Item?</h5>
+                <h5 class="modal-title" id="mdlDelete">Hapus Formulir?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

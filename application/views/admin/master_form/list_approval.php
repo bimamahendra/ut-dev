@@ -6,16 +6,16 @@
         <a href="<?= site_url('form') ?>" class="rounded border-0 btn btn-warning mr-3">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <h1 class="h3 mb-0 text-gray-800">List Approval</h1>
+        <h1 class="h3 mb-0 text-gray-800">Daftar Persetujuan</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">Form Snack</h6>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Formulir Snack</h6>
                 <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
-                    Add
+                    Tambah
                 </button>
             </div>
         </div>
@@ -25,7 +25,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>List Approval</th>
+                            <th>Daftar Persetujuan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -76,7 +76,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlAdd">Setting List Approval</h5>
+                <h5 class="modal-title" id="mdlAdd">Tambah Persetujuan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
