@@ -99,7 +99,7 @@ class Transaction extends RestController {
                             
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
                             $notif['title']     = 'Info Pengajuan Form';
-                            $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Telah Disetujui';
+                            $notif['message']   = 'Pengajuan Form '.$transaction[0]->NAMA_FORM.' Telah Disetujui';
                             $notif['regisIds']  = $userReceiveNotifs;
                             $this->notification->push($notif);
                         }
@@ -114,7 +114,7 @@ class Transaction extends RestController {
 
                         $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
                         $notif['title']     = 'Info Pengajuan Form';
-                        $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Ditolak';
+                        $notif['message']   = 'Pengajuan Form '.$transaction[0]->NAMA_FORM.' Ditolak';
                         $notif['regisIds']  = $userReceiveNotifs;
                         $this->notification->push($notif);
                         

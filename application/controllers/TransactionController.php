@@ -38,7 +38,7 @@ class TransactionController extends CI_Controller
         $this->notification->push($notif);
         
         $notif['title']     = 'Info Pengajuan Form';
-        $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Telah Diverifikasi';
+        $notif['message']   = 'Pengajuan Form '.$transaction[0]->NAMA_FORM.' Telah Diverifikasi';
         $notif['regisIds']  = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
         $this->notification->push($notif);
         redirect('transaction');
@@ -50,7 +50,7 @@ class TransactionController extends CI_Controller
 
         $transaction        = $this->Transaction->get(['filter' => ['ID_TRANS' => $param['ID_TRANS']]]);
         $notif['title']     = 'Info Pengajuan Form';
-        $notif['message']   = 'Pengajuan Form'.$transaction[0]->NAMA_FORM.' Ditolak';
+        $notif['message']   = 'Pengajuan Form '.$transaction[0]->NAMA_FORM.' Ditolak';
         $notif['regisIds']  = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
         $this->notification->push($notif);
         redirect('transaction');
