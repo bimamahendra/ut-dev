@@ -3,13 +3,13 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Transaction</h1>
+        <h1 class="h3 mb-0 text-gray-800">Transaksi</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">Transaction List</h6>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Transaksi</h6>
                 <!--
                 <select class="custom-select" style="width: 30%;" required>
                     <option value="" selected>Divisi</option>
@@ -26,13 +26,13 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Applicant</th>
-                            <th>Form</th>
-                            <th>Timestamp</th>
-                            <th>Description</th>
-                            <th>Approval</th>
+                            <th>Pemohon</th>
+                            <th>Formulir</th>
+                            <th>Waktu</th>
+                            <th>Keterangan</th>
+                            <th>Tahap</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,21 +41,21 @@
                         foreach ($trans as $item) {
                             $approvalBtn = '';
                             if ($item->STAT_TRANS == '0') {
-                                $status = 'Unverified';
+                                $status = 'Belum Diverifikasi';
                                 $approvalBtn = '
-                                        <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="' . $item->ID_TRANS . '" class="btn btn-success btn-sm mx-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                        <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="' . $item->ID_TRANS . '" class="btn btn-success btn-sm mx-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
                                             <i class="fa fa-check"></i>
                                         </button>
-                                        <button type="button" data-toggle="modal" data-target="#mdlReject" data-id="' . $item->ID_TRANS . '" class="btn btn-danger btn-sm rounded mdlReject" data-tooltip="tooltip" data-placement="top" title="Reject">
+                                        <button type="button" data-toggle="modal" data-target="#mdlReject" data-id="' . $item->ID_TRANS . '" class="btn btn-danger btn-sm rounded mdlReject" data-tooltip="tooltip" data-placement="top" title="Tolak">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     ';
                             } else if ($item->STAT_TRANS == '1') {
-                                $status = 'Verified';
+                                $status = 'Terverifikasi';
                             } else if ($item->STAT_TRANS == '2') {
-                                $status = 'Finished';
+                                $status = 'Selesai';
                             } else if ($item->STAT_TRANS == '3') {
-                                $status = 'Rejected';
+                                $status = 'Ditolak';
                             }
 
                             echo '
@@ -96,14 +96,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Approve Item?</h5>
+                <h5 class="modal-title" id="mdlApprove">Verifikasi Transaksi?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan mensetujui item ?
+                    Anda akan menyetujui item ?
                 </p>
             </div>
 
@@ -111,7 +111,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <form action="<?= site_url('transaction/approve') ?>" method="post">
                     <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
-                    <button type="submit" class="btn btn-warning">Approve</button>
+                    <button type="submit" class="btn btn-warning">Verifikasi</button>
                 </form>
             </div>
         </div>
@@ -122,7 +122,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject">Reject Item?</h5>
+                <h5 class="modal-title" id="mdlReject">Tolak Transaksi?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -138,7 +138,7 @@
             <div class="modal-footer">
                 <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-danger">Reject</button>
+                <button type="submit" class="btn btn-danger">Tolak</button>
                 </form>
             </div>
         </div>
@@ -149,7 +149,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject"> View Transaction</h5>
+                <h5 class="modal-title" id="mdlReject">Detail Transaksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

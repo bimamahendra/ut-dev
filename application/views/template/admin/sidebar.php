@@ -14,7 +14,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('dashboard'); ?>">
             <i class="fas fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+            <span>Beranda</span>
         </a>
     </li>
 
@@ -24,7 +24,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('form'); ?>">
             <i class="fas fa-align-justify"></i>
-            <span>Form</span>
+            <span>Formulir</span>
         </a>
     </li>
 
@@ -34,7 +34,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('user'); ?>">
             <i class="fas fa-user"></i>
-            <span>User</span>
+            <span>Pengguna</span>
         </a>
     </li>
 
@@ -44,7 +44,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('transaction'); ?>">
             <i class="fas fa-chart-bar"></i>
-            <span>Transaction</span>
+            <span>Transaksi</span>
         </a>
     </li>
 
@@ -54,7 +54,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('week'); ?>">
             <i class="fas fa-calendar-alt"></i>
-            <span>Week</span>
+            <span>Tabel Mingguan</span>
         </a>
     </li>
 

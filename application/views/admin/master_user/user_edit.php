@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit User</h1>
+        <h1 class="h3 mb-0 text-gray-800">Ubah Pengguna</h1>
     </div>
 
     <div class="card shadow mb-4">
@@ -22,9 +22,9 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputRole">Role</label>
+                        <label for="inputRole">Jabatan</label>
                         <select class="custom-select" name="ROLE_USERS" required>
-                            <option value="">Role</option>
+                            <option value="">Jabatan</option>
                             <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'?'selected' : '' ?> >Staff</option>
                             <option value="Section Head" <?= $dataUser[0]->ROLE_USERS == 'Section Head'?'selected' : '' ?> >Section Head</option>
                             <option value="Department Head" <?= $dataUser[0]->ROLE_USERS == 'Department Head'? 'selected' : '' ?> >Department Head</option>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputDepartemen">Departement</label>
+                        <label for="inputDepartemen">Departemen</label>
                         <select class="custom-select" name="DEPT_USERS" required>
                             <option value="" >Departement</option>
                             <option value="General Affairs" <?= $dataUser[0]->DEPT_USERS == 'General Affairs'? 'selected' : '' ?>>General Affairs</option>

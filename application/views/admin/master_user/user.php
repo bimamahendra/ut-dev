@@ -13,16 +13,16 @@
     </div> -->
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">User</h1>
+        <h1 class="h3 mb-0 text-gray-800">Pengguna</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">User List</h6>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Pengguna</h6>
                 <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
-                    Add
+                    Tambah
                 </button>
             </div>
         </div>
@@ -31,13 +31,13 @@
                 <table class="table table-bordered" id="tableUser" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                            <th>Departement</th>
-                            <th>Division</th>
+                            <th>Nama</th>
+                            <th>Jabatan</th>
+                            <th>Departemen</th>
+                            <th>Divisi</th>
                             <th>Username</th>
                             <th>Status</th>
-                            <th>Action</th>                            
+                            <th>Aksi</th>                            
                             <th>TS</th>
                         </tr>
                     </thead>
@@ -51,14 +51,14 @@
                                         <td>' . $item->DEPT_USERS . '</td>
                                         <td>' . $item->DIV_USERS . '</td>
                                         <td>' . $item->USER_USERS . '</td>
-                                        <td>'.($item->STAT_USERS == 0 ? 'Unverified' : 'Verified' ).'</td>
+                                        <td>'.($item->STAT_USERS == 0 ? 'Belum Diverifikasi' : 'Terverifikasi' ).'</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Edit">
+                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 '.($item->STAT_USERS == 0 ? 
-                                                    '<button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                                    '<button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
                                                         <i class="fa fa-check"></i>
                                                     </button>'
                                                     :
@@ -69,7 +69,7 @@
                                                 <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mr-1 rounded mdlRstPassUserItem" data-tooltip="tooltip" data-placement="top" title="Reset">
                                                     <i class="fa fa-key"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Delete">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
@@ -96,7 +96,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlAdd">Add User</h5>
+                <h5 class="modal-title" id="mdlAdd">Tambah Pengguna</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,7 +110,7 @@
                 <div class="modal-body">
                     <div class="col">
                         <select class="custom-select" name="ROLE_USERS" required>
-                            <option value="" selected>Role</option>
+                            <option value="" selected>Jabatan</option>
                             <option value="Staff">Staff</option>
                             <option value="Department Head">Department Head</option>
                             <option value="Section Head">Section Head</option>
@@ -120,7 +120,7 @@
                 <div class="modal-body">
                     <div class="col">
                         <select class="custom-select" name="DEPT_USERS" required>
-                            <option value="" selected>Departement</option>
+                            <option value="" selected>Departemen</option>
                             <option value="General Affairs">General Affairs</option>
                             <option value="Others">Others</option>
                         </select>
@@ -151,13 +151,13 @@
                 <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
                         <input type="file" name="imageTtd" class="custom-file-input" id="image-source" onchange="previewImage();">
-                        <label class="custom-file-label" for="image-source">Upload Signature</label>
+                        <label class="custom-file-label" for="image-source">Unggah Tanda Tangan</label>
                     </div>
                 </div>                
                 <input type="hidden" name="STAT_USERS" value="1" />
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             </form>
         </div>
@@ -169,14 +169,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Approve Item?</h5>
+                <h5 class="modal-title" id="mdlApprove">Verifikasi Pengguna?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan mensetujui item ? <span id="mdlApprove_item"></span>
+                    Anda akan menyetujui pengguna ? <span id="mdlApprove_item"></span>
                 </p>
             </div>
 
@@ -184,7 +184,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <form action="<?= site_url('user/verif') ?>" method="post">
                     <input type="hidden" id="mdlApprove_itemId" name="ID_USERS" />
-                    <button type="submit" class="btn btn-warning">Approve</button>
+                    <button type="submit" class="btn btn-warning">Verifikasi</button>
                 </form>
             </div>
         </div>
@@ -196,14 +196,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Reset Password Item?</h5>
+                <h5 class="modal-title">Reset Password Pengguna?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan mereset password item <span id="mdlRstPassUserItem_item"></span>
+                    Anda akan mereset password pengguna <span id="mdlRstPassUserItem_item"></span>
                 </p>
             </div>
 
@@ -223,7 +223,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlDelete">Delete Item?</h5>
+                <h5 class="modal-title" id="mdlDelete">Hapus Pengguna?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

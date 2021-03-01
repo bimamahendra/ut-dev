@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit Form</h1>
+        <h1 class="h3 mb-0 text-gray-800">Ubah Formulir</h1>
     </div>
 
     <div class="card shadow mb-4">
@@ -32,19 +32,19 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputNoDoc">No Doc</label>
+                        <label for="inputNoDoc">No Dokumen</label>
                         <input type="text" class="form-control" name="NO_DOC" value="<?= $form[0]->NO_DOC?>" id="inputNoDoc" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputNamaForm">Nama Form</label>
+                        <label for="inputNamaForm">Nama Formulir</label>
                         <input type="text" class="form-control" name="NAMA_FORM" value="<?= $form[0]->NAMA_FORM?>" id="inputNamaTabel" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputSectionForm">Section Form</label>
+                        <label for="inputSectionForm">Departemen</label>
                         <select class="custom-select" name="SECTION_FORM" required>
                             <option value="" selected>Departement</option>
                             <option value="General Affairs" <?= $form[0]->SECTION_FORM == 'General Affairs'? 'selected' : 'asd' ?>>General Affairs</option>
