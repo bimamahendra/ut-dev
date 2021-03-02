@@ -215,8 +215,8 @@
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
 					<td class="tg-z9od" width="33%"> : FORM 009/PROS-MFP-MLK3-013 </td>
-					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; ISO 14001:2004, <br>
-                    ISO 14001 : 2004, OHSAS 18001 : <br>
+					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; ISO 14001 <br>
+                    : 2004, OHSAS 18001 : 2007 <br>
 						&amp; SMK3
 				</tr>
 				<tr>
