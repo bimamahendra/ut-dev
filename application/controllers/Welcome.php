@@ -134,4 +134,11 @@ class Welcome extends CI_Controller
 		$this->load->view('template/admin/modal');
 		$this->load->view('template/admin/footer');
 	}
+
+	public function form_control_harian()
+	{
+		$this->load->view('pdf_template/form_control_harian');
+		// $this->load->view('pdf_template/form_snack');
+		// $this->load->view('pdf_template/form_mobil_dinas');
+	}
 }
