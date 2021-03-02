@@ -141,4 +141,14 @@ class Welcome extends CI_Controller
 		// $this->load->view('pdf_template/form_snack');
 		// $this->load->view('pdf_template/form_mobil_dinas');
 	}
+
+	public function form_hasil_test_food_catering()
+	{
+		$this->load->view('pdf_template/form_hasil_test_food_catering');
+	}
+
+	public function form_komplain_usulan()
+	{
+		$this->load->view('pdf_template/form_komplain_usulan');
+	}
 }
