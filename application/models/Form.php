@@ -21,6 +21,7 @@ class Form extends CI_Model{
     }
     public function insert($param){
         $this->db->insert('MAPPING', $param);
+        $this->db->insert('FLOW', ['ID_MAPPING' => $param['ID_MAPPING']]);
         return $this->db->insert_id();
     }
     public function update($param){
@@ -28,6 +29,7 @@ class Form extends CI_Model{
         return true;
     }
     public function delete($param){
+        $this->db->where($param)->delete('FLOW');
         $this->db->where($param)->delete('MAPPING');
         return true;
     }
