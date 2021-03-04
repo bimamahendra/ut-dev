@@ -26,7 +26,7 @@
                             <th>Nama Tabel</th>
                             <th>No Dokumen</th>
                             <th>Nama Formulir</th>
-                            <th>Departemen</th>
+                            <th>Jabatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -109,9 +109,15 @@
                 <div class="modal-body">
                     <div class="col">
                         <select class="custom-select" name="SECTION_FORM" required>
-                            <option value="" selected>Departemen</option>
-                            <option value="General Affairs">General Affairs</option>
-                            <option value="Others">Others</option>
+                            <option value="" selected>Jabatan</option>
+                            <option value="Staff">Staff</option>
+                            <option value="PICK">PIC Kendaraan</option>
+                            <option value="PICG">PIC Gudang</option>
+                            <option value="PICA">PIC Admin</option>
+                            <option value="PICM">PIC Maintenance</option>
+                            <option value="Section Head">Section Head</option>
+                            <option value="Department Head">Department Head</option>
+                            <option value="Division Head">Division Head</option>
                         </select>
                     </div>
                 </div>

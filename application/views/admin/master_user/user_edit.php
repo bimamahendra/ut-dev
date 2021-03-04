@@ -26,8 +26,13 @@
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="">Jabatan</option>
                             <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'?'selected' : '' ?> >Staff</option>
+                            <option value="PICK" <?= $dataUser[0]->ROLE_USERS == 'PICK'?'selected' : '' ?> >PIC Kendaraan</option>
+                            <option value="PICG" <?= $dataUser[0]->ROLE_USERS == 'PICG'?'selected' : '' ?> >PIC Gudang</option>
+                            <option value="PICA" <?= $dataUser[0]->ROLE_USERS == 'PICA'?'selected' : '' ?> >PIC Admin</option>
+                            <option value="PICM" <?= $dataUser[0]->ROLE_USERS == 'PICM'?'selected' : '' ?> >PIC Maintenance</option>
                             <option value="Section Head" <?= $dataUser[0]->ROLE_USERS == 'Section Head'?'selected' : '' ?> >Section Head</option>
                             <option value="Department Head" <?= $dataUser[0]->ROLE_USERS == 'Department Head'? 'selected' : '' ?> >Department Head</option>
+                            <option value="Division Head" <?= $dataUser[0]->ROLE_USERS == 'Division Head'? 'selected' : '' ?> >Division Head</option>
                         </select>
                     </div>
                 </div>

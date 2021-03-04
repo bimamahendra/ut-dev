@@ -44,11 +44,17 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputSectionForm">Departemen</label>
+                        <label for="inputSectionForm">Jabatan</label>
                         <select class="custom-select" name="SECTION_FORM" required>
-                            <option value="" selected>Departement</option>
-                            <option value="General Affairs" <?= $form[0]->SECTION_FORM == 'General Affairs'? 'selected' : 'asd' ?>>General Affairs</option>
-                            <option value="Others" <?= $form[0]->SECTION_FORM == 'Others'? 'selected' : 'asd' ?>>Others</option>
+                            <option value="" selected>Jabatan</option>
+                            <option value="Staff" <?= $form[0]->SECTION_FORM == 'Staff'? 'selected' : '' ?>>Staff</option>
+                            <option value="PICK" <?= $form[0]->SECTION_FORM == 'PICK'? 'selected' : '' ?>>PIC Kendaraan</option>
+                            <option value="PICG" <?= $form[0]->SECTION_FORM == 'PICG'? 'selected' : '' ?>>PIC Gudang</option>
+                            <option value="PICA" <?= $form[0]->SECTION_FORM == 'PICA'? 'selected' : '' ?>>PIC Admin</option>
+                            <option value="PICM" <?= $form[0]->SECTION_FORM == 'PICM'? 'selected' : '' ?>>PIC Maintenance</option>
+                            <option value="Section Head" <?= $form[0]->SECTION_FORM == 'Section Head'? 'selected' : '' ?>>Section Head</option>
+                            <option value="Department Head" <?= $form[0]->SECTION_FORM == 'Department Head'? 'selected' : '' ?>>Department Head</option>
+                            <option value="Division Head" <?= $form[0]->SECTION_FORM == 'Division Head'? 'selected' : '' ?>>Division Head</option>
                         </select>
                     </div>
                 </div>

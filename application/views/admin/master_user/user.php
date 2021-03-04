@@ -112,8 +112,13 @@
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="" selected>Jabatan</option>
                             <option value="Staff">Staff</option>
-                            <option value="Department Head">Department Head</option>
+                            <option value="PICK">PIC Kendaraan</option>
+                            <option value="PICG">PIC Gudang</option>
+                            <option value="PICA">PIC Admin</option>
+                            <option value="PICM">PIC Maintenance</option>
                             <option value="Section Head">Section Head</option>
+                            <option value="Department Head">Department Head</option>
+                            <option value="Division Head">Division Head</option>
                         </select>
                     </div>
                 </div>

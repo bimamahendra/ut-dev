@@ -37,6 +37,11 @@ class Transaction extends RestController {
                         }
                     }
                     $trans = $transNew;
+
+                    // if($user[0]->ROLE_USERS == 'PICK' || $user[0]->ROLE_USERS == 'PICA' || $user[0]->ROLE_USERS == 'Section Head'){
+                    //     $trans['listApproval']      = $trans;
+                    //     $trans['listTransaction']   = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
+                    // }
                 }
                 if($trans != null){
                     $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $trans], 200);
