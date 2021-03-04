@@ -11,38 +11,36 @@ class Transaction extends RestController {
     }
     public function index_get($username){
         $param = $this->get();
-        if(!empty($param['limit'])){
+        if(!empty($param['limit']) && $param['isApproval'] != ''){
             $user = $this->db->get_where('USERS', ['USER_USERS' => $username])->result();
             if($user != null){
                 $this->db->order_by('TS_TRANS', 'DESC');
                 $limit = $param['limit'] != '-1'? $param['limit'] : '';
-                if($user[0]->ROLE_USERS == 'Staff'){
+                if($param['isApproval'] == "false"){
                     $trans = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
                 }else{
                     $trans = $this->db->not_like('STAT_TRANS', '0')->get_where('V_TRANSACTION_APPROVAL', ['ROLE_APP' => $user[0]->ROLE_USERS], $limit)->result();
                     $x = 0;
-                    foreach ($trans as $item) {
-                        if(($item->CONFIRM_STATE_TRANS == $user[0]->ROLE_USERS && $item->STAT_TRANS != '3') || $item->ISAPPROVE_APP != NULL){
-                            $transNew[$x]['ID_TRANS']               = $item->ID_TRANS;
-                            $transNew[$x]['ID_MAPPING']             = $item->ID_MAPPING;
-                            $transNew[$x]['ID_USERS']               = $item->ID_USERS;
-                            $transNew[$x]['NAMA_USERS']             = $item->NAMA_USERS;
-                            $transNew[$x]['NAMA_FORM']              = $item->NAMA_FORM;
-                            $transNew[$x]['PATH_TRANS']             = $item->PATH_TRANS;
-                            $transNew[$x]['TS_TRANS']               = $item->TS_TRANS;
-                            $transNew[$x]['FLAG_TRANS']             = $item->FLAG_TRANS;
-                            $transNew[$x]['CONFIRM_STATE_TRANS']    = $item->CONFIRM_STATE_TRANS;
-                            $transNew[$x]['STAT_TRANS']             = $item->ISAPPROVE_APP;
-                            $x++;
+                    if($trans != null){
+                        foreach ($trans as $item) {
+                            if(($item->CONFIRM_STATE_TRANS == $user[0]->ROLE_USERS && $item->STAT_TRANS != '3') || $item->ISAPPROVE_APP != NULL){
+                                $transNew[$x]['ID_TRANS']               = $item->ID_TRANS;
+                                $transNew[$x]['ID_MAPPING']             = $item->ID_MAPPING;
+                                $transNew[$x]['ID_USERS']               = $item->ID_USERS;
+                                $transNew[$x]['NAMA_USERS']             = $item->NAMA_USERS;
+                                $transNew[$x]['NAMA_FORM']              = $item->NAMA_FORM;
+                                $transNew[$x]['PATH_TRANS']             = $item->PATH_TRANS;
+                                $transNew[$x]['TS_TRANS']               = $item->TS_TRANS;
+                                $transNew[$x]['FLAG_TRANS']             = $item->FLAG_TRANS;
+                                $transNew[$x]['CONFIRM_STATE_TRANS']    = $item->CONFIRM_STATE_TRANS;
+                                $transNew[$x]['STAT_TRANS']             = $item->ISAPPROVE_APP;
+                                $x++;
+                            }
                         }
+                        $trans = $transNew;
                     }
-                    $trans = $transNew;
-
-                    // if($user[0]->ROLE_USERS == 'PICK' || $user[0]->ROLE_USERS == 'PICA' || $user[0]->ROLE_USERS == 'Section Head'){
-                    //     $trans['listApproval']      = $trans;
-                    //     $trans['listTransaction']   = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
-                    // }
                 }
+
                 if($trans != null){
                     $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $trans], 200);
                 }else{
