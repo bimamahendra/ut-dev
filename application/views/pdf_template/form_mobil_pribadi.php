@@ -208,34 +208,46 @@
 		<table class="tp">
 			<tr>
 				<td><b>PEMINJAM</b></td>
-				<td>...</td>
+				<td><?= $list[0]->PEMINJAM_MOBPRI?></td>
 				<td><b>DIVISI / DEPT</b></td>
-				<td>...</td>
+				<td><?= $list[0]->DD_MOBPRI?></td>
 			</tr>
 			<tr>
 				<td><b>PENGEMUDI</b></td>
-				<td>...</td>
+				<td><?= $list[0]->PENGEMUDI_MOBPRI?></td>
 				<td><b>NO. POLISI</b></td>
-				<td>...</td>
+				<td><?= $list[0]->NOPOL_MOBPRI?></td>
 			</tr>
 			<tr>
 				<td><b>TGL. PEMINJAMAN</b></td>
 				<td>
-					...
+					<?php
+						$date = date_create($list[0]->TGLPINJAM_MOBPRI);
+						echo date_format($date, 'd-m-Y');
+					?>
 				</td>
 				<td><b>JAM BERANGKAT</b></td>
 				<td>
-					...
+					<?php
+						$time = date_create($list[0]->JAMBERANGKAT_MOBPRI);
+						echo date_format($time, 'H:i');
+					?>
 				</td>
 			</tr>
 			<tr>
 				<td><b>TGL. PENGEMBALIAN</b></td>
 				<td>
-					...
+					<?php
+						$date = date_create($list[0]->TGLAMBIL_MOBPRI);
+						echo date_format($date, 'd-m-Y');
+					?>
 				</td>
 				<td><b>JAM PULANG</b></td>
 				<td>
-					...
+					<?php
+						$time = date_create($list[0]->JAMPULANG_MOBPRI);
+						echo date_format($time, 'H:i');
+					?>
 				</td>
 			</tr>
 		</table>
@@ -268,15 +280,34 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if($approvals[0]->ROLE_APP == "PICK" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<?php
+					echo '
+						<td class="thd-td2">( '.$user->NAMA_USERS.' )</td>
+					';
+
+					if($approvals[0]->ROLE_APP == "PICK" && $approvals[0]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>
@@ -289,15 +320,46 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if($approvals[1]->ROLE_APP == "Section Head" && $approvals[1]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[1]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if($approvals[2]->ROLE_APP == "Department Head" && $approvals[2]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[2]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<?php
+					if($approvals[1]->ROLE_APP == "Section Head" && $approvals[1]->ISAPPROVE_APP == "1"){
+						echo '
+							<td class="thd-td2">( '.$approvals[1]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td class="thd-td2">(................................................)</td>
+						';
+					}
+
+					if($approvals[2]->ROLE_APP == "Department Head" && $approvals[2]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[2]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>
