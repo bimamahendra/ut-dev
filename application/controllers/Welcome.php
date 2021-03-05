@@ -158,6 +158,6 @@ class Welcome extends CI_Controller
 		$this->load->view('pdf_template/form_external_work_order');
 	}
 	public function formTes(){
-		$this->load->view('pdf_template/form_external_work_order');
+		$this->load->view('pdf_template/form_mobil_pribadi');
 	}
 }
