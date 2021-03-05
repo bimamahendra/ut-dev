@@ -157,4 +157,7 @@ class Welcome extends CI_Controller
 	public function form_ewo(){
 		$this->load->view('pdf_template/form_external_work_order');
 	}
+	public function formTes(){
+		$this->load->view('pdf_template/form_legalitas_catering');
+	}
 }
