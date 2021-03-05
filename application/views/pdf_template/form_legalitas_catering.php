@@ -247,7 +247,7 @@
 			</thead>
 			<tbody>
 				<?php
-					$syarats = implode(';', $list[0]->SYARAT);
+					$syarats = explode(';', $list[0]->SYARAT);
 					echo '
 						<tr>
 							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
@@ -314,7 +314,7 @@
 			</thead>
 			<tbody>
 				<?php
-					$surveys = implode(';', $list[0]->SURVEY);
+					$surveys = explode(';', $list[0]->SURVEY);
 					echo '
 						<tr>
 							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
