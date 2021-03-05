@@ -219,14 +219,14 @@
 				<td style="width: 15%"><strong>Nama Catering</strong></td>
 				<td style="width: 5%">:</td>
 				<td>
-					...
+					<?= $list[0]->NAMA_CATERING?>
 				</td>
 			</tr>
 			<tr>
 				<td><strong>Alamat</strong></td>
 				<td>:</td>
 				<td>
-					...
+					<?= $list[0]->ALAMAT_CATERING?>
 				</td>
 			</tr>
 		</table>
@@ -246,42 +246,47 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
-					<td class="tg-0lax"><span style="font-weight:400;font-style:normal">SIUP dari perindustrian dan pariwisata</span></td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">2.</td>
-					<td class="tg-0lax">Tanda daftar jasa boga dari DEPKES</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">3.</td>
-					<td class="tg-0lax">Domisili perusahaan dari Kelurahan</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">4.</td>
-					<td class="tg-0lax">Tanda daftar perindustrian dari perindustrian dan pariwisata</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">5.</td>
-					<td class="tg-0lax">Hasil pemeriksaan dari LAB</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">6.</td>
-					<td class="tg-0lax">Surat suku dinas tenaga kerja dan transmigrasi</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
+				<?php
+					$syarats = implode(';', $list[0]->SYARAT);
+					echo '
+						<tr>
+							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
+							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">SIUP dari perindustrian dan pariwisata</span></td>
+							<td class="tg-0lax">'.$syarats[0] == 'true'? "V": "".'</td>
+							<td class="tg-0lax">'.$syarats[0] == 'false'? "V": "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">2.</td>
+							<td class="tg-0lax">Tanda daftar jasa boga dari DEPKES</td>
+							<td class="tg-0lax">'.$syarats[1] == 'true'? "V": "".'</td>
+							<td class="tg-0lax">'.$syarats[1] == 'false'? "V": "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">3.</td>
+							<td class="tg-0lax">Domisili perusahaan dari Kelurahan</td>
+							<td class="tg-0lax">'.$syarats[2] == 'true'? "V": "".'</td>
+							<td class="tg-0lax">'.$syarats[2] == 'false'? "V": "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">4.</td>
+							<td class="tg-0lax">Tanda daftar perindustrian dari perindustrian dan pariwisata</td>
+							<td class="tg-0lax">'.$syarats[3] == 'true'? "V": "".'</td>
+							<td class="tg-0lax">'.$syarats[3] == 'false'? "V": "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">5.</td>
+							<td class="tg-0lax">Hasil pemeriksaan dari LAB</td>
+							<td class="tg-0lax">'.$syarats[4] == 'true'? "V": "".'</td>
+							<td class="tg-0lax">'.$syarats[4] == 'false'? "V": "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">6.</td>
+							<td class="tg-0lax">Surat suku dinas tenaga kerja dan transmigrasi</td>
+							<td class="tg-0lax">'.$syarats[5] == 'true'? "V": "".'</td>
+							<td class="tg-0lax">'.$syarats[5] == 'false'? "V": "".'</td>
+						</tr>
+					';
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -308,48 +313,53 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
-					<td class="tg-0lax"><span style="font-weight:400;font-style:normal">Dapur Bersih</span></td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">2.</td>
-					<td class="tg-0lax">Perlengkapan Alat Dapur mampu melayani minimal 5000 porsi</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">3.</td>
-					<td class="tg-0lax">Dapur pisah dengan rumah tinggal</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">4.</td>
-					<td class="tg-0lax">Memiliki kendaraan terutama mobil box</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">5.</td>
-					<td class="tg-0lax">Jarak dapur ke – UT</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">6.</td>
-					<td class="tg-0lax">Kedapur catering harus bisa masuk mobil</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
-				<tr>
-					<td class="tg-0lax">7.</td>
-					<td class="tg-0lax">Memiliki karyawan</td>
-					<td class="tg-0lax"></td>
-					<td class="tg-0lax"></td>
-				</tr>
+				<?php
+					$surveys = implode(';', $list[0]->SURVEY);
+					echo '
+						<tr>
+							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
+							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">Dapur Bersih</span></td>
+							<td class="tg-0lax">'.$surveys[0] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[0] == 'false'? "V" : "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">2.</td>
+							<td class="tg-0lax">Perlengkapan Alat Dapur mampu melayani minimal 5000 porsi</td>
+							<td class="tg-0lax">'.$surveys[1] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[1] == 'false'? "V" : "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">3.</td>
+							<td class="tg-0lax">Dapur pisah dengan rumah tinggal</td>
+							<td class="tg-0lax">'.$surveys[2] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[2] == 'false'? "V" : "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">4.</td>
+							<td class="tg-0lax">Memiliki kendaraan terutama mobil box</td>
+							<td class="tg-0lax">'.$surveys[3] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[3] == 'false'? "V" : "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">5.</td>
+							<td class="tg-0lax">Jarak dapur ke – UT</td>
+							<td class="tg-0lax">'.$surveys[4] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[4] == 'false'? "V" : "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">6.</td>
+							<td class="tg-0lax">Kedapur catering harus bisa masuk mobil</td>
+							<td class="tg-0lax">'.$surveys[5] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[5] == 'false'? "V" : "".'</td>
+						</tr>
+						<tr>
+							<td class="tg-0lax">7.</td>
+							<td class="tg-0lax">Memiliki karyawan</td>
+							<td class="tg-0lax">'.$surveys[6] == 'true'? "V" : "".'</td>
+							<td class="tg-0lax">'.$surveys[6] == 'false'? "V" : "".'</td>
+						</tr>
+					';
+				?>
 			</tbody>
 		</table>
 	</div>
