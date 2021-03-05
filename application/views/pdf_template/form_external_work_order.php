@@ -205,27 +205,32 @@
 		<table style="font-size: 14px;">
 			<tr>
 				<td><b>Di instruksikan kepada</b></td>
-				<td>: ...</td>
+				<td>: <?= $list[0]->INTRUKSIKEPADA_EWO?></td>
 				<td>Reg.No.</td>
-				<td>: .../2012.(fill by GA)</td>
+				<td>: <?= $list[0]->REG_EWO?>/2012.(fill by GA)</td>
 			</tr>
 			<tr>
 				<td><b>Instruksi Dari</b></td>
-				<td style="width: 200px;">: Maintenance Section</td>
+				<td style="width: 200px;">: <?= $list[0]->INTRUKSIDARI_EWO?></td>
 				<td>Request Date</td>
-				<td>: ...</td>
+				<?php
+					$date = date_create($list[0]->REQUEST_EWO);
+					echo '
+						<td>: '.date_format($date, 'd-m-Y').'</td>
+					';
+				?>
 			</tr>
 			<tr>
 				<td><b>Dept/ Div</b></td>
-				<td>: GAD</td>
+				<td>: <?= $list[0]->DEPTDIV_EWO?></td>
 				<td>Pages</td>
-				<td>: ...</td>
+				<td>: <?= $list[0]->PAGES_EWO?></td>
 			</tr>
 			<tr>
 				<td><b>Pekerjaan</b></td>
-				<td>: ...</td>
+				<td>: <?= $list[0]->PEKERJAAN_EWO?></td>
 				<td>CC</td>
-				<td>: ...</td>
+				<td>: <?= $list[0]->CC_EWO?></td>
 			</tr>
 		</table>
 	</div>
@@ -245,14 +250,23 @@
 				<th class="thd-tha"><b>Trouble Ticket</b></th>
 				<th class="thd-tha"><b>Keterangan</b></th>
 			</tr>
-			<tr>
-				<td class="thd-td2">...</td>
-				<td class="thd-td2">...</td>
-				<td class="thd-td2">...</td>
-				<td class="thd-td2">...</td>
-				<td class="thd-td2">...</td>
-				<td class="thd-td2">...</td>
-			</tr>
+			<?php
+				$no = 1;
+				foreach ($list as $item) {
+					$date = date_create($item->TGL_EWO);
+					echo '
+						<tr>
+							<td class="thd-td2">'.$no.'</td>
+							<td class="thd-td2">'.$item->ITEM_EWO.'</td>
+							<td class="thd-td2">'.$item->LOKASI_EWO.'</td>
+							<td class="thd-td2">'.$item->TGL_EWO.'</td>
+							<td class="thd-td2">'.date_format($date, 'd-m-Y').'</td>
+							<td class="thd-td2">'.$item->KET_EWO.'</td>
+						</tr>
+					';
+					$no++;
+				}
+			?>
 		</table>
 	</div>
 	<br>
@@ -269,19 +283,52 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td>
-					TTD Disini
+					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
 				</td>
 				<td>
-					TTD Disini
+					<?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 				<td>
-					TTD Disini
+					<?php
+						if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[1]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
-				<td>(................................................)</td>
-				<td>(................................................)</td>
-				<td>(................................................)</td>
+				<?php
+					echo '
+						<td>( '.$user->NAMA_USERS.' )</td>
+					';
+					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+
+					if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[1]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 			<tr>
 				<td><b>PIC Admin</b></td>
