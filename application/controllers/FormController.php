@@ -31,21 +31,10 @@ class FormController extends CI_Controller
 		$this->load->view('template/admin/footer');
     }
 
-    public function store(){
-        $file = null;
-        $this->load->library(array('upload'));
-        $config = [
-            'upload_path' => './application/views/pdf_template/', 
-            'allowed_types' => '*', 
-            'max_size' => 1024];            
-        $this->upload->initialize($config);
-        if($this->upload->do_upload('PATH_TEMPLATE_PDF')){
-            $dataUpload = $this->upload->data();
-            $file    = 'pdf_template/' .substr($dataUpload['file_name'],0,-4) ;
-        }
+    public function store(){        
         $datas = $_POST;
         $datas['ID_MAPPING']             = 'MAPP_'.substr(md5(time()), 0, 45);
-        $datas['PATH_TEMPLATE_PDF']     = $file;
+        $datas['PATH_TEMPLATE_PDF']      = 'pdf_template/'.$datas['PATH_TEMPLATE_PDF'];
 
         $retId = $this->Form->insert($datas);
         redirect('form');
