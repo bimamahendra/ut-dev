@@ -120,13 +120,12 @@
                             <option value="Division Head">Division Head</option>
                         </select>
                     </div>
-                </div>
-                <div class="modal-body" style="padding-left:6%;padding-right:6%;">
+                </div>                   
+                <div class="modal-body">
                     <div class="col">
-                        <input type="file" name="PATH_TEMPLATE_PDF" class="custom-file-input" id="image-source" onchange="previewImage();">
-                        <label class="custom-file-label" for="image-source">Unggah Template</label>
+                        <input type="text" class="form-control" name="PATH_TEMPLATE_PDF" placeholder="Nama File Template" required>
                     </div>
-                </div>           
+                </div>       
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-warning">Simpan</button>
