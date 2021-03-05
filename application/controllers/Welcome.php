@@ -154,4 +154,7 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('pdf_template/form_komplain_usulan');
 	}
+	public function form_ewo(){
+		$this->load->view('pdf_template/form_external_work_order');
+	}
 }
