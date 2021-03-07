@@ -197,7 +197,12 @@
             </tr>
             <tr>
                 <td><strong>Tanggal</strong></td>
-                <td>: ...</td>
+                <td>: 
+                    <?php 
+						$date = date_create($list[0]->TGLOUT_PERBAIKAN);
+						echo date_format($date, 'd-m-Y');
+					?>
+                </td>
             </tr>
         </table>
         <table class="w-100 border-collapse border-1 mb-min">
@@ -211,206 +216,39 @@
                 <th class="border-1 p-min">Durasi</th>
                 <th class="border-1 p-min">Status</th>
             </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-            </tr>
+            <?php 
+				for ($x = 0; $x < 20; $x++) 
+				{
+					$no = $x + 1;
+					if(!empty($list[$x])){
+						echo '
+							<tr>
+								<td class="border-1 p-min">'.$no.'</td>
+								<td class="border-1 p-min">'.$list[$x]->LAPORAN_PERBAIKAN.'</td>
+								<td class="border-1 p-min">'.$list[$x]->KATEGORI_PERBAIKAN.'</td>
+								<td class="border-1 p-min">'.$list[$x]->LOKASI_PERBAIKAN.'</td>
+								<td class="border-1 p-min">'.$list[$x]->USER_PERBAIKAN.'</td>
+								<td class="border-1 p-min">'.$list[$x]->PIC_PERBAIKAN.'</td>
+								<td class="border-1 p-min">'.$list[$x]->DURASI_PERBAIKAN.'</td>
+								<td class="border-1 p-min">'.$list[$x]->STATUS_PERBAIKAN.'</td>
+							</tr>
+							';							
+					}else{
+						echo '
+							<tr>
+                                <td class="border-1 p-min">'.$no.'</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+                                <td class="border-1 p-min">&nbsp;</td>
+							</tr>
+						';	
+					}							
+				} 
+			?>
         </table>
         <table class="border-1 border-collapse absolute pos-right" style="width: 400px;">
             <tr>
