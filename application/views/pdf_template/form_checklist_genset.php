@@ -164,7 +164,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 004/PROS-MFP-MLK3-014</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -201,37 +201,52 @@
         <table class="table-center mb-min" style="width: 300px;">
             <tr>
                 <td>Tanggal</td>
-                <td colspan="3">: 6</td>
+                <?php
+                    $date = date_create($list[0]->TGL_GENSET);
+                    echo '
+                        <td colspan="3">: '.date_format($date, 'j').'</td>
+                    ';
+                ?>
             </tr>
             <tr>
                 <td>Bulan</td>
-                <td>: Maret</td>
+                <?php
+                    $date = date_create($list[0]->TGL_GENSET);
+                    echo '
+                        <td>: '.date_format($date, 'F').'</td>
+                    ';
+                ?>
                 <td style="width: 10%;">Tahun</td>
-                <td>: 2021</td>
+                <?php
+                    $date = date_create($list[0]->TGL_GENSET);
+                    echo '
+                        <td>: '.date_format($date, 'Y').'</td>
+                    ';
+                ?>
             </tr>
         </table>
         <table class="table-center mb-min border-collapse" style="width: 500px;">
             <tr>
                 <td>Lokasi</td>
-                <td colspan="3">: ...</td>
+                <td colspan="3">: <?= $list[0]->LOKASI_GENSET?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">Engine</td>
-                <td class="border-1 p-min">: ...</td>
+                <td class="border-1 p-min">: <?= $list[0]->ENGINE_GENSET?></td>
                 <td class="border-1 p-min">Geno Type</td>
-                <td class="border-1 p-min">: ...</td>
+                <td class="border-1 p-min">: <?= $list[0]->GENO_GENSET?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">Engine Model</td>
-                <td class="border-1 p-min">: ...</td>
+                <td class="border-1 p-min">: <?= $list[0]->MODEL_GENSET?></td>
                 <td class="border-1 p-min">Serial No</td>
-                <td class="border-1 p-min">: ...</td>
+                <td class="border-1 p-min">: <?= $list[0]->SERIAL2_GENSET?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">Serial No</td>
-                <td class="border-1 p-min">: ...</td>
+                <td class="border-1 p-min">: <?= $list[0]->SERIAL_GENSET?></td>
                 <td class="border-1 p-min">Hour Meter</td>
-                <td class="border-1 p-min">: ...</td>
+                <td class="border-1 p-min">: <?= $list[0]->HM_GENSET?></td>
             </tr>
         </table>
         <table class="border-1 valign-middle border-collapse">
@@ -247,89 +262,259 @@
                 <th class="border-1 text-vertical" rowspan="10">UNIT ENGINE</th>
                 <td class="border-1 p-min">1</td>
                 <td class="border-1 p-min">ENGINE OIL</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->ENGINE_OIL);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <th class="border-1 p-min" rowspan="7">CONTROL SYSTEM</th>
                 <td class="border-1 p-min">1</td>
                 <td class="border-1 p-min">AMPERE METER AC</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->AMP_METER);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">2</td>
                 <td class="border-1 p-min">ENGINE OIL PRESSURE</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->ENGINE_OP);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <td class="border-1 p-min">2</td>
                 <td class="border-1 p-min">FREQ. METER (RPM)</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->FREQ_METER);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">3</td>
                 <td class="border-1 p-min">RADIATOR</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->RADIATOR);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <td class="border-1 p-min">3</td>
                 <td class="border-1 p-min">VOLT METER AC</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->VOLT_METER);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">4</td>
                 <td class="border-1 p-min">RADIATOR HOSE</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->RADIATOR_HOSE);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <td class="border-1 p-min">4</td>
                 <td class="border-1 p-min">RELAY</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->RELAY);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">5</td>
                 <td class="border-1 p-min">FAN BELT</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->FAN_BELT);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <td class="border-1 p-min">5</td>
                 <td class="border-1 p-min">MCB</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->MCB);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">6</td>
                 <td class="border-1 p-min">BATTERY</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->BATTERY);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <td class="border-1 p-min">6</td>
                 <td class="border-1 p-min">TERMINAL</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->TERMINAL);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">7</td>
                 <td class="border-1 p-min">ELECTROLYT ( AIR ACCU )</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->ELECTROLYT);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <td class="border-1 p-min">7</td>
                 <td class="border-1 p-min">EMERGENCY STOP</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->EMERGENCY_STOP);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">8</td>
                 <td class="border-1 p-min">STARTER MOTOR</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->STARTER_MOTOR);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
                 <tH class="border-1 p-min" rowspan="2">5K</tH>
                 <td class="border-1 p-min" colspan="2" rowspan="2">Ruangan</td>
-                <td class="border-1 p-min" rowspan="2"></td>
-                <td class="border-1 p-min" rowspan="2"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->AMP_METER);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min" rowspan="2"><?= $status?></td>
+                <td class="border-1 p-min" rowspan="2"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">9</td>
                 <td class="border-1 p-min">OIL PRESSURE INDICATOR</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $checklist = explode(';', $list[0]->OIL_PRESS);
+                    if($checklist[0] == '1'){
+                        $status = "V";
+                    }else if($checklist[0] == '2'){
+                        $status = "X";
+                    }else{
+                        $status = "S";
+                    }
+                ?>
+                <td class="border-1 p-min"><?= $status?></td>
+                <td class="border-1 p-min"><?= $checklist[1]?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min"></td>
@@ -364,12 +549,12 @@
                 </tr>
                 <tr>
                     <td class="text-regular-sm">X : Replacement</td>
-                    <td class="border-1 p-min"></td>
-                    <td class="border-1 p-min"></td>
-                    <td class="border-1 p-min"></td>
-                    <td class="border-1 p-min"></td>
-                    <td class="border-1 p-min"></td>
-                    <td class="border-1 p-min"></td>
+                    <td class="border-1 p-min"><?= $list[0]->PROB_IDENT?></td>
+                    <td class="border-1 p-min"><?= $list[0]->ROOT_CAUSE?></td>
+                    <td class="border-1 p-min"><?= $list[0]->CORRECTIVE_ACT?></td>
+                    <td class="border-1 p-min"><?= $list[0]->PREVENT_ACT?></td>
+                    <td class="border-1 p-min"><?= $list[0]->DEADLINE?></td>
+                    <td class="border-1 p-min"><?= $list[0]->STATUS_GENSET?></td>
                 </tr>
                 <tr>
                     <td class="text-regular-sm">S : Service/ ganti</td>
@@ -383,7 +568,7 @@
             </tbody>
         </table>
         <p class="text-align-center mb-min">
-            GENSET dalam keadaan <strong>SIAP</strong> / <strong>BELUM SIAP</strong> DIOPERASIKAN
+            GENSET dalam keadaan <?= ($list[0]->COND_GENSET == '1'? "<strong>SIAP</strong>" : "<strong>BELUM SIAP</strong>")?> DIOPERASIKAN
         </p>
         <table class="border-1 border-collapse absolute pos-right" style="width: 400px;">
             <tr>
