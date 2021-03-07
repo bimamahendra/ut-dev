@@ -185,7 +185,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : FORM 001/PROS-MFP-MLK3-014</td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -212,19 +212,33 @@
 				<th style="width: 50px;text-align: center;">LOKASI</th>
 				<th style="width: 50px;text-align: center;">USER</th>
 			</tr>
-			<tr>
-				<td>...</td>
-				<td>...</td>
-				<td>...</td>
-				<td>...</td>
-				<td>...</td>
-				<td>...</td>
-			</tr>
+			<?php
+				$no = 1;
+				foreach($list as $item){
+					$date = date_create($item->TGL_IDENTIFIKASI);
+					echo '
+						<tr>
+							<td>'.$no.'</td>
+							<td>'.$item->TEMUAN_IDENTIFIKASI.'</td>
+							<td>'.date_format($date, 'd-m-Y').'</td>
+							<td>'.$item->KATEGORI_IDENTIFIKASI.'</td>
+							<td>'.$item->LOKASI_IDENTIFIKASI.'</td>
+							<td>'.$item->USER_IDENTIFIKASI.'</td>
+						</tr>
+					';
+					$no++;
+				}
+			?>
 		</table>
 	</div>
 	<br>
 	<div style="text-align:right;">
-		<span>Jakarta, 3 Maret 2021</span>
+		<?php
+			$date = date_create($item->TGLOUT_IDENTIFIKASI);
+			echo '
+				<span>Jakarta, '.date_format($date, 'd M Y').'</span>
+			';
+		?>
 	</div>
 	<br>
 	<div>

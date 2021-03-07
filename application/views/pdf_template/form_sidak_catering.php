@@ -120,7 +120,7 @@
             <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                 <strong>Nomor Dokumen</strong>
             </td>
-            <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 004/PROS-MFP-MLK3-013</td>
+            <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
             <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                 <strong>
                     ISO 9001 : 2008 ; 1SO <br>
