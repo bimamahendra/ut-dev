@@ -2,7 +2,7 @@
 // require APPPATH . '/libraries/REST_Controller.php';
 use chriskacerguis\RestServer\RestController;
 
-class FormPerbaikan extends RestController {
+class FormLaporanPerbaikan extends RestController {
     public function __construct() {
         parent::__construct();
         $this->load->helper("url");
