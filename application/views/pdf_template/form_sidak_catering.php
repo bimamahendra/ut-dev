@@ -193,7 +193,7 @@
         <tr>
             <td>7.</td>
             <td>Kandepnaker</td>
-            <td>: <?= $list[0]->PERUSHAAN_CATERING?>KANDEPNAKER_CATERING</td>
+            <td>: <?= $list[0]->KANDEPNAKER_CATERING?></td>
         </tr>
         <tr>
             <td>8.</td>
