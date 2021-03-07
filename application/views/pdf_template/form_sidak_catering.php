@@ -155,50 +155,50 @@
         <tr>
             <td style="width: 5%;">1.</td>
             <td style="width: 30%;">Nama Perusahaan</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->PERUSHAAN_CATERING?></td>
         </tr>
         <tr>
             <td>2.</td>
             <td>Nama Pemilik</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->PEMILIK_CATERING?></td>
         </tr>
         <tr>
             <td>3.</td>
             <td>Nama Pengurus</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->PENGURUS_CATERING?></td>
         </tr>
         <tr>
             <td>4.</td>
             <td>Alamat</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->ALAMAT_CATERING?></td>
         </tr>
         <tr>
             <td colspan="2">Telepon</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->TELEPON_CATERING?></td>
         </tr>
         <tr>
             <td colspan="2">Fax</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->FAX_CATERING?></td>
         </tr>
         <tr>
             <td>5.</td>
             <td>Jumlah Tenaga Kerja</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->JMLKERJA_CATERING?></td>
         </tr>
         <tr>
             <td>6.</td>
             <td>Perusahaan Yang Di Layani</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->LAYANI_CATERING?></td>
         </tr>
         <tr>
             <td>7.</td>
             <td>Kandepnaker</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->PERUSHAAN_CATERING?>KANDEPNAKER_CATERING</td>
         </tr>
         <tr>
             <td>8.</td>
             <td>Kanwil</td>
-            <td>: ...</td>
+            <td>: <?= $list[0]->KANWIL_CATERING?></td>
         </tr>
     </table>
     <table class="w-100 mb-min">
@@ -207,42 +207,47 @@
             <td>Ya</td>
             <td>Tidak</td>
         </tr>
-        <tr>
-            <td style="width: 5%;">1.</td>
-            <td style="width: 80%;">Apakah semua pegawai perusahaan catering yang mengerjakan dan melayani<br>makanan dan minuman telah bebas dari penyakit menular (Surat Keterangan Dokter)</td>
-            <td style="width: 5%;"><input type="checkbox" checked></td>
-            <td style="width: 5%;"><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>2.</td>
-            <td>apakah sudah dilakukan pemeriksaan paru-paru dengan rontgen</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td>apakah dilakukan pemeriksaan jasa boga secara berkala</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td>apakah petugas yang melayani makanan tidak menderita penyakit menular</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>5.</td>
-            <td>apakah pegawai sudah mengikuti pelatihan gizi kerja hygiene dan sanitasi serta<br>penanggulangan keracunanan</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>6.</td>
-            <td>apakah tenaga kerja memakai pakaian kerja dan alat pelindung diri yang sesuai</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
+        <?php
+            $ptks = explode(';', $list[0]->PTK);
+            echo '
+                <tr>
+                    <td style="width: 5%;">1.</td>
+                    <td style="width: 80%;">Apakah semua pegawai perusahaan catering yang mengerjakan dan melayani<br>makanan dan minuman telah bebas dari penyakit menular (Surat Keterangan Dokter)</td>
+                    <td style="width: 5%;"><input type="checkbox" '.($ptks[0] == "true"? "checked" : "").'></td>
+                    <td style="width: 5%;"><input type="checkbox" '.($ptks[0] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>apakah sudah dilakukan pemeriksaan paru-paru dengan rontgen</td>
+                    <td><input type="checkbox" '.($ptks[1] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($ptks[1] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>apakah dilakukan pemeriksaan jasa boga secara berkala</td>
+                    <td><input type="checkbox" '.($ptks[2] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($ptks[2] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td>apakah petugas yang melayani makanan tidak menderita penyakit menular</td>
+                    <td><input type="checkbox" '.($ptks[3] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($ptks[3] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td>apakah pegawai sudah mengikuti pelatihan gizi kerja hygiene dan sanitasi serta<br>penanggulangan keracunanan</td>
+                    <td><input type="checkbox" '.($ptks[4] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($ptks[4] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>6.</td>
+                    <td>apakah tenaga kerja memakai pakaian kerja dan alat pelindung diri yang sesuai</td>
+                    <td><input type="checkbox" '.($ptks[5] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($ptks[5] == "false"? "checked" : "").'></td>
+                </tr>
+            ';
+        ?>
     </table>
     <table class="w-100 mb-min">
         <tr>
@@ -250,60 +255,65 @@
             <td>Ya</td>
             <td>Tidak</td>
         </tr>
-        <tr>
-            <td style="width: 5%;">1.</td>
-            <td style="width: 80%;">apakah daging dan ikan dibeli dalam keadaan segar dan dibeli di tempat resmi</td>
-            <td style="width: 5%;"><input type="checkbox" checked></td>
-            <td style="width: 5%;"><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>2.</td>
-            <td>apakah bahan makanan yang akan diolah dalam keadaan baik, segar, dan tidak rusak (<br>Berubah Warna dan Rasa )</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td>Apakah makanan kering atau kaleng yang di beli terdaftar di DEPKES</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td>untuk bahan yang di kemas apakan memenuhi syarat kemasan tidak rusak atau<br>kembung dan belum kadaluarsa.</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>5.</td>
-            <td>Apakah bahan makanan yang di pergunakan dalam keadaan bersih bebas bakteri dan<br>bahan beracun serta bebas dari lembab.</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>6.</td>
-            <td>Apakah air yang untuk minum dan cuci peralatan sudah di periksa di labolatirium.</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>7.</td>
-            <td>Makanan jadi harus dalam kondisi baik dan sehat dan tempat penyimpanan harus<br>terlindung dan memenuhi standart kesehatan.</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>8.</td>
-            <td>Harus ada pemisahan tempat penyimpanan makanan kering dan basah.</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>9.</td>
-            <td>Apakah penyimpanan bahan mentah terpisah dengan penyimpanan makanan jadi.</td>
-            <td><input type="checkbox"></td>
-            <td><input type="checkbox"></td>
-        </tr>
+        <?php
+            $pkb_pms = explode(';', $list[0]->PKB_PM);
+            echo '
+                <tr>
+                    <td style="width: 5%;">1.</td>
+                    <td style="width: 80%;">apakah daging dan ikan dibeli dalam keadaan segar dan dibeli di tempat resmi</td>
+                    <td style="width: 5%;"><input type="checkbox" '.($pkb_pms[0] == "true"? "checked" : "").'></td>
+                    <td style="width: 5%;"><input type="checkbox" '.($pkb_pms[0] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>apakah bahan makanan yang akan diolah dalam keadaan baik, segar, dan tidak rusak (<br>Berubah Warna dan Rasa )</td>
+                    <td><input type="checkbox" '.($pkb_pms[1] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[1] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>Apakah makanan kering atau kaleng yang di beli terdaftar di DEPKES</td>
+                    <td><input type="checkbox" '.($pkb_pms[2] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[2] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td>untuk bahan yang di kemas apakan memenuhi syarat kemasan tidak rusak atau<br>kembung dan belum kadaluarsa.</td>
+                    <td><input type="checkbox" '.($pkb_pms[3] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[3] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td>Apakah bahan makanan yang di pergunakan dalam keadaan bersih bebas bakteri dan<br>bahan beracun serta bebas dari lembab.</td>
+                    <td><input type="checkbox" '.($pkb_pms[4] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[4] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>6.</td>
+                    <td>Apakah air yang untuk minum dan cuci peralatan sudah di periksa di labolatirium.</td>
+                    <td><input type="checkbox" '.($pkb_pms[5] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[5] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>7.</td>
+                    <td>Makanan jadi harus dalam kondisi baik dan sehat dan tempat penyimpanan harus<br>terlindung dan memenuhi standart kesehatan.</td>
+                    <td><input type="checkbox" '.($pkb_pms[6] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[6] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>8.</td>
+                    <td>Harus ada pemisahan tempat penyimpanan makanan kering dan basah.</td>
+                    <td><input type="checkbox" '.($pkb_pms[7] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[7] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>9.</td>
+                    <td>Apakah penyimpanan bahan mentah terpisah dengan penyimpanan makanan jadi.</td>
+                    <td><input type="checkbox" '.($pkb_pms[8] == "true"? "checked" : "").'></td>
+                    <td><input type="checkbox" '.($pkb_pms[8] == "false"? "checked" : "").'></td>
+                </tr>
+            ';
+        ?>
     </table>
     <table class="w-100 mb-min">
         <tr>
@@ -311,112 +321,117 @@
             <td>Ya</td>
             <td>Tidak</td>
         </tr>
-        <tr>
-            <td style="width: 5%;">1.</td>
-            <td style="width: 80%;">apakah alat-alat makan atau masak sesudah dipakai selalu dibersihkan dengan sabun<br>dan air panas kemudian dikeringkan</td>
-            <td style="width: 5%;"><input type="checkbox" checked></td>
-            <td style="width: 5%;"><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>2.</td>
-            <td>apakah alat makan dan masak bebas dari karat</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td>apakah dapur kamar makan dan alat keperluan makan selalu dalam keadaan bersih<br>dan rapih</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td>apakan tersedia tempat sampah bak sampah tertutup yang di letakkan sedekat<br>mungkin dengan sumber produksi sampah namun dapat menghindari kemungkinana<br>tercemar makanan oleh sampah</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>5.</td>
-            <td>apakah telah tersedia lemari es untuk menyimpan makanan dan bahan makanan<br>yang cepat busuk</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>6.</td>
-            <td>apakah tersedia lemari pendingin yang dapat mencapai suhu -5 0 C dengan kapasitas<br>cukup memadai sesuai dengan jenis makanan yang di gunakan.</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>7.</td>
-            <td>Apakah telah tersedia pembuangan asap dapur yang di lengkapi dengan cerobong<br>pembuang asap dapur yang dilengkapi dengan penangkap asap (Hood)</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>8.</td>
-            <td>Apakah telah tersedia fasilitas pencucian dari bahan yang kuat permukaan halus dan<br>mudah dibersihkan.</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>9.</td>
-            <td>Apakah tata ruang dan lingkungan kerja dalam kondisi baik dan terpelihara (Saluran<br>air, Penerangan, Sirkulasi udara, Kamar mandi)</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>10.</td>
-            <td>Apakah telah tersedia alat keselamatan kerja seperti untuk kompor gas dan alat<br>pemadam api ringan</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
-        <tr>
-            <td>11.</td>
-            <td>apakah alat listrik Oven,toaster,blender,dan hand mixer dll dalam keadaan baik dan<br>aman.</td>
-            <td>
-                <input type="checkbox" checked>
-            </td>
-            <td>
-                <input type="checkbox">
-            </td>
-        </tr>
+        <?php
+            $psl_fpms = explode(';', $list[0]->PSL_FPM);
+            echo '
+                <tr>
+                    <td style="width: 5%;">1.</td>
+                    <td style="width: 80%;">apakah alat-alat makan atau masak sesudah dipakai selalu dibersihkan dengan sabun<br>dan air panas kemudian dikeringkan</td>
+                    <td style="width: 5%;"><input type="checkbox" '.($psl_fpms[0] == "true"? "checked" : "").'></td>
+                    <td style="width: 5%;"><input type="checkbox" '.($psl_fpms[0] == "false"? "checked" : "").'></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>apakah alat makan dan masak bebas dari karat</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[1] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[1] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>apakah dapur kamar makan dan alat keperluan makan selalu dalam keadaan bersih<br>dan rapih</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[2] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[2] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td>apakan tersedia tempat sampah bak sampah tertutup yang di letakkan sedekat<br>mungkin dengan sumber produksi sampah namun dapat menghindari kemungkinana<br>tercemar makanan oleh sampah</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[3] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[3] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td>apakah telah tersedia lemari es untuk menyimpan makanan dan bahan makanan<br>yang cepat busuk</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[4] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[4] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6.</td>
+                    <td>apakah tersedia lemari pendingin yang dapat mencapai suhu -5 0 C dengan kapasitas<br>cukup memadai sesuai dengan jenis makanan yang di gunakan.</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[5] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[5] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7.</td>
+                    <td>Apakah telah tersedia pembuangan asap dapur yang di lengkapi dengan cerobong<br>pembuang asap dapur yang dilengkapi dengan penangkap asap (Hood)</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[6] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[6] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8.</td>
+                    <td>Apakah telah tersedia fasilitas pencucian dari bahan yang kuat permukaan halus dan<br>mudah dibersihkan.</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[7] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[7] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9.</td>
+                    <td>Apakah tata ruang dan lingkungan kerja dalam kondisi baik dan terpelihara (Saluran<br>air, Penerangan, Sirkulasi udara, Kamar mandi)</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[8] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[8] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10.</td>
+                    <td>Apakah telah tersedia alat keselamatan kerja seperti untuk kompor gas dan alat<br>pemadam api ringan</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[9] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[9] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11.</td>
+                    <td>apakah alat listrik Oven,toaster,blender,dan hand mixer dll dalam keadaan baik dan<br>aman.</td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[10] == "true"? "checked" : "").'>
+                    </td>
+                    <td>
+                        <input type="checkbox" '.($psl_fpms[10] == "false"? "checked" : "").'>
+                    </td>
+                </tr>
+            ';
+        ?>
     </table>
     <p class="border-1 text-align-center p-min mb-min">
         Recommendasi diberikan kepada perusahaan jasa boga yang memenuhi
@@ -424,7 +439,7 @@
     </p>
     <p class="mb-min">
         <strong>Catatan Team Sidak :</strong>
-        ...
+        <?= $list[0]->CATATAN_CATERING?>
     </p>
     <table class="w-100">
         <tr class="text-align-center">
