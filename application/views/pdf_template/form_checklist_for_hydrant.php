@@ -149,8 +149,8 @@
 			border: 1px solid black;
 			border-collapse: collapse;
 			text-align: center;
-			width: 100%;
-			font-size: 14px;
+			width: 66,6%;
+			font-size: 12px;
 		}
 
 		.thd-tha {
@@ -458,58 +458,55 @@ terminal bar (setiap 2 bulan sekali)</td>
 	<br>
     <div>
 		<table style="width:80%; text-align:left; font-size: 12px;">
+			<tr>
+				<td style="width: 2%"><b>V</b></td>
+				<td style="width: 2%"><b>:</b></td>
 				<td>
-					<table style="width:80%; text-align:left; font-size: 12px;">
-						<tr>
-							<td style="width: 2%"><b>V</b></td>
-							<td style="width: 2%"><b>:</b></td>
-							<td>
-								OK
-							</td>    
-						</tr>
-						<tr>
-							<td style="width: 2%"><b>P</b></td>
-							<td style="width: 2%"><b>:</b></td>
-							<td>
-								Perbaikan
-							</td>    
-						</tr>
-					</table>
-				</td>
-				<td>
-					<table style="width:80%; text-align:left; font-size: 12px;">
-						<tr>
-							<td style="width: 7%"><b>Catatan</b></td>
-							<td style="width: 0%"><b>:</b></td>
-							<td>
-								_______________________________________________________________________________
-							</td>    
-						</tr>
-						<tr>
-							<td style="width: 7%"><b></b></td>
-							<td style="width: 0%"><b></b></td>
-							<td>
-								_______________________________________________________________________________
-							</td>    
-						</tr>
-						<tr>
-							<td style="width: 7%"><b></b></td>
-							<td style="width: 0%"><b></b></td>
-							<td>
-								_______________________________________________________________________________
-							</td>    
-						</tr>
-					</table>
-				</td>
+					OK
+				</td>    
 			</tr>
-		</table>	
+			<tr>
+				<td style="width: 2%"><b>P</b></td>
+				<td style="width: 2%"><b>:</b></td>
+				<td>
+					Perbaikan
+				</td>    
+			</tr>
+		</table>
     </div>
+	<br>
+	<div>
+	<table style="width:80%; text-align:left; font-size: 12px;">
+		<tr>
+			<td style="width: 7%"><b>Catatan</b></td>
+			<td style="width: 0%"><b>:</b></td>
+			<td>
+				____________________________________________________________________________________________
+			</td>    
+		</tr>
+		<tr>
+			<td style="width: 7%"><b></b></td>
+			<td style="width: 0%"><b></b></td>
+			<td>
+				____________________________________________________________________________________________
+			</td>    
+			</td>    
+		</tr>
+		<tr>
+			<td style="width: 7%"><b></b></td>
+			<td style="width: 0%"><b></b></td>
+			<td>
+				____________________________________________________________________________________________
+			</td>    
+			</td>    
+		</tr>
+	</table>
+	</div>
     <br>      
 	<div>
-		<table class="thd">
+		<table class="thd" align="right">
 			<tr>
-				<td class="thd-tha">Disiapkan Oleh : </td>
-				<td class="thd-tha">Diketahui Oleh : </td>
+				<td class="thd-tha">Dikerjakan Oleh : </td>
 				<td class="thd-tha">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
@@ -519,19 +516,14 @@ terminal bar (setiap 2 bulan sekali)</td>
 				<td class="thd-td2">
 					TTD Disini
 				</td>
-				<td class="thd-td2">
-					TTD Disini
-				</td>
 			</tr>
 			<tr>
-				<td class="thd-tha"><b>Pelaksana</b></td>
 				<td class="thd-tha"><b>PIC Maintenance</b></td>
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
 				<td class="thd-td2">(................................................)</td>
 				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
 			</tr>
 		</table>
 	</div>
