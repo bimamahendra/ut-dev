@@ -54,7 +54,6 @@ class FormSnack extends RestController {
                 $storeFrmSnack['TGL_SNACK']         = $param['tglSnack'];
                 $storeFrmSnack['DIVISI_SNACK']      = $param['divisiSnack'];
                 $storeFrmSnack['KEPERLUAN_SNACK']   = $param['keperluanSnack'];
-                $storeFrmSnack['TGLOUT_SNACK']      = date('Y-m-d');
                 $this->db->insert('FORM_SNACK', $storeFrmSnack);
 
                 foreach($param['detSnack'] as $item){
