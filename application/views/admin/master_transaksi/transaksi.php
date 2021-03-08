@@ -57,13 +57,14 @@
                             } else if ($item->STAT_TRANS == '3') {
                                 $status = 'Ditolak';
                             }
+                            $date = date_create($item->TS_TRANS);
 
                             echo '
                                     <tr>
                                         <td>' . $no++ . '</td>
                                         <td>' . $item->NAMA_USERS . '</td>
                                         <td>' . $item->NAMA_FORM . '</td>
-                                        <td>' . $item->TS_TRANS . '</td>
+                                        <td>' . date_format($date, 'j M Y H:i:s') .'</td>
                                         <td>' . $item->KETERANGAN_TRANS . '</td>
                                         <td>' . $item->FLAG_TRANS . '</td>
                                         <td>' . $status . '</td>
