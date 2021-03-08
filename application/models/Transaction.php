@@ -7,7 +7,7 @@ class Transaction extends CI_Model{
     }
 
     public function getAll(){
-        $res = $this->db->get('V_TRANSACTION')->result();
+        $res = $this->db->order_by('TS_TRANS', 'DESC')->get('V_TRANSACTION')->result();
         return $res;
     }
     public function get($param){
