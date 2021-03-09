@@ -161,6 +161,25 @@
 		.thd-td2 {
 			border: 1px solid black;
 		}
+
+		.thc {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: center;
+			width: 100%;
+			font-size: 14px;
+			position: absolute;
+			right: 0;
+		}
+
+		.thc-tha {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		.thc-td2 {
+			border: 1px solid black;
+		}
 	</style>
 </head>
 
@@ -185,7 +204,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc ?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -213,61 +232,55 @@
 				<th style="width: 50px;text-align: center;">USER</th>
 			</tr>
 			<?php
-				$no = 1;
-				foreach($list as $item){
-					$date = date_create($item->TGL_IDENTIFIKASI);
-					echo '
+			$no = 1;
+			foreach ($list as $item) {
+				$date = date_create($item->TGL_IDENTIFIKASI);
+				echo '
 						<tr>
-							<td>'.$no.'</td>
-							<td>'.$item->TEMUAN_IDENTIFIKASI.'</td>
-							<td>'.date_format($date, 'd-m-Y').'</td>
-							<td>'.$item->KATEGORI_IDENTIFIKASI.'</td>
-							<td>'.$item->LOKASI_IDENTIFIKASI.'</td>
-							<td>'.$item->USER_IDENTIFIKASI.'</td>
+							<td>' . $no . '</td>
+							<td>' . $item->TEMUAN_IDENTIFIKASI . '</td>
+							<td>' . date_format($date, 'd-m-Y') . '</td>
+							<td>' . $item->KATEGORI_IDENTIFIKASI . '</td>
+							<td>' . $item->LOKASI_IDENTIFIKASI . '</td>
+							<td>' . $item->USER_IDENTIFIKASI . '</td>
 						</tr>
 					';
-					$no++;
-				}
+				$no++;
+			}
 			?>
 		</table>
 	</div>
 	<br>
 	<div style="text-align:right;">
 		<?php
-			$date = date_create($item->TGLOUT_IDENTIFIKASI);
-			echo '
-				<span>Jakarta, '.date_format($date, 'd M Y').'</span>
+		$date = date_create($item->TGLOUT_IDENTIFIKASI);
+		echo '
+				<span>Jakarta, ' . date_format($date, 'd M Y') . '</span>
 			';
 		?>
 	</div>
 	<br>
 	<div>
-		<table class="thd">
+		<table class="thc" style="width: 450px;">
 			<tr>
-				<td class="thd-tha">Disiapkan Oleh : </td>
-				<td class="thd-tha">Diketahui Oleh : </td>
-				<td class="thd-tha">Disetujui Oleh : </td>
+				<td class="thc-tha">Diketahui Oleh : </td>
+				<td class="thc-tha">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
-				<td class="thd-td2">
+				<td class="thc-td2">
 					TTD Disini
 				</td>
-				<td class="thd-td2">
-					TTD Disini
-				</td>
-				<td class="thd-td2">
+				<td class="thc-td2">
 					TTD Disini
 				</td>
 			</tr>
 			<tr>
-				<td class="thd-tha"><b>Pelaksana</b></td>
-				<td class="thd-tha"><b>Section Head</b></td>
-				<td class="thd-tha"><b>Dept Head</b></td>
-			</tr>
-			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thc-td2">(................................................)</td>
 				<td>(................................................)</td>
+			</tr>
+			<tr>
+				<td class="thc-tha"><b>Section Head</b></td>
+				<td class="thc-tha"><b>Dept Head</b></td>
 			</tr>
 		</table>
 	</div>
