@@ -393,15 +393,13 @@
 					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
 				</td>
 				<td class="thc-td2">
-					<td>
-						<?php
-							if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-								echo '
-									<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
-								';
-							}
-						?>
-					</td>
+					<?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
