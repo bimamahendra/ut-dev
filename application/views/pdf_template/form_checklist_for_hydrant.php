@@ -163,15 +163,16 @@
 		}
         .tg .tg-5r9a {
 			border: 1px solid black;
-			padding-top: 4px;
-			padding-bottom: 4px;
-			font-size: 12px;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-left: 6px;
+			font-size: 9px;
 			text-align: left;
 			vertical-align: top
 		}
         .tg .tg-5rbv {
 			border: 1px solid black;
-			font-size: 12px;
+			font-size: 9px;
 			border-color: black;
 			font-weight: bold;
 			text-align: center;
@@ -221,7 +222,7 @@
 		<h5>WEEKLY REPORT HYDRANT</h5>
 	</div>
     <div>
-		<table style="width:80%; text-align:left; font-size: 12px;">
+		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
 				<td style="width: 15%" colspan="4"><b>Seksi Maintenance</b></td>
 			</tr>
@@ -457,7 +458,7 @@ terminal bar (setiap 2 bulan sekali)</td>
 	</div>
 	<br>
     <div>
-		<table style="width:80%; text-align:left; font-size: 12px;">
+		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
 				<td style="width: 2%"><b>V</b></td>
 				<td style="width: 2%"><b>:</b></td>
@@ -506,7 +507,7 @@ terminal bar (setiap 2 bulan sekali)</td>
 	<div>
 		<table class="thd" align="right">
 			<tr>
-				<td class="thd-tha">Dikerjakan Oleh : </td>
+				<td class="thd-tha">Diketahui Oleh : </td>
 				<td class="thd-tha">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">

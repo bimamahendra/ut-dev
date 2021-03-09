@@ -149,7 +149,7 @@
 			border: 1px solid black;
 			border-collapse: collapse;
 			text-align: center;
-			width: 100%;
+			width: 66,6%;
 			font-size: 12px;
 		}
 
@@ -165,6 +165,7 @@
 			border: 1px solid black;
 			padding-top: 4px;
 			padding-bottom: 4px;
+			padding-left: 6px;
 			font-size: 14px;
 			text-align: left;
 			vertical-align: top
@@ -324,10 +325,9 @@
 	</div>
     <br>      
 	<div>
-		<table class="thd">
+		<table class="thd" align="right">
 			<tr>
 				<td class="thd-tha">Dibuat Oleh : </td>
-				<td class="thd-tha">Diterima Oleh : </td>
 				<td class="thd-tha">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
@@ -337,19 +337,14 @@
 				<td class="thd-td2">
 					TTD Disini
 				</td>
-				<td class="thd-td2">
-					TTD Disini
-				</td>
 			</tr>
 			<tr>
-				<td class="thd-tha"><b>PIC</b></td>
-				<td class="thd-tha"><b>Catering</b></td>
+				<td class="thd-tha"><b>PIC Admin</b></td>
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
 				<td class="thd-td2">(................................................)</td>
 				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
 			</tr>
 		</table>
 	</div>

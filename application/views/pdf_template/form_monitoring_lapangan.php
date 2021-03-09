@@ -165,6 +165,7 @@
 			border: 1px solid black;
 			padding-top: 4px;
 			padding-bottom: 4px;
+			padding-left: 6px;
 			font-size: 12px;
 			text-align: left;
 			vertical-align: top
