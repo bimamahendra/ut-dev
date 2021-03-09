@@ -255,7 +255,7 @@
                 <th class="border-1 p-min">Dibuat</th>
                 <th class="border-1 p-min">Diperiksa</th>
             </tr>
-            <tr>
+            <tr class="text-align-center">
                 <td class="border-1 p-min"><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
                 <td class="border-1 p-min">
                     <?php
@@ -273,11 +273,11 @@
                     <?php
 						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 							echo '
-								( '.$approvals[0]->NAMA_USERS.' )
+								'.$approvals[0]->NAMA_USERS.'
 							';
 						}else{
 							echo '
-								(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 							';
 						}
 					?>
