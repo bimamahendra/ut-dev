@@ -385,7 +385,7 @@
 	<div>
 		<table class="thc" style="width: 450px;">
 			<tr>
-				<td class="thc-tha"><b>User</b></td>
+				<td class="thc-tha"><b>User/Staff</b></td>
 				<td class="thc-tha"><b>Section Head</b></td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
