@@ -390,15 +390,33 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thc-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
 				</td>
 				<td class="thc-td2">
-					TTD Disini
+					<td>
+						<?php
+							if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+								echo '
+									<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+								';
+							}
+						?>
+					</td>
 				</td>
 			</tr>
 			<tr>
-				<td class="thc-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<td class="thc-td2">( <?= $user->NAMA_USERS?> )</td>
+				<?php
+					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+						echo '
+							<td "thc-td2">( '.$approvals[0]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td "thc-td2">(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>
