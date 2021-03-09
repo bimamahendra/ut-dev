@@ -196,7 +196,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc ?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -220,14 +220,14 @@
 		<table class="thd" style="font-size: 14px;text-align: left;">
 			<tr>
 				<?php
-					$date = date_create($list[0]->TGL_PERMOHONAN);
-					$time = date_create($list[0]->WAKTU_PERMOHONAN);
-					
-					echo '
+				$date = date_create($list[0]->TGL_PERMOHONAN);
+				$time = date_create($list[0]->WAKTU_PERMOHONAN);
+
+				echo '
 						<td class="thd-td2" style="padding: 8px">Tanggal</td>
-						<td class="thd-td2" style="padding: 8px">: '.date_format($date, 'j F Y').'</td>
+						<td class="thd-td2" style="padding: 8px">: ' . date_format($date, 'j F Y') . '</td>
 						<td class="thd-td2" style="padding: 8px">Waktu</td>
-						<td class="thd-td2" style="padding: 8px">: '.date_format($time, 'H:i').' WIB</td>
+						<td class="thd-td2" style="padding: 8px">: ' . date_format($time, 'H:i') . ' WIB</td>
 					';
 				?>
 			</tr>
@@ -242,21 +242,21 @@
 			</tr>
 			<tr style="text-align:left">
 				<td class="thd-td2">1. Nama</td>
-				<td class="thd-td2">: <?= $list[0]->NAMA_PEMOHON?></td>
+				<td class="thd-td2">: <?= $list[0]->NAMA_PEMOHON ?></td>
 				<td class="thd-td2">1. Nama</td>
-				<td class="thd-td2">: <?= $list[0]->NAMA_PENERIMA?></td>
+				<td class="thd-td2">: <?= $list[0]->NAMA_PENERIMA ?></td>
 			</tr>
 			<tr style="text-align:left">
 				<td class="thd-td2">2. Division</td>
-				<td class="thd-td2">: <?= $list[0]->DIV_PEMOHON?></td>
+				<td class="thd-td2">: <?= $list[0]->DIV_PEMOHON ?></td>
 				<td class="thd-td2">2. Tanda Tangan</td>
-				<td class="thd-td2">: <?= $list[0]->TTD_PENERIMA?></td>
+				<td class="thd-td2">: <?= $list[0]->TTD_PENERIMA ?></td>
 			</tr>
 			<tr style="text-align:left">
 				<td class="thd-td2">3. Extention</td>
-				<td class="thd-td2">: <?= $list[0]->EXT_PEMOHON?></td>
+				<td class="thd-td2">: <?= $list[0]->EXT_PEMOHON ?></td>
 				<td class="thd-td2">3. Trouble Ticket No</td>
-				<td class="thd-td2">: <?= $list[0]->TT_PENERIMA?></td>
+				<td class="thd-td2">: <?= $list[0]->TT_PENERIMA ?></td>
 			</tr>
 		</table>
 	</div>
@@ -267,7 +267,7 @@
 				<th class="thd-tha" style="border-bottom: none; text-align: left;"><b>JENIS PERBAIKAN :</b></th>
 			</tr>
 			<tr>
-				<td class="thd-td2" style="text-align: left;"><?= $list[0]->JENIS_PERBAIKAN?></td>
+				<td class="thd-td2" style="text-align: left;"><?= $list[0]->JENIS_PERBAIKAN ?></td>
 			</tr>
 		</table>
 	</div>
@@ -278,7 +278,7 @@
 				<th class="thd-tha" style="border-bottom: none; text-align: left;"><b>ALASAN PERBAIKAN :</b></th>
 			</tr>
 			<tr>
-				<td class="thd-td2" style="text-align: left;"><?= $list[0]->ALASAN_PERBAIKAN?></td>
+				<td class="thd-td2" style="text-align: left;"><?= $list[0]->ALASAN_PERBAIKAN ?></td>
 			</tr>
 		</table>
 	</div>
@@ -288,64 +288,30 @@
 			<tr>
 				<th class="thd-tha" style="padding: 8px;text-align: left;border-bottom: none; border-right: none;">DIKERJAKAN OLEH :</th>
 				<td>
-					<input type="checkbox" id="checkbox_1" <?= ($list[0]->DIKERJAKAN == '1'? 'checked':'')?>>
+					<input type="checkbox" id="checkbox_1" <?= ($list[0]->DIKERJAKAN == '1' ? 'checked' : '') ?>>
 					<label for="checkbox_1">Vendor</label>
 				</td>
-				<td><input type="checkbox" id="checkbox_2" <?= ($list[0]->DIKERJAKAN == '2'? 'checked':'')?>>
+				<td><input type="checkbox" id="checkbox_2" <?= ($list[0]->DIKERJAKAN == '2' ? 'checked' : '') ?>>
 					<label for="checkbox_2">Maintenance</label>
 				</td>
 			</tr>
 			<tr style="text-align:left">
 				<td>1. Estimasi Waktu</td>
-				<td colspan="2">: <?= $list[0]->EST_WAKTU?></td>
+				<td colspan="2">: <?= $list[0]->EST_WAKTU ?></td>
 			</tr>
 			<tr style="text-align:left">
 				<td>2. Estimasi Biaya</td>
-				<td colspan="2">: Rp.<?= $list[0]->EST_BIAYA?></td>
+				<td colspan="2">: Rp.<?= $list[0]->EST_BIAYA ?></td>
 			</tr>
 		</table>
-	</div>
-	<br>
-	<div style="font-size: 14px;">
-		<strong>PEMOHON</strong>
 	</div>
 	<br>
 	<div>
 		<table class="thd">
 			<tr>
-				<td class="thd-tha">Staff/User</td>
-				<td class="thd-tha">Departemen Head (User)</td>
-				<td class="thd-tha">Division Head (User)</td>
-			</tr>
-			<tr style="height:300px; min-height:300px;">
-				<td class="thd-td2">
-					TTD Disini
-				</td>
-				<td class="thd-td2">
-					TTD Disini
-				</td>
-				<td class="thd-td2">
-					TTD Disini
-				</td>
-			</tr>
-			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
-			</tr>
-		</table>
-	</div>
-	<br>
-	<div style="font-size: 14px;">
-		<strong>DISETUJUI</strong>
-	</div>
-	<br>
-	<div>
-		<table class="thd">
-			<tr>
-				<td class="thd-tha">Maintenance Section</td>
-				<td class="thd-tha">GA Department Head</td>
-				<td class="thd-tha">ESRGA Division Head</td>
+				<td class="thd-tha">User</td>
+				<td class="thd-tha">Section Head</td>
+				<td class="thd-tha">Dept Head</td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
@@ -400,15 +366,11 @@
 	<div>
 		<table class="thd">
 			<tr>
-				<td>Keterangan :</td>
-				<td>Tanda tangan user :</td>
+				<td style="text-align: left;padding-left: 8px;">Keterangan :</td>
 			</tr>
-			<tr style="height:300px; min-height:300px;">
-				<td>
-					...
-				</td>
-				<td>
-					TTD Disini
+			<tr>
+				<td style="text-align: left;padding-left: 8px;">
+					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita illum architecto accusantium tempore reiciendis perspiciatis.
 				</td>
 			</tr>
 		</table>
