@@ -415,7 +415,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="thc-td2">( <?= $list[0]->NAMA_USERS?> )</td>
+				<td class="thc-td2">( <?= $user->NAMA_USERS?> )</td>
 				<?php
 					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 						echo '
