@@ -392,13 +392,13 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thc-td2">
-					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+					<img src="<?= $user->PATH_TTD?>" width="50px" height="500px" />
 				</td>
 				<td class="thc-td2">
 					<?php
 						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 							echo '
-								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+								<img src="'.$approvals[0]->PATH_TTD.'" width="50px" height="50px" />
 							';
 						}
 					?>
@@ -407,7 +407,7 @@
 					<?php
 						if($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 							echo '
-								<img src="'.$approvals[1]->PATH_TTD.'" width="100px" height="100px" />
+								<img src="'.$approvals[1]->PATH_TTD.'" width="50px" height="50px" />
 							';
 						}
 					?>
