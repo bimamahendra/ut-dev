@@ -202,6 +202,25 @@
 			text-align: left;
 			vertical-align: top
 		}
+
+		.thc {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: center;
+			width: 100%;
+			font-size: 14px;
+			position: absolute;
+			right: 0;
+		}
+
+		.thc-tha {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		.thc-td2 {
+			border: 1px solid black;
+		}
 	</style>
 </head>
 
@@ -364,23 +383,23 @@
 	</div>
 	<br>
 	<div>
-		<table class="thd">
-			<thead>
-				<tr>
-					<th class="tg-lqy6" colspan="3">Mengetahui,</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="tg-0lax" colspan="3">TTD Disini</td>
-				</tr>
-				<tr>
-					<td class="tg-baqh" colspan="3">Nama GAD</td>
-				</tr>
-				<tr>
-					<td class="tg-baqh" colspan="3">GAD</td>
-				</tr>
-			</tbody>
+		<table class="thc" style="width: 450px;">
+			<tr>
+				<td class="thc-tha"><b>User</b></td>
+				<td class="thc-tha"><b>Section Head</b></td>
+			</tr>
+			<tr style="height:300px; min-height:300px;">
+				<td class="thc-td2">
+					TTD Disini
+				</td>
+				<td class="thc-td2">
+					TTD Disini
+				</td>
+			</tr>
+			<tr>
+				<td class="thc-td2">(................................................)</td>
+				<td>(................................................)</td>
+			</tr>
 		</table>
 	</div>
 </body>
