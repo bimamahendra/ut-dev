@@ -55,11 +55,11 @@ class Transaction extends RestController {
     }
     public function detail_get(){
         $param = $this->get();
-        if(!empty($param['idTrans']) && !empty($param['username'])){
+        if(!empty($param['idTrans']) && !empty($param['username'] && !empty($param['isApproval']))){
             $trans  = $this->db->get_where('TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
             $user   = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
             if($trans != null && $user != null){
-                if($user[0]->ROLE_USERS != 'Staff'){
+                if($param['isApproval'] == 'true'){
                     $transDetail = $this->db->get_where('V_TRANSACTION_APPROVAL_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->result();
                 }else{
                     $transDetail = $this->db->get_where('V_TRANSACTION_DETAIL', ['ID_TRANS' => $param['idTrans'], 'ID_USERS' => $user[0]->ID_USERS])->result();
