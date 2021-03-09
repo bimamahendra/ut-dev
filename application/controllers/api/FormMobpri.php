@@ -69,7 +69,7 @@ class FormMobpri extends RestController {
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
     }
-
+ 
     function upload_image($username){
         $newPath = './uploads/assets/sim/mobpri/'.$username.'/';
         if(!is_dir($newPath)){
