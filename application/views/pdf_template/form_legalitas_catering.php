@@ -418,21 +418,21 @@
 				<?php
 					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 						echo '
-							<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+							<td class="thc-td2">( '.$approvals[0]->NAMA_USERS.' )</td>
 						';
 					}else{
 						echo '
-							<td>(................................................)</td>
+							<td class="thc-td2">(................................................)</td>
 						';
 					}
 
 					if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
 						echo '
-							<td>( '.$approvals[1]->NAMA_USERS.' )</td>
+							<td class="thc-td2">( '.$approvals[1]->NAMA_USERS.' )</td>
 						';
 					}else{
 						echo '
-							<td>(................................................)</td>
+							<td class="thc-td2">(................................................)</td>
 						';
 					}
 				?>
