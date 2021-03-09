@@ -266,7 +266,7 @@
 				<td class="thc-tha">Diketahui Oleh : </td>
 				<td class="thc-tha">Disetujui Oleh : </td>
 			</tr>
-			<tr style="height:300px; min-height:300px;" class="text-align-center">
+			<tr style="height:300px; min-height:300px;">
 				<td class="thc-td2">
 					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
 				</td>
@@ -280,17 +280,17 @@
 					?>
 				</td>
 			</tr>
-			<tr class="text-align-center">
+			<tr>
 				<td class="thc-td2">( <?= $list[0]->NAMA_USERS?> )</td>
 				<td>
-				<?php
+					<?php
 						if($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 							echo '
 								( '.$approvals[0]->NAMA_USERS.' )
 							';
 						}else{
 							echo '
-								( &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )
+								(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;)
 							';
 						}
 					?>
