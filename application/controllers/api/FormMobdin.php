@@ -54,7 +54,7 @@ class FormMobdin extends RestController {
                 
                 $this->ContentPdf->generate(['idTrans' => $idTrans]);
                 $this->pusherjs->push();
-                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
+                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan', 'idTrans' => $idTrans], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau mapping tidak ditemukan'], 200);
             }
