@@ -576,12 +576,34 @@
                 <th class="border-1 p-min">Section Head</th>
             </tr>
             <tr>
-                <td class="border-1 p-min">TTD Disini</td>
-                <td class="border-1 p-min">TTD Disini</td>
+                <td class="border-1 p-min">
+                    <img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+                </td>
+                <td class="border-1 p-min">
+                    <?php
+                        if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+                            echo '
+                                <img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+                            ';
+                        }
+                    ?>
+                </td>
             </tr>
             <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
+                <td class="border-1 p-min">
+                    <?= $user->NAMA_USERS?>
+                </td>
+                <?php
+                    if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+                        echo '
+                            <td class="border-1 p-min">( '.$approvals[0]->NAMA_USERS.' )</td>
+                        ';
+                    }else{
+                        echo '
+                            <td class="border-1 p-min">...</td>
+                        ';
+                    }
+                ?>
             </tr>
         </table>
     </div>
