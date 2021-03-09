@@ -454,8 +454,16 @@
         </p>
         <table class="w-100">
             <tr class="text-align-center">
-                <td>TTD Disini</td>
-                <td>TTD Disini</td>
+                <td><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
+                <td>
+                    <?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
+                </td>
             </tr>
             <tr class="text-align-center">
                 <td><strong>PIC Admin</strong></td>
