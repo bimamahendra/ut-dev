@@ -165,6 +165,7 @@
 			border: 1px solid black;
 			padding-top: 4px;
 			padding-bottom: 4px;
+			padding-left: 6px;
 			font-size: 12px;
 			text-align: left;
 			vertical-align: top
@@ -300,6 +301,7 @@
 			<tr>
 				<td class="thd-tha">Pemohon : </td>
 				<td class="thd-tha">Diketahui Oleh : </td>
+				<td class="thd-tha">Diketahui Oleh : </td>
 				<td class="thd-tha">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
@@ -312,13 +314,18 @@
 				<td class="thd-td2">
 					TTD Disini
 				</td>
+				<td class="thd-td2">
+					TTD Disini
+				</td>
 			</tr>
 			<tr>
-				<td class="thd-tha"><b>Ketua Panitia/Penanggung Jawab Acara</b></td>
+				<td class="thd-tha"><b>User/Staff</b></td>
+				<td class="thd-tha"><b>PIC Admin</b></td>
 				<td class="thd-tha"><b>Section Head</b></td>
 				<td class="thd-tha"><b>Departement Head</b></td>
 			</tr>
 			<tr>
+				<td class="thd-td2">(................................................)</td>
 				<td class="thd-td2">(................................................)</td>
 				<td class="thd-td2">(................................................)</td>
 				<td>(................................................)</td>
