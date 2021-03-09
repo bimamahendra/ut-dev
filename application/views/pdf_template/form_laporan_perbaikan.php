@@ -273,11 +273,11 @@
                     <?php
 						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 							echo '
-								<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+								( '.$approvals[0]->NAMA_USERS.' )
 							';
 						}else{
 							echo '
-								<td>(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</td>
+								(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )
 							';
 						}
 					?>
