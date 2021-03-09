@@ -217,7 +217,7 @@
                 <th class="border-1 p-min">Status</th>
             </tr>
             <?php 
-				for ($x = 0; $x < 20; $x++) 
+				for ($x = 0; $x < 15; $x++) 
 				{
 					$no = $x + 1;
 					if(!empty($list[$x])){
@@ -255,13 +255,33 @@
                 <th class="border-1 p-min">Dibuat</th>
                 <th class="border-1 p-min">Diperiksa</th>
             </tr>
-            <tr>
-                <td class="border-1 p-min">TTD Disini</td>
-                <td class="border-1 p-min">TTD Disini</td>
+            <tr class="text-align-center">
+                <td class="border-1 p-min"><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
+                <td class="border-1 p-min">
+                    <?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
+                </td>
             </tr>
             <tr>
-                <td class="border-1 p-min">Nama</td>
-                <td class="border-1 p-min">Nama</td>
+                <td class="border-1 p-min"><?= $list[0]->NAMA_USERS?></td>
+                <td class="border-1 p-min">
+                    <?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								'.$approvals[0]->NAMA_USERS.'
+							';
+						}else{
+							echo '
+								&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+							';
+						}
+					?>
+                </td>
             </tr>
             <tr>
                 <td class="border-1 p-min">PIC Maintenance</td>

@@ -52,4 +52,57 @@ class FormMobpri extends RestController {
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
     }
+    public function upload_post(){
+        $param = $this->post();
+        if(!empty($param['idTrans']) && !empty($param['idUser'])){
+            $mobdin = $this->db->get_where('FORM_MOBPRI', ['ID_TRANS' => $param['idTrans']])->result();
+            $user   = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
+            if($user != null && $mobdin != null){
+                $file = $this->upload_image($user[0]->USER_USERS);
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_MOBPRI', ['ATTACHMENT_MOBPRI' => $file]);
+
+                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan', 'idTrans' => $idTrans], 200);
+            }else{
+                $this->response(['status' => false, 'message' => 'Data user atau transaksi mobil pribadi tidak ditemukan'], 200);
+            }
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
+    }
+ 
+    function upload_image($username){
+        $newPath = './uploads/assets/sim/mobpri/'.$username.'/';
+        if(!is_dir($newPath)){
+            mkdir($newPath, 0777, TRUE);
+        }
+        $config['upload_path'] = $newPath; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+ 
+        $this->upload->initialize($config);
+        if(!empty($_FILES['file']['name'])){
+ 
+            if ($this->upload->do_upload('file')){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library']='gd2';
+                $config['source_image']=$newPath.$gbr['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= true;
+                // $config['quality']= '100%';
+                $config['width']= 600;
+                // $config['height']= 400;
+                $config['new_image']= $newPath.$gbr['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+ 
+                $gambar=$gbr['file_name'];
+
+                return base_url('/uploads/assets/sim/mobpri/'.$username.'/'.$gambar);
+            }
+                      
+        }else{
+            return base_url('images/ttd/default.png');
+        }
+    }
 }
