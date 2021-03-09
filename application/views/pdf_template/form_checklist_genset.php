@@ -572,8 +572,8 @@
         </p>
         <table class="border-1 border-collapse absolute pos-right" style="width: 400px;">
             <tr>
-                <td class="border-1 p-min">Checked by</td>
-                <td class="border-1 p-min">Approve</td>
+                <th class="border-1 p-min">PIC Maintenance</th>
+                <th class="border-1 p-min">Section Head</th>
             </tr>
             <tr>
                 <td class="border-1 p-min">TTD Disini</td>
