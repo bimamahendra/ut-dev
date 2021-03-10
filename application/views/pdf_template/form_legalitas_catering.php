@@ -258,16 +258,16 @@
 	</div>
 	<br>
 	<div>
-		<table class="tg" width="100%" style="border: 1px solid black;table-layout: fixed;">
+		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" rowspan="2">No.</th>
+					<th class="tg-nrix" style="min-width: 5%;max-width: 5%;" rowspan="2">No.</th>
 					<th class="tg-nrix" rowspan="2">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix" style="min-width: 20%;max-width: 20%;">Ya</td>
-					<td class="tg-nrix" style="min-width: 20%;max-width: 20%;">Tidak</td>
+					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Ya</td>
+					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -325,16 +325,16 @@
 	</div>
 	<br>
 	<div>
-		<table class="tg" width="100%" style="border: 1px solid black;">
+		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" rowspan="2">No.</th>
+					<th class="tg-nrix" style="min-width: 5%;max-width: 5%;" rowspan="2">No.</th>
 					<th class="tg-nrix" rowspan="2">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix">Bagus</td>
-					<td class="tg-nrix">Tidak</td>
+					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Bagus</td>
+					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -390,11 +390,11 @@
 	</div>
 	<br>
 	<div>
-		<table class="thc" style="width: 500px;">
+		<table class="thc" style="width: 500px;table-layout: fixed;">
 			<tr>
-				<td class="thc-tha"><b>PIC Admin</b></td>
-				<td class="thc-tha"><b>Section Admin</b></td>
-				<td class="thc-tha"><b>Dept Head</b></td>
+				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>PIC Admin</b></td>
+				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>Section Admin</b></td>
+				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>Dept Head</b></td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thc-td2">
