@@ -231,19 +231,23 @@
                 <td style="width: 5%"><b>Lokasi</b></td>
                 <td style="width: 5%"><b>:</b></td>
                 <td>
-					...
+					<?= $list[0]->LOKASI_HYDRANT; ?>
 				</td>
             </tr>
             <tr>
                 <td style="width: 5%"><b>Tgl</b></td>
                 <td style="width: 5%"><b>:</b></td>
                 <td>
-					...
+					<?php
+						$date = date_create($list[0]->TGL_HYDRANT);
+						echo '
+							<td>: '.date_format($date, 'd-m-Y').'</td>
+						';
+					?>
 				</td>
             </tr>
 		</table>
 	</div>
-    <br>
 	<div>
 		<table class="tg" width="100%" style="border-color: black;">
 			<thead>
@@ -267,22 +271,37 @@
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">a. Kebocoran Pipa</td>
 					<td class="tg-5r9a">Tidak ada kebocoran</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->KEBOCORAN_PIPA);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">b. Flange / Packing</td>
 					<td class="tg-5r9a">Tidak ada kebocoran</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->FLANGE_PIPA);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">c. Posisi Valve</td>
 					<td class="tg-5r9a">Sesuai dengan posisi (OPEN/SHUT)</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->POSISI_VALVE);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
                     <td class="tg-5r9a" style="text-align:center"><b>2.</b></td>
@@ -295,29 +314,49 @@
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">a. Gate Valve</td>
 					<td class="tg-5r9a">Air pancingan selalu pada posisi 'OPEN'</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->GATE_JOCKEY);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">b. Arah Kipas Pompa</td>
 					<td class="tg-5r9a">Putaran searah dengan arah panah</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->KIPAS_JOCKEY);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">c. Kabel Power Terminal</td>
 					<td class="tg-5r9a">Posisi OFF pada waktu pemeriksaan</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->POWER_JOCKEY);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">d. Motor Pompa</td>
 					<td class="tg-5r9a">Tidak ada kelainan bunyi motor</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->MOTOR_JOCKEY);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
                     <td class="tg-5r9a" style="text-align:center"><b>3.</b></td>
@@ -330,29 +369,49 @@
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">a. Gate Valve</td>
 					<td class="tg-5r9a">Air pancingan selalu pada posisi 'OPEN'</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->GATE_ELECTRIC);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">b. Arah Kipas Pompa</td>
 					<td class="tg-5r9a">Putaran searah dengan arah panah</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->KIPAS_ELECTRIC);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">c. Kabel Power Terminal</td>
 					<td class="tg-5r9a">Posisi OFF pada waktu pemeriksaan</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->POWER_ELECTRIC);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">d. Motor Pompa</td>
 					<td class="tg-5r9a">Tidak ada kelainan bunyi motor</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->MOTOR_ELECTRIC);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
                     <td class="tg-5r9a" style="text-align:center"><b>4.</b></td>
@@ -365,50 +424,85 @@
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">a. Gate Valve</td>
 					<td class="tg-5r9a">Air pancingan selalu pada posisi 'OPEN'</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->GATE_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">b. Air Radiator</td>
 					<td class="tg-5r9a">Harus penuh (tidak boleh kosong)</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->RADIATOR_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">c. Oli Mesin Diesel</td>
 					<td class="tg-5r9a">Pada level yang ditentukan</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->OLI_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">d. Tali Kipas (Fan Belt)</td>
 					<td class="tg-5r9a">Tidak retas dan kendor (ganti bila perlu)</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->FANBELT_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">e. Air Battery</td>
 					<td class="tg-5r9a">Pada level yang ditentukan</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->BATTERY_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">f. Putaran Mesin (RPM)</td>
 					<td class="tg-5r9a">Sesuai kebutuhan, setting (bila perlu)</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->RPM_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">g. Test Running</td>
 					<td class="tg-5r9a">Laksanakan 2 minggu sekali</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->RUNNING_DIESEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
                     <td class="tg-5r9a" style="text-align:center"><b>5.</b></td>
@@ -421,42 +515,66 @@
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">a. Selector Switch</td>
 					<td class="tg-5r9a">Harus selalu pada posisi 'AUTO'</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->SWITCH_PANEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">b. Lampu Indikator</td>
 					<td class="tg-5r9a">Sesuai dengan Operation</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->INDIKATOR_PANEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">c. Volt meter</td>
 					<td class="tg-5r9a">Putar selector switch u/ Volt meter</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->VOLTMETER_PANEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">d. Ampere meter</td>
 					<td class="tg-5r9a">Seimbang dengan daya motor pompa masing-masing</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+					<?php
+					$status = explode(';', $list[0]->AMPERE_PANEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
                 <tr>
 					<td class="tg-5r9a"></td>
 					<td class="tg-5r9a">e. Konektor Panel</td>
 					<td class="tg-5r9a">Pengencangan terminasi MCB, MCCB, kontaktor, relay,
 terminal bar (setiap 2 bulan sekali)</td>
-					<td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+<?php
+					$status = explode(';', $list[0]->KONEKTOR_PANEL);
+					echo '
+							<td class="tg-5r9a" style="text-align:center">' . ($status[0] == 1 ? 'V' : '') . '</td>
+							<td class="tg-5r9a">' . ($status[0] == 0 ? ''.$status[1].'' : '') . '</td>
+						';
+					?>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<br>
     <div>
 		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
@@ -475,31 +593,12 @@ terminal bar (setiap 2 bulan sekali)</td>
 			</tr>
 		</table>
     </div>
-	<br>
 	<div>
 	<table style="width:80%; text-align:left; font-size: 12px;">
 		<tr>
 			<td style="width: 7%"><b>Catatan</b></td>
 			<td style="width: 0%"><b>:</b></td>
-			<td>
-				____________________________________________________________________________________________
-			</td>    
-		</tr>
-		<tr>
-			<td style="width: 7%"><b></b></td>
-			<td style="width: 0%"><b></b></td>
-			<td>
-				____________________________________________________________________________________________
-			</td>    
-			</td>    
-		</tr>
-		<tr>
-			<td style="width: 7%"><b></b></td>
-			<td style="width: 0%"><b></b></td>
-			<td>
-				____________________________________________________________________________________________
-			</td>    
-			</td>    
+			<td><?= $list[0]->CATATAN_HYDRANT ?></td>    
 		</tr>
 	</table>
 	</div>
@@ -523,8 +622,16 @@ terminal bar (setiap 2 bulan sekali)</td>
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2"><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
+				<td class="thd-td2">
+					<?php
+                        if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+                            echo '
+                                <img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+                            ';
+                        }
+                    ?>
+				</td>
 			</tr>
 		</table>
 	</div>
