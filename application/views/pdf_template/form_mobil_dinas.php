@@ -194,7 +194,7 @@
 	<div>
 		<table class="tp">
 			<tr>
-				<td><b>PEMINJAN</b></td>
+				<td><b>PEMINJAM</b></td>
 				<td><?= $list[0]->PEMINJAM_MOBDIN ?></td>
 				<td><b>DIVISI / DEPT</b></td>
 				<td><?= $list[0]->DD_MOBDIN ?></td>
@@ -312,7 +312,7 @@
 	</div>
 	<br>
 	<div>
-		<table class="thd">
+		<table class="thd" style="table-layout: fixed;">
 			<tr>
 				<td class="thd-tha" style="min-width: 50%;max-width: 50%;"><b>Pemohon</b></td>
 				<td class="thd-tha" style="min-width: 50%;max-width: 50%;"><b>PIC Kendaraan</b></td>
@@ -352,7 +352,7 @@
 	</div>
 	<br>
 	<div>
-		<table class="thd">
+		<table class="thd" style="table-layout: fixed;">
 			<tr>
 				<td class="thd-tha" style="min-width: 50%;max-width: 50%;"><b>Section Head</b></td>
 				<td class="thd-tha" style="min-width: 50%;max-width: 50%;"><b>Dept Head</b></td>
