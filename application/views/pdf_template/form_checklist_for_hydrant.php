@@ -225,7 +225,7 @@
 		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
 				<td style="width: 15%" colspan="2"><b>Seksi Maintenance</b></td>
-                <td><b>GA Departement</b></td>
+                <td> &nbsp; <b>GA Departement</b></td>
 			</tr>
             <tr>
                 <td style="width: 3%"><b>Lokasi</b></td>
@@ -241,7 +241,7 @@
 					<?php
 						$date = date_create($list[0]->TGL_HYDRANT);
 						echo '
-							<td>: '.date_format($date, 'd-m-Y').'</td>
+							'.date_format($date, 'd-m-Y').'
 						';
 					?>
 				</td>
