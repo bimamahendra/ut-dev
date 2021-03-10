@@ -235,8 +235,8 @@
 				</td>
             </tr>
             <tr>
-                <td style="width: 5%"><b>Tgl</b></td>
-                <td style="width: 5%"><b>:</b></td>
+                <td style="width: 3%"><b>Tgl</b></td>
+                <td style="width: 2%"><b>:</b></td>
                 <td>
 					<?php
 						$date = date_create($list[0]->TGL_HYDRANT);
@@ -633,11 +633,11 @@ terminal bar (setiap 2 bulan sekali)</td>
 					<?php
 						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
 							echo '
-								<td class="border-1 p-min">'.$approvals[0]->NAMA_USERS.'</td>
+								'.$approvals[0]->NAMA_USERS.'
 							';
 						}else{
 							echo '
-								<td class="border-1 p-min">...</td>
+								...
 							';
 						}
 					?>
