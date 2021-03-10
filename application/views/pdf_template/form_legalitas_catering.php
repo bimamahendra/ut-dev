@@ -171,6 +171,7 @@
 			padding-top: 8px;
 			padding-bottom: 8px;
 			padding-left: 6px;
+			font-size: 10px;
 		}
 
 		.thc {
@@ -190,6 +191,10 @@
 
 		.thc-td2 {
 			border: 1px solid black;
+		}
+
+		.text-align-center {
+			text-align: center !important;
 		}
 	</style>
 </head>
@@ -215,9 +220,9 @@
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
 					<td class="tg-z9od" width="33%"> : FORM 010/PROS-MFP-MLK3-013 </td>
-					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO 14001 <br>
-						: 2004 ; OHSAS 18001 : 2007 <br>
-						&amp; SMK3
+					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
+						14001 : 2004 ; OHSAS<br>
+						18001 : 2007 &amp; SMK3</td>
 				</tr>
 				<tr>
 					<td class="tg-z9ad">Revisi</td>
@@ -225,18 +230,18 @@
 				</tr>
 				<tr>
 					<td class="tg-z9cd">Hal</td>
-					<td class="tg-z9cd">: … Dari : …</td>
+					<td class="tg-z9cd">: … Dari …</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div style="text-align:center">
+	<div style="text-align:center;margin-bottom: 8px;">
 		<h4>SYARAT – SYARAT LEGALITAS CATERING YANG DI SURVEY</h4>
 	</div>
 	<div>
 		<table style="width:80%; text-align:left;">
 			<tr>
-				<td style="width: 15%"><strong>Nama Catering</strong></td>
+				<td style="width: 25%"><strong>Nama Catering</strong></td>
 				<td style="width: 5%">:</td>
 				<td>
 					<?= $list[0]->NAMA_CATERING ?>
@@ -253,7 +258,7 @@
 	</div>
 	<br>
 	<div>
-		<table class="tg" width="100%" style="border: 1px solid black;">
+		<table class="tg" width="100%" style="border: 1px solid black;table-layout: fixed;">
 			<thead>
 				<tr>
 					<th class="tg-nrix" rowspan="2">No.</th>
@@ -261,8 +266,8 @@
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix">Ya</td>
-					<td class="tg-nrix">Tidak</td>
+					<td class="tg-nrix" style="min-width: 20%;max-width: 20%;">Ya</td>
+					<td class="tg-nrix" style="min-width: 20%;max-width: 20%;">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -270,37 +275,37 @@
 				$syarats = explode(';', $list[0]->SYARAT);
 				echo '
 						<tr>
-							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">1.</span></td>
+							<td class="tg-0lax text-align-center"><span style="font-weight:400;font-style:normal">1.</span></td>
 							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">SIUP dari perindustrian dan pariwisata</span></td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[0] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[0] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">2.</td>
+							<td class="tg-0lax text-align-center">2.</td>
 							<td class="tg-0lax">Tanda daftar jasa boga dari DEPKES</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[1] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[1] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">3.</td>
+							<td class="tg-0lax text-align-center">3.</td>
 							<td class="tg-0lax">Domisili perusahaan dari Kelurahan</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[2] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[2] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">4.</td>
+							<td class="tg-0lax text-align-center">4.</td>
 							<td class="tg-0lax">Tanda daftar perindustrian dari perindustrian dan pariwisata</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[3] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[3] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">5.</td>
+							<td class="tg-0lax text-align-center">5.</td>
 							<td class="tg-0lax">Hasil pemeriksaan dari LAB</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[4] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[4] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">6.</td>
+							<td class="tg-0lax text-align-center">6.</td>
 							<td class="tg-0lax">Surat suku dinas tenaga kerja dan transmigrasi</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[5] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($syarats[5] == 'false' ? "V" : "") . '</td>
@@ -393,49 +398,49 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thc-td2">
-					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thc-td2">
 					<?php
-						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-							echo '
-								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
 							';
-						}
+					}
 					?>
 				</td>
 				<td class="thc-td2">
 					<?php
-						if($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-							echo '
-								<img src="'.$approvals[1]->PATH_TTD.'" width="100px" height="100px" />
+					if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+								<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
 							';
-						}
+					}
 					?>
 				</td>
 			</tr>
 			<tr>
-				<td class="thc-td2">( <?= $user->NAMA_USERS?> )</td>
+				<td class="thc-td2">( <?= $user->NAMA_USERS ?> )</td>
 				<?php
-					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-						echo '
-							<td class="thc-td2">( '.$approvals[0]->NAMA_USERS.' )</td>
+				if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+					echo '
+							<td class="thc-td2">( ' . $approvals[0]->NAMA_USERS . ' )</td>
 						';
-					}else{
-						echo '
+				} else {
+					echo '
 							<td class="thc-td2">(................................................)</td>
 						';
-					}
+				}
 
-					if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
-						echo '
-							<td class="thc-td2">( '.$approvals[1]->NAMA_USERS.' )</td>
+				if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+					echo '
+							<td class="thc-td2">( ' . $approvals[1]->NAMA_USERS . ' )</td>
 						';
-					}else{
-						echo '
+				} else {
+					echo '
 							<td class="thc-td2">(................................................)</td>
 						';
-					}
+				}
 				?>
 			</tr>
 		</table>
