@@ -168,7 +168,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 005/PROS-MFP-MLK3-014</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -202,20 +202,32 @@
             </strong>
         </p>
         <table class="table-center mb-min" style="width: 300px;">
-            <tr>
-                <td>Tanggal</td>
-                <td colspan="3">: 6</td>
-            </tr>
-            <tr>
-                <td>Bulan</td>
-                <td>: Maret</td>
-                <td style="width: 10%;">Tahun</td>
-                <td>: 2021</td>
-            </tr>
-            <tr>
-                <td>Lokasi</td>
-                <td colspan="3">: ...</td>
-            </tr>
+            <?php
+                $date = date_create($list[0]->TGL_ALKOM);
+                echo '
+                    <tr>
+                        <td>Tanggal</td>
+                        <td colspan="3">: '.date_format($date, 'j').'</td>
+                    </tr>
+                    <tr>
+                        <td>Bulan</td>
+                        <td>: '.date_format($date, 'F').'</td>
+                        <td style="width: 10%;">Tahun</td>
+                        <td>: '.date_format($date, 'Y').'</td>
+                    </tr>
+                    <tr>
+                        <td>Lokasi</td>
+                        <td colspan="3">: ...</td>
+                    </tr>
+                ';
+            ?>
+
+        <?php
+            $checkPabx      = explode(';', $list[0]->PABX_ALKOM);
+            $checkProgData  = explode(';', $list[0]->PROGDATA_ALKOM);
+            $checkRepeater  = explode(';', $list[0]->REPEATER_ALKOM);
+            $checkRadio     = explode(';', $list[0]->RADIO_ALKOM);
+        ?>
         </table>
         <table class="border-1 valign-middle border-collapse w-100">
             <tr>
@@ -236,108 +248,108 @@
                 <th class="border-1 p-min" rowspan="16">PABX</th>
                 <td class="border-1 p-min">1</td>
                 <td class="border-1 p-min">Card Ext &amp; Direct / LC CO</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[0] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[0] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[0] == '3'? 'S':'')?></td>
                 <th class="border-1 p-min" rowspan="4">REPEATER</th>
                 <td class="border-1 p-min">1</td>
                 <td class="border-1 p-min">Power Supply</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[0] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[0] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[0] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">2</td>
                 <td class="border-1 p-min">Card Register</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[1] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[1] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[1] == '3'? 'S':'')?></td>
                 <td class="border-1 p-min">2</td>
                 <td class="border-1 p-min">Antena</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[1] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[1] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[1] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">3</td>
                 <td class="border-1 p-min">Card dterm</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[2] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[2] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[2] == '3'? 'S':'')?></td>
                 <td class="border-1 p-min">3</td>
                 <td class="border-1 p-min">Kabel Coaxial</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[2] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[2] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[2] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">4</td>
                 <td class="border-1 p-min">Card Consul</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[3] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[3] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[3] == '3'? 'S':'')?></td>
                 <td class="border-1 p-min">4</td>
                 <td class="border-1 p-min">Repeater</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[3] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[3] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRepeater[3] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">5</td>
                 <td class="border-1 p-min">Card Tieline TLTR</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[4] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[4] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[4] == '3'? 'S':'')?></td>
                 <th rowspan="4">RADIO</th>
                 <td class="border-1 p-min">1</td>
                 <td class="border-1 p-min">Perangkat Radio</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRadio[0] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[0] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[0] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">6</td>
                 <td class="border-1 p-min">Card switch change TDSW</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[5] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[5] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[5] == '3'? 'S':'')?></td>
                 <td class="border-1 p-min">2</td>
                 <td class="border-1 p-min">Power Supply</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRadio[1] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[1] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[1] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">7</td>
                 <td class="border-1 p-min">Card Interface</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[6] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[6] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[6] == '3'? 'S':'')?></td>
                 <td class="border-1 p-min">3</td>
                 <td class="border-1 p-min">Antena</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRadio[2] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[2] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[2] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">8</td>
                 <td class="border-1 p-min">Control Processing Unit CPU</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkPabx[7] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[7] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[7] == '3'? 'S':'')?></td>
                 <td class="border-1 p-min">4</td>
                 <td class="border-1 p-min">Kabel Coaxial</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkRadio[3] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[3] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkRadio[3] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">9</td>
                 <td class="border-1 p-min">Alarm Control Card</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min" colspan="6" rowspan="8">Keterangan : ...</td>
+                <td class="border-1 p-min"><?= ($checkPabx[8] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[8] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkPabx[8] == '3'? 'S':'')?></td>
+                <td class="border-1 p-min" colspan="6" rowspan="8">Keterangan : <?= $list[0]->KETERANGAN?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min">10</td>
@@ -349,44 +361,44 @@
             <tr>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min">- Billing System</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkProgData[0] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[0] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[0] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min">- Voice Mail</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkProgData[1] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[1] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[1] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min">- Incoming</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkProgData[2] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[2] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[2] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min">- Out Going</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkProgData[3] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[3] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[3] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min">- Vsat / Tie line</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkProgData[4] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[4] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[4] == '3'? 'S':'')?></td>
             </tr>
             <tr>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min">- Password</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= ($checkProgData[5] == '1'? '<input type="checkbox" checked>':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[5] == '2'? 'X':'')?></td>
+                <td class="border-1 p-min"><?= ($checkProgData[5] == '3'? 'S':'')?></td>
             </tr>
         </table>
     </div>
@@ -405,20 +417,12 @@
                 <td class="text-regular-sm bg-grey text-align-center border-1 p-min">STATUS</td>
             </tr>
             <tr>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min"><?= $list[0]->PROB_IDENT?></td>
+                <td class="border-1 p-min"><?= $list[0]->ROOT_CAUSE?></td>
+                <td class="border-1 p-min"><?= $list[0]->CORRECTIVE_ACT?></td>
+                <td class="border-1 p-min"><?= $list[0]->PREVENT_ACT?></td>
+                <td class="border-1 p-min"><?= $list[0]->DEADLINE?></td>
+                <td class="border-1 p-min"><?= $list[0]->PIC?></td>
             </tr>
         </table>
         <table class="border-collapse absolute pos-left" style="width: 250px;">
@@ -439,19 +443,37 @@
             </tr>
         </table>
         <table class="border-1 border-collapse absolute pos-right" style="width: 400px;">
-            <tr>
+            <tr class="text-align-center">
                 <td class="border-1 p-min">Checked by</td>
                 <td class="border-1 p-min">Approve</td>
             </tr>
-            <tr>
-                <td class="border-1 p-min">TTD Disini</td>
-                <td class="border-1 p-min">TTD Disini</td>
+            <tr class="text-align-center">
+                <td class="border-1 p-min"><img src="<?= $user->PATH_TTD?>" width="100px" height="100px"></td>
+                <td class="border-1 p-min">
+                    <?php
+                        if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+                            echo '
+                                <img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+                            ';
+                        }
+                    ?>
+                </td>
             </tr>
-            <tr>
-                <td class="border-1 p-min">Nama</td>
-                <td class="border-1 p-min">Nama</td>
+            <tr class="text-align-center">
+                <td class="border-1 p-min"><?= $user->NAMA_USERS?></td>
+                <?php
+                    if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+                        echo '
+                            <td class="border-1 p-min">'.$approvals[0]->NAMA_USERS.'</td>
+                            ';
+                        }else{
+                        echo '
+                            <td class="border-1 p-min"></td>
+                        ';
+                    }
+                ?>
             </tr>
-            <tr>
+            <tr class="text-align-center">
                 <td class="border-1 p-min">PIC Maintenance</td>
                 <td class="border-1 p-min">Section Head</td>
             </tr>
