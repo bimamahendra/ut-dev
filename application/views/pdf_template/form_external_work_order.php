@@ -159,6 +159,7 @@
 
 		.thd-td2 {
 			border-right: 1px solid black;
+			border-bottom: 1px solid black;
 		}
 	</style>
 </head>
@@ -205,32 +206,32 @@
 		<table style="font-size: 14px;">
 			<tr>
 				<td><b>Di instruksikan kepada</b></td>
-				<td>: <?= $list[0]->INTRUKSIKEPADA_EWO?></td>
+				<td>: <?= $list[0]->INTRUKSIKEPADA_EWO ?></td>
 				<td>Reg.No.</td>
-				<td>: <?= $list[0]->REG_EWO?>/2012.(fill by GA)</td>
+				<td>: <?= $list[0]->REG_EWO ?>/2012.(fill by GA)</td>
 			</tr>
 			<tr>
 				<td><b>Instruksi Dari</b></td>
-				<td style="width: 200px;">: <?= $list[0]->INTRUKSIDARI_EWO?></td>
+				<td style="width: 200px;">: <?= $list[0]->INTRUKSIDARI_EWO ?></td>
 				<td>Request Date</td>
 				<?php
-					$date = date_create($list[0]->REQUEST_EWO);
-					echo '
-						<td>: '.date_format($date, 'd-m-Y').'</td>
+				$date = date_create($list[0]->REQUEST_EWO);
+				echo '
+						<td>: ' . date_format($date, 'd-m-Y') . '</td>
 					';
 				?>
 			</tr>
 			<tr>
 				<td><b>Dept/ Div</b></td>
-				<td>: <?= $list[0]->DEPTDIV_EWO?></td>
+				<td>: <?= $list[0]->DEPTDIV_EWO ?></td>
 				<td>Pages</td>
-				<td>: <?= $list[0]->PAGES_EWO?></td>
+				<td>: <?= $list[0]->PAGES_EWO ?></td>
 			</tr>
 			<tr>
 				<td><b>Pekerjaan</b></td>
-				<td>: <?= $list[0]->PEKERJAAN_EWO?></td>
+				<td>: <?= $list[0]->PEKERJAAN_EWO ?></td>
 				<td>CC</td>
-				<td>: <?= $list[0]->CC_EWO?></td>
+				<td>: <?= $list[0]->CC_EWO ?></td>
 			</tr>
 		</table>
 	</div>
@@ -251,21 +252,21 @@
 				<th class="thd-tha"><b>Keterangan</b></th>
 			</tr>
 			<?php
-				$no = 1;
-				foreach ($list as $item) {
-					$date = date_create($item->TGL_EWO);
-					echo '
+			$no = 1;
+			foreach ($list as $item) {
+				$date = date_create($item->TGL_EWO);
+				echo '
 						<tr>
-							<td class="thd-td2">'.$no.'</td>
-							<td class="thd-td2">'.$item->ITEM_EWO.'</td>
-							<td class="thd-td2">'.$item->LOKASI_EWO.'</td>
-							<td class="thd-td2">'.$item->TGL_EWO.'</td>
-							<td class="thd-td2">'.date_format($date, 'd-m-Y').'</td>
-							<td class="thd-td2">'.$item->KET_EWO.'</td>
+							<td class="thd-td2">' . $no . '</td>
+							<td class="thd-td2">' . $item->ITEM_EWO . '</td>
+							<td class="thd-td2">' . $item->LOKASI_EWO . '</td>
+							<td class="thd-td2">' . $item->TGL_EWO . '</td>
+							<td class="thd-td2">' . date_format($date, 'd-m-Y') . '</td>
+							<td class="thd-td2">' . $item->KET_EWO . '</td>
 						</tr>
 					';
-					$no++;
-				}
+				$no++;
+			}
 			?>
 		</table>
 	</div>
@@ -275,59 +276,59 @@
 	</div>
 	<br>
 	<div>
-		<table class="thd" style="border: none !important;">
+		<table class="thd" style="border: none !important;table-layout: fixed;">
 			<tr>
-				<td>Mengetahui,</td>
-				<td>Menyetujui,</td>
-				<td>Hormat kami,</td>
+				<td style="min-width: 33.33%;max-width: 33.33%;">Mengetahui,</td>
+				<td style="min-width: 33.33%;max-width: 33.33%;">Menyetujui,</td>
+				<td style="min-width: 33.33%;max-width: 33.33%;">Hormat kami,</td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
-				<td>
-					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+				<td style="min-width: 33.33%;max-width: 33.33%;">
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
-				<td>
+				<td style="min-width: 33.33%;max-width: 33.33%;">
 					<?php
-						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-							echo '
-								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
 							';
-						}
+					}
 					?>
 				</td>
-				<td>
+				<td style="min-width: 33.33%;max-width: 33.33%;">
 					<?php
-						if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
-							echo '
-								<img src="'.$approvals[1]->PATH_TTD.'" width="100px" height="100px" />
+					if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+						echo '
+								<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
 							';
-						}
+					}
 					?>
 				</td>
 			</tr>
 			<tr>
 				<?php
-					echo '
-						<td>( '.$user->NAMA_USERS.' )</td>
+				echo '
+						<td>( ' . $user->NAMA_USERS . ' )</td>
 					';
-					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-						echo '
-							<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+				if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+					echo '
+							<td>( ' . $approvals[0]->NAMA_USERS . ' )</td>
 						';
-					}else{
-						echo '
+				} else {
+					echo '
 							<td>(................................................)</td>
 						';
-					}
+				}
 
-					if($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1"){
-						echo '
-							<td>( '.$approvals[1]->NAMA_USERS.' )</td>
+				if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+					echo '
+							<td>( ' . $approvals[1]->NAMA_USERS . ' )</td>
 						';
-					}else{
-						echo '
+				} else {
+					echo '
 							<td>(................................................)</td>
 						';
-					}
+				}
 				?>
 			</tr>
 			<tr>
