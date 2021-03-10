@@ -124,30 +124,20 @@
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-				</tr>
-				<?php 
-					for ($x = 0; $x < 8; $x++) 
-					{
-						$no = $x + 1;
-						if(!empty($list[$x])){
-							echo '
-								<tr>
-									<td>'.$no.'</td>
-									<td style="padding-left:40px">'.$list[$x]->JENIS_SNACK.'</td>
-									<td style="text-align:center;">'.$list[$x]->JML_SNACK.'</td>
-								</tr>
-							';							
-						}else{
-							echo '
-								<tr>
-									<td>'.$no.'</td>
-									<td style="padding-left:40px">&nbsp;</td>
-									<td style="text-align:center;">&nbsp;</td>
-								</tr>
-							';	
-						}							
-					} 
-				?>				
+				</tr>					
+				<?php
+					$no = 1;
+					foreach ($list as $item) {
+						echo '
+							<tr>
+								<td>'.$no.'</td>
+								<td style="padding-left:40px">'.$item->JENIS_SNACK.'</td>
+								<td style="text-align:center;">'.$item->JML_SNACK.'</td>
+							</tr>
+						';
+						$no++;
+					}
+				?>			
 			</table>
 		</div>
 		<div>
