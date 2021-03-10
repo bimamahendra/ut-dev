@@ -23,6 +23,7 @@
 			border-width: 2px;
 			border-collapse: collapse;
 			border-spacing: 0;
+			table-layout: fixed;
 		}
 
 		.tg td {
@@ -102,11 +103,11 @@
 
 		.tp {
 			border: 1px solid black;
-			;
 			border-collapse: collapse;
 			width: 100%;
 			text-align: left;
 			font-size: 13px;
+			table-layout: fixed;
 		}
 
 		.tp th {
@@ -180,13 +181,26 @@
 		.thc-td2 {
 			border: 1px solid black;
 		}
+
+		.text-align-center {
+			text-align: center !important;
+		}
+
+		.padding-left {
+			padding-left: 6px !important;
+		}
+
+		.w-100 {
+			min-width: 100%;
+			max-width: 100%;
+		}
 	</style>
 </head>
 
 <body style="padding-left:0.5cm; font-family:Arial, sans-serif;">
 	<div class="watermark"></div>
 	<div>
-		<table class="tg" width="100%;">
+		<table class="tg w-100">
 			<thead>
 				<tr>
 					<th class="tg-ir4y">
@@ -222,7 +236,7 @@
 	</div>
 	<br>
 	<div>
-		<table class="tp">
+		<table class="tp w-100">
 			<tr>
 				<th style="width: 5px;text-align: center;">No</th>
 				<th style="width: 200px;text-align: center;">TEMUAN LAPANGAN</th>
@@ -237,12 +251,12 @@
 				$date = date_create($item->TGL_IDENTIFIKASI);
 				echo '
 						<tr>
-							<td>' . $no . '</td>
-							<td>' . $item->TEMUAN_IDENTIFIKASI . '</td>
-							<td>' . date_format($date, 'd-m-Y') . '</td>
-							<td>' . $item->KATEGORI_IDENTIFIKASI . '</td>
-							<td>' . $item->LOKASI_IDENTIFIKASI . '</td>
-							<td>' . $item->USER_IDENTIFIKASI . '</td>
+							<td class="text-align-center">' . $no . '</td>
+							<td class="padding-left">' . $item->TEMUAN_IDENTIFIKASI . '</td>
+							<td class="text-align-center">' . date_format($date, 'd-m-Y') . '</td>
+							<td class="padding-left">' . $item->KATEGORI_IDENTIFIKASI . '</td>
+							<td class="padding-left">' . $item->LOKASI_IDENTIFIKASI . '</td>
+							<td class="padding-left">' . $item->USER_IDENTIFIKASI . '</td>
 						</tr>
 					';
 				$no++;
@@ -261,38 +275,38 @@
 	</div>
 	<br>
 	<div>
-		<table class="thc" style="width: 450px;">
+		<table class="thc" style="width: 450px;table-layout: fixed;">
 			<tr>
-				<td class="thc-tha">Diketahui Oleh : </td>
-				<td class="thc-tha">Disetujui Oleh : </td>
+				<td class="thc-tha" style="min-width: 50%;max-width: 50%;">Diketahui Oleh : </td>
+				<td class="thc-tha" style="min-width: 50%;max-width: 50%;">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
-				<td class="thc-td2">
-					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
+				<td class="thc-td2" style="min-width: 50%;max-width: 50%;">
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
-				<td class="thc-td2">
+				<td class="thc-td2" style="min-width: 50%;max-width: 50%;">
 					<?php
-						if($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-							echo '
-								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+					if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
 							';
-						}
+					}
 					?>
 				</td>
 			</tr>
 			<tr>
-				<td class="thc-td2">( <?= $user->NAMA_USERS?> )</td>
+				<td class="thc-td2">( <?= $user->NAMA_USERS ?> )</td>
 				<td>
 					<?php
-						if($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-							echo '
-								( '.$approvals[0]->NAMA_USERS.' )
+					if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+								( ' . $approvals[0]->NAMA_USERS . ' )
 							';
-						}else{
-							echo '
+					} else {
+						echo '
 								(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;)
 							';
-						}
+					}
 					?>
 				</td>
 			</tr>
