@@ -224,12 +224,12 @@
     <div>
 		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
-				<td style="width: 15%" colspan="4"><b>Seksi Maintenance</b></td>
+				<td style="width: 15%" colspan="2"><b>Seksi Maintenance</b></td>
+                <td><b>GA Departement</b></td>
 			</tr>
             <tr>
-                <td style="width: 35%" colspan="3"><b>GA Departement</b></td>
-                <td style="width: 5%"><b>Lokasi</b></td>
-                <td style="width: 5%"><b>:</b></td>
+                <td style="width: 3%"><b>Lokasi</b></td>
+                <td style="width: 2%"><b>:</b></td>
                 <td>
 					<?= $list[0]->LOKASI_HYDRANT; ?>
 				</td>
@@ -595,9 +595,9 @@ terminal bar (setiap 2 bulan sekali)</td>
     </div>
 	<div>
 	<table style="width:80%; text-align:left; font-size: 12px;">
-		<tr>
+		<tr style="text-align:left;">
 			<td style="width: 7%"><b>Catatan</b></td>
-			<td style="width: 0%"><b>:</b></td>
+			<td style="width: 1%"><b>:</b></td>
 			<td><?= $list[0]->CATATAN_HYDRANT ?></td>    
 		</tr>
 	</table>
@@ -611,18 +611,8 @@ terminal bar (setiap 2 bulan sekali)</td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px" />
 				</td>
-				<td class="thd-td2">
-					TTD Disini
-				</td>
-			</tr>
-			<tr>
-				<td class="thd-tha"><b>PIC Maintenance</b></td>
-				<td class="thd-tha"><b>Section Head</b></td>
-			</tr>
-			<tr>
-				<td class="thd-td2"><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
 				<td class="thd-td2">
 					<?php
                         if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
@@ -631,6 +621,26 @@ terminal bar (setiap 2 bulan sekali)</td>
                             ';
                         }
                     ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="thd-tha"><b>PIC Maintenance</b></td>
+				<td class="thd-tha"><b>Section Head</b></td>
+			</tr>
+			<tr>
+				<td class="thd-td2"><?= $user->NAMA_USERS?></td>
+				<td class="thd-td2">
+					<?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<td class="border-1 p-min">'.$approvals[0]->NAMA_USERS.'</td>
+							';
+						}else{
+							echo '
+								<td class="border-1 p-min">...</td>
+							';
+						}
+					?>
 				</td>
 			</tr>
 		</table>
