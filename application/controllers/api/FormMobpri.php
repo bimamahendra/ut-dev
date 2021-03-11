@@ -42,7 +42,7 @@ class FormMobpri extends RestController {
                     }
                 }
                 
-                $this->ContentPdf->generate(['idTrans' => $idTrans]);
+                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'potrait']);
                 $this->pusherjs->push();
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan', 'idTrans' => $idTrans], 200);
             }else{

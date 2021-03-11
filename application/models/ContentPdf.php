@@ -23,7 +23,7 @@ class ContentPdf extends CI_Model{
         $path_pdf = 'uploads/transaction/'.$user[0]->USER_USERS.'/'.$file_pdf.'.pdf';
 		
         $paper = 'A4';
-        $orientation = "portrait";
+        $orientation = $param['orientation'];
         
 		$html = $this->load->view($mapping[0]->PATH_TEMPLATE_PDF, $data, true);	    
 
