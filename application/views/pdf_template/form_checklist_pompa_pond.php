@@ -204,7 +204,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : FORM 015/PROS-MFP-MLK3-014</td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -236,7 +236,10 @@
                 <td>Tanggal</td>
                 <td>:</td>
                 <td>
-					.......... / .......... / ..........
+					<?php
+						$date = date_create($list[0]->TGL_POND);
+						echo date_format($date, 'd/m/Y');
+					?>
 				</td>
             </tr>
 		</table>
@@ -262,33 +265,33 @@
 					<td class="tg-5r9a" style="text-align:center;">A</td>
 					<td class="tg-5r9a">SAMPING IPAL</td>
                     <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDA_POND == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDA_POND == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDA_POND == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">B</td>
 					<td class="tg-5r9a">Depan KMSI</td>
                     <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDB_POND == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDB_POND == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDB_POND == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">C</td>
 					<td class="tg-5r9a">MASJID</td>
                     <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDC_POND == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDC_POND == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDC_POND == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">D</td>
 					<td class="tg-5r9a">POS 1 SEC</td>
                     <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDD_POND == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDD_POND == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($list[0]->PONDD_POND == '3'? 'V' : '')?></td>
 				</tr>
 			</tbody>
 		</table>
@@ -308,47 +311,43 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<?php
+					$checking = explode(';', $list[0]->CHECKING_POND);
+				?>
+				<tr >
 					<td class="tg-5r9a" style="text-align:center;">1</td>
 					<td class="tg-5r9a">Check fungsi Panel</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[0] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[0] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[0] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">2</td>
 					<td class="tg-5r9a">Check fungsi Valve</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">2</td>
-					<td class="tg-5r9a">Check fungsi Valve</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[1] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[1] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[1] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">3</td>
 					<td class="tg-5r9a">Check kondisi instalasi kabel</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[2] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[2] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[2] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">4</td>
 					<td class="tg-5r9a">Check Flow meter</td>
-                    <td class="tg-5r9a">&nbsp;</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[3] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[3] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[3] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center;">5</td>
 					<td class="tg-5r9a">Check kondisi pipa-pipa</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[4] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[4] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($checking[4] == '3'? 'V' : '')?></td>
 				</tr>
 			</tbody>
         </table>
@@ -364,26 +363,29 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php
+					$running = explode(';', $list[0]->CHECKING_POND);
+				?>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center; width: 10%;">1</td>
 					<td class="tg-5r9a">- SWITCH harus pada Posisi AUTO</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[0] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[0] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[0] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center; width: 7%;">2</td>
 					<td class="tg-5r9a">- Check POWER SUPPLY</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[1] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[1] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[1] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center; width: 7%;">3</td>
 					<td class="tg-5r9a">a. Atur Switch pada posisi MANUAL</td>
-                    <td class="tg-5r9a" rowspan="5"></td>
-                    <td class="tg-5r9a" rowspan="5"></td>
-                    <td class="tg-5r9a" rowspan="5"></td>
+					<td class="tg-5r9a" rowspan="5" style="text-align:center;"><?= ($running[2] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" rowspan="5" style="text-align:center;"><?= ($running[2] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" rowspan="5" style="text-align:center;"><?= ($running[2] == '3'? 'V' : '')?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:center; width: 7%;"></td>
@@ -404,9 +406,9 @@
                 <tr>
 					<td class="tg-5r9a" style="text-align:center; width: 7%;">4</td>
 					<td class="tg-5r9a">Check Pintu Air Pond, tambahkan 'GREASE' bila perlu.</td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
-                    <td class="tg-5r9a"></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[0] == '1'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[0] == '2'? 'V' : '')?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= ($running[0] == '3'? 'V' : '')?></td>
 				</tr>
 			</tbody>
         </table>
@@ -446,10 +448,10 @@
 						<td style="width: 7%"><b>Catatan</b></td>
 						<td style="width: 0%"><b>:</b></td>
 						<td>
-							_______________________________________________________________________________
+							<?= $list[0]->CATATAN_POND?>
 						</td>    
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td style="width: 7%"><b></b></td>
 						<td style="width: 0%"><b></b></td>
 						<td>
@@ -462,7 +464,7 @@
 						<td>
 							_______________________________________________________________________________
 						</td>    
-					</tr>
+					</tr> -->
 					</table>
 				</td>
 			<tr>
@@ -477,10 +479,16 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD?>" width="100px" height="100px">
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+							echo '
+								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
@@ -488,8 +496,18 @@
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS?> )</td>
+				<?php
+					if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
+						echo '
+							<td>( '.$approvals[0]->NAMA_USERS.' )</td>
+						';
+					}else{
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>
