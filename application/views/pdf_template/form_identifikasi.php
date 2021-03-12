@@ -253,7 +253,7 @@
 						<tr>
 							<td class="text-align-center">' . $no . '</td>
 							<td class="padding-left">' . $item->TEMUAN_IDENTIFIKASI . '</td>
-							<td class="text-align-center">' . date_format($date, 'd-m-Y') . '</td>
+							<td class="text-align-center">' . date_format($date, 'd - m - Y') . '</td>
 							<td class="padding-left">' . $item->KATEGORI_IDENTIFIKASI . '</td>
 							<td class="padding-left">' . $item->LOKASI_IDENTIFIKASI . '</td>
 							<td class="padding-left">' . $item->USER_IDENTIFIKASI . '</td>

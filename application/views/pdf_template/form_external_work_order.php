@@ -217,7 +217,7 @@
 				<?php
 				$date = date_create($list[0]->REQUEST_EWO);
 				echo '
-						<td>: ' . date_format($date, 'd-m-Y') . '</td>
+						<td>: ' . date_format($date, 'd - m - Y') . '</td>
 					';
 				?>
 			</tr>
@@ -260,8 +260,8 @@
 							<td class="thd-td2">' . $no . '</td>
 							<td class="thd-td2">' . $item->ITEM_EWO . '</td>
 							<td class="thd-td2">' . $item->LOKASI_EWO . '</td>
-							<td class="thd-td2">' . $item->TGL_EWO . '</td>
-							<td class="thd-td2">' . date_format($date, 'd-m-Y') . '</td>
+							<td class="thd-td2">' . date_format($date, 'd - m - Y') . '</td>
+							<td class="thd-td2">' . date_format($date, 'd - m - Y') . '</td>
 							<td class="thd-td2">' . $item->KET_EWO . '</td>
 						</tr>
 					';

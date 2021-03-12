@@ -108,7 +108,7 @@ class Transaction extends RestController {
                         }
                         // unlink($transaction[0]->PATH_TRANS);
                         $orientation = 'portrait';
-                        if($transaction[0]->ID_MAPPING == MAPP_fca21f3d1ef1ff4a32978f579e584954){
+                        if($transaction[0]->NAMA_FORM == 'Identifikasi'){
                             $orientation = 'landscape';
                         }
                         $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);

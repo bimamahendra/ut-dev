@@ -223,7 +223,7 @@
 				<td>
 					<?php
 					$date = date_create($list[0]->TGLPINJAM_MOBPRI);
-					echo date_format($date, 'd-m-Y');
+					echo date_format($date, 'd - m - Y');
 					?>
 				</td>
 				<td><b>JAM BERANGKAT</b></td>
@@ -239,7 +239,7 @@
 				<td>
 					<?php
 					$date = date_create($list[0]->TGLAMBIL_MOBPRI);
-					echo date_format($date, 'd-m-Y');
+					echo date_format($date, 'd - m - Y');
 					?>
 				</td>
 				<td><b>JAM PULANG</b></td>
