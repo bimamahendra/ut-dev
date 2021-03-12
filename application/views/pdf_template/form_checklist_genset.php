@@ -488,7 +488,7 @@
                 <tH class="border-1 p-min" rowspan="2">5K</tH>
                 <td class="border-1 p-min" colspan="2" rowspan="2">Ruangan</td>
                 <?php
-                $checklist = explode(';', $list[0]->AMP_METER);
+                $checklist = explode(';', $list[0]->RUANGAN);
                 if ($checklist[0] == '1') {
                     $status = "V";
                 } else if ($checklist[0] == '2') {
