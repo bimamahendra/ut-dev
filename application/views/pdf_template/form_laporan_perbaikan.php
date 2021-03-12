@@ -230,37 +230,23 @@
                 <th class="border-1 p-min">Status</th>
             </tr>
             <?php
-            for ($x = 0; $x < 15; $x++) {
-                $no = $x + 1;
-                if (!empty($list[$x])) {
-                    echo '
-							<tr>
-								<td class="border-1 p-min">' . $no . '</td>
-								<td class="border-1 p-min">' . $list[$x]->LAPORAN_PERBAIKAN . '</td>
-								<td class="border-1 p-min">' . $list[$x]->KATEGORI_PERBAIKAN . '</td>
-								<td class="border-1 p-min">' . $list[$x]->LOKASI_PERBAIKAN . '</td>
-								<td class="border-1 p-min">' . $list[$x]->USER_PERBAIKAN . '</td>
-								<td class="border-1 p-min">' . $list[$x]->PIC_PERBAIKAN . '</td>
-								<td class="border-1 p-min">' . $list[$x]->DURASI_PERBAIKAN . '</td>
-								<td class="border-1 p-min">' . $list[$x]->STATUS_PERBAIKAN . '</td>
-							</tr>
-							';
-                } else {
-                    echo '
-							<tr>
-                                <td class="border-1 p-min">' . $no . '</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-                                <td class="border-1 p-min">&nbsp;</td>
-							</tr>
-						';
-                }
-            }
-            ?>
+			$no = 1;
+			foreach ($list as $item) {
+				echo '
+                     <tr>
+                          <td class="border-1 p-min">' . $no . '</td>
+                          <td class="border-1 p-min">' . $item->LAPORAN_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $item->KATEGORI_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $item->LOKASI_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $item->USER_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $item->PIC_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $item->DURASI_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $item->STATUS_PERBAIKAN . '</td>
+                     </tr>
+					';
+				$no++;
+			}
+			?>            
         </table>
         <table class="border-1 border-collapse absolute pos-right table-layout-fixed" style="width: 400px;">
             <tr>
