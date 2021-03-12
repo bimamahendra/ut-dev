@@ -69,6 +69,24 @@ class FormMobpri extends RestController {
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
     }
+
+    public function nopol_put(){
+        $param = $this->put();
+        if(!empty($param['idUser'] && !empty($param['idTrans']) && !empty('nopol'))){
+           $user    = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
+           $trans   = $this->db->get_where('TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
+           if($user != null && $trans != null){
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_MOBPRI', ['NOPOL_MOBPRI' => $param['nopol']]);
+
+                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'potrait']);
+                $this->response(['status' => true, 'message' => 'Data berhasil diubah'], 200);
+           }else{
+               $this->response(['status' => false, 'message' => 'Data user atau transaksi tidak ditemukan'], 200);
+            }
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
+    }
  
     function upload_image($username){
         $newPath = './uploads/assets/sim/mobpri/'.$username.'/';
