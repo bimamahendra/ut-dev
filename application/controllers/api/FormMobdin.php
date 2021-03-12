@@ -88,7 +88,6 @@ class FormMobdin extends RestController {
            if($user != null && $trans != null){
                 $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_MOBDIN', ['NOPOL_MOBDIN' => $param['nopol']]);
 
-                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'potrait']);
                 $this->response(['status' => true, 'message' => 'Data berhasil diubah'], 200);
            }else{
                $this->response(['status' => false, 'message' => 'Data user atau transaksi tidak ditemukan'], 200);
