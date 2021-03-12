@@ -267,9 +267,14 @@
 	<br>
 	<div style="text-align:right;">
 		<?php
-		$date = date_create($item->TGLOUT_IDENTIFIKASI);
+		$date 		= date_create($item->TGLOUT_IDENTIFIKASI);
+		
+		$day 		= date_format($date, 'j'); 
+		$month 		= $getMonth[date_format($date, 'n')];
+		$year 		= date_format($date, 'Y');
+		$fullDate 	= $day.' '.$month.' '.$year;
 		echo '
-				<span>Jakarta, ' . date_format($date, 'd M Y') . '</span>
+				<span>Jakarta, ' . $fullDate . '</span>
 			';
 		?>
 	</div>

@@ -211,13 +211,13 @@
                     </tr>
                     <tr>
                         <td>Bulan</td>
-                        <td>: '.date_format($date, 'F').'</td>
+                        <td>: '.$getMonth[date_format($date, 'n')].'</td>
                         <td style="width: 10%;">Tahun</td>
                         <td>: '.date_format($date, 'Y').'</td>
                     </tr>
                     <tr>
                         <td>Lokasi</td>
-                        <td colspan="3">: ...</td>
+                        <td colspan="3">: '.$list[0]->LOKASI_ALKOM.'</td>
                     </tr>
                 ';
             ?>
