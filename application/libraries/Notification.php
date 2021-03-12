@@ -25,7 +25,9 @@ class Notification {
           "registration_ids":['.$regisIds.'],
           "notification": {
               "title":"'.$param['title'].'",
-              "body":"'.$param['message'].'"
+              "body":"'.$param['message'].'",
+              "icon":"myicon",
+              "sound":"default"
           }
         }',
           CURLOPT_HTTPHEADER => array(
