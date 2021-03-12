@@ -11,7 +11,7 @@ class FormControlHarian extends RestController {
 
     public function index_post(){
         $param = $this->post();
-        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['jamControl']) && !empty($param['kondisi']) && !empty($param['kendaraan']) && !empty($param['makanan']) && !empty($param['sample']) && !empty($param['kebersihan']) && !empty($param['tglOut']) && $param['kondisiKet']!='' && $param['kendaraanKet']!='' && $param['makananKet']!='' && $param['pesananKet']!='' && $param['sampleKet']!='' && $param['kebersihanKet']!=''){
+        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['kondisi']) && !empty($param['kendaraan']) && !empty($param['makanan']) && !empty($param['sample']) && !empty($param['kebersihan']) && $param['kondisiKet']!='' && $param['kendaraanKet']!='' && $param['makananKet']!='' && $param['pesananKet']!='' && $param['sampleKet']!='' && $param['kebersihanKet']!=''){
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
@@ -25,14 +25,12 @@ class FormControlHarian extends RestController {
 
                 $storeControl['ID_CONTROL']             = $idControl;
                 $storeControl['ID_TRANS']               = $idTrans;
-                $storeControl['JAM_CONTROL']            = $param['jamControl'];
                 $storeControl['KONDISI_CONTROL']        = $param['kondisi'].";".$param['kondisiKet'].";";
                 $storeControl['KENDARAAN_CONTROL']      = $param['kendaraan'].";".$param['kendaraanKet'].";";
                 $storeControl['MAKANAN_CONTROL']        = $param['makanan'].";".$param['makananKet'].";";
                 $storeControl['PESANAN_CONTROL']        = $param['pesanan'].";".$param['pesananKet'].";";
                 $storeControl['SAMPLE_CONTROL']         = $param['sample'].";".$param['sampleKet'].";";
                 $storeControl['KEBERSIHAN_CONTROL']     = $param['kebersihan'].";".$param['kebersihanKet'].";";
-                $storeControl['TGLOUT_CONTROL']         = $param['tglOut'];
                 $this->db->insert('FORM_CONTROL', $storeControl);
                 
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
