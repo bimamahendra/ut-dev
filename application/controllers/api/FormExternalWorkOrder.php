@@ -52,7 +52,7 @@ class FormExternalWorkOrder extends RestController {
                     }
                 }
                 
-                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'potrait']);
+                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
                 $this->pusherjs->push();
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
