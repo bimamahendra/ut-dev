@@ -162,6 +162,7 @@
 			vertical-align: middle;
 			border: 1px solid black;
 			padding-left: 6px;
+			font-size: 12px;
 		}
 
 		.tg .tg-0lax {
@@ -171,7 +172,7 @@
 			padding-top: 8px;
 			padding-bottom: 8px;
 			padding-left: 6px;
-			font-size: 10px;
+			font-size: 12px;
 		}
 
 		.thc {
@@ -236,12 +237,12 @@
 		</table>
 	</div>
 	<div style="text-align:center;margin-bottom: 8px;">
-		<h4>SYARAT – SYARAT LEGALITAS CATERING YANG DI SURVEY</h4>
+		<h5>SYARAT – SYARAT LEGALITAS CATERING YANG DI SURVEY</h5>
 	</div>
 	<div>
-		<table style="width:80%; text-align:left;">
+		<table style="width:80%; text-align:left;font-size: 12px;">
 			<tr>
-				<td style="width: 25%"><strong>Nama Catering</strong></td>
+				<td style="width: 25%;"><strong>Nama Catering</strong></td>
 				<td style="width: 5%">:</td>
 				<td>
 					<?= $list[0]->NAMA_CATERING ?>
@@ -262,7 +263,7 @@
 			<thead>
 				<tr>
 					<th class="tg-nrix" style="min-width: 5%;max-width: 5%;" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2">Persyaratan</th>
+					<th class="tg-nrix" rowspan="2" style="min-width: 60%;max-width: 60%;">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
@@ -317,7 +318,7 @@
 	</div>
 	<br>
 	<div>
-		<table style="width:80%; text-align:left;">
+		<table style="width:80%; text-align:left;font-size: 12px;">
 			<tr>
 				<td style="width: 15%"><strong>SURVEY KONDISI CATERING</strong></td>
 			</tr>
@@ -397,10 +398,10 @@
 				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>Dept Head</b></td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
-				<td class="thc-td2">
+				<td class="thc-td2" style="min-width: 33.33%;max-width: 33.33%;">
 					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
-				<td class="thc-td2">
+				<td class="thc-td2" style="min-width: 33.33%;max-width: 33.33%;">
 					<?php
 					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
 						echo '
@@ -409,7 +410,7 @@
 					}
 					?>
 				</td>
-				<td class="thc-td2">
+				<td class="thc-td2" style="min-width: 33.33%;max-width: 33.33%;">
 					<?php
 					if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
 						echo '
