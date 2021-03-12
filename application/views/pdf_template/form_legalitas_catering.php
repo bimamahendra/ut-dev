@@ -7,6 +7,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FORM LEGALITAS CATERING</title>
 	<style>
+		.watermark::before {
+			position: absolute;
+			top: 35%;
+			left: 10%;
+			content: "General Affairs Department";
+			z-index: 99;
+			font-size: 80px;
+			transform: rotate(-30deg);
+			color: rgba(0, 0, 0, .15);
+			text-align: center;
+		}
+
 		.tg {
 			border-style: solid;
 			border-width: 2px;
@@ -199,6 +211,7 @@
 </head>
 
 <body style="padding-left:0.5cm; font-family:Arial, sans-serif;">
+	<div class="watermark"></div>
 	<div>
 		<table class="tg" width="100%;">
 			<thead>

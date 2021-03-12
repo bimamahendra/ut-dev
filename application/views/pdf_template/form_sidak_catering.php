@@ -8,6 +8,18 @@
     <title>FORM SIDAK CATERING</title>
 
     <style>
+        .watermark::before {
+            position: absolute;
+            top: 35%;
+            left: 10%;
+            content: "General Affairs Department";
+            z-index: 99;
+            font-size: 80px;
+            transform: rotate(-30deg);
+            color: rgba(0, 0, 0, .15);
+            text-align: center;
+        }
+
         html,
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -115,6 +127,7 @@
 
 <body>
     <div class="wrapper-page">
+        <div class="watermark"></div>
         <table class="border-2 border-collapse w-100 valign-middle mb-min">
             <tr>
                 <td class="text-regular-sm font-family-arial text-align-center p-min border-right">
@@ -454,15 +467,15 @@
         </p>
         <table class="w-100">
             <tr class="text-align-center">
-                <td><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
+                <td><img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" /></td>
                 <td>
                     <?php
-						if($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1"){
-							echo '
-								<img src="'.$approvals[0]->PATH_TTD.'" width="100px" height="100px" />
+                    if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                        echo '
+								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
 							';
-						}
-					?>
+                    }
+                    ?>
                 </td>
             </tr>
             <tr class="text-align-center">
