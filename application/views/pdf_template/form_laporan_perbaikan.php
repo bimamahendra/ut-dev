@@ -18,9 +18,18 @@
             min-width: 100vw;
         }
 
+        .w-50 {
+            min-width: 50%;
+            max-width: 50%;
+        }
+
         .table-center {
             margin-right: auto;
             margin-left: auto;
+        }
+
+        .table-layout-fixed {
+            table-layout: fixed;
         }
 
         .p-min {
@@ -253,10 +262,10 @@
             }
             ?>
         </table>
-        <table class="border-1 border-collapse absolute pos-right" style="width: 400px;">
+        <table class="border-1 border-collapse absolute pos-right table-layout-fixed" style="width: 400px;">
             <tr>
-                <th class="border-1 p-min">Dibuat</th>
-                <th class="border-1 p-min">Diperiksa</th>
+                <th class="border-1 p-min w-50">Dibuat</th>
+                <th class="border-1 p-min w-50">Diperiksa</th>
             </tr>
             <tr class="text-align-center">
                 <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" /></td>
@@ -271,8 +280,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="border-1 p-min"><?= $list[0]->NAMA_USERS ?></td>
-                <td class="border-1 p-min">
+                <td class="border-1 p-min text-align-center"><?= $list[0]->NAMA_USERS ?></td>
+                <td class="border-1 p-min text-align-center">
                     <?php
                     if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
                         echo '
@@ -287,8 +296,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="border-1 p-min">PIC Maintenance</td>
-                <td class="border-1 p-min">Section Head</td>
+                <td class="border-1 p-min text-align-center">PIC Maintenance</td>
+                <td class="border-1 p-min text-align-center">Section Head</td>
             </tr>
         </table>
     </div>
