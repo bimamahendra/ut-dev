@@ -80,6 +80,24 @@ class FormMobdin extends RestController {
         }
     }
 
+    public function nopol_put(){
+        $param = $this->put();
+        if(!empty($param['idUser'] && !empty($param['idTrans']) && !empty('nopol'))){
+           $user    = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
+           $trans   = $this->db->get_where('TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
+           if($user != null && $trans != null){
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_MOBDIN', ['NOPOL_MOBDIN' => $param['nopol']]);
+
+                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'potrait']);
+                $this->response(['status' => true, 'message' => 'Data berhasil diubah'], 200);
+           }else{
+               $this->response(['status' => false, 'message' => 'Data user atau transaksi tidak ditemukan'], 200);
+            }
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
+    }
+
     function upload_image($username){
         $newPath = './uploads/assets/sim/mobdin/'.$username.'/';
         if(!is_dir($newPath)){
