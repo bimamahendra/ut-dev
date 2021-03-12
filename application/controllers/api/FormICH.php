@@ -25,31 +25,38 @@ class FormICH extends RestController {
                 $storeICH['ID_HYDRANT']         = $idICH;
                 $storeICH['ID_TRANS']           = $idTrans;
                 $storeICH['TGL_HYDRANT']        = $param['tgl'];
-                $storeICH['LOKASI_HYDRANT']     = $param['lokasi'];
-                $storeICH['KEBOCORAN_PIPA']     = $param['kebocoranPipa']['status'].";".$param['kebocoranPipa']['catatan'];
-                $storeICH['FLANGE_PIPA']        = $param['flangePipa']['status'].";".$param['flangePipa']['catatan'];
-                $storeICH['POSISI_VALVE']       = $param['posisiValve']['status'].";".$param['posisiValve']['catatan'];
-                $storeICH['GATE_JOCKEY']        = $param['gateJockey']['status'].";".$param['gateJockey']['catatan'];
-                $storeICH['KIPAS_JOCKEY']       = $param['kipasJockey']['status'].";".$param['kipasJockey']['catatan'];
-                $storeICH['POWER_JOCKEY']       = $param['powerJockey']['status'].";".$param['powerJockey']['catatan'];
-                $storeICH['MOTOR_JOCKEY']       = $param['motorJockey']['status'].";".$param['motorJockey']['catatan'];
-                $storeICH['GATE_ELECTRIC']      = $param['gateElectric']['status'].";".$param['gateElectric']['catatan'];
-                $storeICH['KIPAS_ELECTRIC']     = $param['kipasElectric']['status'].";".$param['kipasElectric']['catatan'];
-                $storeICH['POWER_ELECTRIC']     = $param['powerElectric']['status'].";".$param['powerElectric']['catatan'];
-                $storeICH['MOTOR_ELECTRIC']     = $param['motorElectric']['status'].";".$param['motorElectric']['catatan'];
-                $storeICH['GATE_DIESEL']        = $param['gateDiesel']['status'].";".$param['gateDiesel']['catatan'];
-                $storeICH['RADIATOR_DIESEL']    = $param['radiatorDiesel']['status'].";".$param['radiatorDiesel']['catatan'];
-                $storeICH['OLI_DIESEL']         = $param['oliDiesel']['status'].";".$param['oliDiesel']['catatan'];
-                $storeICH['FANBELT_DIESEL']     = $param['fanbeltDiesel']['status'].";".$param['fanbeltDiesel']['catatan'];
-                $storeICH['BATTERY_DIESEL']     = $param['batteryDiesel']['status'].";".$param['batteryDiesel']['catatan'];
-                $storeICH['RPM_DIESEL']         = $param['rpmDiesel']['status'].";".$param['rpmDiesel']['catatan'];
-                $storeICH['RUNNING_DIESEL']     = $param['runningDiesel']['status'].";".$param['runningDiesel']['catatan'];
-                $storeICH['SWITCH_PANEL']       = $param['switchPanel']['status'].";".$param['switchPanel']['catatan'];
-                $storeICH['INDIKATOR_PANEL']    = $param['indikatorPanel']['status'].";".$param['indikatorPanel']['catatan'];
-                $storeICH['VOLTMETER_PANEL']    = $param['voltmeterPanel']['status'].";".$param['voltmeterPanel']['catatan'];
-                $storeICH['AMPERE_PANEL']       = $param['amperePanel']['status'].";".$param['amperePanel']['catatan'];
-                $storeICH['KONEKTOR_PANEL']     = $param['konektorPanel']['status'].";".$param['konektorPanel']['catatan'];                     
+                $storeICH['LOKASI_HYDRANT']     = $param['lokasi'];                                    
                 $storeICH['CATATAN_HYDRANT']    = $param['catatan'];
+
+                $arr = array();
+                foreach ($param['sistemPipa'] as $item) {
+                    array_push($arr, $item['status']);
+                }
+                $storeICH['SISTEM_PEMIPAAN'] = implode(';', $arr);
+
+                $arr = array();
+                foreach ($param['jockey'] as $item) {
+                    array_push($arr, $item['status']);
+                }
+                $storeICH['JOCKEY_PUMP'] = implode(';', $arr);
+
+                $arr = array();
+                foreach ($param['electric'] as $item) {
+                    array_push($arr, $item['status']);
+                }
+                $storeICH['ELECTRIC_PUMP'] = implode(';', $arr);
+
+                $arr = array();
+                foreach ($param['diesel'] as $item) {
+                    array_push($arr, $item['status']);
+                }
+                $storeICH['DIESEL_PUMP'] = implode(';', $arr);
+
+                $arr = array();
+                foreach ($param['panel'] as $item) {
+                    array_push($arr, $item['status']);
+                }
+                $storeICH['PANEL_HYDRANT'] = implode(';', $arr);
                 $this->db->insert('FORM_HYDRANT', $storeICH);
                 
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
