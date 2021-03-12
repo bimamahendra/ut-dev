@@ -241,7 +241,7 @@
 					<?php
 						$date = date_create($list[0]->TGL_HYDRANT);
 						echo '
-							'.date_format($date, 'd-m-Y').'
+							'.date_format($date, 'd - m - Y').'
 						';
 					?>
 				</td>
