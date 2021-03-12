@@ -521,8 +521,17 @@
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min"></td>
                 <td class="border-1 p-min"></td>
-                <td class="border-1 p-min" colspan="3">RUNNING TEST</td>
-                <td class="border-1 p-min"></td>
+                <td class="border-1 p-min" colspan="3">RUNNING TEST</td><?php
+                $checklist = explode(';', $list[0]->RUNNING_TEST);
+                if ($checklist[0] == '1') {
+                    $status = "V";
+                } else if ($checklist[0] == '2') {
+                    $status = "X";
+                } else {
+                    $status = "S";
+                }
+                ?>
+                <td class="border-1 p-min"><?= $status ?></td>
                 <td class="border-1 p-min">± 15 menit</td>
             </tr>
 
