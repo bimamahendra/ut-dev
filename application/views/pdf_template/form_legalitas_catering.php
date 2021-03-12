@@ -260,13 +260,13 @@
 		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" style="min-width: 5px;max-width: 5px;" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2" style="min-width: 300px;">Persyaratan</th>
+					<th class="tg-nrix" rowspan="2">No.</th>
+					<th class="tg-nrix" rowspan="2">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix" style="min-width: 5px;max-width: 5px;">Ya</td>
-					<td class="tg-nrix" style="min-width: 5px;max-width: 5px;">Tidak</td>
+					<td class="tg-nrix">Ya</td>
+					<td class="tg-nrix">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -327,13 +327,13 @@
 		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" style="min-width: 5px;max-width: 5px;" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2" style="min-width: 300px;">Persyaratan</th>
+					<th class="tg-nrix" rowspan="2">No.</th>
+					<th class="tg-nrix" rowspan="2">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix" style="min-width: 5px;max-width: 5px;">Bagus</td>
-					<td class="tg-nrix" style="min-width: 5px;max-width: 5px;">Tidak</td>
+					<td class="tg-nrix">Bagus</td>
+					<td class="tg-nrix">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
