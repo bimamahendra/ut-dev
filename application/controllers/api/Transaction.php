@@ -107,7 +107,11 @@ class Transaction extends RestController {
                             $this->notification->push($notif);
                         }
                         // unlink($transaction[0]->PATH_TRANS);
-                        $this->ContentPdf->generate(['idTrans' => $param['idTrans']]);
+                        $orientation = 'portrait';
+                        if($transaction[0]->ID_MAPPING == MAPP_fca21f3d1ef1ff4a32978f579e584954){
+                            $orientation = 'landscape';
+                        }
+                        $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);
                         $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
                     }else if($param['isApprove'] == "2"){
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['STAT_TRANS' => '3']);
