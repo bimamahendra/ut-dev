@@ -161,7 +161,7 @@
 			text-align: center;
 			vertical-align: middle;
 			border: 1px solid black;
-			padding-left: 6px;
+			padding: 4px 6px;
 			font-size: 12px;
 		}
 
@@ -169,9 +169,7 @@
 			text-align: left;
 			vertical-align: top;
 			border: 1px solid black;
-			padding-top: 8px;
-			padding-bottom: 8px;
-			padding-left: 6px;
+			padding: 4px 6px;
 			font-size: 12px;
 		}
 
@@ -262,13 +260,13 @@
 		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" style="min-width: 5%;max-width: 5%;" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2" style="min-width: 60%;max-width: 60%;">Persyaratan</th>
+					<th class="tg-nrix" style="min-width: 8px;max-width: 8px;" rowspan="2">No.</th>
+					<th class="tg-nrix" rowspan="2" style="min-width: 100%;max-width: 100%;">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Ya</td>
-					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Tidak</td>
+					<td class="tg-nrix" style="min-width: 8px;max-width: 8px;">Ya</td>
+					<td class="tg-nrix" style="min-width: 8px;max-width: 8px;">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -329,13 +327,13 @@
 		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" style="min-width: 5%;max-width: 5%;" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2">Persyaratan</th>
+					<th class="tg-nrix" style="min-width: 8px;max-width: 8px;" rowspan="2">No.</th>
+					<th class="tg-nrix" rowspan="2" style="min-width: 100%;max-width: 100%;">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Bagus</td>
-					<td class="tg-nrix" style="min-width: 8%;max-width: 8%;">Tidak</td>
+					<td class="tg-nrix" style="min-width: 8px;max-width: 8px;">Bagus</td>
+					<td class="tg-nrix" style="min-width: 8px;max-width: 8px;">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
