@@ -405,7 +405,7 @@
 		<table class="thc" style="width: 500px;table-layout: fixed;">
 			<tr>
 				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>PIC Admin</b></td>
-				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>Section Admin</b></td>
+				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>Section Head</b></td>
 				<td class="thc-tha" style="min-width: 33.33%;max-width: 33.33%;"><b>Dept Head</b></td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
