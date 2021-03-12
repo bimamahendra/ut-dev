@@ -280,7 +280,7 @@
 				<td>
 					<?php
 						$dtime = new DateTime($list[0]->JAM_CONTROL);
-						echo $dtime->format("H:i:s");
+						echo $dtime->format("H:i");
 					?>
 				</td>
 			</tr>
