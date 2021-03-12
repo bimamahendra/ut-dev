@@ -167,7 +167,7 @@
 
 		.tg .tg-0lax {
 			text-align: left;
-			vertical-align: top;
+			vertical-align: middle;
 			border: 1px solid black;
 			padding: 4px 6px;
 			font-size: 12px;
@@ -260,13 +260,13 @@
 		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2">Persyaratan</th>
+					<th class="tg-nrix" rowspan="2" width="7px">No.</th>
+					<th class="tg-nrix" rowspan="2" width="70%">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix">Ya</td>
-					<td class="tg-nrix">Tidak</td>
+					<td class="tg-nrix" width="10px">Ya</td>
+					<td class="tg-nrix" width="10px">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -327,13 +327,13 @@
 		<table class="tg" style="border: 1px solid black;table-layout: fixed;min-width: 100%;max-width: 100%;">
 			<thead>
 				<tr>
-					<th class="tg-nrix" rowspan="2">No.</th>
-					<th class="tg-nrix" rowspan="2">Persyaratan</th>
+					<th class="tg-nrix" rowspan="2" width="7px">No.</th>
+					<th class="tg-nrix" rowspan="2" width="70%">Persyaratan</th>
 					<th class="tg-nrix" colspan="2">Keterangan</th>
 				</tr>
 				<tr>
-					<td class="tg-nrix">Bagus</td>
-					<td class="tg-nrix">Tidak</td>
+					<td class="tg-nrix" width="10px">Bagus</td>
+					<td class="tg-nrix" width="10px">Tidak</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -341,43 +341,43 @@
 				$surveys = explode(';', $list[0]->SURVEY);
 				echo '
 						<tr>
-							<td class="tg-0lax"><span style="font-weight:400;font-style:normal;">1.</span></td>
+							<td class="tg-0lax text-align-center"><span style="font-weight:400;font-style:normal;">1.</span></td>
 							<td class="tg-0lax"><span style="font-weight:400;font-style:normal">Dapur Bersih</span></td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[0] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[0] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">2.</td>
+							<td class="tg-0lax text-align-center">2.</td>
 							<td class="tg-0lax">Perlengkapan Alat Dapur mampu melayani minimal 5000 porsi</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[1] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[1] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">3.</td>
+							<td class="tg-0lax text-align-center">3.</td>
 							<td class="tg-0lax">Dapur pisah dengan rumah tinggal</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[2] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[2] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">4.</td>
+							<td class="tg-0lax text-align-center">4.</td>
 							<td class="tg-0lax">Memiliki kendaraan terutama mobil box</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[3] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[3] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">5.</td>
+							<td class="tg-0lax text-align-center">5.</td>
 							<td class="tg-0lax">Jarak dapur ke – UT</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[4] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[4] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">6.</td>
+							<td class="tg-0lax text-align-center">6.</td>
 							<td class="tg-0lax">Kedapur catering harus bisa masuk mobil</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[5] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[5] == 'false' ? "V" : "") . '</td>
 						</tr>
 						<tr>
-							<td class="tg-0lax">7.</td>
+							<td class="tg-0lax text-align-center">7.</td>
 							<td class="tg-0lax">Memiliki karyawan</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[6] == 'true' ? "V" : "") . '</td>
 							<td class="tg-0lax" style="text-align:center">' . ($surveys[6] == 'false' ? "V" : "") . '</td>
