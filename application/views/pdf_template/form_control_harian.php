@@ -278,7 +278,10 @@
 				<td style="width: 15%">Kedatangan Jam</td>
 				<td style="width: 5%">:</td>
 				<td>
-					<?= $list[0]->JAM_CONTROL ?>
+					<?php
+						$dtime = new DateTime($list[0]->JAM_CONTROL);
+						echo $dtime->format("h:i:s");
+					?>
 				</td>
 			</tr>
 		</table>
