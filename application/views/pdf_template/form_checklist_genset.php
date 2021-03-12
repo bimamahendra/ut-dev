@@ -213,7 +213,7 @@
                 <?php
                 $date = date_create($list[0]->TGL_GENSET);
                 echo '
-                        <td>: ' . date_format($date, 'F') . '</td>
+                        <td>: ' . $getMonth[date_format($date, 'n')] . '</td>
                     ';
                 ?>
                 <td style="width: 10%;">Tahun</td>
