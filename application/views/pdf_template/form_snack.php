@@ -156,7 +156,7 @@
 				<td>
 					<?php
 					$date = date_create($list[0]->TGLOUT_SNACK);
-					echo date_format($date, 'd-m-Y');
+					echo date_format($date, 'd - m - Y');
 					?>
 				</td>
 			</tr>
