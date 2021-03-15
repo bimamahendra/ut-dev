@@ -33,7 +33,7 @@
         }
 
         .p-min {
-            padding: .5em .3em;
+            padding: .2em .2em;
         }
 
         .p-med {
@@ -65,7 +65,7 @@
         }
 
         .mb-min {
-            margin-bottom: 1.5em;
+            margin-bottom: .5em;
         }
 
         .border-collapse {
@@ -549,8 +549,6 @@
             </tr>
 
         </table>
-    </div>
-    <div class="wrapper-page">
         <table class="border-collapse mb-min text-regular-sm">
             <thead>
                 <tr>
