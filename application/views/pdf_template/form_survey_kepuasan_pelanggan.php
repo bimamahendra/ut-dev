@@ -225,6 +225,9 @@
                 <td>: General Affairs</td>
             </tr>
         </table>
+        <p class="text-align-center">
+            <strong>SURVEY KEPUASAN PELANGGAN</strong>
+        </p>
         <table class="border-collapse border-1 valign-middle mb-min table-layout-fixed w-100">
             <tr class="bg-soft-blue">
                 <td class="p-min border-1 text-align-center" width="5%" rowspan="2">No</td>
