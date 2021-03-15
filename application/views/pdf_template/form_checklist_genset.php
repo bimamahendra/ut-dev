@@ -18,9 +18,18 @@
             min-width: 100vw;
         }
 
+        .w-50 {
+            min-width: 50%;
+            max-width: 50%;
+        }
+
         .table-center {
             margin-right: auto;
             margin-left: auto;
+        }
+
+        .table-layout-fixed {
+            table-layout: fixed;
         }
 
         .p-min {
@@ -583,10 +592,10 @@
         <p class="text-align-center mb-min text-regular-sm">
             GENSET dalam keadaan <?= ($list[0]->COND_GENSET == '1' ? "<strong>SIAP</strong>" : "<strong>BELUM SIAP</strong>") ?> DIOPERASIKAN
         </p>
-        <table class="border-1 border-collapse absolute pos-right valign-middle" style="width: 400px;">
+        <table class="border-1 border-collapse absolute pos-right valign-middle table-layout-fixed" style="width: 400px;">
             <tr>
-                <th class="border-1 p-min">PIC Maintenance</th>
-                <th class="border-1 p-min">Section Head</th>
+                <th class="border-1 p-min w-50">PIC Maintenance</th>
+                <th class="border-1 p-min w-50">Section Head</th>
             </tr>
             <tr>
                 <td class="border-1 p-min text-align-center">
