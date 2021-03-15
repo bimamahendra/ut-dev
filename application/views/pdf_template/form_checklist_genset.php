@@ -262,7 +262,7 @@
                 <td class="border-1 p-min">: <?= $list[0]->HM_GENSET ?></td>
             </tr>
         </table>
-        <table class="border-1 valign-middle border-collapse text-regular-sm">
+        <table class="border-1 valign-middle border-collapse text-regular-sm mb-min">
             <tr>
                 <th class="border-1" colspan="3">DESCRIPTION</th>
                 <th class="border-1">*CONDITION</th>
