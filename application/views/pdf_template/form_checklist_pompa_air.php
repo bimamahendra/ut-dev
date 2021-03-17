@@ -168,7 +168,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 006 / PROS - MFP - MLK3 - 014</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -193,11 +193,16 @@
         <table class="mb-min">
             <tr>
                 <td><strong>Lokasi</strong></td>
-                <td>: ...</td>
+                <td>: <?= $list[0]->LOKASI_POMPA?></td>
             </tr>
             <tr>
                 <td><strong>Bulan/Tahun</strong></td>
-                <td>: .../...</td>
+                <?php
+                    $date = date_create($list[0]->TGL_POMPA);
+                    echo '
+                        <td>: '.$getMonth[date_format($date, 'n')].' / '.date_format($date, 'Y').'</td>
+                    ';
+                ?>
             </tr>
         </table>
         <table class="w-100 border-collapse border-1 mb-min">
@@ -208,91 +213,204 @@
                 <th class="border-1 p-min" colspan="4">Tanggal</th>
                 <th class="border-1 p-min" rowspan="2">Keterangan</th>
             </tr>
-            <tr>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+            <tr class="text-align-center">
+                <?php
+                    $date1 = date_create($list[0]->TGLCEK1_POMPA);
+                    $date2 = date_create($list[0]->TGLCEK2_POMPA);
+                    $date3 = date_create($list[0]->TGLCEK3_POMPA);
+                    $date4 = date_create($list[0]->TGLCEK4_POMPA);
+
+                    echo '
+                        <td class="border-1 p-min">'.date_format($date1, 'd/m/Y').'</td>
+                        <td class="border-1 p-min">'.date_format($date2, 'd/m/Y').'</td>
+                        <td class="border-1 p-min">'.date_format($date3, 'd/m/Y').'</td>
+                        <td class="border-1 p-min">'.date_format($date4, 'd/m/Y').'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">1</td>
-                <td class="border-1 p-min">Cek kondisi air dalam Reservoir</td>
-                <td class="border-1 p-min">Bak terisi penuh</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min">...</td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $kondAir = explode(';', $list[0]->KONDISIAIR_POMPA);
+
+                    $ket = '
+                        '.($kondAir[1] != ''? "- ".$kondAir[1].'<br>' : '').'
+                        '.($kondAir[3] != ''? "- ".$kondAir[3].'<br>' : '').'
+                        '.($kondAir[5] != ''? "- ".$kondAir[5].'<br>' : '').'
+                        '.($kondAir[7] != ''? "- ".$kondAir[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">1</td>
+                        <td class="border-1 p-min">Cek kondisi air dalam Reservoir</td>
+                        <td class="border-1 p-min">Bak terisi penuh</td>
+                        <td class="border-1 p-min text-align-center">'.($kondAir[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($kondAir[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($kondAir[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($kondAir[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">2</td>
-                <td class="border-1 p-min">Check air pancingan pompa</td>
-                <td class="border-1 p-min">Posisi 'ON'<br>menyembur</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $pancingan = explode(';', $list[0]->AIRPANCINGAN_POMPA);
+
+                    $ket = '
+                        '.($pancingan[1] != ''? "- ".$pancingan[1].'<br>' : '').'
+                        '.($pancingan[3] != ''? "- ".$pancingan[3].'<br>' : '').'
+                        '.($pancingan[5] != ''? "- ".$pancingan[5].'<br>' : '').'
+                        '.($pancingan[7] != ''? "- ".$pancingan[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">2</td>
+                        <td class="border-1 p-min">Check air pancingan pompa</td>
+                        <td class="border-1 p-min">Posisi "ON"<br>menyembur</td>
+                        <td class="border-1 p-min text-align-center">'.($pancingan[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($pancingan[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($pancingan[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($pancingan[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">3</td>
-                <td class="border-1 p-min">Check / lihat Indicator Lamp</td>
-                <td class="border-1 p-min">Indicator Lamp<br>'Off"</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $indikator = explode(';', $list[0]->INDIKATOR_POMPA);
+
+                    $ket = '
+                        '.($indikator[1] != ''? "- ".$indikator[1].'<br>' : '').'
+                        '.($indikator[3] != ''? "- ".$indikator[3].'<br>' : '').'
+                        '.($indikator[5] != ''? "- ".$indikator[5].'<br>' : '').'
+                        '.($indikator[7] != ''? "- ".$indikator[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">3</td>
+                        <td class="border-1 p-min">Check / lihat Indicator Lamp</td>
+                        <td class="border-1 p-min">Indicator Lamp<br>"Off"</td>
+                        <td class="border-1 p-min text-align-center">'.($indikator[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($indikator[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($indikator[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($indikator[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">4</td>
-                <td class="border-1 p-min">Cek / lihat tekanan udara dalam tangki</td>
-                <td class="border-1 p-min">Posisi pada<br>garis merah</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $tekanan = explode(';', $list[0]->TEKANANUDARA_POMPA);
+
+                    $ket = '
+                        '.($tekanan[1] != ''? "- ".$tekanan[1].'<br>' : '').'
+                        '.($tekanan[3] != ''? "- ".$tekanan[3].'<br>' : '').'
+                        '.($tekanan[5] != ''? "- ".$tekanan[5].'<br>' : '').'
+                        '.($tekanan[7] != ''? "- ".$tekanan[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">4</td>
+                        <td class="border-1 p-min">Cek / lihat tekanan udara dalam tangki</td>
+                        <td class="border-1 p-min">Posisi pada<br>garis merah</td>
+                        <td class="border-1 p-min text-align-center">'.($tekanan[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($tekanan[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($tekanan[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($tekanan[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">5</td>
-                <td class="border-1 p-min">Cek / lihat flow meter</td>
-                <td class="border-1 p-min">Catat angka</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $flow = explode(';', $list[0]->FLOWMETER_POMPA);
+
+                    $ket = '
+                        '.($flow[1] != ''? "- ".$flow[1].'<br>' : '').'
+                        '.($flow[3] != ''? "- ".$flow[3].'<br>' : '').'
+                        '.($flow[5] != ''? "- ".$flow[5].'<br>' : '').'
+                        '.($flow[7] != ''? "- ".$flow[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">5</td>
+                        <td class="border-1 p-min">Cek / lihat flow meter</td>
+                        <td class="border-1 p-min">Catat angka</td>
+                        <td class="border-1 p-min text-align-center">'.($flow[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($flow[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($flow[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($flow[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">6</td>
-                <td class="border-1 p-min">Cek Supply air dari PDAM dan air tanah</td>
-                <td class="border-1 p-min">Flow meter<br>memutar</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                    $supply = explode(';', $list[0]->SUPPLYAIR_POMPA);
+
+                    $ket = '
+                        '.($supply[1] != ''? "- ".$supply[1].'<br>' : '').'
+                        '.($supply[3] != ''? "- ".$supply[3].'<br>' : '').'
+                        '.($supply[5] != ''? "- ".$supply[5].'<br>' : '').'
+                        '.($supply[7] != ''? "- ".$supply[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">6</td>
+                        <td class="border-1 p-min">Cek Supply air dari PDAM dan air tanah</td>
+                        <td class="border-1 p-min">Flow meter<br>memutar</td>
+                        <td class="border-1 p-min text-align-center">'.($supply[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($supply[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($supply[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($supply[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">7</td>
-                <td class="border-1 p-min">Test secara manual supply air sumur</td>
-                <td class="border-1 p-min">Angkat<br>electroda</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min">Kembalikan ke posisi<br>semula</td>
+                <?php
+                    $manual = explode(';', $list[0]->MANUALSUPPLY_POMPA);
+
+                    $ket = '
+                        '.($manual[1] != ''? "- ".$manual[1].'<br>' : '').'
+                        '.($manual[3] != ''? "- ".$manual[3].'<br>' : '').'
+                        '.($manual[5] != ''? "- ".$manual[5].'<br>' : '').'
+                        '.($manual[7] != ''? "- ".$manual[7].'<br>' : '').'
+                    ';
+
+                    echo '
+                        <td class="border-1 p-min">7</td>
+                        <td class="border-1 p-min">Test secara manual supply air sumur</td>
+                        <td class="border-1 p-min">Angkat<br>electroda</td>
+                        <td class="border-1 p-min text-align-center">'.($manual[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($manual[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($manual[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($manual[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td class="border-1 p-min">8</td>
-                <td class="border-1 p-min">Cek fungsi panel</td>
-                <td class="border-1 p-min">Indikator lamp<br>posisi 'Off'</td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
-                <td class="border-1 p-min"></td>
+                <?php
+                   $fungsi = explode(';', $list[0]->FUNGSIPANEL_POMPA);
+
+                   $ket = '
+                       '.($fungsi[1] != ''? "- ".$fungsi[1].'<br>' : '').'
+                       '.($fungsi[3] != ''? "- ".$fungsi[3].'<br>' : '').'
+                       '.($fungsi[5] != ''? "- ".$fungsi[5].'<br>' : '').'
+                       '.($fungsi[7] != ''? "- ".$fungsi[7].'<br>' : '').'
+                   ';
+
+                    echo '
+                        <td class="border-1 p-min">8</td>
+                        <td class="border-1 p-min">Cek fungsi panel</td>
+                        <td class="border-1 p-min">Indikator lamp<br>posisi "Off"</td>
+                        <td class="border-1 p-min text-align-center">'.($fungsi[0] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($fungsi[2] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($fungsi[4] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min text-align-center">'.($fungsi[6] == '1'? '<input type="checkbox" checked>' : 'X').'</td>
+                        <td class="border-1 p-min">'.$ket.'</td>
+                    ';
+                ?>
             </tr>
         </table>
         <p class="text-align-left">
@@ -304,15 +422,35 @@
                 <th class="border-1 p-min">Dibuat</th>
                 <th class="border-1 p-min">Diperiksa</th>
             </tr>
-            <tr>
-                <td class="border-1 p-min">TTD Disini</td>
-                <td class="border-1 p-min">TTD Disini</td>
+            <tr class="text-align-center">
+                <td class="border-1 p-min">
+                    <img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
+                </td>
+                <td class="border-1 p-min">
+                    <?php
+                        if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                            echo '
+                                        <img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+                                    ';
+                        }
+					?>
+                </td>
             </tr>
-            <tr>
-                <td class="border-1 p-min">Nama</td>
-                <td class="border-1 p-min">Nama</td>
+            <tr class="text-align-center">
+                <td class="border-1 p-min"><?= $user->NAMA_USERS?></td>
+                <?php
+                    if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                        echo '
+                                    <td class="border-1 p-min">' . $approvals[0]->NAMA_USERS . '</td>
+                                ';
+                    } else {
+                        echo '
+                                    <td class="border-1 p-min"></td>
+                                ';
+                    }
+                ?>
             </tr>
-            <tr>
+            <tr class="text-align-center">
                 <td class="border-1 p-min">PIC Maintenance</td>
                 <td class="border-1 p-min">Section Head</td>
             </tr>
