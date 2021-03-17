@@ -189,7 +189,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 010/PROS-MFP-MLK3-014</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -208,21 +208,31 @@
                 <td class="text-regular-sm pl-min pb-min" style="width: 15%;">
                     <strong>Hal</strong>
                 </td>
-                <td class="text-regular-sm pb-min border-right">: ... Dari ...</td>
+                <td class="text-regular-sm pb-min border-right">:  Dari </td>
             </tr>
         </table>
         <table class="mb-min">
             <tr>
                 <td><strong>Tanggal</strong></td>
-                <td>: 15 Maret 2021</td>
+                <td>: 
+                <?php
+                    $date 		= date_create($list[0]->TGLOUT_KEPUASAN);
+                    
+                    $day 		= date_format($date, 'j'); 
+                    $month 		= $getMonth[date_format($date, 'n')];
+                    $year 		= date_format($date, 'Y');
+                    $fullDate 	= $day.' '.$month.' '.$year;
+                    echo $fullDate;
+                ?>
+                </td>
             </tr>
             <tr>
                 <td><strong>Nama Responden</strong></td>
-                <td>: Ilham</td>
+                <td>: <?= $list[0]->NAMARESP_KEPUASAN; ?></td>
             </tr>
             <tr>
                 <td><strong>Department / Div</strong></td>
-                <td>: General Affairs</td>
+                <td>: <?= $list[0]->DD_KEPUASAN; ?></td>
             </tr>
         </table>
         <p class="text-align-center">
@@ -245,73 +255,78 @@
                 <td class="p-min border-1 text-align-center" width="8%">2</td>
                 <td class="p-min border-1 text-align-center" width="8%">1</td>
             </tr>
+                <?php
+					$status = explode(';', $list[0]->DETAIL_KEPUASAN);
+                    $stp = 0; $tp = 0; $cp = 0; $p = 0; $sp = 0;
+				?>
             <tr>
                 <td class="p-min border-1 text-align-center">1</td>
                 <td class="p-min border-1 text-align-left pl-med">Penyelesaian Claim, Team Maintenance mengutamakan Qualitas &amp; performance</td>
-                <td class="p-min border-1 text-align-center">V</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[0] == '5'){echo'V'; $sp=$sp+5;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[0] == '4'){echo'V'; $p=$p+4;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[0] == '3'){echo'V'; $cp=$cp+3;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[0] == '2'){echo'V'; $tp=$tp+2;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[0] == '1'){echo'V'; $stp=$stp+1;}?></td>
             </tr>
             <tr>
                 <td class="p-min border-1 text-align-center">2</td>
                 <td class="p-min border-1 text-align-left pl-med">Penyelesaian Claim, Team Maintenance melakukan secara profesional.</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center">V</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[1] == '5'){echo'V'; $sp=$sp+5;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[1] == '4'){echo'V'; $p=$p+4;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[1] == '3'){echo'V'; $cp=$cp+3;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[1] == '2'){echo'V'; $tp=$tp+2;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[1] == '1'){echo'V'; $stp=$stp+1;}?></td>
             </tr>
             <tr>
                 <td class="p-min border-1 text-align-center">3</td>
                 <td class="p-min border-1 text-align-left pl-med">Team Maintenance menyelesaikan permintaan dengan cepat.</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center">V</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[2] == '5'){echo'V'; $sp=$sp+5;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[2] == '4'){echo'V'; $p=$p+4;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[2] == '3'){echo'V'; $cp=$cp+3;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[2] == '2'){echo'V'; $tp=$tp+2;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[2] == '1'){echo'V'; $stp=$stp+1;}?></td>
             </tr>
             <tr>
                 <td class="p-min border-1 text-align-center">4</td>
                 <td class="p-min border-1 text-align-left pl-med">Penyelesaian Claim dilakukan dengan memperhatikan Aspek LK3</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center">V</td>
-                <td class="p-min border-1 text-align-center"></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[3] == '5'){echo'V'; $sp=$sp+5;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[3] == '4'){echo'V'; $p=$p+4;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[3] == '3'){echo'V'; $cp=$cp+3;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[3] == '2'){echo'V'; $tp=$tp+2;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[3] == '1'){echo'V'; $stp=$stp+1;}?></td>
             </tr>
             <tr>
                 <td class="p-min border-1 text-align-center">5</td>
                 <td class="p-min border-1 text-align-left pl-med">Dalam melakukan Service / Perbaikan, sudah didukung dengan sikap yang baik.</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center">V</td>
+                <td class="p-min border-1 text-align-center"><?php if($status[4] == '5'){echo'V'; $sp=$sp+5;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[4] == '4'){echo'V'; $p=$p+4;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[4] == '3'){echo'V'; $cp=$cp+3;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[4] == '2'){echo'V'; $tp=$tp+2;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[4] == '1'){echo'V'; $stp=$stp+1;}?></td>
             </tr>
             <tr>
                 <td class="p-min border-1 text-align-center">6</td>
                 <td class="p-min border-1 text-align-left pl-med">Support Team Maintenance untuk kelancaran bagi Pelanggan / User.</td>
-                <td class="p-min border-1 text-align-center">V</td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
-                <td class="p-min border-1 text-align-center"></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[5] == '5'){echo'V'; $sp=$sp+5;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[5] == '4'){echo'V'; $p=$p+4;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[5] == '3'){echo'V'; $cp=$cp+3;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[5] == '2'){echo'V'; $tp=$tp+2;}?></td>
+                <td class="p-min border-1 text-align-center"><?php if($status[5] == '1'){echo'V'; $stp=$stp+1;}?></td>
             </tr>
             <tr class="bg-grey">
                 <td class="p-min border-1 text-align-center" colspan="2">Total Nilai</td>
-                <td class="p-min border-1 text-align-center">10</td>
-                <td class="p-min border-1 text-align-center">4</td>
-                <td class="p-min border-1 text-align-center">3</td>
-                <td class="p-min border-1 text-align-center">2</td>
-                <td class="p-min border-1 text-align-center">1</td>
+                <td class="p-min border-1 text-align-center"><?= $sp ?></td>
+                <td class="p-min border-1 text-align-center"><?= $p ?></td>
+                <td class="p-min border-1 text-align-center"><?= $cp ?></td>
+                <td class="p-min border-1 text-align-center"><?= $tp ?></td>
+                <td class="p-min border-1 text-align-center"><?= $stp ?></td>
             </tr>
         </table>
         <table class="border-1 border-collapse absolute pos-left table-layout-fixed text-regular-sm" style="width: 300px;">
             <tr>
                 <td class="p-min border-1">Jumlah Responden :</td>
-                <td class="p-min border-1">12</td>
+                <?php $totalnilai = ($sp+$p+$cp+$tp+$stp) / 5 ?>
+                <td class="p-min border-1"><?= $totalnilai ?></td>
             </tr>
             <tr>
                 <td class="p-min border-1 bg-grey" colspan="2"></td>
@@ -340,10 +355,10 @@
                 <td class="text-align-center border-1">Responden</td>
             </tr>
             <tr>
-                <td class="text-align-center border-1"><img src="https://via.placeholder.com/100" alt=""></td>
+                <td class="text-align-center border-1"><img src="<?= $user->PATH_TTD?>" width="100px" height="100px" /></td>
             </tr>
             <tr>
-                <td class="text-align-center border-1">Nama Terang</td>
+                <td class="text-align-center border-1"><?= $user->NAMA_USERS?></td>
             </tr>
         </table>
     </div>
