@@ -193,7 +193,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 011/PROS-MFP-MLK3-013</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -221,11 +221,16 @@
         <table class="mb-min w-100">
             <tr>
                 <td width="15%"><strong>Ruang Meeting</strong></td>
-                <td>: Ruang Meeting 1</td>
+                <td>: <?= $list[0]->RUANG_MEETING; ?></td>
             </tr>
             <tr>
                 <td><strong>Month</strong></td>
-                <td>: November</td>
+                <td>: 
+                <?php
+                    $date 		= date_create($list[0]->TGL_MEETING);
+                    echo $getMonth[date_format($date, 'n')];                    
+                ?>
+                </td>
             </tr>
         </table>
         <table class="border-1 border-collapse valign-middle text-align-center w-100 table-layout-fixed mb-min">
@@ -240,60 +245,61 @@
                 <td class="border-1 p-min">Inspected By</td>
                 <td class="border-1 p-min">Signature</td>
             </tr>
+            <?php 
+                $date = date_create($list[0]->TGLCEK1_MEETING);
+                $date2 = date_create($list[0]->TGLCEK2_MEETING);
+                $date3 = date_create($list[0]->TGLCEK3_MEETING);
+                $date4 = date_create($list[0]->TGLCEK4_MEETING);
+
+                $viewer = explode(';', $list[0]->VIEWER_MEETING);
+                $board  = explode(';', $list[0]->BOARD_MEETING);
+                $lcd    = explode(';', $list[0]->LCD_MEETING);
+                $screen = explode(';', $list[0]->SCREEN_MEETING);
+                $spidol = explode(';', $list[0]->SPIDOL_MEETING);
+            ?>
             <tr>
-                <td class="border-1 p-min">15 - 11 - 2021</td>
-                <td class="border-1 p-min">15:07</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">B</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">Ilham</td>
-                <td class="border-1 p-min"><img src="https://via.placeholder.com/50" alt="Image" width="50" height="50"></td>
+                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= ($viewer[0] == '1' ? 'A' : ($viewer[0] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($board[0] == '1' ? 'A' : ($board[0] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($lcd[0] == '1' ? 'A' : ($lcd[0] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($screen[0] == '1' ? 'A' : ($screen[0] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($spidol[0] == '1' ? 'A' : ($spidol[0] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= $user->NAMA_USERS ?></td>
+                <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
             <tr>
-                <td class="border-1 p-min">15 - 11 - 2021</td>
-                <td class="border-1 p-min">15:07</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">B</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">Ilham</td>
-                <td class="border-1 p-min"><img src="https://via.placeholder.com/50" alt="Image" width="50" height="50"></td>
+                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= ($viewer[1] == '1' ? 'A' : ($viewer[1] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($board[1] == '1' ? 'A' : ($board[1] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($lcd[1] == '1' ? 'A' : ($lcd[1] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($screen[1] == '1' ? 'A' : ($screen[1] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($spidol[1] == '1' ? 'A' : ($spidol[1] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= $user->NAMA_USERS ?></td>
+                <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
             <tr>
-                <td class="border-1 p-min">15 - 11 - 2021</td>
-                <td class="border-1 p-min">15:07</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">B</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">Ilham</td>
-                <td class="border-1 p-min"><img src="https://via.placeholder.com/50" alt="Image" width="50" height="50"></td>
+                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= ($viewer[2] == '1' ? 'A' : ($viewer[2] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($board[2] == '1' ? 'A' : ($board[2] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($lcd[2] == '1' ? 'A' : ($lcd[2] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($screen[2] == '1' ? 'A' : ($screen[2] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($spidol[2] == '1' ? 'A' : ($spidol[2] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= $user->NAMA_USERS ?></td>
+                <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
             <tr>
-                <td class="border-1 p-min">15 - 11 - 2021</td>
-                <td class="border-1 p-min">15:07</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">B</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">Ilham</td>
-                <td class="border-1 p-min"><img src="https://via.placeholder.com/50" alt="Image" width="50" height="50"></td>
-            </tr>
-            <tr>
-                <td class="border-1 p-min">15 - 11 - 2021</td>
-                <td class="border-1 p-min">15:07</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">B</td>
-                <td class="border-1 p-min">A</td>
-                <td class="border-1 p-min">T</td>
-                <td class="border-1 p-min">Ilham</td>
-                <td class="border-1 p-min"><img src="https://via.placeholder.com/50" alt="Image" width="50" height="50"></td>
+                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= ($viewer[3] == '1' ? 'A' : ($viewer[3] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($board[3] == '1' ? 'A' : ($board[3] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($lcd[3] == '1' ? 'A' : ($lcd[3] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($screen[3] == '1' ? 'A' : ($screen[3] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= ($spidol[3] == '1' ? 'A' : ($spidol[3] == '2' ? 'T' : 'B'));?></td>
+                <td class="border-1 p-min"><?= $user->NAMA_USERS ?></td>
+                <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
         </table>
         <p>
