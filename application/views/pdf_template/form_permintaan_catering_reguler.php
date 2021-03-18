@@ -209,7 +209,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 013/PROS-MFP-MLK-013</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -246,26 +246,21 @@
                 <th class="border-1 p-med" width="35%">Tanggal</th>
                 <th class="border-1 p-med">Jumlah Orang</th>
             </tr>
-            <tr>
-                <td class="border-1 p-med">1</td>
-                <td class="border-1 p-med">18 Maret 2021</td>
-                <td class="border-1 p-med">12 Orang</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-med">2</td>
-                <td class="border-1 p-med">19 Maret 2021</td>
-                <td class="border-1 p-med">15 Orang</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-med">3</td>
-                <td class="border-1 p-med">20 Maret 2021</td>
-                <td class="border-1 p-med">25 Orang</td>
-            </tr>
-            <tr>
-                <td class="border-1 p-med">4</td>
-                <td class="border-1 p-med">21 Maret 2021</td>
-                <td class="border-1 p-med">89 Orang</td>
-            </tr>
+            <?php
+                $no = 1;
+                foreach ($list as $item) {
+                    $date = date_create($item->TGL_REGULER);
+                    $date = date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
+                    echo '
+                        <tr>
+                            <td class="border-1 p-med">'.$no.'</td>
+                            <td class="border-1 p-med">'.$date.'</td>
+                            <td class="border-1 p-med">'.$item->JML_ORANG.' Orang</td>
+                        </tr>
+                    ';
+                    $no++;
+                }
+            ?>
         </table>
         <table class="border-1 border-collapse absolute pos-right table-layout-fixed" style="width: 600px;">
             <tr>
@@ -274,14 +269,49 @@
                 <th class="text-align-center border-1" width="33.33%">Dept Head</th>
             </tr>
             <tr>
-                <td class="text-align-center border-1 p-min"><img src="https://via.placeholder.com/100" alt=""></td>
-                <td class="text-align-center border-1 p-min"><img src="https://via.placeholder.com/100" alt=""></td>
-                <td class="text-align-center border-1 p-min"><img src="https://via.placeholder.com/100" alt=""></td>
+                <td class="text-align-center border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" /></td>
+                <td class="text-align-center border-1 p-min">
+                    <?php
+                        if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                            echo '
+                                        <img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+                                    ';
+                        }
+					?>
+                </td>
+                <td class="text-align-center border-1 p-min">
+                    <?php
+                        if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+                            echo '
+                                        <img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+                                    ';
+                        }
+					?>
+                </td>
             </tr>
             <tr>
-                <td class="text-align-center border-1">( Nama Terang )</td>
-                <td class="text-align-center border-1">( Nama Terang )</td>
-                <td class="text-align-center border-1">( Nama Terang )</td>
+                <td class="text-align-center border-1">( <?= $user->NAMA_USERS?> )</td>
+                <?php
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+                            <td class="text-align-center border-1">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+                        ';
+					} else {
+						echo '
+                            <td class="text-align-center border-1"></td>
+                        ';
+					}
+
+					if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+						echo '
+                            <td class="text-align-center border-1">( ' . $approvals[1]->NAMA_USERS . ' )</td>
+                        ';
+					} else {
+						echo '
+                            <td class="text-align-center border-1"></td>
+                        ';
+					}
+				?>
             </tr>
         </table>
         <p style="margin-top: 180px;">
