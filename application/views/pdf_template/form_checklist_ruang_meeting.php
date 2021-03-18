@@ -269,8 +269,8 @@
                 <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
             <tr>
-                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
-                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date2, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date2, 'H:i'); ?></td>
                 <td class="border-1 p-min"><?= ($viewer[1] == '1' ? 'A' : ($viewer[1] == '2' ? 'T' : 'B'));?></td>
                 <td class="border-1 p-min"><?= ($board[1] == '1' ? 'A' : ($board[1] == '2' ? 'T' : 'B'));?></td>
                 <td class="border-1 p-min"><?= ($lcd[1] == '1' ? 'A' : ($lcd[1] == '2' ? 'T' : 'B'));?></td>
@@ -280,8 +280,8 @@
                 <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
             <tr>
-                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
-                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date3, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date3, 'H:i'); ?></td>
                 <td class="border-1 p-min"><?= ($viewer[2] == '1' ? 'A' : ($viewer[2] == '2' ? 'T' : 'B'));?></td>
                 <td class="border-1 p-min"><?= ($board[2] == '1' ? 'A' : ($board[2] == '2' ? 'T' : 'B'));?></td>
                 <td class="border-1 p-min"><?= ($lcd[2] == '1' ? 'A' : ($lcd[2] == '2' ? 'T' : 'B'));?></td>
@@ -291,8 +291,8 @@
                 <td class="border-1 p-min"><img src="<?= $user->PATH_TTD ?>" width="50" height="50"></td>
             </tr>
             <tr>
-                <td class="border-1 p-min"><?= date_format($date, 'd - m - Y'); ?></td>
-                <td class="border-1 p-min"><?= date_format($date, 'H:i'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date4, 'd - m - Y'); ?></td>
+                <td class="border-1 p-min"><?= date_format($date4, 'H:i'); ?></td>
                 <td class="border-1 p-min"><?= ($viewer[3] == '1' ? 'A' : ($viewer[3] == '2' ? 'T' : 'B'));?></td>
                 <td class="border-1 p-min"><?= ($board[3] == '1' ? 'A' : ($board[3] == '2' ? 'T' : 'B'));?></td>
                 <td class="border-1 p-min"><?= ($lcd[3] == '1' ? 'A' : ($lcd[3] == '2' ? 'T' : 'B'));?></td>
