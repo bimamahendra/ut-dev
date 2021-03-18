@@ -231,15 +231,15 @@
 				<td>( <?= $list[0]->NAMA_USERS ?> )</td>
 				<td style="width:20%">&nbsp;</td>
 				<?php
-				if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
-					echo '
-									<td>( ' . $approvals[0]->NAMA_USERS . ' )</td>
-								';
-				} else {
-					echo '
-									<td>(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</td>
-								';
-				}
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+							<td>( ' . $approvals[0]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td>(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</td>
+						';
+					}
 				?>
 			</tr>
 		</table>
