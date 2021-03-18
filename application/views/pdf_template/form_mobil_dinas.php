@@ -443,7 +443,7 @@
 	</div>
 	<div class="wrapper-page">
 		<!-- Attach SIM disini -->
-		<img src="<?= $list[0]->ATTACHMENT_MOBDIN?>" alt="">
+		<img src="<?= $list[0]->ATTACHMENT_MOBDIN?>" width="800px" alt="">
 	</div>
 </body>
 
