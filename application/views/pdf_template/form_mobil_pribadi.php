@@ -379,7 +379,7 @@
 	</div>
 	<div class="wrapper-page">
 		<!-- Attach SIM disini -->
-		<img src="<?= $list[0]->ATTACHMENT_MOBPRI?>" alt="">
+		<img src="<?= $list[0]->ATTACHMENT_MOBPRI?>" width="800px" alt="">
 	</div>
 </body>
 
