@@ -228,7 +228,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>( <?= $list[0]->NAMA_USERS ?> )</td>
+				<td>( <?= $user->NAMA_USERS ?> )</td>
 				<td style="width:20%">&nbsp;</td>
 				<?php
 					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
