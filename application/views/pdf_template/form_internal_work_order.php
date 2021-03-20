@@ -210,7 +210,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : Form 017-PROS-MFP-MLK3-014</td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -232,18 +232,33 @@
 			<thead>
 				<tr>
 					<th class="tg-5rbv" style="text-align:left; width:10%">Trouble Ticket</th>
-					<th class="tg-5rbv" style="text-align:left;width:35%">:</th>
-					<th class="tg-5rbv" style="text-align:left; width:10%" rowspan="2">Tanggal & Waktu</th>
-					<th class="tg-5rbv" style="text-align:left; width:10%">Mulai</th>
-					<th class="tg-5rbv" style="text-align:left; width:35%">:</th>
+					<th class="tg-5rbv" style="text-align:left;width:35%">: <?= $list[0]->TT_IWO?></th>
+					<?php
+						$date = date_create($list[0]->MULAI_IWO);
+						$fullDate 	= date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').' '.date_format($date, 'H:i');
+						echo '
+							<th class="tg-5rbv" style="text-align:left; width:10%" rowspan="2">Tanggal & Waktu</th>
+							<th class="tg-5rbv" style="text-align:left; width:10%">Mulai</th>
+							<th class="tg-5rbv" style="text-align:left; width:35%">: '.$fullDate.'</th>
+						';
+					?>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="tg-5rbv" style="text-align:left;">Tanggal</td>
-					<td class="tg-5rbv" style="text-align:left;">:</td>
-					<td class="tg-5rbv" style="text-align:left;">Selesai</td>
-                    <td class="tg-5rbv" style="text-align:left;">:</td>
+					<?php
+						$date1 		= date_create($list[0]->TGL_IWO);
+						$fullDate1 	= date_format($date1, 'j').' '.$getMonth[date_format($date1, 'n')].' '.date_format($date1, 'Y');
+						$date2 		= date_create($list[0]->SELESAI_IWO);
+						$fullDate2 	= date_format($date2, 'j').' '.$getMonth[date_format($date2, 'n')].' '.date_format($date2, 'Y').' '.date_format($date2, 'H:i');
+
+						echo '
+							<td class="tg-5rbv" style="text-align:left;">Tanggal</td>
+							<td class="tg-5rbv" style="text-align:left;">: '.$fullDate1.'</td>
+							<td class="tg-5rbv" style="text-align:left;">Selesai</td>
+							<td class="tg-5rbv" style="text-align:left;">: '.$fullDate2.'</td>
+						';
+					?>
 				</tr>
 			</tbody>
 		</table>
@@ -260,19 +275,19 @@
 			<tbody>
 				<tr>
 					<td class="tg-5r9a" style="text-align:left; width:11%;">1. Nama</td>
-					<td class="tg-5r9a" style="text-align:left; width:30%;">:</td>
+					<td class="tg-5r9a" style="text-align:left; width:30%;">: <?= $list[0]->NAMA_PEMOHON?></td>
 					<td class="tg-5r9a" style="text-align:left; width:20%;">1. Nama</td>
-                    <td class="tg-5r9a" style="text-align:left; width:30%;">:</td>
+                    <td class="tg-5r9a" style="text-align:left; width:30%;">: <?= $list[0]->NAMA_PENERIMA?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:left;">2. Divisi</td>
-					<td class="tg-5r9a" style="text-align:left;">:</td>
+					<td class="tg-5r9a" style="text-align:left;">: <?= $list[0]->DIVISI_PEMOHON?></td>
 					<td class="tg-5r9a" style="text-align:left;">2. Tanda Tangan</td>
                     <td class="tg-5r9a" style="text-align:left;">:</td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:left;">3. Ekst</td>
-					<td class="tg-5r9a" style="text-align:left;">:</td>
+					<td class="tg-5r9a" style="text-align:left;">: <?= $list[0]->EKST_PEMOHON?></td>
 					<td class="tg-5r9a" style="text-align:left;"></td>
                     <td class="tg-5r9a" style="text-align:left;">:</td>
 				</tr>
@@ -287,25 +302,30 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="tg-5r9a" style="text-align:left; width:49%;">
-                        <input type="checkbox" id="checkbox_status1">
-						<label for="checkbox_status1">Penggantian Baru</label>
-                    </td>
-					<td class="tg-5r9a" style="text-align:left; width:60%;" rowspan="3">Keterangan : ...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:left; width:49%;">
-                        <input type="checkbox" id="checkbox_status1">
-						<label for="checkbox_status1">Penggantian Sebagian</label>
-                    </td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:left; width:49%;">
-                        <input type="checkbox" id="checkbox_status1">
-						<label for="checkbox_status1">Perbaikan / Modifikasi</label>
-                    </td>
-				</tr>
+				<?php
+					$jenPerbaikan = explode(';', $list[0]->JENIS_PERBAIKAN);
+					echo '
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width:49%;">
+								<input type="checkbox" id="checkbox_status1" '.($jenPerbaikan[0] == '1'? 'checked' : '').'>
+								<label for="checkbox_status1">Penggantian Baru</label>
+							</td>
+							<td class="tg-5r9a" style="text-align:left; width:60%;" rowspan="3">Keterangan : '.$list[0]->KET_PERBAIKAN.'</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width:49%;">
+								<input type="checkbox" id="checkbox_status1" '.($jenPerbaikan[1] == '1'? 'checked' : '').'>
+								<label for="checkbox_status1">Penggantian Sebagian</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width:49%;">
+								<input type="checkbox" id="checkbox_status1" '.($jenPerbaikan[2] == '1'? 'checked' : '').'>
+								<label for="checkbox_status1">Perbaikan / Modifikasi</label>
+							</td>
+						</tr>
+					';
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -318,7 +338,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td class="tg-5r9a" style="text-align:left;">...</td>
+					<td class="tg-5r9a" style="text-align:left;"><?= $list[0]->ALASAN_PERBAIKAN?></td>
 				</tr>
 			</tbody>
 		</table>
@@ -337,30 +357,20 @@
                     <td class="tg-5r9a" style="text-align:center; width: 15%;">Qty</td>
                     <td class="tg-5r9a" style="text-align:center; width: 15%;">MUS No</td>
                 </tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-                    <td class="tg-5r9a" style="text-align:left;">...</td>
-				</tr>
+				<?php
+					$no = 1;
+					foreach ($list as $item) {
+						echo '
+							<tr>
+								<td class="tg-5r9a" style="text-align:center;">'.$no.'</td>
+								<td class="tg-5r9a" style="text-align:left;">'.$item->BARANG_IWO.'</td>
+								<td class="tg-5r9a" style="text-align:left;">'.$item->QTY_IWO.'</td>
+								<td class="tg-5r9a" style="text-align:left;">'.$item->MUS_IWO.'</td>
+							</tr>
+						';
+						$no++;
+					}
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -373,10 +383,16 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
@@ -384,8 +400,18 @@
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+				<?php
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+							<td class="thd-td2">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td class="thd-td2">(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>
