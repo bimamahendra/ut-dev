@@ -60,7 +60,7 @@ class FormMobpri extends RestController {
                 $file = $this->upload_image($user[0]->USER_USERS);
                 $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_MOBPRI', ['ATTACHMENT_MOBPRI' => $file]);
 
-                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
+                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau transaksi mobil pribadi tidak ditemukan'], 200);

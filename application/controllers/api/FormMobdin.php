@@ -70,8 +70,8 @@ class FormMobdin extends RestController {
             if($user != null && $mobdin != null){
                 $file = $this->upload_image($user[0]->USER_USERS);
                 $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_MOBDIN', ['ATTACHMENT_MOBDIN' => $file]);
-                
-                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
+
+                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau transaksi mobil dinas tidak ditemukan'], 200);
