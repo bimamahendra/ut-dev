@@ -208,7 +208,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : FORM 014-PROS-MFP-MLK3-013</td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -225,7 +225,7 @@
 		</table>
 	</div>
 	<div style="text-align:center">
-		<h5>FORM ORDER CATERING</h5>
+		<h5><?= $title_pdf?></h5>
 	</div>
 	<div>
 		<table class="tg" width="100%" style="border-color: black;">
@@ -238,66 +238,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
+				<?php
+					$no = 1;
+					foreach ($list as $item) {
+						$date = date_create($item->TGL_ORDER);
+						echo '
+							<tr>
+								<td class="tg-5r9a" style="text-align:center">'.$no.'</td>
+								<td class="tg-5r9a">'.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
+								<td class="tg-5r9a">'.$item->DD_ORDER.'</td>
+								<td class="tg-5r9a">'.$item->JML_ORDER.'</td>
+							</tr>
+						';
+						$no++;
+					}
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -338,10 +293,16 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
@@ -349,8 +310,18 @@
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+				<?php
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+							<td class="thd-td2">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td class="thd-td2">(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>
