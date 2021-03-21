@@ -214,7 +214,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : FORM 018/PROS-MFP-MLK3-014</td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -233,10 +233,10 @@
     <br>
     <br>
 	<div style="text-align:center">
-		<h5>EVALUASI PEKERJAAN VENDOR MAINTENANCE</h5>
+		<h5><?= $title_pdf?></h5>
 	</div>
     <div style="text-align:center">
-		<h6>Periode : ...</h6>
+		<h6>Periode : <?= $list[0]->PERIODE?></h6>
 	</div>
     <br>
     <br>
@@ -247,25 +247,30 @@
 					<td class="tg-5rbv" style="text-align:left; width: 5%"><b>1</b></td>
 					<td class="tg-5rbv" style="text-align:left; width: 35%"><b>Nama Vendor</td>
 					<td class="tg-5rbv" style="text-align:center; width: 5%"><b>:</td>
-                    <td class="tg-5r9a">...</td>
+                    <td class="tg-5r9a"><?= $list[0]->NAMA_VENDOR?></td>
 				</tr>
 				<tr>
                     <td class="tg-5rbv" style="text-align:left; width: 5%"><b>2</b></td>
 					<td class="tg-5rbv" style="text-align:left; width: 30%"><b>Nama Pekerjaan</td>
 					<td class="tg-5rbv" style="text-align:center; width: 5%"><b>:</td>
-                    <td class="tg-5r9a">...</td>
+                    <td class="tg-5r9a"><?= $list[0]->NAMA_PEKERJAAN?></td>
 				</tr>
                 <tr>
                     <td class="tg-5rbv" style="text-align:left; width: 5%"><b>3</b></td>
 					<td class="tg-5rbv" style="text-align:left; width: 30%"><b>SPK No</td>
 					<td class="tg-5rbv" style="text-align:center; width: 5%"><b>:</td>
-                    <td class="tg-5r9a">...</td>
+                    <td class="tg-5r9a"><?= $list[0]->SPK_EVALUASI?></td>
 				</tr>
                 <tr>
-                    <td class="tg-5rbv" style="text-align:left; width: 5%"><b>4</b></td>
-					<td class="tg-5rbv" style="text-align:left; width: 30%"><b>Tanggal SPK</td>
-					<td class="tg-5rbv" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
+					<?php
+						$date = date_create($list[0]->TGL_SPK);
+						echo '
+							<td class="tg-5rbv" style="text-align:left; width: 5%"><b>4</b></td>
+							<td class="tg-5rbv" style="text-align:left; width: 30%"><b>Tanggal SPK</td>
+							<td class="tg-5rbv" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
+						';
+					?>
 				</tr>
                 <tr>
                     <td class="tg-5rbv" style="text-align:left; width: 5%"><b>5</b></td>
@@ -277,13 +282,13 @@
                     <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
 					<td class="tg-5r9a" style="text-align:right; width: 30%">Trouble Ticket No</td>
 					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
+                    <td class="tg-5r9a"><?= $list[0]->TT_EVALUASI?></td>
 				</tr>
                 <tr>
                     <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
 					<td class="tg-5r9a" style="text-align:right; width: 30%">WO External No</td>
 					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
+                    <td class="tg-5r9a"><?= $list[0]->EWO_EVALUASI?></td>
 				</tr>
                 <tr>
                     <td class="tg-5rbv" style="text-align:left; width: 5%"><b>6</b></td>
@@ -295,42 +300,48 @@
                     <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
 					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:108px;" colspan="3"><i>Nilai antara 1 - 3 (1= Tidak Puas, 2 = cukup, 3 = Puas)</i></td>
 				</tr>
-                <tr>
-                    <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
-					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.1 Mutu</td>
-					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
-				</tr>
-                <tr>
-                    <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
-					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.2 Harga</td>
-					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
-				</tr>
-                <tr>
-                    <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
-					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.3 Delivery</td>
-					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
-				</tr>
-                <tr>
-                    <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
-					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.4 Safety</td>
-					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
-				</tr>
-                <tr>
-                    <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
-					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.5 Pelayanan</td>
-					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
-				</tr>
-                <tr>
-                    <td class="tg-5r9a" style="text-align:left; width: 5%"></td>
-					<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:110px;">Total Nilai</td>
-					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-                    <td class="tg-5r9a">...</td>
-				</tr>
+				<?php
+					$hasilPenilaian = explode(';', $list[0]->HASIL_PENILAIAN);
+					$total			= (int)$hasilPenilaian[0] + (int)$hasilPenilaian[1] + (int)$hasilPenilaian[2] + (int)$hasilPenilaian[3] + (int)$hasilPenilaian[4];
+					echo '
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
+							<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.1 Mutu</td>
+							<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.$hasilPenilaian[0].'</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
+							<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.2 Harga</td>
+							<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.$hasilPenilaian[1].'</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
+							<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.3 Delivery</td>
+							<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.$hasilPenilaian[2].'</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
+							<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.4 Safety</td>
+							<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.$hasilPenilaian[3].'</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
+							<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:90px;">6.5 Pelayanan</td>
+							<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.$hasilPenilaian[4].'</td>
+						</tr>
+						<tr>
+							<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
+							<td class="tg-5r9a" style="text-align:left; width: 30%; padding-left:110px;">Total Nilai</td>
+							<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
+							<td class="tg-5r9a">'.$total.'</td>
+						</tr>
+					';
+				?>
                 <tr>
                     <td class="tg-5rbv" style="text-align:left; width: 5%"><b>7</b></td>
 					<td class="tg-5rbv" style="text-align:left; width: 30%"><b>Kriteria Hasil Penilaian (dari total nilai)</b></td>
@@ -359,7 +370,7 @@
                     <td class="tg-5rbv" style="text-align:left; width: 5%"><b>8</b></td>
 					<td class="tg-5rbv" style="text-align:left; width: 30%"><b>Kesimpulan</b></td>
 					<td class="tg-5rbv" style="text-align:center; width: 5%"><b>:</b></td>
-                    <td class="tg-5r9a">...</td>
+                    <td class="tg-5r9a"><?= $list[0]->KESIMPULAN?></td>
 				</tr>
 			</tbody>
 		</table>
@@ -370,9 +381,14 @@
     <br>
 	<div>
 		<table class="thd">
-			<tr>
-                <td class="thd-tha" style="text-align:right;" colspan="3">Jakarta, (...tanggal...)</td>
-            </tr>
+			<?php
+				$date = date_create($list[0]->TGLOUT_EVALUASI);
+				echo '
+					<tr>
+						<td class="thd-tha" style="text-align:right;" colspan="3">Jakarta, '.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
+					</tr>
+				';
+			?>
             <tr>
 				<td class="thd-tha">Diketahui Oleh : </td>
 				<td class="thd-tha" style="width: 40%;"></td>
@@ -380,23 +396,39 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
-				<td class="thd-tha"><b>PIC Maintenance</b></td>
-				<td class="thd-tha"><b></b></td>
 				<td class="thd-tha"><b>Section Head</b></td>
+				<td class="thd-tha"><b></b></td>
+				<td class="thd-tha"><b>Department Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
 				<td class="thd-td2"></td>
-				<td>(................................................)</td>
+				<?php
+					if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+							<td>( ' . $approvals[0]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+				?>
 			</tr>
 		</table>
 	</div>

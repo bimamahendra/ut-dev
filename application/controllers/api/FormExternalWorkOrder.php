@@ -49,6 +49,8 @@ class FormExternalWorkOrder extends RestController {
                 for($i = 1; $i <= 15; $i++){
                     if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){
                         $this->db->insert('DETAIL_APPROVAL', ['ID_TRANS' => $idTrans, 'ROLE_APP' => $flow[0]['APP_'.$i]]);
+                    }else if($flow[0]['APP_1'] == null){
+                        $this->db->where('ID_TRANS', $idTrans)->update('TRANSACTION', ['STAT_TRANS' => '2']);
                     }
                 }
                 
