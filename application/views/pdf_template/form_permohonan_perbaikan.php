@@ -268,10 +268,10 @@
 	<div>
 		<table class="thd">
 			<tr>
-				<th style="padding-left: 8px;" class="thd-tha" style="border-bottom: none; text-align: left;"><b>JENIS PERBAIKAN :</b></th>
+				<th class="thd-tha" style="border-bottom: none; text-align: left;"><b>&nbsp;JENIS PERBAIKAN :</b></th>
 			</tr>
 			<tr>
-				<td style="padding-left: 8px;" class="thd-td2" style="text-align: left;"><?= $list[0]->JENIS_PERBAIKAN ?></td>
+				<td class="thd-td2" style="text-align: left;">&nbsp;<?= $list[0]->JENIS_PERBAIKAN ?></td>
 			</tr>
 		</table>
 	</div>
@@ -279,10 +279,10 @@
 	<div>
 		<table class="thd">
 			<tr>
-				<th style="padding-left: 8px;" class="thd-tha" style="border-bottom: none; text-align: left;"><b>ALASAN PERBAIKAN :</b></th>
+				<th class="thd-tha" style="border-bottom: none; text-align: left;"><b>&nbsp;ALASAN PERBAIKAN :</b></th>
 			</tr>
 			<tr>
-				<td style="padding-left: 8px;" class="thd-td2" style="text-align: left;"><?= $list[0]->ALASAN_PERBAIKAN ?></td>
+				<td class="thd-td2" style="text-align: left;">&nbsp;<?= $list[0]->ALASAN_PERBAIKAN ?></td>
 			</tr>
 		</table>
 	</div>
@@ -293,10 +293,10 @@
 				<th class="thd-tha" style="padding: 8px;text-align: left;border-bottom: none; border-right: none;">DIKERJAKAN OLEH :</th>
 				<td>
 					<input type="checkbox" id="checkbox_1" <?= ($list[0]->DIKERJAKAN == '1' ? 'checked' : '') ?>>
-					<label style="margin-left: 0px;" for="checkbox_1">Vendor</label>
+					<label style="text-indent: -15px;" for="checkbox_1">Vendor</label>
 				</td>
 				<td><input type="checkbox" id="checkbox_2" <?= ($list[0]->DIKERJAKAN == '2' ? 'checked' : '') ?>>
-					<label style="margin-left: 0px;" for="checkbox_2">Maintenance</label>
+					<label style="text-indent: -15px;" for="checkbox_2">Maintenance</label>
 				</td>
 			</tr>
 			<tr style="text-align:left">
@@ -371,7 +371,7 @@
 		<table class="thd" style="table-layout: fixed;">
 			<thead>
 				<tr>
-					<th width="20%" class="thd-baqh" colspan="2" style="border-bottom: none;">Status Pekerjaan</th>
+					<th width="10%" class="thd-baqh" colspan="2" style="border-bottom: none;">Status Pekerjaan</th>
 					<th class="thd-baqh" colspan="3">Kualitas Kerja</th>
 				</tr>
 			</thead>
@@ -379,11 +379,11 @@
 				<tr>
 					<td rowspan="2">
 						<input type="checkbox" id="checkbox_status1">
-						<label style="margin-left: 0;" for="checkbox_status1">Selesai</label>
+						<label style="text-indent: -15px;" for="checkbox_status1">Selesai</label>
 					</td>
 					<td rowspan="2">
 						<input type="checkbox" id="checkbox_status2">
-						<label style="margin-left: 0;" for="checkbox_status2">Pending</label>
+						<label style="text-indent: -15px;" for="checkbox_status2">Pending</label>
 					</td>
 					<td width="10%" class="thd-baqh">Puas</td>
 					<td width="10%" class="thd-baqh">Cukup</td>
