@@ -97,7 +97,7 @@
         }
 
         .text-regular-sm {
-            font-size: 10px !important;
+            font-size: 12px !important;
         }
 
         .font-weight-regular {
