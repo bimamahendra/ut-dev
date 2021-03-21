@@ -15,7 +15,7 @@
         }
 
         .w-100 {
-            min-width: 100vw;
+            width: 100%;
         }
 
         .w-50 {
@@ -97,7 +97,7 @@
         }
 
         .text-regular-sm {
-            font-size: 12px !important;
+            font-size: 10px !important;
         }
 
         .font-weight-regular {
@@ -246,29 +246,29 @@
                 <th class="border-1 p-min" colspan="3">KONDISI</th>
             </tr>
             <tr>
-                <th class="border-1 p-min">V</th>
-                <th class="border-1 p-min">X</th>
-                <th class="border-1 p-min">S</th>
-                <th class="border-1 p-min">V</th>
-                <th class="border-1 p-min">X</th>
-                <th class="border-1 p-min">S</th>
+                <th class="border-1 p-min" width="7%">V</th>
+                <th class="border-1 p-min" width="7%">X</th>
+                <th class="border-1 p-min" width="7%">S</th>
+                <th class="border-1 p-min" width="7%">V</th>
+                <th class="border-1 p-min" width="7%">X</th>
+                <th class="border-1 p-min" width="7%">S</th>
             </tr>
             <tr>
                 <th class="border-1 p-min" rowspan="16">PABX</th>
-                <td class="border-1 p-min text-align-center" style="width: 10px;">1</td>
-                <td class="border-1 p-min">Card Ext &amp; Direct / LC CO</td>
+                <td class="border-1 p-min text-align-center" width="5%">1</td>
+                <td class="border-1 p-min" width="15%">Card Ext &amp; Direct / LC CO</td>
                 <td class="border-1 p-min text-align-center"><?= ($checkPabx[0] == '1' ? 'V' : '') ?></td>
                 <td class="border-1 p-min text-align-center"><?= ($checkPabx[0] == '2' ? 'X' : '') ?></td>
                 <td class="border-1 p-min text-align-center"><?= ($checkPabx[0] == '3' ? 'S' : '') ?></td>
                 <th class="border-1 p-min" rowspan="4">REPEATER</th>
-                <td class="border-1 p-min text-align-center" style="width: 10px;">1</td>
-                <td class="border-1 p-min">Power Supply</td>
+                <td class="border-1 p-min text-align-center" width="5%">1</td>
+                <td class="border-1 p-min" width="15%">Power Supply</td>
                 <td class="border-1 p-min text-align-center"><?= ($checkRepeater[0] == '1' ? 'V' : '') ?></td>
                 <td class="border-1 p-min text-align-center"><?= ($checkRepeater[0] == '2' ? 'X' : '') ?></td>
                 <td class="border-1 p-min text-align-center"><?= ($checkRepeater[0] == '3' ? 'S' : '') ?></td>
             </tr>
             <tr>
-                <td class="border-1 p-min">2</td>
+                <td class="border-1 p-min text-align-center">2</td>
                 <td class="border-1 p-min">Card Register</td>
                 <td class="border-1 p-min text-align-center"><?= ($checkPabx[1] == '1' ? 'V' : '') ?></td>
                 <td class="border-1 p-min text-align-center"><?= ($checkPabx[1] == '2' ? 'X' : '') ?></td>
@@ -432,7 +432,7 @@
                 <td class="border-1 p-min"><?= $list[0]->PIC ?></td>
             </tr>
         </table>
-        <table class="border-collapse absolute pos-left" style="width: 250px;">
+        <table class="border-collapse text-regular-sm absolute pos-left" style="width: 250px;">
             <tr>
                 <td class="p-min" colspan="2">Kondisi :</td>
             </tr>
