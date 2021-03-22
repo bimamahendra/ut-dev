@@ -176,6 +176,19 @@
 		.valign-middle {
 			vertical-align: middle;
 		}
+
+		.checkbox {
+			display: inline-block;
+			vertical-align: top;
+			padding-left: 25px;
+			position: relative;
+		}
+
+		.checkbox input {
+			position: absolute;
+			left: 0;
+			top: -3px;
+		}
 	</style>
 </head>
 
@@ -292,11 +305,16 @@
 			<tr>
 				<th class="thd-tha" style="padding: 8px;text-align: left;border-bottom: none; border-right: none;">DIKERJAKAN OLEH :</th>
 				<td>
-					<input type="checkbox" id="checkbox_1" <?= ($list[0]->DIKERJAKAN == '1' ? 'checked' : '') ?>>
-					<label style="text-indent: -15px;" for="checkbox_1">Vendor</label>
+					<label class="checkbox">
+						<input class="input-checkbox" type="checkbox" <?= ($list[0]->DIKERJAKAN == '1' ? 'checked' : '') ?>>
+						Vendor
+					</label>
 				</td>
-				<td><input type="checkbox" id="checkbox_2" <?= ($list[0]->DIKERJAKAN == '2' ? 'checked' : '') ?>>
-					<label style="text-indent: -15px;" for="checkbox_2">Maintenance</label>
+				<td>
+					<label class="checkbox">
+						<input class="input-checkbox" type="checkbox" <?= ($list[0]->DIKERJAKAN == '2' ? 'checked' : '') ?>>
+						Maintenance
+					</label>
 				</td>
 			</tr>
 			<tr style="text-align:left">
@@ -378,12 +396,16 @@
 			<tbody>
 				<tr>
 					<td rowspan="2">
-						<input type="checkbox" id="checkbox_status1">
-						<label style="text-indent: -15px;" for="checkbox_status1">Selesai</label>
+						<label class="checkbox">
+							<input class="input-checkbox" type="checkbox" checked>
+							Selesai
+						</label>
 					</td>
 					<td rowspan="2">
-						<input type="checkbox" id="checkbox_status2">
-						<label style="text-indent: -15px;" for="checkbox_status2">Pending</label>
+						<label class="checkbox">
+							<input class="input-checkbox" type="checkbox" checked>
+							Pending
+						</label>
 					</td>
 					<td width="10%" class="thd-baqh">Puas</td>
 					<td width="10%" class="thd-baqh">Cukup</td>
