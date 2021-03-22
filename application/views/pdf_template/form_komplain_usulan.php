@@ -266,10 +266,16 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
@@ -277,8 +283,20 @@
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+				<td class="thd-td2">
+				<?php
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+								<td class="thc-td2">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+							';
+					} else {
+						echo '
+								<td class="thc-td2">(.......................)</td>
+							';
+					}
+				?>
+				</td>
 			</tr>
 		</table>
 	</div>
