@@ -407,9 +407,9 @@
 							Pending
 						</label>
 					</td>
-					<td width="10%" class="thd-baqh">Puas</td>
-					<td width="10%" class="thd-baqh">Cukup</td>
-					<td width="10%" class="thd-baqh">Tidak Puas</td>
+					<td width="20%" class="thd-baqh">Puas</td>
+					<td width="20%" class="thd-baqh">Cukup</td>
+					<td width="20%" class="thd-baqh">Tidak Puas</td>
 				</tr>
 				<tr>
 					<td class="thd-0lax" style="border-left: 1px solid black;">...</td>
