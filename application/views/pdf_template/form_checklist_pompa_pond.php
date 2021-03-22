@@ -148,9 +148,10 @@
 		.thd {
 			border: 1px solid black;
 			border-collapse: collapse;
+			table-layout:fixed;
 			text-align: center;
 			width: 66, 6%;
-			font-size: 12px;
+			font-size: 10px;
 		}
 
 		.thd-tha {
@@ -230,7 +231,7 @@
 		<h5>WEEKLY REPORT CHECK LIST POMPA POND</h5>
 	</div>
 	<div>
-		<table style="width:80%; text-align:left; font-size: 12px;">
+		<table style="width:80%; text-align:left; font-size: 10px;">
 			<tr>
 				<td style="width: 10%">SECTION</td>
 				<td style="width: 5%">:</td>
@@ -449,7 +450,7 @@
 					</table>
 				</td>
 				<td>
-					<table style="width:80%; text-align:left; font-size: 12px;">
+					<table style="width:80%; text-align:left; font-size: 10px;">
 						<tr>
 							<td style="width: 7%"><b>Catatan</b></td>
 							<td style="width: 0%"><b>:</b></td>
@@ -480,8 +481,8 @@
 	<div>
 		<table class="thd" align="right">
 			<tr>
-				<td class="thd-tha">Diketahui Oleh : </td>
-				<td class="thd-tha">Disetujui Oleh : </td>
+				<td class="thd-tha" style="width:33,3%">Diketahui Oleh : </td>
+				<td class="thd-tha" style="width:33,3%">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">

@@ -152,6 +152,7 @@
 		.thd {
 			border: 1px solid black;
 			border-collapse: collapse;
+			table-layout: fixed;
 			text-align: center;
 			width: 66, 6%;
 			font-size: 12px;
@@ -231,15 +232,19 @@
 		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
 				<td style="width: 25%" colspan="2"><b>Seksi Maintenance</b></td>
-				<td> &nbsp; <b>GA Departement</b></td>
 			</tr>
-			<tr>
+            <tr>
+                <td style="width: 25%"><b>GA Departement</b></td>
 				<td style="width: 3%"><b>Lokasi</b></td>
 				<td style="width: 2%"><b>:</b></td>
 				<td>
 					<?= $list[0]->LOKASI_HYDRANT; ?>
 				</td>
-			</tr>
+            </tr>
+		</table>
+	</div>
+	<div>
+		<table style="width:80%; text-align:left; font-size: 8px;">
 			<tr>
 				<td style="width: 3%"><b>Tgl</b></td>
 				<td style="width: 2%"><b>:</b></td>
@@ -511,8 +516,8 @@
 	<div>
 		<table class="thd" align="right">
 			<tr>
-				<td class="thd-tha">Diketahui Oleh : </td>
-				<td class="thd-tha">Disetujui Oleh : </td>
+				<td class="thd-tha" style="width:33,3%">Diketahui Oleh : </td>
+				<td class="thd-tha" style="width:33,3%">Disetujui Oleh : </td>
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">

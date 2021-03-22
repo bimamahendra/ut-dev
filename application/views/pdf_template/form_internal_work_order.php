@@ -149,6 +149,7 @@
 			border: 0px solid black;
 			border-collapse: collapse;
             table-layout: fixed;
+			margin:5px 0px 5px;
 			text-align: center;
 			width: 66,6%;
 			font-size: 10px;
@@ -165,8 +166,8 @@
 
 		.tg .tg-5r9a {
 			border: 1px solid black;
-			padding-top: 4px;
-			padding-bottom: 4px;
+			padding-top: 2px;
+			padding-bottom: 2px;
 			padding-left: 6px;
 			font-size: 10px;
 			text-align: left;
@@ -415,10 +416,6 @@
 			</tr>
 		</table>
 	</div>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <div>
 		<table style="width:80%; text-align:left; font-size: 10px;">
