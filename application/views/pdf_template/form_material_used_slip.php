@@ -267,7 +267,7 @@
 				<tr>
 					<th class="tg-5rbv" width="5%">No</th>
 					<th class="tg-5rbv" style="text-align:center" width="25%">Nama Barang</th>
-					<th class="tg-5rbv" style="text-align:center">Jumlah</th>
+					<th class="tg-5rbv" style="text-align:center" width="10%">Jumlah</th>
 					<th class="tg-5rbv" style="text-align:center">Dipergunakan</th>
 					<th class="tg-5rbv" style="text-align:center">Keterangan</th>
 				</tr>
@@ -280,7 +280,7 @@
 							<tr>
 								<td class="tg-5r9a" style="text-align:center;">'.$no.'</td>
 								<td class="tg-5r9a">'.$item->BARANG_MATERIAL.'</td>
-								<td class="tg-5r9a">'.$item->JML_MATERIAL.'</td>
+								<td class="tg-5r9a" style="text-align:center">'.$item->JML_MATERIAL.'</td>
 								<td class="tg-5r9a">'.$item->GUNA_MATERIAL.'</td>
 								<td class="tg-5r9a">'.$item->KET_MATERIAL.'</td>
 							</tr>
