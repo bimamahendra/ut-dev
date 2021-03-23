@@ -2,7 +2,7 @@
 // require APPPATH . '/libraries/REST_Controller.php';
 use chriskacerguis\RestServer\RestController;
 
-class FormNonAsset extends RestController {
+class FormExtension extends RestController {
     public function __construct() {
         parent::__construct();
         $this->load->helper("url");
@@ -15,27 +15,28 @@ class FormNonAsset extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans    = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idNA       = 'NA_'.substr(md5(time()."nonasset"), 0, 17);
+                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
+                $idExtension    = 'EXT_'.substr(md5(time()."nonasset"), 0, 16);
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];
                 $storeTransaksi['ID_MAPPING']       = $param['idMapping'];
                 $this->db->insert('TRANSACTION', $storeTransaksi);
 
-                $storeNA['ID_NA']       = $idNA;
-                $storeNA['ID_TRANS']    = $idTrans;
-                $this->db->insert('FORM_NONASSET', $storeNA);
+                $storeExtension['ID_EXTENSION']       = $idExtension;
+                $storeExtension['ID_TRANS']    = $idTrans;
+                $this->db->insert('FORM_EXTENSION', $storeExtension);
 
-                foreach($param['detNonAsset'] as $item){
-                    $storeDetNA['ID_NA']            = $idNA;
-                    $storeDetNA['SPESIFIKASI_NA']   = $item['jenBarang'];
-                    $storeDetNA['JML_NA']           = $item['jmlPesan'];
-                    $storeDetNA['ACC_NA']           = $item['account'];
-                    $storeDetNA['CC_NA']            = $item['cost'];
-                    $storeDetNA['TGL_NA']           = $item['tgl'];
-                    $storeDetNA['KET_NA']           = $item['keterangan'];
-                    $this->db->insert('DETAIL_NONASSET', $storeDetNA);
+                foreach($param['detExtension'] as $item){
+                    $storeDetNA['ID_EXTENSION']     = $idExtension;
+                    $storeDetNA['NAMA_EXT']         = $item['nama'];
+                    $storeDetNA['NRP_EXT']          = $item['nrp'];
+                    $storeDetNA['JABATAN_EXT']      = $item['div'];
+                    $storeDetNA['NOMOR_EXT']        = $item['noExtension'];
+                    $storeDetNA['EXIST_EXT']        = $item['jenPermintaan'];
+                    $storeDetNA['FASILITAS_EXT']    = $item['fasilitas'];
+                    $storeDetNA['CONTACT_EXT']      = $item['ct'];
+                    $this->db->insert('DETAIL_EXTENSION', $storeDetNA);
                 }
                 
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
