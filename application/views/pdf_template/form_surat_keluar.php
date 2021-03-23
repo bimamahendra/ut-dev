@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FORM DEKLARASI</title>
+	<title>FORM SURAT JALAN</title>
 	<style>
 		.watermark::before {
 			position: absolute;
@@ -225,7 +225,12 @@
 			<tr>
 				<td style="width: 60%;">Kepada Yth :</td>
                 <td style="width: 60%;"></td>
-                <td style="width: 20%; text-align:right;">Jakarta,...........201...</td>
+                <td style="width: 20%; text-align:right;">
+					<?php
+						$date 		= date_create($list[0]->TGLOUT_JALAN);
+						echo 'Jakarta, '.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
+					?>
+				</td>
 			</tr>
 			<tr>
 				<td>Keamanan PT United Tractors Tbk</td>
@@ -253,7 +258,7 @@
         <tr>
 				<td style="width: 15%;">Nama</td>
                 <td style="width: 5%;">:</td>
-                <td>...</td>
+                <td><?= $list[0]->NAMA_JALAN ?></td>
 			</tr>
             <tr>
 				<td></td>
@@ -261,7 +266,7 @@
 			<tr>
 				<td>Kendaraan</td>
                 <td>:</td>
-                <td>...</td>
+                <td><?= $list[0]->KENDARAAN_JALAN ?></td>
 			</tr>
             <tr>
 				<td></td>
@@ -269,7 +274,7 @@
 			<tr>
 				<td>Keperluan</td>
                 <td>:</td>
-                <td>...</td>
+                <td><?= $list[0]->KEPERLUAN_JALAN ?></td>
 			</tr>
         </table>
 	</div>
@@ -285,24 +290,60 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
 				<td class="thd-tha"><b>User</b></td>
 				<td class="thd-tha"><b>Section Head</b></td>
-				<td class="thd-tha"><b>Departement Head</b></td>
+				<td class="thd-tha"><b>Department Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+				<td class="thd-td2">
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[0]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
+				<td>
+					<?php
+						if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[1]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
 			</tr>
 		</table>
 	</div>
