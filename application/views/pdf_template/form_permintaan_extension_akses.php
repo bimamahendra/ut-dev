@@ -201,7 +201,7 @@
                 <td class="text-regular-sm pl-min pt-min" style="width: 15%;">
                     <strong>Nomor Dokumen</strong>
                 </td>
-                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: FORM 012/PROS-MFP-MLK3-014</td>
+                <td class="text-regular-sm border-right pt-min" style="width: 30%;">: <?= $noDoc?></td>
                 <td class="text-regular-sm text-align-center pt-min pb-min" rowspan="3">
                     <strong>
                         ISO 9001 : 2008 ; 1SO <br>
@@ -229,8 +229,14 @@
                 <td>: General Affairs</td>
             </tr>
             <tr>
-                <td>Tanggal</td>
-                <td>: 18 Maret 2021</td>
+                <?php
+                    $date 		= date_create($list[0]->TGLOUT_EXTENSION);
+                    $fullDate 	= date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
+                    echo '
+                        <td>Tanggal</td>
+                        <td>: '.$fullDate.'</td>
+                    ';
+                ?>
             </tr>
         </table>
         <table class="border-1 border-collapse valign-middle text-align-center w-100 table-layout-fixed mb-min">
@@ -258,74 +264,31 @@
                 <th width="5%" class="border-1 text-regular-xs p-min">Subcont</th>
                 <th width="5%" class="border-1 text-regular-xs p-min">Hotel</th>
             </tr>
-            <tr>
-                <td class="border-1">1</td>
-                <td class="border-1 text-align-left pl-min">Giri</td>
-                <td class="border-1 text-align-left pl-min">181111011</td>
-                <td class="border-1 text-align-left pl-min">Section Head</td>
-                <td class="border-1 text-align-left pl-min">12</td>
-                <td class="border-1 text-align-left pl-min">I</td>
-                <td class="border-1 text-align-left pl-min">II</td>
-                <td class="border-1 border-left-bold">V</td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-            </tr>
-            <tr>
-                <td class="border-1">2</td>
-                <td class="border-1 text-align-left pl-min">Ilham</td>
-                <td class="border-1 text-align-left pl-min">181111063</td>
-                <td class="border-1 text-align-left pl-min">Section Head</td>
-                <td class="border-1 text-align-left pl-min">123</td>
-                <td class="border-1 text-align-left pl-min">I</td>
-                <td class="border-1 text-align-left pl-min">II</td>
-                <td class="border-1 border-left-bold"></td>
-                <td class="border-1"></td>
-                <td class="border-1">V</td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-            </tr>
-            <tr>
-                <td class="border-1">3</td>
-                <td class="border-1 text-align-left pl-min">Zidan</td>
-                <td class="border-1 text-align-left pl-min">181111067</td>
-                <td class="border-1 text-align-left pl-min">Section Head</td>
-                <td class="border-1 text-align-left pl-min">1234</td>
-                <td class="border-1 text-align-left pl-min">I</td>
-                <td class="border-1 text-align-left pl-min">II</td>
-                <td class="border-1 border-left-bold"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1">V</td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-            </tr>
-            <tr>
-                <td class="border-1">4</td>
-                <td class="border-1 text-align-left pl-min">Gellen</td>
-                <td class="border-1 text-align-left pl-min">181111023</td>
-                <td class="border-1 text-align-left pl-min">Section Head</td>
-                <td class="border-1 text-align-left pl-min">12345</td>
-                <td class="border-1 text-align-left pl-min">I</td>
-                <td class="border-1 text-align-left pl-min">II</td>
-                <td class="border-1 border-left-bold"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1">V</td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-                <td class="border-1"></td>
-            </tr>
+            <?php
+                $no = 1;
+                foreach($list as $item){
+                    echo '
+                        <tr>
+                            <td class="border-1">'.$no.'</td>
+                            <td class="border-1 text-align-left pl-min">'.$item->NAMA_EXT.'</td>
+                            <td class="border-1 text-align-left pl-min">'.$item->NRP_EXT.'</td>
+                            <td class="border-1 text-align-left pl-min">'.$item->JABATAN_EXT.'</td>
+                            <td class="border-1 text-align-left pl-min">'.$item->NOMOR_EXT.'</td>
+                            <td class="border-1 text-align-left pl-min">'.($item->EXIST_EXT == '1'? $item->FASILITAS_EXT : '').'</td>
+                            <td class="border-1 text-align-left pl-min">'.($item->EXIST_EXT == '2'? $item->FASILITAS_EXT : '').'</td>
+                            <td class="border-1 border-left-bold">'.($item->CONTACT_EXT == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '2' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '3' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '4' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '5' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '6' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '7' ? 'V' : '').'</td>
+                            <td class="border-1">'.($item->CONTACT_EXT == '8' ? 'V' : '').'</td>
+                        </tr>
+                    ';
+                    $no++;
+                }
+            ?>
         </table>
         <table class="border-1 border-collapse absolute pos-right table-layout-fixed" style="width: 600px;">
             <tr>
@@ -334,14 +297,54 @@
                 <th class="text-align-center border-1" width="33.33%">Dept Head</th>
             </tr>
             <tr>
-                <td class="text-align-center border-1 p-min"><img src="https://via.placeholder.com/100" alt=""></td>
-                <td class="text-align-center border-1 p-min"><img src="https://via.placeholder.com/100" alt=""></td>
-                <td class="text-align-center border-1 p-min"><img src="https://via.placeholder.com/100" alt=""></td>
+                <td class="text-align-center border-1 p-min">
+                    <img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
+                </td>
+                <td class="text-align-center border-1 p-min">
+                    <?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
+                </td>
+                <td class="text-align-center border-1 p-min">
+                    <?php
+						if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
+                </td>
             </tr>
             <tr>
-                <td class="text-align-center border-1">( Nama Terang )</td>
-                <td class="text-align-center border-1">( Nama Terang )</td>
-                <td class="text-align-center border-1">( Nama Terang )</td>
+                <?php
+					echo '
+					<td class="text-align-center border-1">( '.$user->NAMA_USERS.' )</td>
+					';
+					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						echo '
+							<td class="text-align-center border-1">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td class="text-align-center border-1">(................................................)</td>
+						';
+					}
+
+					if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+						echo '
+							<td class="text-align-center border-1">( ' . $approvals[1]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td class="text-align-center border-1">(................................................)</td>
+						';
+					}
+
+				?>
             </tr>
         </table>
         <p>
