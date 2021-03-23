@@ -199,21 +199,24 @@
 				<td style="width: 20%">TANGGAL</td>
 				<td style="width: 5%">:</td>
 				<td>
-					...
+					<?php
+						$date 	= date_create($list[0]->TGLOUT_DEKLARASI);
+						echo date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
+					?>
 				</td>
 			</tr>
 			<tr>
 				<td>DIV / DEPT</td>
 				<td>:</td>
 				<td>
-					...
+					<?= $list[0]->DD_DEKLARASI ?>
 				</td>
 			</tr>
             <tr>
 				<td>NO POLISI</td>
 				<td>:</td>
 				<td>
-					...
+				<?= $list[0]->NOPOL_DEKLARASI ?>
 				</td>
 			</tr>
 		</table>
@@ -234,86 +237,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center;">1</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">2</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">3</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">4</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">5</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">6</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">7</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">8</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">9</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:center;">10</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-				</tr>
+				<?php 
+					$no = 1;
+					foreach ($list as $item) {
+						echo'<tr>
+							<td class="tg-5r9a" style="text-align:center;">'.$no.'</td>
+							<td class="tg-5r9a">'. $item->BBM_DEKLARASI .'</td>
+							<td class="tg-5r9a">'. $item->TOL_DEKLARASI .'</td>
+							<td class="tg-5r9a">'. $item->GRAB_DEKLARASI .'</td>
+							<td class="tg-5r9a">'. $item->LAIN_DEKLARASI .'</td>
+							<td class="tg-5r9a" style="text-align:center;">'. $item->JML_DEKLARASI .'</td>
+						</tr>';
+						$no++;  
+					}
+				?>              
 			</tbody>
 		</table>
 	</div>
@@ -361,13 +298,25 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
@@ -376,9 +325,33 @@
 				<td class="thd-tha"><b>Departement Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+				<td class="thd-td2">
+					<?php
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[0]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
+				<td>
+					<?php
+						if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[1]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
 			</tr>
 		</table>
 	</div>
