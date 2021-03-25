@@ -251,7 +251,7 @@
 								<td class="tg-5r9a" style="text-align:center">' . $no . '</td>
 								<td class="tg-5r9a">' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y') . '</td>
 								<td class="tg-5r9a">' . $item->DD_ORDER . '</td>
-								<td class="tg-5r9a text-align-center">' . $item->JML_ORDER . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $item->JML_ORDER . '</td>
 							</tr>
 						';
 					$no++;
