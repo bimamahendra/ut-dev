@@ -242,7 +242,7 @@
 
 				echo '
 						<td class="thd-td2" style="padding: 8px">Tanggal</td>
-						<td class="thd-td2" style="padding: 8px">: ' . date_format($date, 'j F Y') . '</td>
+						<td class="thd-td2" style="padding: 8px">: '.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
 						<td class="thd-td2" style="padding: 8px">Waktu</td>
 						<td class="thd-td2" style="padding: 8px">: ' . date_format($time, 'H:i') . ' WIB</td>
 					';
