@@ -247,106 +247,109 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php
+					$date = date_create($list[0]->TGLCEK1_MONITORING);
+					$date2 = date_create($list[0]->TGLCEK2_MONITORING);
+					$date3 = date_create($list[0]->TGLCEK3_MONITORING);
+					$date4 = date_create($list[0]->TGLCEK4_MONITORING);
+					$date5 = date_create($list[0]->TGLCEK5_MONITORING);
+					$date6 = date_create($list[0]->TGLCEK6_MONITORING);
+					$date7 = date_create($list[0]->TGLCEK7_MONITORING);
+
+					$order = explode(';', $list[0]->JML_ORDER);
+					$bawa  = explode(';', $list[0]->ACT_BAWA);
+					$kupon = explode(';', $list[0]->ACT_KUPON);
+
+					
+					if ($approvals[0]->ROLE_APP == "PICC" && $approvals[0]->ISAPPROVE_APP == "1") {
+						$app0 ='<img src="' . $approvals[0]->PATH_TTD . '" width="50" height="50" />';
+					}else{
+						$app0 = '';
+					}
+					
+				?>
 				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
+					<td class="tg-5r9a" style="text-align:center">1</td>
+					<td class="tg-5r9a"><?= date_format($date, 'd - m - Y'); ?></td>
+					<td class="tg-5r9a"><?= $order[0] ?></td>
+					<td class="tg-5r9a"><?= $bawa[0] ?></td>
+					<td class="tg-5r9a"><?= $kupon[0] ?></td>
+					<td class="tg-5r9a"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
 					<td class="tg-5r9a">...</td>
 					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
+				</tr>	
+				<tr>
+					<td class="tg-5r9a" style="text-align:center">2</td>
+					<td class="tg-5r9a"><?= date_format($date2, 'd - m - Y'); ?></td>
+					<td class="tg-5r9a"><?= $order[1] ?></td>
+					<td class="tg-5r9a"><?= $bawa[1] ?></td>
+					<td class="tg-5r9a"><?= $kupon[1] ?></td>
+					<td class="tg-5r9a"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
+					<td class="tg-5r9a"><?= $app0 ?></td>
 					<td class="tg-5r9a">...</td>
 				</tr>
 				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
+					<td class="tg-5r9a" style="text-align:center">3</td>
+					<td class="tg-5r9a"><?= date_format($date3, 'd - m - Y'); ?></td>
+					<td class="tg-5r9a"><?= $order[2] ?></td>
+					<td class="tg-5r9a"><?= $bawa[2] ?></td>
+					<td class="tg-5r9a"><?= $kupon[2] ?></td>
+					<td class="tg-5r9a"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
+					<td class="tg-5r9a"><?= $app0 ?></td>
 					<td class="tg-5r9a">...</td>
 				</tr>
 				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
+					<td class="tg-5r9a" style="text-align:center">4</td>
+					<td class="tg-5r9a"><?= date_format($date4, 'd - m - Y'); ?></td>
+					<td class="tg-5r9a"><?= $order[3] ?></td>
+					<td class="tg-5r9a"><?= $bawa[3] ?></td>
+					<td class="tg-5r9a"><?= $kupon[3] ?></td>
+					<td class="tg-5r9a"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
+					<td class="tg-5r9a"><?= $app0 ?></td>
 					<td class="tg-5r9a">...</td>
 				</tr>
 				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
+					<td class="tg-5r9a" style="text-align:center">5</td>
+					<td class="tg-5r9a"><?= date_format($date5, 'd - m - Y'); ?></td>
+					<td class="tg-5r9a"><?= $order[4] ?></td>
+					<td class="tg-5r9a"><?= $bawa[4] ?></td>
+					<td class="tg-5r9a"><?= $kupon[4] ?></td>
+					<td class="tg-5r9a"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
+					<td class="tg-5r9a"><?= $app0 ?></td>
 					<td class="tg-5r9a">...</td>
 				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
+				<?php 
+					if($order[5]!=null){
+						echo'
+							<tr>
+								<td class="tg-5r9a" style="text-align:center">6</td>
+								<td class="tg-5r9a">'.date_format($date6, 'd - m - Y').'</td>
+								<td class="tg-5r9a">'.$order[5].'</td>
+								<td class="tg-5r9a">'.$bawa[5].'</td>
+								<td class="tg-5r9a">'.$kupon[5].'</td>
+								<td class="tg-5r9a"><img src="'.$user->PATH_TTD.'" width="50" height="50" /></td>
+								<td class="tg-5r9a">'.$app0.'</td>
+								<td class="tg-5r9a">...</td>
+							</tr>
+						';
+					}
+				?>
+				<?php 
+					if($order[6]!=null){				
+						echo'
+							<tr>
+								<td class="tg-5r9a" style="text-align:center">6</td>
+								<td class="tg-5r9a">'.date_format($date7, 'd - m - Y').'</td>
+								<td class="tg-5r9a">'.$order[6].'</td>
+								<td class="tg-5r9a">'.$bawa[6].'</td>
+								<td class="tg-5r9a">'.$kupon[6].'</td>
+								<td class="tg-5r9a"><img src="'.$user->PATH_TTD.'" width="50" height="50" /></td>
+								<td class="tg-5r9a">'.$app0.'</td>
+								<td class="tg-5r9a">...</td>
+							</tr>
+						';
+					}
+				?>		
 			</tbody>
 		</table>
 	</div>
@@ -377,14 +380,32 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[1]->ROLE_APP == "Section Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+									<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+								';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
 				<td class="thd-tha"><b>Section Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
+				<td class="thd-td2">
+					<?php
+						if ($approvals[1]->ROLE_APP == "Section Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[1]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
 			</tr>
 		</table>
 	</div>
