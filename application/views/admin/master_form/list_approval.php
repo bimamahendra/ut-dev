@@ -90,6 +90,7 @@
                         <option value="PICG">PIC Gudang</option>
                         <option value="PICA">PIC Admin</option>
                         <option value="PICM">PIC Maintenance</option>
+                        <option value="PICC">PIC Catering</option>
                         <option value="Section Head">Section Head</option>
                         <option value="Department Head">Department Head</option>    
                         <option value="Division Head">Division Head</option>                    
@@ -126,6 +127,7 @@
                         <option value="PICG">PIC Gudang</option>
                         <option value="PICA">PIC Admin</option>
                         <option value="PICM">PIC Maintenance</option>
+                        <option value="PICC">PIC Catering</option>
                         <option value="Section Head">Section Head</option>
                         <option value="Department Head">Department Head</option>
                         <option value="Division Head">Division Head</option>
