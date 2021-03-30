@@ -209,7 +209,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
-					<td class="tg-z9od" width="33%"> : FORM 015/PROS-MFP-MLK3-013</td>
+					<td class="tg-z9od" width="33%"> : <?= $noDoc ?></td>
 					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; 1SO<br>
 						14001 : 2004 ; OHSAS<br>
 						18001 : 2007 &amp; SMK3</td>
@@ -233,15 +233,27 @@
 			<thead>
 				<tr>
 					<th class="tg-5rbv" width="5%" rowspan="3">No</th>
-					<th class="tg-5rbv" style="text-align:left">Nama Acara :</th>
-					<th class="tg-5rbv" style="text-align:left">Tanggal :</th>
-					<th class="tg-5rbv" style="text-align:left">Jumlah peserta :</th>
+					<th class="tg-5rbv" style="text-align:left">Nama Acara : <?= $list[0]->NAMA_LAYOUT ?></th>
+					<th class="tg-5rbv" style="text-align:left">
+					Tanggal : 
+					<?php
+						$date 		= date_create($list[0]->TGL_LAYOUT);
+						echo ''.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
+					?>
+					</th>
+					<th class="tg-5rbv" style="text-align:left">Jumlah peserta : <?= $list[0]->PESERTA_LAYOUT ?></th>
 					<th class="tg-5rbv" rowspan="3">KETERANGAN</th>
 				</tr>
 				<tr>
-					<td class="tg-5rbv" style="text-align:left">Lokasi Acara :</td>
-					<td class="tg-5rbv" style="text-align:left">Jam :</td>
-					<td class="tg-5rbv" style="text-align:left">Beban biaya :</td>
+					<td class="tg-5rbv" style="text-align:left">Lokasi Acara : <?= $list[0]->LOKASI_LAYOUT ?></td>
+					<td class="tg-5rbv" style="text-align:left">
+					Jam : 
+					<?php
+						$time = date_create($list[0]->JAM_LAYOUT);
+						echo date_format($time, 'H:i');
+						?>
+					</td>
+					<td class="tg-5rbv" style="text-align:left">Beban biaya : <?= $list[0]->BIAYA_LAYOUT ?></td>
 				</tr>
 				<tr>
 					<td class="tg-5rbv" style="text-align:center" colspan="3">GAMBAR / LAY OUT ACARA</td>
@@ -249,55 +261,12 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
-				<tr>
-					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">...</td>
-					<td class="tg-5r9a" colspan="3">...</td>
-					<td class="tg-5r9a">...</td>
-				</tr>
+					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">1</td>
+					<td class="tg-5r9a" colspan="3">
+						<img src="<?= $list[0]->IMG_LAYOUT?>" style="max-width: 400px; display: block; margin-left: auto; margin-right: auto;" alt="">
+					</td>
+					<td class="tg-5r9a"><?= $list[0]->KET_LAYOUT ?></td>
+				</tr>				
 			</tbody>
 		</table>
 	</div>
@@ -313,16 +282,34 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-					TTD Disini
+					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[0]->ROLE_APP == "PICA" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[1]->ROLE_APP == "Section Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+								<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 				<td class="thd-td2">
-					TTD Disini
+					<?php
+						if ($approvals[2]->ROLE_APP == "Department Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+							echo '
+								<img src="' . $approvals[2]->PATH_TTD . '" width="100px" height="100px" />
+							';
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
@@ -332,10 +319,46 @@
 				<td class="thd-tha"><b>Departement Head</b></td>
 			</tr>
 			<tr>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
-				<td class="thd-td2">(................................................)</td>
-				<td>(................................................)</td>
+				<td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+				<td class="thd-td2">
+					<?php
+						if ($approvals[0]->ROLE_APP == "PICA" && $approvals[0]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[0]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
+				<td class="thd-td2">
+					<?php
+						if ($approvals[1]->ROLE_APP == "Section Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[1]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
+				<td>
+					<?php
+						if ($approvals[2]->ROLE_APP == "Department Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+							echo '
+									( ' . $approvals[2]->NAMA_USERS . ' )
+								';
+						} else {
+							echo '
+									(................................................)
+								';
+						}
+					?>
+				</td>
 			</tr>
 		</table>
 	</div>
