@@ -26,7 +26,8 @@ class FormLayout extends RestController {
                 $storeLayout['ID_LAYOUT']        = $idLayout;
                 $storeLayout['ID_TRANS']         = $idTrans;
                 $storeLayout['NAMA_LAYOUT']      = $param['namaAcara'];
-                $storeLayout['TGL_LAYOUT']       = $param['tglJam'];
+                $storeLayout['TGL_LAYOUT']       = $param['tgl'];
+                $storeLayout['JAM_LAYOUT']       = $param['jam'];
                 $storeLayout['PESERTA_LAYOUT']   = $param['peserta'];
                 $storeLayout['LOKASI_LAYOUT']    = $param['lokasi'];
                 $storeLayout['BIAYA_LAYOUT']     = $param['biaya'];
