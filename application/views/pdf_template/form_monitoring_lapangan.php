@@ -275,7 +275,7 @@
 					<td class="tg-5r9a"><?= $bawa[0] ?></td>
 					<td class="tg-5r9a"><?= $kupon[0] ?></td>
 					<td class="tg-5r9a"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
-					<td class="tg-5r9a">...</td>
+					<td class="tg-5r9a"><?= $app0 ?></td>
 					<td class="tg-5r9a">...</td>
 				</tr>	
 				<tr>
