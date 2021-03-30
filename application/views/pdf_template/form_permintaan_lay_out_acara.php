@@ -253,7 +253,8 @@
 						echo date_format($time, 'H:i');
 						?>
 					</td>
-					<td class="tg-5rbv" style="text-align:left">Beban biaya : <?= $list[0]->BIAYA_LAYOUT ?></td>
+					<td class="tg-5rbv" style="text-align:left">
+					Beban biaya : Rp <?= number_format($list[0]->BIAYA_LAYOUT,0,',','.') ?></td>
 				</tr>
 				<tr>
 					<td class="tg-5rbv" style="text-align:center" colspan="3">GAMBAR / LAY OUT ACARA</td>
@@ -263,7 +264,7 @@
 				<tr>
 					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">1</td>
 					<td class="tg-5r9a" colspan="3">
-						<img src="<?= $list[0]->IMG_LAYOUT?>" style="max-width: 400px; display: block; margin-left: auto; margin-right: auto;" alt="">
+						<img src="<?= $list[0]->IMG_LAYOUT?>" style="margin: auto;">
 					</td>
 					<td class="tg-5r9a"><?= $list[0]->KET_LAYOUT ?></td>
 				</tr>				
