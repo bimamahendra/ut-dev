@@ -26,6 +26,7 @@
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="">Jabatan</option>
                             <option value="Staff" <?= $dataUser[0]->ROLE_USERS == 'Staff'?'selected' : '' ?> >Staff</option>
+                            <option value="Staff Catering" <?= $dataUser[0]->ROLE_USERS == 'Staff Catering'?'selected' : '' ?> >Staff Catering</option>
                             <option value="PICK" <?= $dataUser[0]->ROLE_USERS == 'PICK'?'selected' : '' ?> >PIC Kendaraan</option>
                             <option value="PICG" <?= $dataUser[0]->ROLE_USERS == 'PICG'?'selected' : '' ?> >PIC Gudang</option>
                             <option value="PICA" <?= $dataUser[0]->ROLE_USERS == 'PICA'?'selected' : '' ?> >PIC Admin</option>
