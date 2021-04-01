@@ -48,6 +48,7 @@
                         <select class="custom-select" name="SECTION_FORM" required>
                             <option value="" selected>Jabatan</option>
                             <option value="Staff" <?= $form[0]->SECTION_FORM == 'Staff'? 'selected' : '' ?>>Staff</option>
+                            <option value="Staff Catering" <?= $form[0]->SECTION_FORM == 'Staff Catering'? 'selected' : '' ?>>Staff Catering</option>
                             <option value="PICK" <?= $form[0]->SECTION_FORM == 'PICK'? 'selected' : '' ?>>PIC Kendaraan</option>
                             <option value="PICG" <?= $form[0]->SECTION_FORM == 'PICG'? 'selected' : '' ?>>PIC Gudang</option>
                             <option value="PICA" <?= $form[0]->SECTION_FORM == 'PICA'? 'selected' : '' ?>>PIC Admin</option>

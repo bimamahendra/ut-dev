@@ -319,7 +319,7 @@
 					<td class="tg-5r9a">...</td>
 				</tr>
 				<?php 
-					if($order[5]!=null){
+					if($order[5]!='-'){
 						echo'
 							<tr>
 								<td class="tg-5r9a" style="text-align:center">6</td>
@@ -335,7 +335,7 @@
 					}
 				?>
 				<?php 
-					if($order[6]!=null){				
+					if($order[6]!='-'){				
 						echo'
 							<tr>
 								<td class="tg-5r9a" style="text-align:center">6</td>

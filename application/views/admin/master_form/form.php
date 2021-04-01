@@ -111,6 +111,7 @@
                         <select class="custom-select" name="SECTION_FORM" required>
                             <option value="" selected>Jabatan</option>
                             <option value="Staff">Staff</option>
+                            <option value="Staff Catering">Staff Catering</option>
                             <option value="PICK">PIC Kendaraan</option>
                             <option value="PICG">PIC Gudang</option>
                             <option value="PICA">PIC Admin</option>
