@@ -154,10 +154,21 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('pdf_template/form_komplain_usulan');
 	}
-	public function form_ewo(){
+	public function form_ewo()
+	{
 		$this->load->view('pdf_template/form_external_work_order');
 	}
-	public function formTes(){
+	public function formTes()
+	{
 		$this->load->view('pdf_template/form_permintaan_extension_akses');
+	}
+
+	public function admin_dn()
+	{
+		$this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn');
+		$this->load->view('template/admin_dn/footer');
 	}
 }
