@@ -75,12 +75,12 @@ class FormPVRV extends RestController {
             $statUpload   = $param['statUpload'];
             $totalUpload  = $param['totalUpload'];
             if($statUpload < $totalUpload && $user != null && $pvrv != null){
-                $filepdf = $this->upload_file($user[0]->USER_USERS);
-                $link = $filepdf;
+                $resUpload = $this->upload_file($user[0]->USER_USERS);
                 if($pvrv[0]->LINKDOKPEND_PVRV != null){
-                    $link = $pvrv[0]->LINKDOKPEND_PVRV.';'.$filepdf;
+                    $resUpload['fileName']  = $pvrv[0]->DOKPEND_PVRV.';'.$resUpload['fileName'];
+                    $resUpload['link']      = $pvrv[0]->LINKDOKPEND_PVRV.';'.$resUpload['link'];
                 }              
-                $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_PVRV', ['LINKDOKPEND_PVRV' => $link]);
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_PVRV', ['LINKDOKPEND_PVRV' => $resUpload['link'], 'DOKPEND_PVRV' => $resUpload['fileName']]);
 
                 $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
@@ -91,9 +91,36 @@ class FormPVRV extends RestController {
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
     }
+
+    public function dokPend_get(){
+        $param = $this->get();
+        if(!empty($param['idTrans']) && !empty($param['idUser'])){
+            $pvrv = $this->db->get_where('FORM_PVRV', ['ID_TRANS ' => $param['idTrans']])->result();
+            $user = $this->db->get_where('USERS', ['ID_USERS ' => $param['idUser']])->result();
+            if($user != null && $pvrv != null){
+                $dokPends   = array();
+                $link       = explode(';', $pvrv[0]->LINKDOKPEND_PVRV);
+                $fileName   = explode(';', $pvrv[0]->DOKPEND_PVRV);
+                $x = 0;
+                foreach($link as $item){
+                    $obj = new stdClass();
+                    $obj->fileName = $fileName[$x];
+                    $obj->link     = $link[$x];
+                    array_push($dokPends, $obj);
+                    $x++;
+                }
+                $this->response(['status' => true, 'message' => 'Data berhasil ditemukan', 'data' => $dokPends], 200);
+            }else{
+                $this->response(['status' => false, 'message' => 'Data pvrv atau user tidak ditemukan'], 200);
+            }
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
+    }
     
     function upload_file($username){
-        $newPath = './uploads/assets/dokpend/'.$username.'/';
+        $date = date('Ymd');
+        $newPath = './uploads/assets/dokpend/'.$username.'/'.$date.'/';
         if(!is_dir($newPath)){
             mkdir($newPath, 0777, TRUE);
         }
@@ -106,13 +133,13 @@ class FormPVRV extends RestController {
         $this->upload->initialize($config);
     
         if ( ! $this->upload->do_upload('file') ) {
-            return base_url('images/ttd/default.png');
+            return ['link' => base_url('images/ttd/default.png'), 'fileName' => ''];
         } else {
             $ups = $this->upload->data();
 
             $upname = $ups['file_name'];
 
-            return base_url('/uploads/assets/dokpend/'.$username.'/'.$upname);
+            return ['link' => base_url('/uploads/assets/dokpend/'.$username.'/'.$date.'/'.$upname), 'fileName' => $upname];
         }             
     }
 }

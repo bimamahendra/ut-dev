@@ -78,7 +78,7 @@ class Transaction extends RestController {
     }
     public function confirm_put(){
         $param = $this->put();
-        if(!empty($param['username']) && !empty($param['idTrans']) && !empty($param['isApprove']) && !empty($param['keterangan'])){
+        if(!empty($param['username']) && !empty($param['idTrans']) && !empty($param['isApprove'])){
             $user           = $this->db->get_where('USERS', ['USER_USERS' => $param['username']])->result();
             $transaction    = $this->db->get_where('V_TRANSACTION', ['ID_TRANS' => $param['idTrans']])->result();
             if($user != null && $transaction != null){
@@ -89,7 +89,7 @@ class Transaction extends RestController {
                         if(!empty($flow[0]['APP_'.$flowWillApprove]) && $flow[0]['APP_'.$flowWillApprove] != null){
 
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1 WHERE ID_TRANS = "'.$param['idTrans'].'"');
-                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
+                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
                             
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ROLE_USERS' => $flow[0]['APP_'.$flowWillApprove]])->result_array();
                             $notif['title']     = 'Pengajuan Baru';
@@ -98,7 +98,7 @@ class Transaction extends RestController {
                             $res = $this->notification->push($notif);
                         }else{
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
-                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
+                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
                             
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
                             $notif['title']     = 'Info Pengajuan Form';

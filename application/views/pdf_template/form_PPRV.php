@@ -387,7 +387,7 @@
                 </div>
                 <div>
                     <table class="tg" width="100%" style="border-color: black;">
-                        <thead>
+						<thead>
                             <tr>
                                 <th class="tg-5rbv" width="5%" rowspan="2">No.</th>
                                 <th class="tg-5rbv" width="40%" rowspan="2">Nama Dokumen</th>
@@ -399,36 +399,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="tg-5r9a" style="text-align:center">1</td>
-                                <td class="tg-5r9a" style="text-align:left">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-5r9a" style="text-align:center">2</td>
-                                <td class="tg-5r9a" style="text-align:left">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-5r9a" style="text-align:center">3</td>
-                                <td class="tg-5r9a" style="text-align:left">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-5r9a" style="text-align:center">4</td>
-                                <td class="tg-5r9a" style="text-align:left">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-5r9a" style="text-align:center">5</td>
-                                <td class="tg-5r9a" style="text-align:left">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                            </tr>
+							<?php
+								$docs 	= explode(';', $list[0]->DOKPEND_PVRV);
+								$no 	= 1;
+								foreach ($docs as $item) {
+									echo '
+										<tr>
+											<td class="tg-5r9a" style="text-align:center">'.$no.'</td>
+											<td class="tg-5r9a" style="text-align:left">'.$item.'</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+										</tr>
+									';
+									$no++;
+								}
+							?>
                         </tbody>
                     </table>
                 </div>
@@ -436,20 +421,31 @@
             <td style="padding-left: 50px">
                 <div>
                     <table class="thd">
-                        <tr>
-                            <td class="thd-tha" style="text=align:left"></td>
-                            <td class="thd-tha" style="text=align:left">Jakarta, ............. </td>
-                        </tr>
+						<?php
+							$date = date_create($list[0]->TGLOUT_PVRV);
+							echo '
+								<tr>
+									<td class="thd-tha" style="text=align:left"></td>
+									<td class="thd-tha" style="text=align:left">Jakarta, '.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').' </td>
+								</tr>
+							';
+						?>
                         <tr>
                             <td class="thd-tha">Pemohon : </td>
                             <td class="thd-tha">Pemohon : </td>
                         </tr>
                         <tr style="height:300px; min-height:300px;">
                             <td class="thd-td2">
-                                TTD Disini
+								<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
                             </td>
                             <td class="thd-td2">
-                                TTD Disini
+								<?php
+									if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+										echo '
+											<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
+										';
+									}
+								?>
                             </td>
                         </tr>
                         <tr>
@@ -457,8 +453,18 @@
                             <td class="thd-tha"><b>Section Head</b></td>
                         </tr>
                         <tr>
-                            <td class="thd-td2">(................................................)</td>
-                            <td class="thd-td2">(................................................)</td>
+                            <td class="thd-td2">( <?= $user->NAMA_USERS ?> )</td>
+							<?php
+								if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+									echo '
+										<td class="thd-td2">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+									';
+								} else {
+									echo '
+										<td class="thd-td2">(................................................)</td>
+									';
+								}
+							?>
                         </tr>
                     </table>
                 </div>
@@ -483,20 +489,59 @@
                             </tr>
                         </thead>
                         <tbody>
+							<tr>
+								<?php
+									if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+										$date = date_create($approvals[0]->TS_APP);
+										echo '
+											<td class="tg-5r9a" style="text-align:center">Sect Head</td>
+											<td class="tg-5r9a" style="text-align:center">'.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
+											<td class="tg-5r9a" style="text-align:center">'.$approvals[0]->KETERANGAN.'</td>
+											';
+										} else {
+											echo '
+											<td class="tg-5r9a" style="text-align:center">Sect Head</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+										';
+									}
+								?>
+							</tr>
                             <tr>
-                                <td class="tg-5r9a" style="text-align:center">Sect Head</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
+								<?php
+									if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+										$date = date_create($approvals[1]->TS_APP);
+										echo '
+											<td class="tg-5r9a" style="text-align:center">Dept Head</td>
+											<td class="tg-5r9a" style="text-align:center">'.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
+											<td class="tg-5r9a" style="text-align:center">'.$approvals[1]->KETERANGAN.'</td>
+											';
+										} else {
+											echo '
+											<td class="tg-5r9a" style="text-align:center">Dept Head</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+										';
+									}
+								?>
                             </tr>
                             <tr>
-                                <td class="tg-5r9a" style="text-align:center">Dept Head</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                            </tr>
-                            <tr>
-                                <td class="tg-5r9a" style="text-align:center">Div/Corp Head</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
-                                <td class="tg-5r9a" style="text-align:center">...</td>
+								<?php
+									if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+										$date = date_create($approvals[2]->TS_APP);
+										echo '
+											<td class="tg-5r9a" style="text-align:center">Div/Corp Head</td>
+											<td class="tg-5r9a" style="text-align:center">'.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y').'</td>
+											<td class="tg-5r9a" style="text-align:center">'.$approvals[2]->KETERANGAN.'</td>
+											';
+										} else {
+											echo '
+											<td class="tg-5r9a" style="text-align:center">Div/Corp Head</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+											<td class="tg-5r9a" style="text-align:center">...</td>
+										';
+									}
+								?>
                             </tr>
                             <tr>
                                 <td class="tg-5r9a" style="text-align:center">Direktur</td>
@@ -521,10 +566,22 @@
                         </tr>
                         <tr style="height:300px; min-height:300px;">
                             <td class="thd-td2">
-                                TTD Disini
+								<?php
+									if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+										echo '
+											<img src="' . $approvals[1]->PATH_TTD . '" width="100px" height="100px" />
+										';
+									}
+								?>
                             </td>
                             <td class="thd-td2">
-                                TTD Disini
+								<?php
+									if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+										echo '
+											<img src="' . $approvals[2]->PATH_TTD . '" width="100px" height="100px" />
+										';
+									}
+								?>
                             </td>
                         </tr>
                         <tr>
@@ -532,8 +589,27 @@
                             <td class="thd-tha"><b>Div Head</b></td>
                         </tr>
                         <tr>
-                            <td class="thd-td2">(................................................)</td>
-                            <td class="thd-td2">(................................................)</td>
+							<?php
+								if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
+									echo '
+										<td class="thd-td2">( ' . $approvals[1]->NAMA_USERS . ' )</td>
+									';
+								} else {
+									echo '
+										<td class="thd-td2">(................................................)</td>
+									';
+								}
+								
+								if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+									echo '
+										<td class="thd-td2">( ' . $approvals[2]->NAMA_USERS . ' )</td>
+									';
+								} else {
+									echo '
+										<td class="thd-td2">(................................................)</td>
+									';
+								}
+							?>
                         </tr>
                     </table>
                 </div>
