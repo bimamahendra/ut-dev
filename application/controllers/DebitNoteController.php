@@ -8,7 +8,7 @@ class DebitNoteController extends CI_Controller
     function __construct(){
         parent::__construct();
         $this->load->model('DebitNote');
-		$this->load->library(array('upload','randomstring'));
+		$this->load->library(array('upload'));
         $this->load->helper('download');
     }
     public function vDN(){
@@ -101,7 +101,7 @@ class DebitNoteController extends CI_Controller
                 for($i = 4; $i < $highestRow; $i++){
                     $date = date_create($arrSpreadsheet[$i][1]);
 
-                    $data['ID_DEBITNOTE']               = 'DN_'.md5(time().$this->randomstring->getRandString(5));
+                    $data['ID_DEBITNOTE']               = 'DN_'.md5(time().$this->getRandString(5));
                     $data['NOFAKTUR_DEBITNOTE']         = $arrSpreadsheet[$i][0];
                     $data['TGLFAKTUR_DEBITNOTE']        = date('Y-m-d', strtotime($arrSpreadsheet[$i][1]));
                     $data['TGLJATUH_DEBITNOTE']         = date('Y-m-d', strtotime($arrSpreadsheet[$i][2]));
@@ -147,5 +147,15 @@ class DebitNoteController extends CI_Controller
 
     public function downloadTemplate(){
         force_download('./assets/templates/DEBITNOTE_TEMPLATE.xlsx', NULL);
+    }
+
+    public function getRandString($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }
