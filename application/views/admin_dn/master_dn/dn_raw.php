@@ -79,10 +79,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form enctype="multipart/form-data" method="post">
+            <form action="<?= site_url('debitnote/store')?>" enctype="multipart/form-data" method="post">
                 <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
-                        <input type="file" name="fileDN" class="custom-file-input" id="fileDN">
+                        <input type="file" name="FILEDN" class="custom-file-input" id="fileDN">
                         <label class="custom-file-label" for="fileDN">Unggah Debit Note</label>
                     </div>
                 </div>

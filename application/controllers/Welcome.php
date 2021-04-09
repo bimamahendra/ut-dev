@@ -160,7 +160,7 @@ class Welcome extends CI_Controller
 	}
 	public function formTes()
 	{
-		$this->load->view('pdf_template/form_permintaan_extension_akses');
+		$this->load->view('pdf_template/debit_note');
 	}
 
 	public function admin_dn_raw()

@@ -109,5 +109,15 @@ $route['transaction']           = 'TransactionController/vTrans';
 $route['transaction/approve']   = 'TransactionController/approve';
 $route['transaction/reject']    = 'TransactionController/reject';
 
+// DebitNote
+$route['debitnote']             = 'DebitNoteController/vDN';
+$route['debitnote/generated']   = 'DebitNoteController/vDNGenerated';
+$route['debitnote/approved']    = 'DebitNoteController/vDNApproved';
+$route['debitnote/rejected']    = 'DebitNoteController/vDNRejected';
+$route['debitnote/progress']    = 'DebitNoteController/vDNProgress';
+$route['debitnote/overdue']     = 'DebitNoteController/vDNOverdue';
+$route['debitnote/finished']    = 'DebitNoteController/vDNFinished';
+$route['debitnote/store']       = 'DebitNoteController/store';
+
 //Snack
 $route['snack/(:any)']          = 'SnackController/vSnack/$1';
