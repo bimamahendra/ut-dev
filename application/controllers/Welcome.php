@@ -163,12 +163,39 @@ class Welcome extends CI_Controller
 		$this->load->view('pdf_template/form_permintaan_extension_akses');
 	}
 
-	public function admin_dn()
+	public function admin_dn_raw()
 	{
 		$this->load->view('template/admin_dn/header');
 		$this->load->view('template/admin_dn/sidebar');
 		$this->load->view('template/admin_dn/topbar');
-		$this->load->view('admin_dn/master_dn/dn');
+		$this->load->view('admin_dn/master_dn/dn_raw');
+		$this->load->view('template/admin_dn/footer');
+	}
+
+	public function admin_dn_generate()
+	{
+		$this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn_generate');
+		$this->load->view('template/admin_dn/footer');
+	}
+
+	public function admin_dn_approved()
+	{
+		$this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn_approved');
+		$this->load->view('template/admin_dn/footer');
+	}
+
+	public function admin_dn_rejected()
+	{
+		$this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn_rejected');
 		$this->load->view('template/admin_dn/footer');
 	}
 }
