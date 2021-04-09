@@ -6,8 +6,8 @@ class DebitNote extends CI_Model{
         parent::__construct();
     }
 
-    public function getAll(){
-        $res = $this->db->order_by('TS_TRANS', 'DESC')->get('DEBITNOTE')->result();
+    public function getAll($param){
+        $res = $this->db->order_by('TGLOUT_DEBITNOTE', 'DESC')->get_where('DEBITNOTE', $param)->result();
         return $res;
     }
     public function get($param){

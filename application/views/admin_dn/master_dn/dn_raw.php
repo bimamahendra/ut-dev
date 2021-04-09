@@ -15,10 +15,10 @@
                         <i class="fas fa-plus fa-sm text-white-50"></i>
                         Tambah
                     </button>
-                    <button class="btn btn-sm btn-info shadow-sm">
+                    <a href="<?= site_url('debitnote/downloadTemplate')?>" class="btn btn-sm btn-info shadow-sm">
                         <i class="fas fa-file-download text-white-50"></i>
                         Unduh Template
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -38,25 +38,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>1610001597</td>
-                            <td>13 October 2020</td>
-                            <td>13 November 2020</td>
-                            <td>010.006-20.61716512</td>
-                            <td>PT KOMATSU ASTRA FINANCE</td>
-                            <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php
+                            $no = 1;
+                            foreach ($debitnotes as $item) {
+                                echo '
+                                    <tr>
+                                        <td>'.$no.'</td>
+                                        <td>'.$item->NOFAKTUR_DEBITNOTE.'</td>
+                                        <td>'.date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y').'</td>
+                                        <td>'.date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y').'</td>
+                                        <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                                        <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
+                                        <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ';
+                                $no++;
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

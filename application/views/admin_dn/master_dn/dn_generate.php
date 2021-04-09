@@ -38,25 +38,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>1610001597</td>
-                            <td>13 October 2020</td>
-                            <td>13 November 2020</td>
-                            <td>010.006-20.61716512</td>
-                            <td>PT KOMATSU ASTRA FINANCE</td>
-                            <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php
+                            $no = 1;
+                            foreach ($debitnotes as $item) {
+                                echo '
+                                    <tr>
+                                        <td>'.$no.'</td>
+                                        <td>'.$item->NOFAKTUR_DEBITNOTE.'</td>
+                                        <td>'.date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y').'</td>
+                                        <td>'.date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y').'</td>
+                                        <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                                        <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
+                                        <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
+                                        <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ';
+                                $no++;
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -79,10 +88,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form enctype="multipart/form-data" method="post">
+            <form action="<?= site_url('debitnote/store')?>" enctype="multipart/form-data" method="post">
                 <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
-                        <input type="file" name="fileDN" class="custom-file-input" id="fileDN">
+                        <input type="file" name="FILEDN" class="custom-file-input" id="fileDN">
                         <label class="custom-file-label" for="fileDN">Unggah Debit Note</label>
                     </div>
                 </div>
@@ -176,6 +185,10 @@
         $('.select2').select2({
             width: 'resolve'
         });
+    });
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
     $('#tableTransaction tbody').on('click', '.mdlApprove', function() {
         const id = $(this).data("id")
