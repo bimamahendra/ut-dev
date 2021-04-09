@@ -12,7 +12,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('welcome/admin_dn_raw'); ?>">
+        <a class="nav-link" href="<?= site_url('debitnote'); ?>">
             <i class="fas fa-book-open"></i>
             <span>Debit Note (RAW)</span>
         </a>
@@ -20,7 +20,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('welcome/admin_dn_generate'); ?>">
+        <a class="nav-link" href="<?= site_url('debitnote/generated'); ?>">
             <i class="fas fa-book-open"></i>
             <span>Debit Note (Generate)</span>
         </a>
@@ -28,7 +28,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('welcome/admin_dn_approved'); ?>">
+        <a class="nav-link" href="<?= site_url('debitnote/approved'); ?>">
             <i class="fas fa-book-open"></i>
             <span>Debit Note (Approved)</span>
         </a>
@@ -36,9 +36,30 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('welcome/admin_dn_rejected'); ?>">
+        <a class="nav-link" href="<?= site_url('debitnote/rejected'); ?>">
             <i class="fas fa-book-open"></i>
             <span>Debit Note (Rejected)</span>
+        </a>
+    </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('debitnote/progress'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>Debit Note (Progress)</span>
+        </a>
+    </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('debitnote/overdue'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>Debit Note (Overdue)</span>
+        </a>
+    </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('debitnote/finished'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>Debit Note (Finished)</span>
         </a>
     </li>
 

@@ -54,60 +54,71 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Auth
-$route['login']                 = 'AuthController/vLogin';
-$route['logout']                = 'AuthController/logout';
-$route['flogin']                = 'AuthController/login';
+$route['login']                         = 'AuthController/vLogin';
+$route['logout']                        = 'AuthController/logout';
+$route['flogin']                        = 'AuthController/login';
 
 // Notif
-$route['notif']                 = 'NotificationController/getAll';
-$route['notif/read/(:any)']     = 'NotificationController/read/$1';
-$route['notif/readAll']         = 'NotificationController/readAll';
+$route['notif']                         = 'NotificationController/getAll';
+$route['notif/read/(:any)']             = 'NotificationController/read/$1';
+$route['notif/readAll']                 = 'NotificationController/readAll';
 
 // Welcome
-$route['register']              = 'Welcome/register';
-$route['landing']               = 'Welcome/landing';
+$route['register']                      = 'Welcome/register';
+$route['landing']                       = 'Welcome/landing';
 
 // Dashboard
-$route['dashboard']             = 'DashboardController/vDashboard';
+$route['dashboard']                     = 'DashboardController/vDashboard';
 
 //Setting
-$route['setting']               = 'SettingController/vSetting';
-$route['setting/store']         = 'SettingController/store';
-$route['setting/update']        = 'SettingController/update';
-$route['setting/destroy']       = 'SettingController/destroy';
+$route['setting']                       = 'SettingController/vSetting';
+$route['setting/store']                 = 'SettingController/store';
+$route['setting/update']                = 'SettingController/update';
+$route['setting/destroy']               = 'SettingController/destroy';
 
 // Week
-$route['week']                  = 'WeekController/vWeek';
-$route['week/store']            = 'WeekController/store';
-$route['week/update']           = 'WeekController/update';
-$route['week/destroy']          = 'WeekController/destroy';
+$route['week']                          = 'WeekController/vWeek';
+$route['week/store']                    = 'WeekController/store';
+$route['week/update']                   = 'WeekController/update';
+$route['week/destroy']                  = 'WeekController/destroy';
 
 // User
-$route['user']                  = 'UserController/vUser';
-$route['user/edit/(:any)']      = 'UserController/vUserEdit/$1';
-$route['user/store']            = 'UserController/store';
-$route['user/update']           = 'UserController/update';
-$route['user/reset-password']   = 'UserController/resetPassword';
-$route['user/destroy']          = 'UserController/destroy';
-$route['user/verif']            = 'UserController/verif';
-$route['user/register']         = 'UserController/register';
+$route['user']                          = 'UserController/vUser';
+$route['user/edit/(:any)']              = 'UserController/vUserEdit/$1';
+$route['user/store']                    = 'UserController/store';
+$route['user/update']                   = 'UserController/update';
+$route['user/reset-password']           = 'UserController/resetPassword';
+$route['user/destroy']                  = 'UserController/destroy';
+$route['user/verif']                    = 'UserController/verif';
+$route['user/register']                 = 'UserController/register';
 
 // Form
-$route['form']                  = 'FormController/vForm';
-$route['form/edit/(:any)']      = 'FormController/vFormEdit/$1';
-$route['form/store']            = 'FormController/store';
-$route['form/update']           = 'FormController/update';
-$route['form/destroy']          = 'FormController/destroy';
-$route['form/flow/(:any)']      = 'FormController/vFlow/$1';
-$route['form/flow/reset']       = 'FormController/flowReset';
-$route['form/deleteFlow']       = 'FormController/deleteFlow';
-$route['form/updateFlow']       = 'FormController/updateFlow';
-$route['form/editFlow']         = 'FormController/editFlow';
+$route['form']                          = 'FormController/vForm';
+$route['form/edit/(:any)']              = 'FormController/vFormEdit/$1';
+$route['form/store']                    = 'FormController/store';
+$route['form/update']                   = 'FormController/update';
+$route['form/destroy']                  = 'FormController/destroy';
+$route['form/flow/(:any)']              = 'FormController/vFlow/$1';
+$route['form/flow/reset']               = 'FormController/flowReset';
+$route['form/deleteFlow']               = 'FormController/deleteFlow';
+$route['form/updateFlow']               = 'FormController/updateFlow';
+$route['form/editFlow']                 = 'FormController/editFlow';
 
 // Transaction
-$route['transaction']           = 'TransactionController/vTrans';
-$route['transaction/approve']   = 'TransactionController/approve';
-$route['transaction/reject']    = 'TransactionController/reject';
+$route['transaction']                   = 'TransactionController/vTrans';
+$route['transaction/approve']           = 'TransactionController/approve';
+$route['transaction/reject']            = 'TransactionController/reject';
+
+// DebitNote
+$route['debitnote']                     = 'DebitNoteController/vDN';
+$route['debitnote/generated']           = 'DebitNoteController/vDNGenerated';
+$route['debitnote/approved']            = 'DebitNoteController/vDNApproved';
+$route['debitnote/rejected']            = 'DebitNoteController/vDNRejected';
+$route['debitnote/progress']            = 'DebitNoteController/vDNProgress';
+$route['debitnote/overdue']             = 'DebitNoteController/vDNOverdue';
+$route['debitnote/finished']            = 'DebitNoteController/vDNFinished';
+$route['debitnote/store']               = 'DebitNoteController/store';
+$route['debitnote/downloadTemplate']    = 'DebitNoteController/downloadTemplate';
 
 //Snack
-$route['snack/(:any)']          = 'SnackController/vSnack/$1';
+$route['snack/(:any)']                  = 'SnackController/vSnack/$1';
