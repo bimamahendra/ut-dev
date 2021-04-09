@@ -12,9 +12,33 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('dashboard'); ?>">
+        <a class="nav-link" href="<?= site_url('welcome/admin_dn_raw'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note</span>
+            <span>Debit Note (RAW)</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('welcome/admin_dn_generate'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>Debit Note (Generate)</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('welcome/admin_dn_approved'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>Debit Note (Approved)</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('welcome/admin_dn_rejected'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>Debit Note (Rejected)</span>
         </a>
     </li>
 

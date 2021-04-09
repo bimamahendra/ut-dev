@@ -3,17 +3,23 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Debit Note</h1>
+        <h1 class="h3 mb-0 text-gray-800">Debit Note (RAW)</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Debit Note</h6>
-                <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
-                    <i class="fas fa-plus fa-sm text-white-50"></i>
-                    Tambah
-                </button>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Debit Note (RAW)</h6>
+                <div>
+                    <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
+                        <i class="fas fa-plus fa-sm text-white-50"></i>
+                        Tambah
+                    </button>
+                    <button class="btn btn-sm btn-info shadow-sm">
+                        <i class="fas fa-file-download text-white-50"></i>
+                        Unduh Template
+                    </button>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -22,19 +28,34 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Field #1</th>
-                            <th>Field #2</th>
-                            <th>Field #3</th>
+                            <th>No. Faktur</th>
+                            <th>Tanggal Faktur</th>
+                            <th>Tanggal Jatuh Tempo</th>
+                            <th>No. Faktur Pajak</th>
+                            <th>Nama Perusahaan</th>
+                            <th>Barang / Jasa Kena Pajak</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
+                            <td>1610001597</td>
+                            <td>13 October 2020</td>
+                            <td>13 November 2020</td>
+                            <td>010.006-20.61716512</td>
+                            <td>PT KOMATSU ASTRA FINANCE</td>
+                            <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
