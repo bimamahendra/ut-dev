@@ -6,7 +6,7 @@ class DebitNoteController extends CI_Controller
     function __construct(){
         parent::__construct();
         $this->load->model('DebitNote');
-		$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
+		$this->load->library(array('PHPExcel','PHPExcel/IOFactory', 'upload'));
     }
     public function vDN(){
 		$this->load->view('template/admin_dn/header');
@@ -63,70 +63,74 @@ class DebitNoteController extends CI_Controller
     public function vDNEdit($id){
     }
 
-    public function store(){        
-        if(isset($_POST['EXCEL'])){
-			$filename = $_FILES['file']['name'];
+    public function store(){    
+        $config['upload_path'] = './uploads/debitnote/'; //path folder
+        $config['allowed_types'] = 'xls|xlsx|csv'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+ 
+        $this->upload->initialize($config);
+        if(!empty($_FILES['FILEDN']['name'])){{
+            if($this->upload->do_upload('FILEDN')){
+                $fileDN = $this->upload->data();
+                $inputFileName = './uploads/debitnote/'.$fileDN['file_name'];
 
-			$config['upload_path'] = './uploads/debitnote/';
-			$config['file_name'] = $filename;
-			$config['allowed_types'] = 'xls|xlsx|csv';
+                try {
+                    $inputFileType = IOFactory::identify($inputFileName);
+                    $objReader = IOFactory::createReader($inputFileType);
+                    $objPHPExcel = $objReader->load($inputFileName);
+                } catch(Exception $e) {
+                    die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+                }
+                var_dump($objPHPExcel);
+            }else {
+                echo $this->upload->display_errors();	
+            }
+        }}
 
-			$this->load->library('upload');
-			$this->upload->initialize($config);
+        // $inputFileName = './uploads/'.$filename;
 
-			if(! $this->upload->do_upload('file')){
-				$this->upload->display_errors();	
-			}else {
-				echo "Uploaded";
-			}
-			
+        // try {
+        //     $inputFileType = IOFactory::identify($inputFileName);
+        //     $objReader = IOFactory::createReader($inputFileType);
+        //     $objPHPExcel = $objReader->load($inputFileName);
+        // } catch(Exception $e) {
+        //     die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        // }
 
-			$media = $this->upload->data('FILEDN');
-			$inputFileName = './uploads/'.$filename;
+        // $sheet = $objPHPExcel->getSheet(0);
+        // $highestRow = $sheet->getHighestRow();
+        // $highestColumn = $sheet->getHighestColumn();
 
-			// try {
-            //     $inputFileType = IOFactory::identify($inputFileName);
-            //     $objReader = IOFactory::createReader($inputFileType);
-            //     $objPHPExcel = $objReader->load($inputFileName);
-            // } catch(Exception $e) {
-            //     die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-            // }
+        // for($row = 5; $row <= $highestRow; $row++){
+        // 	$rowData = $sheet->rangeToArray('B' . $row . ':' . $highestColumn . $row,
+        //                                     NULL,
+        //                                     TRUE,
+        //                                     FALSE);
+        // 	// print_r($rowData[0][0]);
+        // 	// $rData = explode(";", $rowData[0][0]);
+        // 	// print_r($rData);
+        // 	// echo "<br>";
+        //  //    echo "<br>";
+            
 
-            // $sheet = $objPHPExcel->getSheet(0);
-            // $highestRow = $sheet->getHighestRow();
-            // $highestColumn = $sheet->getHighestColumn();
+        // 	$data = array(
+        // 		"no_invoice"=> $rowData[0][0],
+        // 		"no_sp2d"=> $rowData[0][1],
+        // 		"jenis_spm"=> $rowData[0][2],
+        // 		"tgl_upload"=> $this->parseDate($rowData[0][3]),
+        // 		"wkt_upload"=> $rowData[0][4],
+        // 		"tgl_pd"=> $this->parseDate($rowData[0][5]),
+        // 		"wkt_pd"=> $rowData[0][6],
+        // 		"tgl_bank"=> $this->parseDate($rowData[0][7]),
+        // 		"wkt_bank"=> $rowData[0][8],
+        // 		"durasi"=> $rowData[0][9],
+        // 		"jumlah"=> $rowData[0][10]
+        // 	);
 
-            // for($row = 5; $row <= $highestRow; $row++){
-            // 	$rowData = $sheet->rangeToArray('B' . $row . ':' . $highestColumn . $row,
-            //                                     NULL,
-            //                                     TRUE,
-            //                                     FALSE);
-            // 	// print_r($rowData[0][0]);
-            // 	// $rData = explode(";", $rowData[0][0]);
-            // 	// print_r($rData);
-            // 	// echo "<br>";
-            //  //    echo "<br>";
-            	
+        // 	// print_r($data);
 
-            // 	$data = array(
-            // 		"no_invoice"=> $rowData[0][0],
-            // 		"no_sp2d"=> $rowData[0][1],
-            // 		"jenis_spm"=> $rowData[0][2],
-            // 		"tgl_upload"=> $this->parseDate($rowData[0][3]),
-            // 		"wkt_upload"=> $rowData[0][4],
-            // 		"tgl_pd"=> $this->parseDate($rowData[0][5]),
-            // 		"wkt_pd"=> $rowData[0][6],
-            // 		"tgl_bank"=> $this->parseDate($rowData[0][7]),
-            // 		"wkt_bank"=> $rowData[0][8],
-            // 		"durasi"=> $rowData[0][9],
-            // 		"jumlah"=> $rowData[0][10]
-            // 	);
-
-            // 	// print_r($data);
-
-            // 	$this->Import_csv->insert($data);
-            // }
-		}
+        // 	$this->Import_csv->insert($data);
+        // }
         // redirect('form');
     }
     public function update(){

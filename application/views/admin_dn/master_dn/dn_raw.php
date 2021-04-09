@@ -177,6 +177,10 @@
             width: 'resolve'
         });
     });
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
     $('#tableTransaction tbody').on('click', '.mdlApprove', function() {
         const id = $(this).data("id")
         $('#mdlApprove_id').val(id)
