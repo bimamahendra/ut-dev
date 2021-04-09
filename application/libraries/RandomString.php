@@ -1,5 +1,5 @@
 <?php
-    class RandomString {
+    class Randomstring {
         function getRandString($length) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
