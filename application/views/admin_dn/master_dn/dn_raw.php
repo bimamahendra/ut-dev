@@ -15,7 +15,7 @@
                         <i class="fas fa-plus fa-sm text-white-50"></i>
                         Tambah
                     </button>
-                    <a href="<?= site_url('debitnote/downloadTemplate')?>" class="btn btn-sm btn-info shadow-sm">
+                    <a href="<?= site_url('debitnote/downloadTemplate') ?>" class="btn btn-sm btn-info shadow-sm">
                         <i class="fas fa-file-download text-white-50"></i>
                         Unduh Template
                     </a>
@@ -39,31 +39,34 @@
                     </thead>
                     <tbody>
                         <?php
-                            $no = 1;
-                            foreach ($debitnotes as $item) {
-                                echo '
+                        $no = 1;
+                        foreach ($debitnotes as $item) {
+                            echo '
                                     <tr>
-                                        <td>'.$no.'</td>
-                                        <td>'.$item->NOFAKTUR_DEBITNOTE.'</td>
-                                        <td>'.date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y').'</td>
-                                        <td>'.date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y').'</td>
-                                        <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
-                                        <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
-                                        <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
+                                        <td>' . $no . '</td>
+                                        <td>' . $item->NOFAKTUR_DEBITNOTE . '</td>
+                                        <td>' . date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y') . '</td>
+                                        <td>' . date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y') . '</td>
+                                        <td>' . $item->NOFAKTURPAJAK_DEBITNOTE . '</td>
+                                        <td>' . $item->NAMAPERUSAHAAN_DEBITNOTE . '</td>
+                                        <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlGenerate" class="btn btn-success btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Generate">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </button>
+                                                <a href="' . base_url("welcome/admin_dn_raw_edit") . '" class="btn btn-primary btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                 ';
-                                $no++;
-                            }
+                            $no++;
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -87,7 +90,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= site_url('debitnote/store')?>" enctype="multipart/form-data" method="post">
+            <form action="<?= site_url('debitnote/store') ?>" enctype="multipart/form-data" method="post">
                 <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
                         <input type="file" name="FILEDN" class="custom-file-input" id="fileDN">
@@ -102,76 +105,54 @@
         </div>
     </div>
 </div>
-<!-- Modal Approve -->
-<div class="modal fade" id="mdlApprove" tabindex="-1" aria-labelledby="mdlApprove" aria-hidden="true">
+<!-- Modal Generate -->
+<div class="modal fade" id="mdlGenerate" tabindex="-1" aria-labelledby="mdlGenerate" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Verifikasi Transaksi?</h5>
+                <h5 class="modal-title" id="mdlGenerate">Generate Debit Note?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menyetujui item ?
+                    Anda akan men-generate item dengan No. Faktur <span id="mdlDelete_item">13213213</span>
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('transaction/approve') ?>" method="post">
-                    <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
-                    <button type="submit" class="btn btn-warning">Verifikasi</button>
+                <form action="#" method="post">
+                    <input type="hidden" id="mdlDelete_itemId" name="ID_MAPPING" />
+                    <button type="submit" class="btn btn-success">Generate</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal Reject -->
-<div class="modal fade" id="mdlReject" tabindex="-1" aria-labelledby="mdlReject" aria-hidden="true">
+<!-- Modal Delete -->
+<div class="modal fade" id="mdlDelete" tabindex="-1" aria-labelledby="mdlDelete" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject">Tolak Transaksi?</h5>
+                <h5 class="modal-title" id="mdlDelete">Hapus Debit Note?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= site_url('transaction/reject') ?>" method="post">
-                    <div class="form-group">
-                        <label for="inputKeterangan">Keterangan</label>
-                        <textarea name="KETERANGAN_TRANS" class="form-control" required></textarea>
-                    </div>
+                <p>
+                    Anda akan menghapus item dengan No. Faktur <span id="mdlDelete_item">13213213</span>
+                </p>
             </div>
 
             <div class="modal-footer">
-                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-danger">Tolak</button>
+                <form action="#" method="post">
+                    <input type="hidden" id="mdlDelete_itemId" name="ID_MAPPING" />
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal View PDF -->
-<div class="modal fade" id="mdlView" tabindex="-1" aria-labelledby="mdlView" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject">Detail Transaksi</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <iframe id="mdlView_src" src="" frameborder="0" width="100%" height="500px"></iframe>
-            </div>
-
-            <div class="modal-footer">
-                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

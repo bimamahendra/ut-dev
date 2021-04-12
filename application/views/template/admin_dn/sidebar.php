@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('debitnote'); ?>">
         <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
         <div class="sidebar-brand-text mx-3">United Tractors</div>
     </a>
@@ -14,7 +14,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (RAW)</span>
+            <span>DN - Raw</span>
         </a>
     </li>
 
@@ -22,7 +22,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote/generated'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (Generate)</span>
+            <span>DN - Generate</span>
         </a>
     </li>
 
@@ -30,7 +30,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote/approved'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (Approved)</span>
+            <span>DN - Approved</span>
         </a>
     </li>
 
@@ -38,28 +38,28 @@
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote/rejected'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (Rejected)</span>
+            <span>DN - Rejected</span>
         </a>
     </li>
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote/progress'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (Progress)</span>
+            <span>DN - Progress</span>
         </a>
     </li>
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote/overdue'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (Overdue)</span>
+            <span>DN - Overdue</span>
         </a>
     </li>
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('debitnote/finished'); ?>">
             <i class="fas fa-book-open"></i>
-            <span>Debit Note (Finished)</span>
+            <span>DN - Finished</span>
         </a>
     </li>
 

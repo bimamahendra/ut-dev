@@ -172,6 +172,15 @@ class Welcome extends CI_Controller
 		$this->load->view('template/admin_dn/footer');
 	}
 
+	public function admin_dn_raw_edit()
+	{
+		$this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn_raw_edit');
+		$this->load->view('template/admin_dn/footer');
+	}
+
 	public function admin_dn_generate()
 	{
 		$this->load->view('template/admin_dn/header');
