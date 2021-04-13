@@ -52,7 +52,7 @@
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlGenerate" class="btn btn-success btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Generate">
+                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlGenerate" class="btn btn-success btn-sm rounded mdlGenerate" data-tooltip="tooltip" data-placement="top" title="Generate">
                                                     <i class="fas fa-exchange-alt"></i>
                                                 </button>
                                                 <a href="' . base_url("welcome/admin_dn_raw_edit") . '" class="btn btn-primary btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
@@ -117,14 +117,15 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan men-generate item dengan No. Faktur <span id="mdlDelete_item">13213213</span>
+                    Anda akan men-generate item dengan No. Faktur <span id="mdlGenerate_item"></span>
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="#" method="post">
-                    <input type="hidden" id="mdlDelete_itemId" name="ID_MAPPING" />
+                <form action="<?= site_url('debitnote/generateDN') ?>" method="post">
+                    <input type="hidden" id="mdlGenerate_itemId" name="ID_DEBITNOTE" />
+                    <input type="hidden" name="STAT_DEBITNOTE" value="1"/>
                     <button type="submit" class="btn btn-success">Generate</button>
                 </form>
             </div>
@@ -181,5 +182,11 @@
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")
         $('#mdlView_src').attr('src', src);
+    })
+    $('#tableTransaction tbody').on('click', '.mdlGenerate', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        $('#mdlGenerate_item').html(name)
+        $('#mdlGenerate_itemId').val(id)
     })
 </script>

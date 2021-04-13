@@ -40,16 +40,15 @@
                                         <td>' . $item->NOFAKTURPAJAK_DEBITNOTE . '</td>
                                         <td>' . $item->NAMAPERUSAHAAN_DEBITNOTE . '</td>
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
-                                        <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="#" class="btn btn-success btn-sm rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
+                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" class="btn btn-success btn-sm rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
                                                     <i class="fa fa-check"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-target="#mdlReject" data-id="#" class="btn btn-danger btn-sm mx-1 rounded mdlReject" data-tooltip="tooltip" data-placement="top" title="Tolak">
+                                                <button type="button" data-toggle="modal" data-target="#mdlReject" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" class="btn btn-danger btn-sm mx-1 rounded mdlReject" data-tooltip="tooltip" data-placement="top" title="Tolak">
                                                     <i class="fa fa-times"></i>
                                                 </button>
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlView" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </button>
                                             </div>
@@ -76,22 +75,22 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Verifikasi Debit Note?</h5>
+                <h5 class="modal-title" id="mdlApprove">Setujui Debit Note?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menyetujui Debit Note dengan No. Faktur 1321 ?
+                    Anda akan menyetujui Debit Note dengan No. Faktur <span id="mdlApprove_item"></span> ?
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="#" method="post">
-                    <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
-                    <button type="submit" class="btn btn-success">Verifikasi</button>
+                <form action="<?= site_url('debitnote/approve') ?>" method="post">
+                    <input type="hidden" id="mdlApprove_id" name="ID_DEBITNOTE" />
+                    <button type="submit" class="btn btn-success">Approve</button>
                 </form>
             </div>
         </div>
@@ -108,15 +107,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <label for="inputKeterangan">Keterangan</label>
-                        <textarea name="KETERANGAN_TRANS" class="form-control" required></textarea>
-                    </div>
-            </div>
-
+                <p>
+                    Anda akan menolak Debit Note dengan No. Faktur <span id="mdlReject_item"></span> ?
+                </p>
+            </div>        
             <div class="modal-footer">
-                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
+                <form action="<?= site_url('debitnote/reject') ?>" method="post">
+                <input type="hidden" id="mdlReject_id" name="ID_DEBITNOTE" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-danger">Tolak</button>
                 </form>
@@ -139,7 +136,6 @@
             </div>
 
             <div class="modal-footer">
-                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
@@ -160,10 +156,14 @@
     });
     $('#tableTransaction tbody').on('click', '.mdlApprove', function() {
         const id = $(this).data("id")
+        const name = $(this).data('name')
+        $('#mdlApprove_item').html(name)
         $('#mdlApprove_id').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlReject', function() {
         const id = $(this).data("id")
+        const name = $(this).data('name')
+        $('#mdlReject_item').html(name)
         $('#mdlReject_id').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlView', function() {

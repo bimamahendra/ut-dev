@@ -119,6 +119,9 @@ $route['debitnote/overdue']             = 'DebitNoteController/vDNOverdue';
 $route['debitnote/finished']            = 'DebitNoteController/vDNFinished';
 $route['debitnote/store']               = 'DebitNoteController/store';
 $route['debitnote/downloadTemplate']    = 'DebitNoteController/downloadTemplate';
+$route['debitnote/generateDN']          = 'DebitNoteController/generateDN';
+$route['debitnote/approve']           	= 'DebitNoteController/approve';
+$route['debitnote/reject']            	= 'DebitNoteController/reject';
 
 //Snack
 $route['snack/(:any)']                  = 'SnackController/vSnack/$1';
