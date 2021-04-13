@@ -158,4 +158,26 @@ class DebitNoteController extends CI_Controller
         }
         return $randomString;
     }
+
+    public function generateDN(){
+        $datas =  $_POST;
+        $this->DebitNote->generate($datas);
+
+        redirect('debitnote');
+    }
+
+    public function approve(){
+        $param                  = $_POST;
+        $param['STAT_DEBITNOTE']    = '2';
+        $this->DebitNote->update($param);
+
+        redirect('debitnote/generated');
+    }
+    public function reject(){
+        $param                  = $_POST;
+        $param['STAT_DEBITNOTE']    = '3';
+        $this->DebitNote->update($param);
+
+        redirect('debitnote/generated');
+    }
 }

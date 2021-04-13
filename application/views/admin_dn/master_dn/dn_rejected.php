@@ -40,10 +40,9 @@
                                         <td>' . $item->NOFAKTURPAJAK_DEBITNOTE . '</td>
                                         <td>' . $item->NAMAPERUSAHAAN_DEBITNOTE . '</td>
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
-                                        <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </button>
                                             </div>
