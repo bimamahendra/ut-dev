@@ -381,7 +381,13 @@
                         </tr>
                         <tr>
                             <td>
-                                <img src="https://via.placeholder.com/75" alt="">
+								<?php
+									if($list[0]->STAT_DEBITNOTE != 3 || $list[0]->STAT_DEBITNOTE != 1){										
+										echo '<img src="https://via.placeholder.com/75" alt="">';
+									}else{
+										echo ' ';
+									}
+								?>                                
                             </td>
                         </tr>
                         <tr>
