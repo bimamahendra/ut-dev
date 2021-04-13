@@ -8,7 +8,7 @@ class DebitNoteController extends CI_Controller
     function __construct(){
         parent::__construct();
         $this->load->model('DebitNote');
-		$this->load->library(array('upload'));
+		$this->load->library(array('upload','emailing'));
         $this->load->helper('download');
     }
     public function vDN(){
@@ -81,15 +81,15 @@ class DebitNoteController extends CI_Controller
     }
 
     public function store(){    
-        $config['upload_path'] = './uploads/debitnote/'; //path folder
-        $config['allowed_types'] = 'xls|xlsx|csv'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        $config['upload_path'] = './uploads/debitnote/fileUploaded/'; 
+        $config['allowed_types'] = 'xls|xlsx|csv';
+        $config['encrypt_name'] = TRUE;
  
         $this->upload->initialize($config);
         if(!empty($_FILES['FILEDN']['name'])){
             if($this->upload->do_upload('FILEDN')){
                 $fileDN         = $this->upload->data();
-                $filePath       = './uploads/debitnote/'.$fileDN['file_name'];
+                $filePath       = './uploads/debitnote/fileUploaded/'.$fileDN['file_name'];
                 $spreadsheet    = \PhpOffice\PhpSpreadsheet\IOFactory::load($filePath);
                 $arrSpreadsheet = $spreadsheet->getActiveSheet()->toArray();
                 $highestRow     = $spreadsheet->getActiveSheet()->getHighestRow();
@@ -179,5 +179,52 @@ class DebitNoteController extends CI_Controller
         $this->DebitNote->update($param);
 
         redirect('debitnote/generated');
+    }
+    public function sendEmail(){
+        $datas = $_POST;
+        $debitNote = $this->DebitNote->get(['ID_DEBITNOTE' => $datas['ID_DEBITNOTE']]);
+
+        $email['from']          = 'United Tractors GA';
+        $email['to']            = $debitNote[0]->EMAIL_DEBITNOTE;
+        $email['subject']       = 'Percobaan';
+        $email['message']       = 'Iki percobaan cuy';
+        if($this->send($email) == true){
+            $this->DebitNote->update(['ID_DEBITNOTE' => $datas['ID_DEBITNOTE'], 'STAT_DEBITNOTE' => '4']);
+        }
+        redirect('debitnote/approved');
+    }
+    public function sendEmailOverdue(){
+
+    }
+
+    public function send($param){
+        $config = [
+            'mailtype'      => 'html',
+            'charset'       => 'utf-8',
+            'protocol'      => 'smtp',
+            'smtp_host'     => 'smtp.gmail.com',
+            'smtp_user'     => 'ilhaja94@gmail.com', 
+            'smtp_pass'     => 'ssri2000+*27gOihJ', 
+            'smtp_crypto'   => 'ssl',
+            'smtp_port'     => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+        
+        $this->load->library('email', $config);
+        $this->email->from($param['from'], $param['from']);
+        $this->email->to($param['to']);
+        $this->email->subject($param['subject']);
+        $this->email->message($param['message']);
+        if(!empty($param['attach'])){
+            $this->email->attach($param['attach']);
+        }
+        
+        if ($this->email->send()) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

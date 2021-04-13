@@ -42,7 +42,7 @@
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlEmail" class="btn btn-success btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Email">
+                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlEmail" class="btn btn-success btn-sm rounded mdlEmail" data-tooltip="tooltip" data-placement="top" title="Email">
                                                     <i class="fas fa-envelope"></i>
                                                 </button>
                                                 <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
@@ -79,14 +79,14 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan mengirim Debit Note dengan No. Faktur 122123?
+                    Anda akan mengirim Debit Note dengan No. Faktur <span id="mdlEmail_name"></span>?
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="#" method="post">
-                    <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
+                <form action="<?= site_url('debitnote/sendEmail')?>" method="post">
+                    <input type="hidden" id="mdlEmail_id" name="ID_DEBITNOTE" />
                     <button type="submit" class="btn btn-success">Kirim</button>
                 </form>
             </div>
@@ -138,5 +138,11 @@
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")
         $('#mdlView_src').attr('src', src);
+    })
+    $('#tableTransaction tbody').on('click', '.mdlEmail', function() {
+        const id    = $(this).data("id")
+        const name  = $(this).data("name")
+        $('#mdlEmail_name').html(name)
+        $('#mdlEmail_id').val(id)
     })
 </script>
