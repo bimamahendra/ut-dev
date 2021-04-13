@@ -122,6 +122,7 @@ $route['debitnote/downloadTemplate']    = 'DebitNoteController/downloadTemplate'
 $route['debitnote/generateDN']          = 'DebitNoteController/generateDN';
 $route['debitnote/approve']           	= 'DebitNoteController/approve';
 $route['debitnote/reject']            	= 'DebitNoteController/reject';
+$route['debitnote/sendEmail']           = 'DebitNoteController/sendEmail';
 
 //Snack
 $route['snack/(:any)']                  = 'SnackController/vSnack/$1';
