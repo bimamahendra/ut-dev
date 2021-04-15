@@ -160,26 +160,19 @@ class DebitNoteController extends CI_Controller
     }
 
     public function generateDN(){
-        $datas =  $_POST;
-        $this->DebitNote->generate($datas);
+        $param =  $_POST;        
 
+        $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => 'MAPP_ec941206d5522cc65dae7fb635e8890a'])->result_array();
+        for($i = 1; $i <= 15; $i++){
+            if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){
+                $this->db->insert('DEBITNOTE_APPROVAL', ['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'ROLE_APP' => $flow[0]['APP_'.$i]]);
+            }
+        }
+
+        $this->DebitNote->generate($param);
         redirect('debitnote');
     }
-
-    public function approve(){
-        $param                  = $_POST;
-        $param['STAT_DEBITNOTE']    = '2';
-        $this->DebitNote->update($param);
-
-        redirect('debitnote/generated');
-    }
-    public function reject(){
-        $param                  = $_POST;
-        $param['STAT_DEBITNOTE']    = '3';
-        $this->DebitNote->update($param);
-
-        redirect('debitnote/generated');
-    }
+    
     public function sendEmail(){
         $datas = $_POST;
         $debitNote = $this->DebitNote->get(['ID_DEBITNOTE' => $datas['ID_DEBITNOTE']]);
