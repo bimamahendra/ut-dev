@@ -50,14 +50,13 @@
                                         <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
                                         <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
                                         <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
-                                        <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="#" class="btn btn-primary btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Ubah">
-                                                    <i class="fa fa-edit"></i>
+                                                <a href="#" class="btn btn-success btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Finished">
+                                                    <i class="fa fa-check"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Hapus">
-                                                    <i class="fa fa-trash"></i>
+                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-primary btn-sm rounded mdlDelete ml-1" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                    <i class="fa fa-eye"></i>
                                                 </button>
                                             </div>
                                         </td>
