@@ -34,11 +34,13 @@ class DebitNote extends CI_Model{
 
     public function generate($param){
         $debitnote = $this->db->get_where('DEBITNOTE', ['ID_DEBITNOTE' => $param['ID_DEBITNOTE']])->result();
+        $approvals = $this->db->get_where('V_DEBITNOTE_APPROVAL', ['ID_DEBITNOTE' => $param['ID_DEBITNOTE']])->result();
         $data['list']       = $debitnote;
+        $data['approvals']  = $approvals;
         $data['getMonth']   = $this->datefunction->getMonth();
 		       
-        $file_pdf = $debitnote[0]->NOFAKTUR_DEBITNOTE.'_'.$debitnote[0]->NAMAPERUSAHAAN_DEBITNOTE;
-        $path_pdf = 'uploads/debitnote/'.$file_pdf.'.pdf';
+        $file_pdf = $debitnote[0]->NOFAKTUR_DEBITNOTE.'_'.$debitnote[0]->NAMAPERUSAHAAN_DEBITNOTE.'_'.time();
+        $path_pdf = 'uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE.'/'.$file_pdf.'.pdf';
 		
         $paper = 'A4';
         $orientation = 'landscape';
@@ -46,8 +48,8 @@ class DebitNote extends CI_Model{
 		$html = $this->load->view('pdf_template/debit_note', $data, true);	    
 
         $resPdf = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
-        if(!is_dir('./uploads/debitnote')){
-            mkdir('./uploads/debitnote', 0777, TRUE);
+        if(!is_dir('./uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE)){
+            mkdir('./uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE, 0777, TRUE);
         }
         file_put_contents($path_pdf, $resPdf);
 

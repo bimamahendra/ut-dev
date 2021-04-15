@@ -381,19 +381,31 @@
                         </tr>
                         <tr>
                             <td>
-								<?php
-									if($list[0]->STAT_DEBITNOTE != 3 || $list[0]->STAT_DEBITNOTE != 1){										
-										echo '<img src="https://via.placeholder.com/75" alt="">';
-									}else{
-										echo ' ';
-									}
-								?>                                
+                            <?php
+                                if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                                    echo '
+                                            <img src="' . $approvals[0]->PATH_TTD . '" width="75px" height="75px" />
+                                        ';
+                                }else{
+                                    echo ' ';
+                                }
+                            ?>                         
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    Bagus Setiawan
+                                <?php
+                                    if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                                        echo '
+                                                ( ' . $approvals[0]->NAMA_USERS . ' )
+                                            ';
+                                    } else {
+                                        echo '
+                                                (................................................)
+                                            ';
+                                    }
+                                ?>
                                 </strong>
                             </td>
                         </tr>
@@ -411,5 +423,8 @@
         </p>
     </div>
 </body>
-
+<?php
+var_dump($list);echo '<br>';
+var_dump($approvals);
+?>
 </html>
