@@ -41,13 +41,7 @@
                                         <td>' . $item->NAMAPERUSAHAAN_DEBITNOTE . '</td>
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-target="#mdlApprove" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" class="btn btn-success btn-sm rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                                <button type="button" data-toggle="modal" data-target="#mdlReject" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" class="btn btn-danger btn-sm mx-1 rounded mdlReject" data-tooltip="tooltip" data-placement="top" title="Tolak">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                            <div class="btn-group" role="group">                                                
                                                 <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </button>
@@ -75,7 +69,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Setujui Debit Note?</h5>
+                <h5 class="modal-title" id="mdlApprove">Verifikasi Debit Note?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
