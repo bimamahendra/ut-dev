@@ -10,16 +10,6 @@
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Debit Note (Overdue)</h6>
-                <div>
-                    <button class="btn btn-sm btn-warning shadow-sm" data-toggle="modal" data-target="#mdlAdd">
-                        <i class="fas fa-plus fa-sm text-white-50"></i>
-                        Tambah
-                    </button>
-                    <button class="btn btn-sm btn-info shadow-sm">
-                        <i class="fas fa-file-download text-white-50"></i>
-                        Unduh Template
-                    </button>
-                </div>
             </div>
         </div>
         <div class="card-body">
@@ -50,7 +40,6 @@
                                         <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
                                         <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
                                         <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
-                                        <td>RENT CHARGE PERIODE OKTOBER - DESEMBER 2020</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="#" class="btn btn-success btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Finished">
