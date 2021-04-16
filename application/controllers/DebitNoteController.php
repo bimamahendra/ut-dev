@@ -172,52 +172,20 @@ class DebitNoteController extends CI_Controller
         $this->DebitNote->generate($param);
         redirect('debitnote');
     }
-    
-    public function sendEmail(){
-        $datas = $_POST;
-        $debitNote = $this->DebitNote->get(['ID_DEBITNOTE' => $datas['ID_DEBITNOTE']]);
 
-        $email['from']          = 'United Tractors GA';
-        $email['to']            = $debitNote[0]->EMAIL_DEBITNOTE;
-        $email['subject']       = 'Percobaan';
-        $email['message']       = 'Iki percobaan cuy';
-        if($this->send($email) == true){
-            $this->DebitNote->update(['ID_DEBITNOTE' => $datas['ID_DEBITNOTE'], 'STAT_DEBITNOTE' => '4']);
+    public function updateProgress(){
+        $date = date('Y-m-d');
+        $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '4']);
+
+        if($debitNotes != null){
+            foreach ($debitNotes as $item) {
+                $dnDateEnd = date_create($item->TGLJATUH_DEBITNOTE);
+                $dnDateEnd = date_format($dnDateEnd, 'Y-m-d');
+
+                if($date > $dnDateEnd){
+                    $this->DebitNote->update(['ID_DEBITNOTE' => $item->ID_DEBITNOTE, 'STAT_DEBITNOTE' => '5']);
+                }
+            }
         }
-        redirect('debitnote/approved');
-    }
-    public function sendEmailOverdue(){
-
-    }
-
-    public function send($param){
-        $config = [
-            'mailtype'      => 'html',
-            'charset'       => 'utf-8',
-            'protocol'      => 'smtp',
-            'smtp_host'     => 'smtp.gmail.com',
-            'smtp_user'     => '', 
-            'smtp_pass'     => '', 
-            'smtp_crypto'   => 'ssl',
-            'smtp_port'     => 465,
-            'crlf'    => "\r\n",
-            'newline' => "\r\n"
-        ];
-        
-        $this->load->library('email', $config);
-        $this->email->from($param['from'], $param['from']);
-        $this->email->to($param['to']);
-        $this->email->subject($param['subject']);
-        $this->email->message($param['message']);
-        if(!empty($param['attach'])){
-            $this->email->attach($param['attach']);
-        }
-        
-        if ($this->email->send()) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 }
