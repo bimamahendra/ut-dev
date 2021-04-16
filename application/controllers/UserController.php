@@ -5,6 +5,9 @@ class UserController extends CI_Controller
 {
     function __construct(){
         parent::__construct();
+        if(empty($this->session->userdata('ROLE_USERS')) || $this->session->userdata('ROLE_USERS') != 'Admin GA'){
+            redirect('login');
+        }
         $this->load->model('User');
         $this->load->library(array('upload', 'notification'));
     }

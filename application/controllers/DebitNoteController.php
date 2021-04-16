@@ -7,6 +7,11 @@ class DebitNoteController extends CI_Controller
 {
     function __construct(){
         parent::__construct();
+
+        if(empty($this->session->userdata('ROLE_USERS')) || $this->session->userdata('ROLE_USERS') != 'Admin Debitnote'){
+            redirect('login');
+        }
+
         $this->load->model('DebitNote');
 		$this->load->library(array('upload','emailing'));
         $this->load->helper('download');

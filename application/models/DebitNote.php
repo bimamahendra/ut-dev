@@ -43,7 +43,7 @@ class DebitNote extends CI_Model{
         $path_pdf = 'uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE.'/'.$file_pdf.'.pdf';
 		
         $paper = 'A4';
-        $orientation = 'landscape';
+        $orientation = 'portrait';
         
 		$html = $this->load->view('pdf_template/debit_note', $data, true);	    
 
