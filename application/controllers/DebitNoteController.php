@@ -88,7 +88,7 @@ class DebitNoteController extends CI_Controller
     public function store(){    
         $config['upload_path'] = './uploads/debitnote/fileUploaded/'; 
         $config['allowed_types'] = 'xls|xlsx|csv';
-        $config['encrypt_name'] = TRUE;
+        $config['file_name'] = time();
  
         $this->upload->initialize($config);
         if(!empty($_FILES['FILEDN']['name'])){

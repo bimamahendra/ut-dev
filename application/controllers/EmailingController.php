@@ -15,7 +15,8 @@
             $email['message']   = 'Tes';
             $this->send($email);
 
-            $this->DebitNote->update(['ID_DEBITNOTE' => $idDebitNote, 'STAT_DEBITNOTE' => '4']);
+            $date = date('Y-m-d');
+            $this->DebitNote->update(['ID_DEBITNOTE' => $idDebitNote, 'STAT_DEBITNOTE' => '4', 'TGL_PUBLISHED' => $date]);
             redirect('debitnote/approved');
         }
 
@@ -32,7 +33,7 @@
         public function paymentProgress($period){
             $date = date('Y-m-d', strtotime('-'.$period.' day'));
             
-            $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '4', 'TGLFAKTUR_DEBITNOTE' => $date]);
+            $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
             if($debitNotes != null){
                 foreach ($debitNotes as $item) {
                     $email['from']      = 'Menara Astra';
