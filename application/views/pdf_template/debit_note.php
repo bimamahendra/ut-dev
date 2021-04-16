@@ -423,8 +423,4 @@
         </p>
     </div>
 </body>
-<?php
-var_dump($list);echo '<br>';
-var_dump($approvals);
-?>
 </html>
