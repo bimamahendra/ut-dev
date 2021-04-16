@@ -208,7 +208,7 @@
         <table class="border-collapse w-100 valign-middle mb-med table-layout-fixed text-regular-sm">
             <tr>
                 <td width="50%">Kepada (Sold To) :</td>
-                <td width="50%" class="text-align-justify text-regular-sm border-1" rowspan="4">
+                <td width="50%" class="text-align-justify border-1" rowspan="4" style="font-size: 8px;">
                     Nota Debit ini berlaku sebagai Faktur Pajak sesuai ketentuan dalam pasal 05 Peraturan Dirjen Pajak
                     Nomor 24/PJ/2012 tanggal 22 November 2012 dan S-6285/WPJ.19/KP.01/ 2011 tanggal 10 Agustus 2011
                     (This debit note acts as a tax debit note according to the terms under chapter 05 of the Tax Directorate
@@ -307,49 +307,55 @@
                         </tr>
                         <tr>
                             <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">POTONGAN HARGA</strong></td>
-                            <td class="text-align-center"></td><?= $list[0]->POTHARGA_DEBITNOTE ?></td>
-                            <td class="text-align-center"></td>
-                        </tr>
-                        <tr>
-                            <td class="pl-min text-align-right" style="font-size: 8px;"><strong>UANG MUKA (UM) YANG TELAH DITERIMA</strong></td>
-                            <td class="text-align-center"><?= $list[0]->UANGMUKA_DEBITNOTE ?></td></td>
-                            <td class="text-align-center"></td>
-                        </tr>
-                        <tr>
-                            <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">HARGA SETELAH POTONGAN DAN UM/</strong></td>
-                            <td class="text-align-center"><?= $list[0]->HARGAPOTONGAN_DEBITNOTE ?></td></td>
-                            <td class="text-align-center"></td>
-                        </tr>
-                        <tr>
-                            <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">DASAR PENGENAAN PAJAK</strong></td>
-                            <td class="text-align-center"><?= $list[0]->DPP_DEBITNOTE ?></td></td>
-                            <td class="text-align-center"></td>
-                        </tr>
-                        <tr>
-                            <td class="pl-min text-align-right" style="font-size: 8px;"><strong>PPN (VAT)</strong></td>
-                            <td class="text-align-center"><?= $list[0]->PPN_DEBITNOTE ?></td></td>
-                            <td class="text-align-center">-</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">GRAND TOTAL</strong></td>
-                            <td class="text-align-center"><?= $list[0]->GRANDTOTAL_DEBITNOTE ?></td></td>
-                            <td class="text-align-center">-</td>
-                        </tr>
-                    </table>
+                            <td class="text-align-center"></td><?= $list[0]->POTHARGA_DEBITNOTE ?>
                 </td>
+                <td class="text-align-center"></td>
             </tr>
+            <tr>
+                <td class="pl-min text-align-right" style="font-size: 8px;"><strong>UANG MUKA (UM) YANG TELAH DITERIMA</strong></td>
+                <td class="text-align-center"><?= $list[0]->UANGMUKA_DEBITNOTE ?></td>
+                </td>
+                <td class="text-align-center"></td>
+            </tr>
+            <tr>
+                <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">HARGA SETELAH POTONGAN DAN UM/</strong></td>
+                <td class="text-align-center"><?= $list[0]->HARGAPOTONGAN_DEBITNOTE ?></td>
+                </td>
+                <td class="text-align-center"></td>
+            </tr>
+            <tr>
+                <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">DASAR PENGENAAN PAJAK</strong></td>
+                <td class="text-align-center"><?= $list[0]->DPP_DEBITNOTE ?></td>
+                </td>
+                <td class="text-align-center"></td>
+            </tr>
+            <tr>
+                <td class="pl-min text-align-right" style="font-size: 8px;"><strong>PPN (VAT)</strong></td>
+                <td class="text-align-center"><?= $list[0]->PPN_DEBITNOTE ?></td>
+                </td>
+                <td class="text-align-center">-</td>
+            </tr>
+            <tr>
+                <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">GRAND TOTAL</strong></td>
+                <td class="text-align-center"><?= $list[0]->GRANDTOTAL_DEBITNOTE ?></td>
+                </td>
+                <td class="text-align-center">-</td>
+            </tr>
+        </table>
+        </td>
+        </tr>
         </table>
         <table class="border-collapse w-100 mb-med table-layout-fixed text-regular-sm">
             <tr>
                 <td width="50%" class="valign-top">
-                    <table class="border-collapse w-100 mb-med table-layout-fixed text-regular-sm border-1">
+                    <table class="border-collapse w-100 mb-med table-layout-fixed border-1" style="font-size: 8px;">
                         <tr>
-                            <td width="33.33%">TARIF</td>
+                            <td width="33.33%" class="pl-min">TARIF</td>
                             <td width="33.33%">DPP</td>
                             <td width="33.33%">PPn BM</td>
                         </tr>
                         <tr>
-                            <td>...........%</td>
+                            <td class="pl-min">...........%</td>
                             <td>Rp. ..........</td>
                             <td>Rp. .........</td>
                         </tr>
@@ -374,28 +380,28 @@
                         <tr>
                             <td>
                                 <?php
-                                    $date 		= date_create($list[0]->TGLOUT_DEBITNOTE);
-                                    echo 'Jakarta, '.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
+                                $date         = date_create($list[0]->TGLOUT_DEBITNOTE);
+                                echo 'Jakarta, ' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
                                 ?>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <?php
+                                <?php
                                 if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
                                     echo '
                                             <img src="' . $approvals[0]->PATH_TTD . '" width="75px" height="75px" />
                                         ';
-                                }else{
+                                } else {
                                     echo ' ';
                                 }
-                            ?>                         
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                <?php
+                                    <?php
                                     if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
                                         echo '
                                                 ( ' . $approvals[0]->NAMA_USERS . ' )
@@ -405,7 +411,7 @@
                                                 (................................................)
                                             ';
                                     }
-                                ?>
+                                    ?>
                                 </strong>
                             </td>
                         </tr>
@@ -423,4 +429,5 @@
         </p>
     </div>
 </body>
+
 </html>
