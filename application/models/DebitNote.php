@@ -13,7 +13,7 @@ class DebitNote extends CI_Model{
         return $res;
     }
     public function get($param){
-        $res    = $this->db->get_where('DEBITNOTE', $param)->result();
+        $res    = $this->db->get_where('DEBITNOTE', $param)->row();
         return $res;
     }
     public function insert($param){

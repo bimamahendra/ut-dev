@@ -85,7 +85,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('debitnote/sendEmail')?>" method="post">
+                <form action="<?= site_url('email/sendEmail')?>" method="post">
                     <input type="hidden" id="mdlEmail_id" name="ID_DEBITNOTE" />
                     <button type="submit" class="btn btn-success">Kirim</button>
                 </form>
