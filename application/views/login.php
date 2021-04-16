@@ -16,12 +16,23 @@
                     <form action="<?= site_url('flogin') ?>" method="post">
                         <div class="form-group">
                             <label for="inputUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>
+                            <input type="text" name="USER_USERS" class="form-control" id="inputUsername" placeholder="Username" required>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                            <input type="password" name="PASSWORD_USERS" class="form-control" id="inputPassword" placeholder="Password" required>
                         </div>
+                        <?php
+                            if ($this->session->flashdata('error_login')){
+                                echo '
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert">
+                                            '.$this->session->flashdata('error_login').'
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        ?>
                         <div class="form-group">
                             <button class="btn btn-warning btn-block" type="submit">Login</button>
                         </div>
