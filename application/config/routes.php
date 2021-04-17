@@ -120,8 +120,7 @@ $route['debitnote/finished']            = 'DebitNoteController/vDNFinished';
 $route['debitnote/store']               = 'DebitNoteController/store';
 $route['debitnote/downloadTemplate']    = 'DebitNoteController/downloadTemplate';
 $route['debitnote/generateDN']          = 'DebitNoteController/generateDN';
-$route['debitnote/approve']           	= 'DebitNoteController/approve';
-$route['debitnote/reject']            	= 'DebitNoteController/reject';
+$route['debitnote/finish']            	= 'DebitNoteController/finish';
 $route['debitnote/updateProgress']      = 'DebitNoteController/updateProgress';
 
 // Emailing
