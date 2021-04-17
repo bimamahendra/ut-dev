@@ -20,16 +20,6 @@
             redirect('debitnote/approved');
         }
 
-        public function reminder(){
-            $this->paymentProgress('14');
-            $this->paymentProgress('21');
-            $this->paymentProgress('27');
-
-            $this->paymentOverdue('1');
-            $this->paymentOverdue('14');
-            $this->paymentOverdue('30');
-        }
-
         public function paymentProgress($period){
             $date = date('Y-m-d', strtotime('-'.$period.' day'));
             

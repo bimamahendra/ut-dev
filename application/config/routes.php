@@ -125,7 +125,8 @@ $route['debitnote/updateProgress']      = 'DebitNoteController/updateProgress';
 
 // Emailing
 $route['email/sendEmail']               = 'EmailingController/sendEmail';
-$route['email/reminder']                = 'EmailingController/reminder';
+$route['email/remindProgress/(:any)']   = 'EmailingController/paymentProgress/$1';
+$route['email/remindOverdue/(:any)']    = 'EmailingController/paymentOverdue/$1';
 
 //Snack
 $route['snack/(:any)']                  = 'SnackController/vSnack/$1';
