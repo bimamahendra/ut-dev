@@ -174,15 +174,10 @@ class DebitNoteController extends CI_Controller
     }
 
     public function generateDN(){
-        $param =  $_POST;        
+        $param =  $_POST;    
 
-        $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => 'MAPP_ec941206d5522cc65dae7fb635e8890a'])->result_array();
-        for($i = 1; $i <= 15; $i++){
-            if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){
-                $this->db->insert('DEBITNOTE_APPROVAL', ['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'ROLE_APP' => $flow[0]['APP_'.$i]]);
-            }
-        }
-
+        $this->db->insert('DEBITNOTE_APPROVAL', ['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'ROLE_APP' => 'Department Head']);
+           
         $this->DebitNote->generate($param);
         redirect('debitnote');
     }
