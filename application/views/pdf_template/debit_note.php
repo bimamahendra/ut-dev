@@ -191,7 +191,7 @@
 <body>
     <div class="wrapper-page">
         <p class="text-align-center mb-med">
-            <img src="<?= base_url('assets/img/logo.png'); ?>" alt="" width="70">
+            <img src="<?= base_url('assets/img/debitnote/header.png'); ?>">
         </p>
         <table class="border-collapse w-100 valign-middle mb-med table-layout-fixed text-regular-sm">
             <tr>
@@ -424,9 +424,6 @@
                 </td>
             </tr>
         </table>
-        <p class="text-align-center mb-med">
-            <img src="<?= base_url('assets/img/logo.png'); ?>" alt="" width="70">
-        </p>
     </div>
 </body>
 
