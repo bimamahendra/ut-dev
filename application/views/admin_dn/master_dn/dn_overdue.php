@@ -42,9 +42,12 @@
                                         <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="#" class="btn btn-success btn-sm rounded" data-tooltip="tooltip" data-placement="top" title="Finished">
+                                                <button type="button" class="btn btn-success btn-sm rounded mdlFinish" data-id="'.$item->ID_DEBITNOTE.'" data-toggle="modal" data-target="#mdlFinish" data-tooltip="tooltip" data-placement="top" title="Finished">
                                                     <i class="fa fa-check"></i>
-                                                </a>
+                                                </button> &nbsp; 
+                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -89,65 +92,41 @@
         </div>
     </div>
 </div>
-<!-- Modal Approve -->
-<div class="modal fade" id="mdlApprove" tabindex="-1" aria-labelledby="mdlApprove" aria-hidden="true">
+<!-- Modal Finish -->
+<div class="modal fade" id="mdlFinish" tabindex="-1" aria-labelledby="mdlFinish" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Verifikasi Transaksi?</h5>
+                <h5 class="modal-title" id="mdlApprove">Finish Debitnote?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menyetujui item ?
+                    Anda akan mevalidasi item ?
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('transaction/approve') ?>" method="post">
-                    <input type="hidden" id="mdlApprove_id" name="ID_TRANS" />
-                    <button type="submit" class="btn btn-warning">Verifikasi</button>
+                <form action="<?= site_url('debitnote/finish') ?>" method="post">
+                    <input type="hidden" id="mdlFinish_id" name="ID_DEBITNOTE" />
+                    <input type="hidden" id="mdlFinish_id" name="STAT_DEBITNOTE" value="6" />
+                    <input type="hidden" name="page" value="overdue" />
+                    <button type="submit" class="btn btn-warning">Selesai</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal Reject -->
-<div class="modal fade" id="mdlReject" tabindex="-1" aria-labelledby="mdlReject" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject">Tolak Transaksi?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= site_url('transaction/reject') ?>" method="post">
-                    <div class="form-group">
-                        <label for="inputKeterangan">Keterangan</label>
-                        <textarea name="KETERANGAN_TRANS" class="form-control" required></textarea>
-                    </div>
-            </div>
 
-            <div class="modal-footer">
-                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-danger">Tolak</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal View PDF -->
 <div class="modal fade" id="mdlView" tabindex="-1" aria-labelledby="mdlView" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject">Detail Transaksi</h5>
+                <h5 class="modal-title" id="mdlReject">Detail Debit Note</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -157,7 +136,6 @@
             </div>
 
             <div class="modal-footer">
-                <input type="hidden" id="mdlReject_id" name="ID_TRANS" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
@@ -176,13 +154,9 @@
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-    $('#tableTransaction tbody').on('click', '.mdlApprove', function() {
+    $('#tableTransaction tbody').on('click', '.mdlFinish', function() {
         const id = $(this).data("id")
-        $('#mdlApprove_id').val(id)
-    })
-    $('#tableTransaction tbody').on('click', '.mdlReject', function() {
-        const id = $(this).data("id")
-        $('#mdlReject_id').val(id)
+        $('#mdlFinish_id').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")

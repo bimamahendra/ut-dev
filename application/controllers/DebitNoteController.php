@@ -149,6 +149,15 @@ class DebitNoteController extends CI_Controller
         $this->Form->delete($datas);
         redirect('form');
     }
+    public function finish(){
+        $datas = $_POST;
+
+        $page = $datas['page'];
+        unset($datas['page']);
+
+        $this->DebitNote->update($datas);
+        redirect('debitnote/'.$page);
+    }
 
     public function downloadTemplate(){
         force_download('./assets/templates/DEBITNOTE_TEMPLATE.xlsx', NULL);

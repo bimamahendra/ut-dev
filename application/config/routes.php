@@ -120,13 +120,13 @@ $route['debitnote/finished']            = 'DebitNoteController/vDNFinished';
 $route['debitnote/store']               = 'DebitNoteController/store';
 $route['debitnote/downloadTemplate']    = 'DebitNoteController/downloadTemplate';
 $route['debitnote/generateDN']          = 'DebitNoteController/generateDN';
-$route['debitnote/approve']           	= 'DebitNoteController/approve';
-$route['debitnote/reject']            	= 'DebitNoteController/reject';
+$route['debitnote/finish']            	= 'DebitNoteController/finish';
 $route['debitnote/updateProgress']      = 'DebitNoteController/updateProgress';
 
 // Emailing
 $route['email/sendEmail']               = 'EmailingController/sendEmail';
-$route['email/reminder']                = 'EmailingController/reminder';
+$route['email/remindProgress/(:any)']   = 'EmailingController/paymentProgress/$1';
+$route['email/remindOverdue/(:any)']    = 'EmailingController/paymentOverdue/$1';
 
 //Snack
 $route['snack/(:any)']                  = 'SnackController/vSnack/$1';
