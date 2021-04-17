@@ -3,6 +3,19 @@
         public function __construct(){
             parent::__construct();
             $this->load->model('DebitNote');
+            $config = [
+                'mailtype'      => 'html',
+                'charset'       => 'utf-8',
+                'protocol'      => 'smtp',
+                'smtp_host'     => 'smtp.gmail.com',
+                'smtp_user'     => '', 
+                'smtp_pass'     => '', 
+                'smtp_crypto'   => 'ssl',
+                'smtp_port'     => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+            $this->load->library('email', $config);
         }
 
         public function sendEmail(){
@@ -13,10 +26,11 @@
             $email['to']        = $debitNote->EMAIL_DEBITNOTE;
             $email['subject']   = 'Menara Astra: Payment Detail';
             $email['message']   = 'Tes';
+            $email['attach']    = $debitNote->PATH_DEBITNOTE;
             $this->send($email);
 
             $date = date('Y-m-d');
-            $this->DebitNote->update(['ID_DEBITNOTE' => $idDebitNote, 'STAT_DEBITNOTE' => '4', 'TGL_PUBLISHED' => $date]);
+            $this->DebitNote->update(['ID_DEBITNOTE' => $idDebitNote, 'STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
             redirect('debitnote/approved');
         }
 
@@ -30,6 +44,7 @@
                     $email['to']        = $item->EMAIL_DEBITNOTE;
                     $email['subject']   = 'Menara Astra: Payment Reminder';
                     $email['message']   = $this->htmlPaymentProgress($item);
+                    $email['attach']    = $item->PATH_DEBITNOTE;
                     $this->send($email);
                 }
             }
@@ -46,26 +61,14 @@
                     $email['to']        = $item->EMAIL_DEBITNOTE;
                     $email['subject']   = 'Menara Astra: Overdue Payment Confirmation';
                     $email['message']   = $this->htmlPaymentOverdue($item);
+                    $email['attach']    = $item->PATH_DEBITNOTE;
                     $this->send($email);
                 }
             }
         }
 
         public function send($param){
-            $config = [
-                'mailtype'      => 'html',
-                'charset'       => 'utf-8',
-                'protocol'      => 'smtp',
-                'smtp_host'     => 'smtp.gmail.com',
-                'smtp_user'     => '', 
-                'smtp_pass'     => '', 
-                'smtp_crypto'   => 'ssl',
-                'smtp_port'     => 465,
-                'crlf'    => "\r\n",
-                'newline' => "\r\n"
-            ];
-            
-            $this->load->library('email', $config);
+            $this->email->clear(TRUE);
             $this->email->from($param['from']);
             $this->email->to($param['to']);
             $this->email->subject($param['subject']);
