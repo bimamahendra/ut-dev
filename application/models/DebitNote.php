@@ -16,6 +16,23 @@ class DebitNote extends CI_Model{
         $res    = $this->db->get_where('DEBITNOTE', $param)->row();
         return $res;
     }
+    public function getReminder($param){
+        if(!empty($param['whereIn'])){
+            $this->db->where_in($param['whereIn']['table'], $param['whereIn']['values']);
+            unset($param['whereIn']);
+        }
+        if(!empty($param['orderBy'])){
+            $this->db->order_by($param['orderBy']);
+            unset($param['orderBy']);
+        }
+        if(!empty($param['where'])){
+            $this->db->where($param['where']);
+        }else{
+            $this->db->or_where($param);
+        }
+        $res = $this->db->get('DEBITNOTE')->result();
+        return $res;
+    }
     public function insert($param){
         $this->db->insert('DEBITNOTE', $param);
         return $this->db->insert_id();

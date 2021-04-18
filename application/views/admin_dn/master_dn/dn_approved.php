@@ -42,7 +42,7 @@
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlEmail" class="btn btn-success btn-sm rounded mdlEmail" data-tooltip="tooltip" data-placement="top" title="Email">
+                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-email="'.$item->EMAIL_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlEmail" class="btn btn-success btn-sm rounded mdlEmail" data-tooltip="tooltip" data-placement="top" title="Email">
                                                     <i class="fas fa-envelope"></i>
                                                 </button>
                                                 <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
@@ -87,6 +87,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <form action="<?= site_url('email/sendEmail')?>" method="post">
                     <input type="hidden" id="mdlEmail_id" name="ID_DEBITNOTE" />
+                    <input type="hidden" id="mdlEmail_email" name="EMAIL_DEBITNOTE" />
                     <button type="submit" class="btn btn-success">Kirim</button>
                 </form>
             </div>
@@ -141,8 +142,10 @@
     })
     $('#tableTransaction tbody').on('click', '.mdlEmail', function() {
         const id    = $(this).data("id")
+        const email = $(this).data("email")
         const name  = $(this).data("name")
         $('#mdlEmail_name').html(name)
         $('#mdlEmail_id').val(id)
+        $('#mdlEmail_email').val(email)
     })
 </script>
