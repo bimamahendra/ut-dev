@@ -19,32 +19,74 @@
         }
 
         public function sendEmail(){
-            $idDebitNote    = $_POST['ID_DEBITNOTE'];
-            $debitNote      = $this->DebitNote->get(['ID_DEBITNOTE' => $idDebitNote]);
+            $param    = $_POST;
             
-            $email['from']      = 'Menara Astra';
-            $email['to']        = $debitNote->EMAIL_DEBITNOTE;
-            $email['subject']   = 'Menara Astra: Payment Detail';
-            $email['message']   = 'Tes';
-            $email['attach']    = $debitNote->PATH_DEBITNOTE;
-            $this->send($email);
-
             $date = date('Y-m-d');
-            $this->DebitNote->update(['ID_DEBITNOTE' => $idDebitNote, 'STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
+            $this->DebitNote->update(['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
+
+            $filter['where']['EMAIL_DEBITNOTE'] = $param['EMAIL_DEBITNOTE'];
+            $filter['whereIn']['table']         = 'STAT_DEBITNOTE';
+            $filter['whereIn']['values']        = array('4','5');
+            $filter['orderBy']                  = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
+            $debitNotes = $this->DebitNote->getReminder($filter);
+            
+            if($debitNotes != null){
+                $dnEmail            = '';
+                $dn['email']        = array();
+
+                foreach ($debitNotes as $item) {
+                    if($dnEmail != $item->EMAIL_DEBITNOTE){
+                        $dnEmail                    = $item->EMAIL_DEBITNOTE;
+                        $dn['dataHtml'][$dnEmail]   = array();
+                        $dn['attach'][$dnEmail]     = array();
+                        array_push($dn['email'], $dnEmail);
+                    }
+                    array_push($dn['dataHtml'][$dnEmail], $item);
+                    array_push($dn['attach'][$dnEmail], $item->PATH_DEBITNOTE);
+                }
+                
+                foreach ($dn['email'] as $item) {
+                    $email['from']      = 'Menara Astra';
+                    $email['to']        = $item;
+                    $email['subject']   = 'Menara Astra: Payment Reminder';
+                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
+                    $email['attach']    = $dn['attach'][$item];
+                    $this->send($email);
+                }
+            }
+
             redirect('debitnote/approved');
         }
 
         public function paymentProgress($period){
             $date = date('Y-m-d', strtotime('-'.$period.' day'));
-            
-            $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
+
+            $filter['TGLPUBLISHED_DEBITNOTE']   = $date;
+            $filter['whereIn']['table']         = 'STAT_DEBITNOTE';
+            $filter['whereIn']['values']        = array('4','5');
+            $filter['orderBy']                  = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
+            $debitNotes = $this->DebitNote->getReminder($filter);
             if($debitNotes != null){
+                $dnEmail            = '';
+                $dn['email']        = array();
+
                 foreach ($debitNotes as $item) {
+                    if($dnEmail != $item->EMAIL_DEBITNOTE){
+                        $dnEmail                    = $item->EMAIL_DEBITNOTE;
+                        $dn['dataHtml'][$dnEmail]   = array();
+                        $dn['attach'][$dnEmail]     = array();
+                        array_push($dn['email'], $dnEmail);
+                    }
+                    array_push($dn['dataHtml'][$dnEmail], $item);
+                    array_push($dn['attach'][$dnEmail], $item->PATH_DEBITNOTE);
+                }
+                
+                foreach ($dn['email'] as $item) {
                     $email['from']      = 'Menara Astra';
-                    $email['to']        = $item->EMAIL_DEBITNOTE;
+                    $email['to']        = $item;
                     $email['subject']   = 'Menara Astra: Payment Reminder';
-                    $email['message']   = $this->htmlPaymentProgress($item);
-                    $email['attach']    = $item->PATH_DEBITNOTE;
+                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
+                    $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
             }
@@ -54,14 +96,33 @@
         public function paymentOverdue($period){
             $date = date('Y-m-d', strtotime('-'.$period.' day'));
             
-            $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '5', 'TGLJATUH_DEBITNOTE' => $date]);
+            $filter['TGLJATUH_DEBITNOTE']   = $date;
+            $filter['whereIn']['table']     = 'STAT_DEBITNOTE';
+            $filter['whereIn']['values']    = array('4','5');
+            $filter['orderBy']              = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
+            $debitNotes = $this->DebitNote->getReminder($filter);
+
             if($debitNotes != null){
+                $dnEmail            = '';
+                $dn['email']        = array();
+
                 foreach ($debitNotes as $item) {
+                    if($dnEmail != $item->EMAIL_DEBITNOTE){
+                        $dnEmail                    = $item->EMAIL_DEBITNOTE;
+                        $dn['dataHtml'][$dnEmail]   = array();
+                        $dn['attach'][$dnEmail]     = array();
+                        array_push($dn['email'], $dnEmail);
+                    }
+                    array_push($dn['dataHtml'][$dnEmail], $item);
+                    array_push($dn['attach'][$dnEmail], $item->PATH_DEBITNOTE);
+                }
+                
+                foreach ($dn['email'] as $item) {
                     $email['from']      = 'Menara Astra';
-                    $email['to']        = $item->EMAIL_DEBITNOTE;
+                    $email['to']        = $item;
                     $email['subject']   = 'Menara Astra: Overdue Payment Confirmation';
-                    $email['message']   = $this->htmlPaymentOverdue($item);
-                    $email['attach']    = $item->PATH_DEBITNOTE;
+                    $email['message']   = $this->htmlPaymentOverdue($dn['dataHtml'][$item]);
+                    $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
             }
@@ -74,7 +135,9 @@
             $this->email->subject($param['subject']);
             $this->email->message($param['message']);
             if(!empty($param['attach'])){
-                $this->email->attach($param['attach']);
+                foreach ($param['attach'] as $item) {
+                    $this->email->attach($item);
+                }
             }
             
             if ($this->email->send()) {
@@ -85,9 +148,7 @@
         }
 
         public function htmlPaymentProgress($param){
-            $dateInvoice = date_create($param->TGLFAKTUR_DEBITNOTE);
-            $dateDueDate = date_create($param->TGLJATUH_DEBITNOTE);
-            return '
+            $html = '
                 <p>Attn: Mr/Mrs PT United Tractors Tbk</p>
                 <p>Dear Sir/Madam,</p>
                 <br>
@@ -95,7 +156,7 @@
                 <br>
                 <p>This is a gentle reminder to infrom you that the invoices listed below will be due in the next few days: </p>
                 <br>
-                <table border="1">
+                <table border="1" style="border-collapse: collapse;">
                     <tr>
                         <th style="width: 5%">No</th>
                         <th style="width: 17%">Invoice No</th>
@@ -105,15 +166,28 @@
                         <th style="width: 14%">Amount</th>
                         <th style="width: 13%">Due Date</th>
                     </tr>
+            ';
+
+            $no = 1;
+            foreach ($param as $item) {
+                $dateInvoice = date_create($item->TGLFAKTUR_DEBITNOTE);
+                $dateDueDate = date_create($item->TGLJATUH_DEBITNOTE);
+
+                $html .= '
                     <tr>
-                        <td style="text-align: center;">1</td>
-                        <td style="text-align: center;">'.$param->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                        <td style="text-align: center;">'.$no.'</td>
+                        <td style="text-align: center;">'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
                         <td style="text-align: center;">'.date_format($dateInvoice, 'j F Y').'</td>
-                        <td>'.$param->BARANGJASA_DEBITNOTE.'</td>
-                        <td style="text-align: center;">'.$param->MATAUANG.'</td>
-                        <td style="text-align: center;">'.$param->GRANDTOTAL_DEBITNOTE.'</td>
+                        <td> '.$item->BARANGJASA_DEBITNOTE.' </td>
+                        <td style="text-align: center;">'.$item->MATAUANG.'</td>
+                        <td style="text-align: center;">'.$item->GRANDTOTAL_DEBITNOTE.'</td>
                         <td style="text-align: center;">'.date_format($dateDueDate, 'j F Y').'</td>
                     </tr>
+                ';
+                $no++;
+            }
+            
+            $html .= '
                 </table>
                 <br>
                 <p>To avoid any late penalties, please make the payment no later than the invoice due date.</p>
@@ -144,12 +218,11 @@
                 <div>Sincerely,</div>
                 <div><b>Menara Astra</b></div>
             ';
+            return $html;
         }
 
         public function htmlPaymentOverdue($param){
-            $dateInvoice = date_create($param->TGLFAKTUR_DEBITNOTE);
-            $dateDueDate = date_create($param->TGLJATUH_DEBITNOTE);
-            return '
+            $html = '
                 <p>Attn: Mr/Mrs PT United Tractors Tbk</p>
                 <p>Dear Sir/Madam,</p>
                 <br>
@@ -157,7 +230,7 @@
                 <br>
                 <p>We would like to inform you that according to the payment schedule, the invoices listed below has been overdue. </p>
                 <br>
-                <table border="1">
+                <table border="1" style="border-collapse: collapse;">
                     <tr>
                         <th style="width: 5%">No</th>
                         <th style="width: 17%">Invoice No</th>
@@ -167,15 +240,27 @@
                         <th style="width: 14%">Amount</th>
                         <th style="width: 13%">Due Date</th>
                     </tr>
+            ';
+
+            $no = 1;
+            foreach ($param as $item) {
+                $dateInvoice = date_create($item->TGLFAKTUR_DEBITNOTE);
+                $dateDueDate = date_create($item->TGLJATUH_DEBITNOTE);
+
+                $html .= '
                     <tr>
-                        <td style="text-align: center;">1</td>
-                        <td style="text-align: center;">'.$param->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                        <td style="text-align: center;">'.$no.'</td>
+                        <td style="text-align: center;">'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
                         <td style="text-align: center;">'.date_format($dateInvoice, 'j F Y').'</td>
-                        <td>'.$param->BARANGJASA_DEBITNOTE.'</td>
-                        <td style="text-align: center;">'.$param->MATAUANG.'</td>
-                        <td style="text-align: center;">'.$param->GRANDTOTAL_DEBITNOTE.'</td>
+                        <td> '.$item->BARANGJASA_DEBITNOTE.' </td>
+                        <td style="text-align: center;">'.$item->MATAUANG.'</td>
+                        <td style="text-align: center;">'.$item->GRANDTOTAL_DEBITNOTE.'</td>
                         <td style="text-align: center;">'.date_format($dateDueDate, 'j F Y').'</td>
                     </tr>
+                ';
+                $no++;
+            }
+            $html .= '
                 </table>
                 <br>
                 <p>Late payment from the due date will be subject to penalites based on applicable term and condition of the agrement.</p>
@@ -206,6 +291,7 @@
                 <div>Sincerely,</div>
                 <div><b>Menara Astra</b></div>
             ';
+            return $html;
         }
     }
     

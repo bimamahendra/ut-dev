@@ -13,7 +13,7 @@ class DebitNoteController extends CI_Controller
         }
 
         $this->load->model('DebitNote');
-		$this->load->library(array('upload','emailing'));
+		$this->load->library(array('upload','emailing','notification'));
         $this->load->helper('download');
     }
     public function vDN(){
@@ -177,8 +177,13 @@ class DebitNoteController extends CI_Controller
         $param =  $_POST;    
 
         $this->db->insert('DEBITNOTE_APPROVAL', ['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'ROLE_APP' => 'Department Head']);
-           
         $this->DebitNote->generate($param);
+
+        $notif['title']     = 'Info Pengajuan Debit Note';
+        $notif['message']   = 'Terdapat Pengajuan Debit Note';
+        $notif['regisIds']  = $this->db->get_where('USERS', ['ROLE_USERS' => 'departmenthead'])->result_array();
+        $this->notification->push($notif);
+        
         redirect('debitnote');
     }
 
