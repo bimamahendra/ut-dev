@@ -181,7 +181,7 @@ class DebitNoteController extends CI_Controller
 
         $notif['title']     = 'Info Pengajuan Debit Note';
         $notif['message']   = 'Terdapat Pengajuan Debit Note';
-        $notif['regisIds']  = $this->db->get_where('USERS', ['ROLE_USERS' => 'departmenthead'])->result_array();
+        $notif['regisIds']  = $this->db->get_where('USERS', ['ROLE_USERS' => 'Department Head'])->result_array();
         $this->notification->push($notif);
         
         redirect('debitnote');
