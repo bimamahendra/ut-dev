@@ -25,11 +25,8 @@ class DebitNote extends CI_Model{
             $this->db->order_by($param['orderBy']);
             unset($param['orderBy']);
         }
-        if(!empty($param['where'])){
-            $this->db->where($param['where']);
-        }else{
-            $this->db->or_where($param);
-        }
+
+        $this->db->where($param);
         $res = $this->db->get('DEBITNOTE')->result();
         return $res;
     }
