@@ -24,7 +24,7 @@
             $date = date('Y-m-d');
             $this->DebitNote->update(['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
 
-            $filter['where']['EMAIL_DEBITNOTE'] = $param['EMAIL_DEBITNOTE'];
+            $filter['EMAIL_DEBITNOTE']          = $param['EMAIL_DEBITNOTE'];
             $filter['whereIn']['table']         = 'STAT_DEBITNOTE';
             $filter['whereIn']['values']        = array('4','5');
             $filter['orderBy']                  = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
@@ -96,10 +96,10 @@
         public function paymentOverdue($period){
             $date = date('Y-m-d', strtotime('-'.$period.' day'));
             
-            $filter['TGLJATUH_DEBITNOTE']   = $date;
-            $filter['whereIn']['table']     = 'STAT_DEBITNOTE';
-            $filter['whereIn']['values']    = array('4','5');
-            $filter['orderBy']              = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
+            $filter['TGLJATUH_DEBITNOTE']           = $date;
+            $filter['whereIn']['table']             = 'STAT_DEBITNOTE';
+            $filter['whereIn']['values']            = array('4','5');
+            $filter['orderBy']                      = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
             $debitNotes = $this->DebitNote->getReminder($filter);
 
             if($debitNotes != null){
@@ -126,6 +126,7 @@
                     $this->send($email);
                 }
             }
+            // print_r($filter);
         }
 
         public function send($param){
