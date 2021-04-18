@@ -25,7 +25,7 @@
             $email['from']      = 'Menara Astra';
             $email['to']        = $debitNote->EMAIL_DEBITNOTE;
             $email['subject']   = 'Menara Astra: Payment Detail';
-            $email['message']   = 'Tes';
+            $email['message']   = $this->htmlPaymentProgress($debitNote);
             $email['attach']    = $debitNote->PATH_DEBITNOTE;
             $this->send($email);
 
