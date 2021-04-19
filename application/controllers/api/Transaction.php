@@ -19,23 +19,23 @@ class Transaction extends RestController {
                 if($param['isApproval'] == "false"){
                     $trans = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
                 }else{
-                    $trans = $this->db->not_like('STAT_TRANS', '0')->get_where('V_TRANSACTION_APPROVAL', ['ROLE_APP' => $user[0]->ROLE_USERS], $limit)->result();
+                    $this->db->where_not_in('STAT_TRANS', ['1', '3']);
+                    $trans = $this->db->get_where('V_TRANSACTION_APPROVAL', ['ROLE_APP' => $user[0]->ROLE_USERS], $limit)->result();
+                    
                     $x = 0;
                     if($trans != null){
                         foreach ($trans as $item) {
-                            if(($item->CONFIRM_STATE_TRANS == $user[0]->ROLE_USERS && $item->STAT_TRANS != '3') || $item->ISAPPROVE_APP != NULL){
-                                $transNew[$x]['ID_TRANS']               = $item->ID_TRANS;
-                                $transNew[$x]['ID_MAPPING']             = $item->ID_MAPPING;
-                                $transNew[$x]['ID_USERS']               = $item->ID_USERS;
-                                $transNew[$x]['NAMA_USERS']             = $item->NAMA_USERS;
-                                $transNew[$x]['NAMA_FORM']              = $item->NAMA_FORM;
-                                $transNew[$x]['PATH_TRANS']             = $item->PATH_TRANS;
-                                $transNew[$x]['TS_TRANS']               = $item->TS_TRANS;
-                                $transNew[$x]['FLAG_TRANS']             = $item->FLAG_TRANS;
-                                $transNew[$x]['CONFIRM_STATE_TRANS']    = $item->CONFIRM_STATE_TRANS;
-                                $transNew[$x]['STAT_TRANS']             = $item->ISAPPROVE_APP;
-                                $x++;
-                            }
+                            $transNew[$x]['ID_TRANS']               = $item->ID_TRANS;
+                            $transNew[$x]['ID_MAPPING']             = $item->ID_MAPPING;
+                            $transNew[$x]['ID_USERS']               = $item->ID_USERS;
+                            $transNew[$x]['NAMA_USERS']             = $item->NAMA_USERS;
+                            $transNew[$x]['NAMA_FORM']              = $item->NAMA_FORM;
+                            $transNew[$x]['PATH_TRANS']             = $item->PATH_TRANS;
+                            $transNew[$x]['TS_TRANS']               = $item->TS_TRANS;
+                            $transNew[$x]['FLAG_TRANS']             = $item->FLAG_TRANS;
+                            $transNew[$x]['CONFIRM_STATE_TRANS']    = $item->CONFIRM_STATE_TRANS;
+                            $transNew[$x]['STAT_TRANS']             = $item->ISAPPROVE_APP;
+                            $x++;
                         }
                         $trans = $transNew;
                     }
