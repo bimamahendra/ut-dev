@@ -240,13 +240,24 @@
                 <td>Nomor Pesanan (Order Reff)</td>
                 <td>: <?= $list[0]->NOPESANAN_DEBITNOTE ?></td>
                 <td>Tanggal Faktur (DN Date)</td>
-                <td>: <?= $list[0]->TGLFAKTUR_DEBITNOTE ?></td>
+                <?php
+                    $date = date_create($list[0]->TGLFAKTUR_DEBITNOTE);
+                    echo '
+                        <td>: '.date_format($date, 'j F Y').'</td>
+                    ';
+                ?>
             </tr>
             <tr>
-                <td>Tanggal Pesanan (Order Due Date)</td>
-                <td>: <?= $list[0]->TGLPESANAN_DEBITNOTE ?></td>
-                <td>Tanggal Jatuh Tempo (Payment Due Date)</td>
-                <td>: <?= $list[0]->TGLJATUH_DEBITNOTE ?></td>
+                <?php
+                    $date1 = date_create($list[0]->TGLPESANAN_DEBITNOTE);
+                    $date2 = date_create($list[0]->TGLJATUH_DEBITNOTE);
+                    echo '
+                        <td>Tanggal Pesanan (Order Due Date)</td>
+                        <td>: '.date_format($date1, 'j F Y').'</td>
+                        <td>Tanggal Jatuh Tempo (Payment Due Date)</td>
+                        <td>: '.date_format($date2, 'j F Y').'</td>
+                    ';
+                ?>
             </tr>
             <tr>
                 <td>Mata Uang (Currency)</td>
@@ -281,8 +292,8 @@
             <tr>
                 <td class="text-align-center pb-max border-bottom p-med">1.</td>
                 <td class="text-align-left pb-max border-bottom p-med"><?= $list[0]->BARANGJASA_DEBITNOTE ?><br></td>
-                <td class="text-align-center pb-max border-bottom p-med"><?= $list[0]->HARGAJUAL_DEBITNOTE ?></td>
                 <td class="text-align-center pb-max border-bottom p-med"></td>
+                <td class="text-align-center pb-max border-bottom p-med"><?= number_format($list[0]->TOTHARGAJUAL_DEBITNOTE) ?></td>
             </tr>
         </table>
         <table class="border-collapse w-100 mb-med table-layout-fixed text-regular-sm">
@@ -302,42 +313,42 @@
                     <table class="w-100 table-layout-fixed text-regular-sm pl-min">
                         <tr>
                             <td width="50%" class="pl-min text-align-right" style="font-size: 8px;"><strong>TOTAL HARGA JUAL/PENGGANTIAN</strong></td>
-                            <td width="25%" class="text-align-center"><?= $list[0]->TOTHARGAJUAL_DEBITNOTE ?></td>
+                            <td width="25%" class="text-align-center"><?= number_format($list[0]->TOTHARGAJUAL_DEBITNOTE) ?></td>
                             <td width="25%" class="text-align-center">-</td>
                         </tr>
                         <tr>
                             <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">POTONGAN HARGA</strong></td>
-                            <td class="text-align-center"></td><?= $list[0]->POTHARGA_DEBITNOTE ?>
+                            <td class="text-align-center"></td><?= number_format($list[0]->POTHARGA_DEBITNOTE) ?>
                 </td>
                 <td class="text-align-center"></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong>UANG MUKA (UM) YANG TELAH DITERIMA</strong></td>
-                <td class="text-align-center"><?= $list[0]->UANGMUKA_DEBITNOTE ?></td>
+                <td class="text-align-center"><?= number_format($list[0]->UANGMUKA_DEBITNOTE) ?></td>
                 </td>
                 <td class="text-align-center"></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">HARGA SETELAH POTONGAN DAN UM/</strong></td>
-                <td class="text-align-center"><?= $list[0]->HARGAPOTONGAN_DEBITNOTE ?></td>
+                <td class="text-align-center"><?= number_format($list[0]->HARGAPOTONGAN_DEBITNOTE) ?></td>
                 </td>
                 <td class="text-align-center"></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">DASAR PENGENAAN PAJAK</strong></td>
-                <td class="text-align-center"><?= $list[0]->DPP_DEBITNOTE ?></td>
+                <td class="text-align-center"><?= number_format($list[0]->DPP_DEBITNOTE) ?></td>
                 </td>
                 <td class="text-align-center"></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong>PPN (VAT)</strong></td>
-                <td class="text-align-center"><?= $list[0]->PPN_DEBITNOTE ?></td>
+                <td class="text-align-center"><?= number_format($list[0]->PPN_DEBITNOTE) ?></td>
                 </td>
                 <td class="text-align-center">-</td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">GRAND TOTAL</strong></td>
-                <td class="text-align-center"><?= $list[0]->GRANDTOTAL_DEBITNOTE ?></td>
+                <td class="text-align-center"><?= number_format($list[0]->GRANDTOTAL_DEBITNOTE) ?></td>
                 </td>
                 <td class="text-align-center">-</td>
             </tr>
@@ -381,7 +392,7 @@
                             <td>
                                 <?php
                                 $date         = date_create($list[0]->TGLOUT_DEBITNOTE);
-                                echo 'Jakarta, ' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
+                                echo 'Jakarta, ' . date_format($date, 'j F Y');
                                 ?>
                             </td>
                         </tr>
