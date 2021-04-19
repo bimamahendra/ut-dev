@@ -114,7 +114,7 @@ class DebitNoteController extends CI_Controller
                     $data['KURSPAJAK_DEBITNOTE']        = $arrSpreadsheet[$i][4];
                     $data['NOPELANGGAN_DEBITNOTE']      = $arrSpreadsheet[$i][5];
                     $data['EMAIL_DEBITNOTE']            = $arrSpreadsheet[$i][6];
-                    $data['NOPELANGGAN_DEBITNOTE']      = $arrSpreadsheet[$i][7];
+                    $data['NOPESANAN_DEBITNOTE']        = $arrSpreadsheet[$i][7];
                     $data['TGLPESANAN_DEBITNOTE']       = date('Y-m-d', strtotime($arrSpreadsheet[$i][8]));
                     $data['MATAUANG']                   = $arrSpreadsheet[$i][9]; 
                     $data['NAMAPERUSAHAAN_DEBITNOTE']   = $arrSpreadsheet[$i][10];

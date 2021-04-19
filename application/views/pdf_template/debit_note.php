@@ -313,8 +313,8 @@
                     <table class="w-100 table-layout-fixed text-regular-sm pl-min">
                         <tr>
                             <td width="50%" class="pl-min text-align-right" style="font-size: 8px;"><strong>TOTAL HARGA JUAL/PENGGANTIAN</strong></td>
-                            <td width="25%" class="text-align-center"><?= number_format($list[0]->TOTHARGAJUAL_DEBITNOTE) ?></td>
                             <td width="25%" class="text-align-center">-</td>
+                            <td width="25%" class="text-align-center"><?= number_format($list[0]->TOTHARGAJUAL_DEBITNOTE) ?></td>
                         </tr>
                         <tr>
                             <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">POTONGAN HARGA</strong></td>
@@ -324,33 +324,33 @@
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong>UANG MUKA (UM) YANG TELAH DITERIMA</strong></td>
-                <td class="text-align-center"><?= number_format($list[0]->UANGMUKA_DEBITNOTE) ?></td>
+                    <td class="text-align-center"></td>
                 </td>
-                <td class="text-align-center"></td>
+                <td class="text-align-center"><?= number_format($list[0]->UANGMUKA_DEBITNOTE) ?></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">HARGA SETELAH POTONGAN DAN UM/</strong></td>
-                <td class="text-align-center"><?= number_format($list[0]->HARGAPOTONGAN_DEBITNOTE) ?></td>
+                    <td class="text-align-center"></td>
                 </td>
-                <td class="text-align-center"></td>
+                <td class="text-align-center"><?= number_format($list[0]->HARGAPOTONGAN_DEBITNOTE) ?></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">DASAR PENGENAAN PAJAK</strong></td>
-                <td class="text-align-center"><?= number_format($list[0]->DPP_DEBITNOTE) ?></td>
+                    <td class="text-align-center"></td>
                 </td>
-                <td class="text-align-center"></td>
+                <td class="text-align-center"><?= number_format($list[0]->DPP_DEBITNOTE) ?></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong>PPN (VAT)</strong></td>
-                <td class="text-align-center"><?= number_format($list[0]->PPN_DEBITNOTE) ?></td>
+                    <td class="text-align-center">-</td>
                 </td>
-                <td class="text-align-center">-</td>
+                <td class="text-align-center"><?= number_format($list[0]->PPN_DEBITNOTE) ?></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">GRAND TOTAL</strong></td>
-                <td class="text-align-center"><?= number_format($list[0]->GRANDTOTAL_DEBITNOTE) ?></td>
+                    <td class="text-align-center">-</td>
                 </td>
-                <td class="text-align-center">-</td>
+                <td class="text-align-center"><?= number_format($list[0]->GRANDTOTAL_DEBITNOTE) ?></td>
             </tr>
         </table>
         </td>
