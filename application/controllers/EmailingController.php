@@ -181,7 +181,7 @@
                         <td style="text-align: center;">'.date_format($dateInvoice, 'j F Y').'</td>
                         <td> '.$item->BARANGJASA_DEBITNOTE.' </td>
                         <td style="text-align: center;">'.$item->MATAUANG.'</td>
-                        <td style="text-align: center;">'.$item->GRANDTOTAL_DEBITNOTE.'</td>
+                        <td style="text-align: center;">'.number_format($item->GRANDTOTAL_DEBITNOTE).'</td>
                         <td style="text-align: center;">'.date_format($dateDueDate, 'j F Y').'</td>
                     </tr>
                 ';
@@ -255,7 +255,7 @@
                         <td style="text-align: center;">'.date_format($dateInvoice, 'j F Y').'</td>
                         <td> '.$item->BARANGJASA_DEBITNOTE.' </td>
                         <td style="text-align: center;">'.$item->MATAUANG.'</td>
-                        <td style="text-align: center;">'.$item->GRANDTOTAL_DEBITNOTE.'</td>
+                        <td style="text-align: center;">'.number_format($item->GRANDTOTAL_DEBITNOTE).'</td>
                         <td style="text-align: center;">'.date_format($dateDueDate, 'j F Y').'</td>
                     </tr>
                 ';
