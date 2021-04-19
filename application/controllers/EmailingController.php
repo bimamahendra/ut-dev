@@ -22,7 +22,14 @@
             $param    = $_POST;
             
             $date = date('Y-m-d');
-            $this->DebitNote->update(['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'STAT_DEBITNOTE' => '4', 'TGLPUBLISHED_DEBITNOTE' => $date]);
+            $dnDateEnd = date_create($param['TGLJATUH_DEBITNOTE']);
+            $dnDateEnd = date_format($dnDateEnd, 'Y-m-d');
+
+            $status = '4';
+            if($date > $dnDateEnd){
+                $status = '5'; 
+            }
+            $this->DebitNote->update(['ID_DEBITNOTE' => $param['ID_DEBITNOTE'], 'STAT_DEBITNOTE' => $status, 'TGLPUBLISHED_DEBITNOTE' => $date]);
 
             $filter['EMAIL_DEBITNOTE']          = $param['EMAIL_DEBITNOTE'];
             $filter['whereIn']['table']         = 'STAT_DEBITNOTE';
