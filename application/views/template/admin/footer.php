@@ -76,7 +76,7 @@
     channel.bind('my-event', function(data) {
         xhr = $.ajax({
             method: 'POST',
-            url: "<?= site_url('notif') ?>",
+            url: "<?= site_url('notif/transaction') ?>",
             success: function(response) {
                 $('.notifs').html(response);
             }

@@ -16,4 +16,20 @@ class Pusherjs {
         $data['testMessage'] = 'hello world';
         $pusher->trigger('my-channel', 'my-event', $data);
     }
+    public function pushDebitnote(){
+        require 'vendor/autoload.php';
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        $pusher = new Pusher\Pusher(
+            '29bc2e8a44dd757e9b8b',
+            '43f8c62926b527fe3cbb',
+            '1162342',
+            $options
+        );
+
+        $data['testMessage'] = 'hello world';
+        $pusher->trigger('my-channel', 'my-event', $data);
+    }
 }

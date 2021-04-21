@@ -80,17 +80,19 @@ class DebitNoteApi extends RestController {
                     if($param['isApprove'] == "1"){                        
                        
                         $this->db->query('UPDATE DEBITNOTE SET STAT_DEBITNOTE = "2" WHERE ID_DEBITNOTE = "'.$param['idDebitnote'].'"');
-                        $this->db->where(['ID_DEBITNOTE' => $param['idDebitnote'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DEBITNOTE_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1']);
+                        $this->db->where(['ID_DEBITNOTE' => $param['idDebitnote'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DEBITNOTE_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'TSUPDATE_APP' => date('Y-m-d H:i:s')]);
                                                 
                         $datas['ID_DEBITNOTE'] = $param['idDebitnote'];
                         $this->DebitNote->generate($datas);
+                        $this->pusherjs->pushDebitnote();
                         $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
 
                     }else if($param['isApprove'] == "2"){
 
                         $this->db->where('ID_DEBITNOTE', $param['idDebitnote'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => '3']);
-                        $this->db->where(['ID_DEBITNOTE' => $param['idDebitnote'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DEBITNOTE_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0']);
+                        $this->db->where(['ID_DEBITNOTE' => $param['idDebitnote'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DEBITNOTE_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0', 'TSUPDATE_APP' => date('Y-m-d H:i:s')]);
                         
+                        $this->pusherjs->pushDebitnote();
                         $this->response(['status' => true, 'message' => 'Data berhasil ditolak'], 200);
                     }
                 }else{

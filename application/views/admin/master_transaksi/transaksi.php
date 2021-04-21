@@ -174,7 +174,23 @@
         $('.select2').select2({
             width: 'resolve'
         });
+        $.ajax({
+            url: '<?= site_url('notif/rAjxTransactionAll')?>',
+            method: 'post',
+            success: function(){
+                updateNotif()
+            }
+        })
     });
+    const updateNotif = () => {
+        $.ajax({
+            method: 'POST',
+            url: "<?= site_url('notif/transaction') ?>",
+            success: function(response) {
+                $('.notifs').html(response);
+            }
+        })
+    }
     $('#tableTransaction tbody').on('click', '.mdlApprove', function() {
         const id = $(this).data("id")
         $('#mdlApprove_id').val(id)
