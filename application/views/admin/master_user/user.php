@@ -44,39 +44,41 @@
                     <tbody>
                         <?php
                         foreach ($listData as $item) {
-                            echo '
-                                    <tr>
-                                        <td>' . $item->NAMA_USERS . '</td>
-                                        <td>' . $item->ROLE_USERS . '</td>
-                                        <td>' . $item->DEPT_USERS . '</td>
-                                        <td>' . $item->DIV_USERS . '</td>
-                                        <td>' . $item->USER_USERS . '</td>
-                                        <td>'.($item->STAT_USERS == 0 ? 'Belum Diverifikasi' : 'Terverifikasi' ).'</td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                '.($item->STAT_USERS == 0 ? 
-                                                    '<button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>'
-                                                    :
-                                                    '<button type="button" data-toggle="modal" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove d-none" data-tooltip="tooltip" data-placement="top" title="Approve">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>'
-                                                ).'                                                
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mr-1 rounded mdlRstPassUserItem" data-tooltip="tooltip" data-placement="top" title="Reset">
-                                                    <i class="fa fa-key"></i>
-                                                </button>
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>' . $item->TS_USERS . '</td>
-                                    </tr>
-                                ';
+                            if($item->ROLE_USERS != 'Admin GA' && $item->ROLE_USERS != 'Admin Debitnote'){
+                                echo '
+                                        <tr>
+                                            <td>' . $item->NAMA_USERS . '</td>
+                                            <td>' . $item->ROLE_USERS . '</td>
+                                            <td>' . $item->DEPT_USERS . '</td>
+                                            <td>' . $item->DIV_USERS . '</td>
+                                            <td>' . $item->USER_USERS . '</td>
+                                            <td>'.($item->STAT_USERS == 0 ? 'Belum Diverifikasi' : 'Terverifikasi' ).'</td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="' . site_url("user/edit/" . $item->ID_USERS) . '" class="btn btn-primary btn-sm rounded mr-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    '.($item->STAT_USERS == 0 ? 
+                                                        '<button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove" data-tooltip="tooltip" data-placement="top" title="Menyetujui">
+                                                            <i class="fa fa-check"></i>
+                                                        </button>'
+                                                        :
+                                                        '<button type="button" data-toggle="modal" data-target="#mdlApprove" class="btn btn-success btn-sm mr-1 rounded mdlApprove d-none" data-tooltip="tooltip" data-placement="top" title="Approve">
+                                                            <i class="fa fa-check"></i>
+                                                        </button>'
+                                                    ).'                                                
+                                                    <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlReset" class="btn btn-secondary btn-sm mr-1 rounded mdlRstPassUserItem" data-tooltip="tooltip" data-placement="top" title="Reset">
+                                                        <i class="fa fa-key"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="modal" data-id="' . $item->ID_USERS . '" data-name="' . $item->NAMA_USERS . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>' . $item->TS_USERS . '</td>
+                                        </tr>
+                                    ';
+                            }
                         }
                         ?>
                     </tbody>
