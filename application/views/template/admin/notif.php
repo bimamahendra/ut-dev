@@ -13,7 +13,7 @@
             if($item->IS_SEEN == '0'){
                 $date = date_create($item->TS_TRANS);
                 echo '
-                    <a class="dropdown-item d-flex align-items-center" href="'.site_url('notif/read/'.$item->ID_TRANS).'">
+                    <a class="dropdown-item d-flex align-items-center" href="'.site_url('notif/readTransactionAll').'">
                         <div class="mr-3">
                             <div class="icon-circle bg-primary">
                                 <i class="fas fa-file-alt text-white"></i>
@@ -31,7 +31,7 @@
         }
         if($notifCount != '0'){
             echo '
-                <a class="dropdown-item text-center small text-gray-500" href="'.site_url('notif/readAll').'">Show All Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="'.site_url('notif/readTransactionAll').'">Show All Alerts</a>
                 ';
             }else{
                 echo '

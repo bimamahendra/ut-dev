@@ -93,7 +93,24 @@
         $('.select2').select2({
             width: 'resolve'
         });
+        $.ajax({
+            url: '<?= site_url('notif/rAjxDebitnoteAll')?>',
+            method: 'post',
+            data: {STAT_DEBITNOTE: '3'},
+            success: function(){
+                updateNotif()
+            }
+        })
     });
+    const updateNotif = () => {
+        $.ajax({
+            method: 'POST',
+            url: "<?= site_url('notif/debitnote') ?>",
+            success: function(response) {
+                $('.notifs').html(response);
+            }
+        })
+    }
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

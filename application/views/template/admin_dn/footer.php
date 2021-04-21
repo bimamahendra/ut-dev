@@ -68,7 +68,7 @@
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('8cf91b33222fdfca79e1', {
+    var pusher = new Pusher('29bc2e8a44dd757e9b8b', {
     cluster: 'ap1'
     });
 
@@ -76,7 +76,7 @@
     channel.bind('my-event', function(data) {
         xhr = $.ajax({
             method: 'POST',
-            url: "<?= site_url('notif') ?>",
+            url: "<?= site_url('notif/debitnote') ?>",
             success: function(response) {
                 $('.notifs').html(response);
             }
