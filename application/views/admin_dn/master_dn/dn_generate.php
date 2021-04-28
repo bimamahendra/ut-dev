@@ -133,7 +133,7 @@
         </div>
     </div>
 </div>
-<!-- Modal Generate Multiple -->
+<!-- Modal Download Multiple -->
 <div class="modal fade" id="mdlDownloadMulti" tabindex="-1" aria-labelledby="mdlGenerate" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
