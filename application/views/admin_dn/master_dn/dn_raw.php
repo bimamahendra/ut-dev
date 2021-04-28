@@ -19,6 +19,10 @@
                         <i class="fas fa-file-download text-white-50"></i>
                         Unduh Template
                     </a>
+                    <button class="btn btn-sm btn-success shadow-sm" id="downloadMultiple" data-toggle="modal" data-target="#mdlGenerateMulti" disabled>
+                        <i class="fas fa-exchange-alt"></i>
+                        Generate Multiple
+                    </button>
                 </div>
             </div>
         </div>
@@ -28,6 +32,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>
+                                <div class="custom-control custom-checkbox" style="text-align:center;">
+                                    <input type="checkbox" class="custom-control-input" id="checkAll">
+                                    <label class="custom-control-label" for="checkAll">Check</label>
+                                </div>
+                            </th>
                             <th>No. Faktur</th>
                             <th>Tanggal Faktur</th>
                             <th>Tanggal Jatuh Tempo</th>
@@ -44,6 +54,12 @@
                             echo '
                                     <tr>
                                         <td>' . $no . '</td>
+                                        <td>
+                                            <div class="custom-control custom-checkbox" style="text-align:center;">
+                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_'.$no.'" value="'.$item->ID_DEBITNOTE.'">
+                                                <label class="custom-control-label" for="chck_'.$no.'"></label>
+                                            </div>
+                                        </td>
                                         <td>' . $item->NOFAKTUR_DEBITNOTE . '</td>
                                         <td>' . date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y') . '</td>
                                         <td>' . date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y') . '</td>
@@ -132,6 +148,32 @@
         </div>
     </div>
 </div>
+<!-- Modal Generate Multiple -->
+<div class="modal fade" id="mdlGenerateMulti" tabindex="-1" aria-labelledby="mdlGenerate" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlGenerate">Generate Debit Note?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan men-generate <span id="mdlGenerateMulti_count"></span> debitnote
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?= site_url('debitnote/generateMultiDN') ?>" method="post">
+                    <input type="hidden" id="mdlGenerateMulti_itemId" name="ID_DEBITNOTE" />
+                    <button type="submit" class="btn btn-success">Generate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal Delete -->
 <div class="modal fade" id="mdlDelete" tabindex="-1" aria-labelledby="mdlDelete" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -189,4 +231,29 @@
         $('#mdlGenerate_item').html(name)
         $('#mdlGenerate_itemId').val(id)
     })
+    $('#downloadMultiple').click(function() {
+        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        $('#mdlGenerateMulti_count').html(dnIds.length)
+        $('#mdlGenerateMulti_itemId').val(dnIds.toString())
+        
+    })
+    $('#checkAll').change(function(){
+        const isChecked = $(this).prop('checked')
+        if(isChecked){
+            $('.checkItem').prop('checked', true)
+        }else{
+            $('.checkItem').prop('checked', false)
+        }
+        buttonMultipleAvailable()
+    })
+    $('.checkItem').change(function(){
+        buttonMultipleAvailable()
+    })
+    const buttonMultipleAvailable = () => {
+        const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
+        if(isChecked)
+            $('#downloadMultiple').attr('disabled', false)
+        else
+            $('#downloadMultiple').attr('disabled', true)
+    }
 </script>

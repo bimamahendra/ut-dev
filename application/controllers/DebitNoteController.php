@@ -13,7 +13,7 @@ class DebitNoteController extends CI_Controller
         }
 
         $this->load->model('DebitNote');
-		$this->load->library(array('upload','emailing','notification'));
+		$this->load->library(array('upload','emailing','notification','zip'));
         $this->load->helper('download');
     }
     public function vDN(){
@@ -185,6 +185,30 @@ class DebitNoteController extends CI_Controller
         $this->notification->push($notif);
         
         redirect('debitnote');
+    }
+
+    public function generateMultiDN() {
+        $param      = explode(',', $_POST['ID_DEBITNOTE']);
+        $dataStore  = array();
+
+        foreach($param as $item){
+            $temp['ID_DEBITNOTE']   = $item;
+            $temp['ROLE_APP']       = 'Department Head';
+            array_push($dataStore, $temp);
+        }
+        $this->db->insert_batch('DEBITNOTE_APPROVAL', $dataStore);
+        $this->DebitNote->generateMulti($param);
+
+        redirect('debitnote');
+    }
+
+    public function downloadMultiDN(){
+        $param = explode(',', $_POST['ID_DEBITNOTE']);
+        $debitNotes = $this->db->select('PATH_DEBITNOTE')->where_in('ID_DEBITNOTE', $param)->get('DEBITNOTE')->result();
+        foreach ($debitNotes as $item) {
+            $this->zip->read_file($item->PATH_DEBITNOTE);
+        }
+        $this->zip->download(date('YmdHis').'_Download Debitnotes.zip');
     }
 
     public function updateProgress(){

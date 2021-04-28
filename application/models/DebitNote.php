@@ -72,4 +72,34 @@ class DebitNote extends CI_Model{
         
         return true;
     }
+    public function generateMulti($param){
+        foreach($param as $item){
+            $debitnote = $this->db->get_where('DEBITNOTE', ['ID_DEBITNOTE' => $item])->result();
+            $approvals = $this->db->get_where('V_DEBITNOTE_APPROVAL', ['ID_DEBITNOTE' => $item])->result();
+            $data['list']       = $debitnote;
+            $data['approvals']  = $approvals;
+            $data['getMonth']   = $this->datefunction->getMonth();
+                   
+            $file_pdf = $debitnote[0]->NOFAKTUR_DEBITNOTE.'_'.$debitnote[0]->NAMAPERUSAHAAN_DEBITNOTE.'_'.time();
+            $path_pdf = 'uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE.'/'.$file_pdf.'.pdf';
+            
+            $paper = 'A4';
+            $orientation = 'portrait';
+            
+            $html = $this->load->view('pdf_template/debit_note', $data, true);	    
+    
+            $resPdf = $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
+            if(!is_dir('./uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE)){
+                mkdir('./uploads/debitnote/generated/'.$debitnote[0]->EMAIL_DEBITNOTE, 0777, TRUE);
+            }
+            file_put_contents($path_pdf, $resPdf);
+            
+            $dataUpdate['ID_DEBITNOTE']     = $item;
+            $dataUpdate['STAT_DEBITNOTE']   = '1';
+            $dataUpdate['PATH_DEBITNOTE']   = base_url($path_pdf);
+            $this->update($dataUpdate);
+        }
+        
+        return true;
+    }
 }
