@@ -19,7 +19,7 @@
                         <i class="fas fa-file-download text-white-50"></i>
                         Unduh Template
                     </a>
-                    <button class="btn btn-sm btn-success shadow-sm" id="generateMultiple" data-toggle="modal" data-target="#mdlGenerateMulti" disabled>
+                    <button class="btn btn-sm btn-success shadow-sm" id="downloadMultiple" data-toggle="modal" data-target="#mdlGenerateMulti" disabled>
                         <i class="fas fa-exchange-alt"></i>
                         Generate Multiple
                     </button>
@@ -231,7 +231,7 @@
         $('#mdlGenerate_item').html(name)
         $('#mdlGenerate_itemId').val(id)
     })
-    $('#generateMultiple').click(function() {
+    $('#downloadMultiple').click(function() {
         const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
         $('#mdlGenerateMulti_count').html(dnIds.length)
         $('#mdlGenerateMulti_itemId').val(dnIds.toString())
@@ -244,16 +244,16 @@
         }else{
             $('.checkItem').prop('checked', false)
         }
-        generateMultipleAvailable()
+        buttonMultipleAvailable()
     })
     $('.checkItem').change(function(){
-        generateMultipleAvailable()
+        buttonMultipleAvailable()
     })
-    const generateMultipleAvailable = () => {
+    const buttonMultipleAvailable = () => {
         const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
         if(isChecked)
-            $('#generateMultiple').attr('disabled', false)
+            $('#downloadMultiple').attr('disabled', false)
         else
-            $('#generateMultiple').attr('disabled', true)
+            $('#downloadMultiple').attr('disabled', true)
     }
 </script>
