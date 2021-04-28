@@ -206,7 +206,7 @@ class DebitNoteController extends CI_Controller
         $param = explode(',', $_POST['ID_DEBITNOTE']);
         $debitNotes = $this->db->select('PATH_DEBITNOTE')->where_in('ID_DEBITNOTE', $param)->get('DEBITNOTE')->result();
         foreach ($debitNotes as $item) {
-            $this->zip->read_file($item->PATH_DEBITNOTE);
+            $this->zip->read_file(str_replace(base_url(), '', $item->PATH_DEBITNOTE));
         }
         $this->zip->download(date('YmdHis').'_Download Debitnotes.zip');
     }
