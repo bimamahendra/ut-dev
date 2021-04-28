@@ -41,6 +41,10 @@ class DebitNote extends CI_Model{
         $this->db->where('ID_DEBITNOTE', $param['ID_DEBITNOTE'])->update('DEBITNOTE', $param);
         return true;
     }
+    public function updateStatusMulti($param){
+        $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS']]);
+        return true;
+    }
     public function delete($param){
         $this->db->where($param)->delete('DEBITNOTE');
         return true;

@@ -130,6 +130,7 @@ $route['debitnote/generateDN']              = 'DebitNoteController/generateDN';
 $route['debitnote/generateMultiDN']         = 'DebitNoteController/generateMultiDN';
 $route['debitnote/downloadMultiDN']         = 'DebitNoteController/downloadMultiDN';
 $route['debitnote/finish']            	    = 'DebitNoteController/finish';
+$route['debitnote/finishMulti']            	= 'DebitNoteController/finishMulti';
 $route['debitnote/updateProgress']          = 'DebitNoteController/updateProgress';
 
 // Emailing
