@@ -10,6 +10,16 @@
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Debit Note (Overdue)</h6>
+                <div>
+                    <button class="btn btn-sm btn-success shadow-sm" id="finishMultiple" data-toggle="modal" data-target="#mdlFinishMulti" disabled>
+                        <i class="fas fa-check"></i>
+                        Finish Multiple
+                    </button>
+                    <button class="btn btn-sm btn-info shadow-sm" id="downloadMultiple" data-toggle="modal" data-target="#mdlDownloadMulti" disabled>
+                        <i class="fas fa-download"></i>
+                        Download Multiple
+                    </button>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -18,6 +28,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>
+                                <div class="custom-control custom-checkbox" style="text-align:center;">
+                                    <input type="checkbox" class="custom-control-input" id="checkAll">
+                                    <label class="custom-control-label" for="checkAll">Check</label>
+                                </div>
+                            </th>
                             <th>No. Faktur</th>
                             <th>Tanggal Faktur</th>
                             <th>Tanggal Jatuh Tempo</th>
@@ -34,6 +50,12 @@
                                 echo '
                                     <tr>
                                         <td>'.$no.'</td>
+                                        <td>
+                                            <div class="custom-control custom-checkbox" style="text-align:center;">
+                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_'.$no.'" value="'.$item->ID_DEBITNOTE.'">
+                                                <label class="custom-control-label" for="chck_'.$no.'"></label>
+                                            </div>
+                                        </td>
                                         <td>'.$item->NOFAKTUR_DEBITNOTE.'</td>
                                         <td>'.date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y').'</td>
                                         <td>'.date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y').'</td>
@@ -120,7 +142,59 @@
         </div>
     </div>
 </div>
+<!-- Modal Download Multiple -->
+<div class="modal fade" id="mdlDownloadMulti" tabindex="-1" aria-labelledby="mdlGenerate" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlGenerate">Download Debit Note?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan men-download <span id="mdlDownloadMulti_count"></span> debitnote
+                </p>
+            </div>
 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?= site_url('debitnote/downloadMultiDN') ?>" method="post">
+                    <input type="hidden" id="mdlDownloadMulti_itemId" name="ID_DEBITNOTE" />
+                    <button type="submit" class="btn btn-info">Download</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Finish Multiple -->
+<div class="modal fade" id="mdlFinishMulti" tabindex="-1" aria-labelledby="mdlGenerate" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlGenerate">Finish Debit Note?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan mevalidasi <span id="mdlFinishMulti_count"></span> debitnote
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?= site_url('debitnote/finishMulti') ?>" method="post">
+                    <input type="hidden" id="mdlFinishMulti_itemId" name="ID_DEBITNOTE" />
+                    <input type="hidden" id="" name="page" value="overdue" />
+                    <button type="submit" class="btn btn-success">Finish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal View PDF -->
 <div class="modal fade" id="mdlView" tabindex="-1" aria-labelledby="mdlView" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -162,4 +236,39 @@
         const src = $(this).data("src")
         $('#mdlView_src').attr('src', src);
     })
+    $('#downloadMultiple').click(function() {
+        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        $('#mdlDownloadMulti_count').html(dnIds.length)
+        $('#mdlDownloadMulti_itemId').val(dnIds.toString())
+        
+    })
+    $('#finishMultiple').click(function() {
+        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        $('#mdlFinishMulti_count').html(dnIds.length)
+        $('#mdlFinishMulti_itemId').val(dnIds.toString())
+        
+    })
+    $('#checkAll').change(function(){
+        const isChecked = $(this).prop('checked')
+        if(isChecked){
+            $('.checkItem').prop('checked', true)
+        }else{
+            $('.checkItem').prop('checked', false)
+        }
+        buttonMultipleAvailable()
+    })
+    $('.checkItem').change(function(){
+        buttonMultipleAvailable()
+    })
+    const buttonMultipleAvailable = () => {
+        const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
+        if(isChecked){
+            $('#downloadMultiple').attr('disabled', false)
+            $('#finishMultiple').attr('disabled', false)
+        }
+        else{
+            $('#downloadMultiple').attr('disabled', true)
+            $('#finishMultiple').attr('disabled', true)
+        }
+    }
 </script>

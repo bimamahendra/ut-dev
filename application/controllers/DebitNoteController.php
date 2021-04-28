@@ -158,6 +158,16 @@ class DebitNoteController extends CI_Controller
         $this->DebitNote->update($datas);
         redirect('debitnote/'.$page);
     }
+    public function finishMulti(){
+        $param                  = $_POST;
+        
+        $page   = $param['page'];
+        $datas['ID_DEBITNOTES'] = explode(',', $_POST['ID_DEBITNOTE']);
+        $datas['STATUS']        = '6'; 
+
+        $this->DebitNote->updateStatusMulti($datas);
+        redirect('debitnote/'.$page);
+    }
 
     public function downloadTemplate(){
         force_download('./assets/templates/DEBITNOTE_TEMPLATE.xlsx', NULL);
