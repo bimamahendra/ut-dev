@@ -64,6 +64,55 @@
 
             redirect('debitnote/approved');
         }
+        public function sendEmailMulti(){
+            $param    = explode(',', $_POST['ID_DEBITNOTE']);
+            $dn = $this->db->where_in('ID_DEBITNOTE', $param)->get('DEBITNOTE')->result();
+
+            foreach($dn as $key){
+                $date = date('Y-m-d');
+                $dnDateEnd = date_create($key->TGLJATUH_DEBITNOTE);
+                $dnDateEnd = date_format($dnDateEnd, 'Y-m-d');
+    
+                $status = '4';
+                if($date > $dnDateEnd){
+                    $status = '5'; 
+                }
+                $this->DebitNote->update(['ID_DEBITNOTE' => $key->ID_DEBITNOTE, 'STAT_DEBITNOTE' => $status, 'TGLPUBLISHED_DEBITNOTE' => $date]);
+    
+                $filter['EMAIL_DEBITNOTE']          = $key->EMAIL_DEBITNOTE;
+                $filter['whereIn']['table']         = 'STAT_DEBITNOTE';
+                $filter['whereIn']['values']        = array('4','5');
+                $filter['orderBy']                  = 'EMAIL_DEBITNOTE ASC, TGLJATUH_DEBITNOTE DESC';
+                $debitNotes = $this->DebitNote->getReminder($filter);
+                
+                if($debitNotes != null){
+                    $dnEmail            = '';
+                    $dn['email']        = array();
+    
+                    foreach ($debitNotes as $item) {
+                        if($dnEmail != $item->EMAIL_DEBITNOTE){
+                            $dnEmail                    = $item->EMAIL_DEBITNOTE;
+                            $dn['dataHtml'][$dnEmail]   = array();
+                            $dn['attach'][$dnEmail]     = array();
+                            array_push($dn['email'], $dnEmail);
+                        }
+                        array_push($dn['dataHtml'][$dnEmail], $item);
+                        array_push($dn['attach'][$dnEmail], $item->PATH_DEBITNOTE);
+                    }
+                    
+                    foreach ($dn['email'] as $item) {
+                        $email['from']      = 'Menara Astra';
+                        $email['to']        = $item;
+                        $email['subject']   = 'Menara Astra: Payment Reminder';
+                        $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
+                        $email['attach']    = $dn['attach'][$item];
+                        $this->send($email);
+                    }
+                }
+            }
+            
+            redirect('debitnote/approved');
+        }
 
         public function paymentProgress($period){
             $date = date('Y-m-d', strtotime('-'.$period.' day'));
