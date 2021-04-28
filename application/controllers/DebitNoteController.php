@@ -187,6 +187,21 @@ class DebitNoteController extends CI_Controller
         redirect('debitnote');
     }
 
+    public function generateMultiDN() {
+        $param      = explode(',', $_POST['ID_DEBITNOTE']);
+        $dataStore  = array();
+
+        foreach($param as $item){
+            $temp['ID_DEBITNOTE']   = $item;
+            $temp['ROLE_APP']       = 'Department Head';
+            array_push($dataStore, $temp);
+        }
+        $this->db->insert_batch('DEBITNOTE_APPROVAL', $dataStore);
+        $this->DebitNote->generateMulti($param);
+
+        redirect('debitnote');
+    }
+
     public function updateProgress(){
         $date = date('Y-m-d');
         $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '4']);

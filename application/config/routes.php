@@ -127,6 +127,7 @@ $route['debitnote/finished']                = 'DebitNoteController/vDNFinished';
 $route['debitnote/store']                   = 'DebitNoteController/store';
 $route['debitnote/downloadTemplate']        = 'DebitNoteController/downloadTemplate';
 $route['debitnote/generateDN']              = 'DebitNoteController/generateDN';
+$route['debitnote/generateMultiDN']         = 'DebitNoteController/generateMultiDN';
 $route['debitnote/finish']            	    = 'DebitNoteController/finish';
 $route['debitnote/updateProgress']          = 'DebitNoteController/updateProgress';
 
