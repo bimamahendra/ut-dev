@@ -188,7 +188,7 @@
         public function send($param){
             $this->email->clear(TRUE);
             $this->email->from($param['from']);
-            $this->email->to($param['to']);
+            $this->email->to(explode(';', $param['to']));
             $this->email->subject($param['subject']);
             $this->email->message($param['message']);
             if(!empty($param['attach'])){
