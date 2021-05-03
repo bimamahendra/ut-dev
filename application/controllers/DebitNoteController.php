@@ -173,6 +173,12 @@ class DebitNoteController extends CI_Controller
         force_download('./assets/templates/DEBITNOTE_TEMPLATE.xlsx', NULL);
     }
 
+    public function downloadPdf(){
+        $param = $_POST;
+        $path = str_replace(base_url(), '', $param['PATH_DEBITNOTE']);
+        force_download($path, NULL);
+    }
+
     public function getRandString($length) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

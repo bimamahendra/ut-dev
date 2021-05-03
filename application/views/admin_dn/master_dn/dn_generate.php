@@ -59,10 +59,13 @@
                                         <td>' . $item->NAMAPERUSAHAAN_DEBITNOTE . '</td>
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
-                                            <div class="btn-group" role="group">                                                
-                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                            <div class="btn-group" role="group"> 
+                                                <button type="button" data-toggle="modal" data-id="'.$item->PATH_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDownload" class="btn btn-info btn-sm rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
+                                                    <i class="fas fa-download"></i>
+                                                </button>                                               
+                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
-                                                </button>
+                                                </button>                                                
                                             </div>
                                         </td>
                                     </tr>
@@ -82,27 +85,27 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- Modal Approve -->
-<div class="modal fade" id="mdlApprove" tabindex="-1" aria-labelledby="mdlApprove" aria-hidden="true">
+<!-- Modal Download -->
+<div class="modal fade" id="mdlDownload" tabindex="-1" aria-labelledby="mdlDownload" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdlApprove">Verifikasi Debit Note?</h5>
+                <h5 class="modal-title" id="mdlDownload">Download Debit Note?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Anda akan menyetujui Debit Note dengan No. Faktur <span id="mdlApprove_item"></span> ?
+                    Anda akan mengunduh Debit Note dengan No. Faktur <span id="mdlDownload_item"></span> ?
                 </p>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('debitnote/approve') ?>" method="post">
-                    <input type="hidden" id="mdlApprove_id" name="ID_DEBITNOTE" />
-                    <button type="submit" class="btn btn-success">Approve</button>
+                <form action="<?= site_url('debitnote/downloadPdf') ?>" method="post">
+                    <input type="hidden" id="mdlDownload_id" name="PATH_DEBITNOTE" />
+                    <button type="submit" class="btn btn-success">Download</button>
                 </form>
             </div>
         </div>
@@ -192,11 +195,11 @@
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-    $('#tableTransaction tbody').on('click', '.mdlApprove', function() {
+    $('#tableTransaction tbody').on('click', '.mdlDownload', function() {
         const id = $(this).data("id")
         const name = $(this).data('name')
-        $('#mdlApprove_item').html(name)
-        $('#mdlApprove_id').val(id)
+        $('#mdlDownload_item').html(name)
+        $('#mdlDownload_id').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlReject', function() {
         const id = $(this).data("id")
