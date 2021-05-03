@@ -132,6 +132,7 @@ $route['debitnote/downloadMultiDN']         = 'DebitNoteController/downloadMulti
 $route['debitnote/finish']            	    = 'DebitNoteController/finish';
 $route['debitnote/finishMulti']            	= 'DebitNoteController/finishMulti';
 $route['debitnote/updateProgress']          = 'DebitNoteController/updateProgress';
+$route['debitnote/downloadPdf']             = 'DebitNoteController/downloadPdf';
 
 // Emailing
 $route['email/sendEmail']                   = 'EmailingController/sendEmail';

@@ -66,8 +66,11 @@
                                             <div class="btn-group" role="group">
                                                 <button type="button" class="btn btn-success btn-sm rounded mdlFinish" data-id="'.$item->ID_DEBITNOTE.'" data-toggle="modal" data-target="#mdlFinish" data-tooltip="tooltip" data-placement="top" title="Finished">
                                                     <i class="fa fa-check"></i>
-                                                </button> &nbsp; 
-                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
+                                                </button>
+                                                <button type="button" data-toggle="modal" data-id="'.$item->PATH_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDownload" class="btn btn-info btn-sm ml-1 rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
+                                                    <i class="fas fa-download"></i>
+                                                </button> 
+                                                <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </button>
                                             </div>
@@ -137,6 +140,32 @@
                     <input type="hidden" id="mdlFinish_id" name="STAT_DEBITNOTE" value="6" />
                     <input type="hidden" name="page" value="overdue" />
                     <button type="submit" class="btn btn-warning">Selesai</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Download -->
+<div class="modal fade" id="mdlDownload" tabindex="-1" aria-labelledby="mdlDownload" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlDownload">Download Debit Note?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan mengunduh Debit Note dengan No. Faktur <span id="mdlDownload_item"></span> ?
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?= site_url('debitnote/downloadPdf') ?>" method="post">
+                    <input type="hidden" id="mdlDownload_id" name="PATH_DEBITNOTE" />
+                    <button type="submit" class="btn btn-success">Download</button>
                 </form>
             </div>
         </div>
@@ -231,6 +260,12 @@
     $('#tableTransaction tbody').on('click', '.mdlFinish', function() {
         const id = $(this).data("id")
         $('#mdlFinish_id').val(id)
+    })
+    $('#tableTransaction tbody').on('click', '.mdlDownload', function() {
+        const id = $(this).data("id")
+        const name = $(this).data('name')
+        $('#mdlDownload_item').html(name)
+        $('#mdlDownload_id').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")
