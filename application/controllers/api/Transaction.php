@@ -19,7 +19,7 @@ class Transaction extends RestController {
                 if($param['isApproval'] == "false"){
                     $trans = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
                 }else{
-                    $this->db->where_not_in('STAT_TRANS', ['1', '3']);
+                    $this->db->where_not_in('STAT_TRANS', ['0', '3']);
                     $trans = $this->db->get_where('V_TRANSACTION_APPROVAL', ['ROLE_APP' => $user[0]->ROLE_USERS], $limit)->result();
                     
                     $x = 0;
