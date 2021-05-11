@@ -168,7 +168,7 @@
 			padding-top: 4px;
 			padding-bottom: 4px;
 			padding-left: 6px;
-			font-size: 12px;
+			font-size: 10px;
 			text-align: left;
 			vertical-align: top
 		}
@@ -177,7 +177,7 @@
 			border: 1px solid black;
 			padding-top: 4px;
 			padding-bottom: 4px;
-			font-size: 12px;
+			font-size: 10px;
 			border-color: black;
 			font-weight: bold;
 			text-align: center;
