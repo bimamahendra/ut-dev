@@ -62,6 +62,13 @@
             <span>DN - Finished</span>
         </a>
     </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('welcome/admin_dn_dashboard'); ?>">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Monitoring DN</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
