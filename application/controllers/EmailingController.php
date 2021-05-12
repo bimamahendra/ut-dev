@@ -53,9 +53,9 @@
                 }
                 
                 foreach ($dn['email'] as $item) {
-                    $email['from']      = 'Menara Astra';
+                    $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
-                    $email['subject']   = 'Menara Astra: Payment Reminder';
+                    $email['subject']   = 'United Tractors: Payment Reminder';
                     $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
@@ -101,9 +101,9 @@
                     }
                     
                     foreach ($dn['email'] as $item) {
-                        $email['from']      = 'Menara Astra';
+                        $email['from']      = 'PT United Tractors Tbk';
                         $email['to']        = $item;
-                        $email['subject']   = 'Menara Astra: Payment Reminder';
+                        $email['subject']   = 'United Tractors: Payment Reminder';
                         $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
                         $email['attach']    = $dn['attach'][$item];
                         $this->send($email);
@@ -138,9 +138,9 @@
                 }
                 
                 foreach ($dn['email'] as $item) {
-                    $email['from']      = 'Menara Astra';
+                    $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
-                    $email['subject']   = 'Menara Astra: Payment Reminder';
+                    $email['subject']   = 'United Tractors: Payment Reminder';
                     $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
@@ -174,9 +174,9 @@
                 }
                 
                 foreach ($dn['email'] as $item) {
-                    $email['from']      = 'Menara Astra';
+                    $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
-                    $email['subject']   = 'Menara Astra: Overdue Payment Confirmation';
+                    $email['subject']   = 'United Tractors: Overdue Payment Confirmation';
                     $email['message']   = $this->htmlPaymentOverdue($dn['dataHtml'][$item]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
@@ -209,7 +209,7 @@
                 <p>Attn: Mr/Mrs PT United Tractors Tbk</p>
                 <p>Dear Sir/Madam,</p>
                 <br>
-                <p>Warmest greetings from Menara Astra,</p>
+                <p>Warmest greetings from United Tractors,</p>
                 <br>
                 <p>This is a gentle reminder to infrom you that the invoices listed below will be due in the next few days: </p>
                 <br>
@@ -253,27 +253,28 @@
                     <tr>
                         <td>Bank Name</td>
                         <td>:</td>
-                        <td>Bank Permata - Royal Sunter</td>
+                        <td>Bank Permata</td>
                     </tr>
                     <tr>
                         <td>Bank/Virtual Account Number</td>
                         <td>:</td>
-                        <td>0.975.270.750</td>
+                        <td>0200330021</td>
                     </tr>
                     <tr>
                         <td>Benefeciary/Account Name</td>
                         <td>:</td>
-                        <td>PT. MENARA ASTRA</td>
+                        <td>PT. United Tractors Tbk</td>
                     </tr>
                 </table>
                 <br>
                 <div>If the payment has already been made please disregard this reminder and kindly inform us the proof of the payment.</div>
                 <div></div>
-                <div>Shall you have any question or further information, please contact us at +62 21 50821999 ext. 1107 or by email to <a href="mailto:billing@menara-astra.co.id">billing@menara-astra.co.id</a> and <a href="mailto:irma.yuniarti@menara-astra.co.id">irma.yuniarti@menara-astra.co.id</a></div>
+                <div>Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a></div>
                 <div>Thank you for your kind attention and coorperation.</div>
                 <br>
                 <div>Sincerely,</div>
-                <div><b>Menara Astra</b></div>
+                <div>Building Management</div>
+                <div><b>PT United Tractors Tbk</b></div>
             ';
             return $html;
         }
@@ -283,7 +284,7 @@
                 <p>Attn: Mr/Mrs PT United Tractors Tbk</p>
                 <p>Dear Sir/Madam,</p>
                 <br>
-                <p>Warmest greetings from Menara Astra,</p>
+                <p>Warmest greetings from United Tractors,</p>
                 <br>
                 <p>We would like to inform you that according to the payment schedule, the invoices listed below has been overdue. </p>
                 <br>
@@ -326,27 +327,28 @@
                     <tr>
                         <td>Bank Name</td>
                         <td>:</td>
-                        <td>Bank Permata - Royal Sunter</td>
+                        <td>Bank Permata</td>
                     </tr>
                     <tr>
                         <td>Bank/Virtual Account Number</td>
                         <td>:</td>
-                        <td>0.975.270.750</td>
+                        <td>0200330021</td>
                     </tr>
                     <tr>
                         <td>Benefeciary/Account Name</td>
                         <td>:</td>
-                        <td>PT. MENARA ASTRA</td>
+                        <td>PT. United Tractors Tbk</td>
                     </tr>
                 </table>
                 <br>
                 <div>If the payment has already been made please disregard this reminder and kindly inform us the proof of the payment.</div>
                 <div></div>
-                <div>Shall you have any question or further information, please contact us at +62 21 50821999 ext. 1107 or by email to <a href="mailto:billing@menara-astra.co.id">billing@menara-astra.co.id</a> and <a href="mailto:irma.yuniarti@menara-astra.co.id">irma.yuniarti@menara-astra.co.id</a></div>
+                <div>Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a></div>
                 <div>Thank you for your kind attention and coorperation.</div>
                 <br>
                 <div>Sincerely,</div>
-                <div><b>Menara Astra</b></div>
+                <div>Building Management</div>
+                <div><b>PT United Tractors Tbk</b></div>
             ';
             return $html;
         }
