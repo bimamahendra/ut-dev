@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -217,7 +218,7 @@
 		<h3><u>SURAT JALAN</u></h3>
 	</div>
     <div style="text-align:center">
-		<h5>NO: (...)</h5>
+		<h5>NO: (<?= $list[0]->NO_JALAN?>)</h5>
 	</div>
     <br>
     <div>

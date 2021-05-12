@@ -6,7 +6,7 @@ class FormSuratJalan extends RestController {
     public function __construct() {
         parent::__construct();
         $this->load->helper("url");
-        $this->load->library(array('upload', 'image_lib'));
+        $this->load->library(array('upload', 'image_lib', 'datefunction'));
     }
 
     public function index_post(){
@@ -28,7 +28,19 @@ class FormSuratJalan extends RestController {
                 $storeJalan['NAMA_JALAN']      = $param['nama'];
                 $storeJalan['TGL_JALAN']       = $param['tgl'];
                 $storeJalan['KENDARAAN_JALAN'] = $param['kendaraan'];
-                $storeJalan['KEPERLUAN_JALAN'] = $param['keperluan'];                
+                $storeJalan['KEPERLUAN_JALAN'] = $param['keperluan'];
+                
+                $lastData 	            = $this->db->order_by('TGLOUT_JALAN', 'desc')->get('FORM_JALAN', 2)->row();
+                $monthRomawi            = $this->datefunction->getMonthRomawi();
+                $romawiMonth            = $this->datefunction->getRomawiMonth();
+                if($lastData != null){
+                    $numberLast = explode('/', $lastData->NO_JALAN)[0];
+                    $monthLast  = explode('/', $lastData->NO_JALAN)[1];
+                    $noJalan    = ($romawiMonth[$monthLast] == date('n') ? sprintf("%03d", (int)$numberLast + 1) : sprintf("%03d", 1));
+                }else{
+                    $noJalan = sprintf("%03d", 1);
+                }
+                $storeJalan['NO_JALAN'] = $noJalan.'/'.$monthRomawi[date('n')].'/9972/'.date('Y');
                 $this->db->insert('FORM_JALAN', $storeJalan);
                 
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();

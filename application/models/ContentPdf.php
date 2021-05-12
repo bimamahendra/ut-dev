@@ -20,6 +20,7 @@ class ContentPdf extends CI_Model{
         $data['approvals']              = $approvals;
         $data['noDoc']                  = $mapping[0]->NO_DOC;
         $data['getMonth']               = $this->datefunction->getMonth();
+        $data['getMonthRomawi']         = $this->datefunction->getMonthRomawi();
 		       
         $file_pdf = $trans[0]->NAMA_USERS.'_'.$mapping[0]->NAMA_FORM.'_'.time();
         $path_pdf = 'uploads/transaction/'.$user[0]->USER_USERS.'/'.$file_pdf.'.pdf';

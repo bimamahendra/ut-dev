@@ -16,5 +16,37 @@
                 '12'    => 'Desember'
             );
         }
+        public function getMonthRomawi(){
+            return array(
+                '1'     => 'I',
+                '2'     => 'II',
+                '3'     => 'III',
+                '4'     => 'IV',
+                '5'     => 'V',
+                '6'     => 'VI',
+                '7'     => 'VII',
+                '8'     => 'VIII',
+                '9'     => 'IX',
+                '10'    => 'X',
+                '11'    => 'XI',
+                '12'    => 'XII'
+            );
+        }
+        public function getRomawiMonth(){
+            return array(
+                'I'     => '1',
+                'II'    => '2',
+                'III'   => '3',
+                'IV'    => '4',
+                'V'     => '5',
+                'VI'    => '6',
+                'VII'   => '7',
+                'VIII'  => '8',
+                'IX'    => '9',
+                'X'     => '10',
+                'XI'    => '11',
+                'XII'   => '12'
+            );
+        }
     }
 ?>
