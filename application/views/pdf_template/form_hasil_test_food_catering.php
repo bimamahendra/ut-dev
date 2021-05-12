@@ -394,6 +394,16 @@
 			</tr>
 		</table>
 	</div>
+	<?php
+		if($list[0]->ATTACHMENT_TESTFOOD != null){
+			echo '
+				<div class="wrapper-page">
+					<!-- Attach Testfood disini -->
+					<img src="'.$list[0]->ATTACHMENT_TESTFOOD.'" style="max-width: 400px; display: block; margin-left: auto; margin-right: auto;" alt="">
+				</div>
+			';
+		}
+	?>
 </body>
 
 </html>
