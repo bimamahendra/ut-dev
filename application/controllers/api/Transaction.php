@@ -86,34 +86,54 @@ class Transaction extends RestController {
                     if($param['isApprove'] == "1"){
                         $flow               = $this->db->get_where('FLOW', ['ID_MAPPING' => $transaction[0]->ID_MAPPING])->result_array();
                         $flowWillApprove    = $transaction[0]->FLAG_TRANS + 2; 
-                        if(!empty($flow[0]['APP_'.$flowWillApprove]) && $flow[0]['APP_'.$flowWillApprove] != null){
-
-                            $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1 WHERE ID_TRANS = "'.$param['idTrans'].'"');
+                        if(!empty($flow[0]['APP_'.$flowWillApprove]) && $flow[0]['APP_'.$flowWillApprove] != null){ // check if next approval
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
                             
+                            $orientation = 'portrait';
+                            if($transaction[0]->NAMA_FORM == 'Identifikasi'){
+                                $orientation = 'landscape';
+                            }
+                            $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);
+                            if(!file_exists($resLinkGenerated)){ // check if pdf generated is unsuccessfull created
+                                $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => null, 'ISAPPROVE_APP' => null, 'KETERANGAN' => null]);
+                                $this->response(['status' => false, 'message' => 'Gagal generate form'], 200);
+                            }
+                            $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
+                            
+                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
+                            $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1 WHERE ID_TRANS = "'.$param['idTrans'].'"');
+                            // notif to next user approval
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ROLE_USERS' => $flow[0]['APP_'.$flowWillApprove]])->result_array();
                             $notif['title']     = 'Pengajuan Baru';
                             $notif['message']   = 'Terdapat Pengajuan Form '.$transaction[0]->NAMA_FORM;
                             $notif['regisIds']  = $userReceiveNotifs;
-                            $res = $this->notification->push($notif);
-                        }else{
-                            $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
+                            $this->notification->push($notif);
+                        }else{ // check if last approval
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
-                            
+
+                            $orientation = 'portrait';
+                            if($transaction[0]->NAMA_FORM == 'Identifikasi'){
+                                $orientation = 'landscape';
+                            }
+                            $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);
+                            if(!file_exists($resLinkGenerated)){ // check if pdf generated is unsuccessfull created
+                                $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => null, 'ISAPPROVE_APP' => null, 'KETERANGAN' => null]);
+                                $this->response(['status' => false, 'message' => 'Gagal generate form'], 200);
+                            }
+                            $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
+
+                            $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
+                            $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
+                            // notif applicant successfull
                             $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
                             $notif['title']     = 'Info Pengajuan Form';
                             $notif['message']   = 'Pengajuan Form '.$transaction[0]->NAMA_FORM.' Telah Disetujui';
                             $notif['regisIds']  = $userReceiveNotifs;
                             $this->notification->push($notif);
                         }
-                        // unlink($transaction[0]->PATH_TRANS);
-                        $orientation = 'portrait';
-                        if($transaction[0]->NAMA_FORM == 'Identifikasi'){
-                            $orientation = 'landscape';
-                        }
-                        $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);
+                        // unlink(str_replace(base_url().'/', "", $transaction[0]->PATH_TRANS));
                         $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
-                    }else if($param['isApprove'] == "2"){
+                    }else if($param['isApprove'] == "2"){ // check if approval is rejected
                         $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['STAT_TRANS' => '3']);
                         $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "3" WHERE ID_TRANS = "'.$param['idTrans'].'"');
                         $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '0']);
