@@ -82,7 +82,8 @@ class FormPVRV extends RestController {
                 }              
                 $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_PVRV', ['LINKDOKPEND_PVRV' => $resUpload['link'], 'DOKPEND_PVRV' => $resUpload['fileName']]);
 
-                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau transaksi pvrv tidak ditemukan / Selesai mengupload'], 200);

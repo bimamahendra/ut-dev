@@ -44,7 +44,8 @@ class FormOrderCatering extends RestController {
                     }
                 }
                 
-                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
+                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
+                $this->db->where('ID_TRANS', $idTrans)->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
                 $this->pusherjs->push();
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{

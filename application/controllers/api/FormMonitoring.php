@@ -57,10 +57,10 @@ class FormMonitoring extends RestController {
                     }
                 }
                 
-                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'landscape']);
+                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'landscape']);
+                $this->db->where('ID_TRANS', $idTrans)->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
                 $this->pusherjs->push();
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
-                $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan', 'data' => $storeICAK], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau mapping tidak ditemukan'], 200);
             }

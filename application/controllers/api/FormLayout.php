@@ -61,7 +61,8 @@ class FormLayout extends RestController {
                 $file = $this->upload_image($user[0]->USER_USERS);
                 $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_LAYOUT', ['IMG_LAYOUT' => $file]);
 
-                $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau transaksi mobil pribadi tidak ditemukan'], 200);
