@@ -74,7 +74,7 @@ class FormPVRV extends RestController {
             $user   = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $statUpload   = $param['statUpload'];
             $totalUpload  = $param['totalUpload'];
-            if($statUpload < $totalUpload && $user != null && $pvrv != null){
+            if($statUpload <= $totalUpload && $user != null && $pvrv != null){
                 $resUpload = $this->upload_file($user[0]->USER_USERS);
                 if($pvrv[0]->LINKDOKPEND_PVRV != null){
                     $resUpload['fileName']  = $pvrv[0]->DOKPEND_PVRV.';'.$resUpload['fileName'];
@@ -82,8 +82,10 @@ class FormPVRV extends RestController {
                 }              
                 $this->db->where('ID_TRANS', $param['idTrans'])->update('FORM_PVRV', ['LINKDOKPEND_PVRV' => $resUpload['link'], 'DOKPEND_PVRV' => $resUpload['fileName']]);
 
-                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
-                $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
+                if($statUpload == $totalUpload){
+                    $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+                    $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
+                }
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);
             }else{
                 $this->response(['status' => false, 'message' => 'Data user atau transaksi pvrv tidak ditemukan / Selesai mengupload'], 200);
