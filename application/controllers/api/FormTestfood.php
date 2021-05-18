@@ -43,7 +43,8 @@ class FormTestfood extends RestController {
                     }
                 }
                 
-                $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
+                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+                $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
                 $this->pusherjs->push();
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan', 'idTrans' => $idTrans], 200);
             }else{
