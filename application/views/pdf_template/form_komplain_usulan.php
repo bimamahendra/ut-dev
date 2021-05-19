@@ -198,9 +198,9 @@
 				<tr>
 					<td class="tg-z9od" width="13%">No. Dokumen</td>
 					<td class="tg-z9od" width="33%"> : <?= $noDoc?> </td>
-					<td class="tg-xsvg" rowspan="3">ISO 9001 ; 2008 ; ISO 14001 :<br>
-                        : 2004 ; OHSAS 18001 : 2007 <br>
-						&amp; SMK3
+					<td class="tg-xsvg" rowspan="3">ISO 9001 : 2008 ; ISO <br> 
+						14001 : 2004 ; OHSAS <br> 
+						18001 : 2007 &amp; SMK3
 				</tr>
 				<tr>
 					<td class="tg-z9ad">Revisi</td>
@@ -266,7 +266,6 @@
 			</tr>
 			<tr style="height:300px; min-height:300px;">
 				<td class="thd-td2">
-
 					<img src="<?= $user->PATH_TTD ?>" width="100px" height="100px" />
 				</td>
 				<td class="thd-td2">
