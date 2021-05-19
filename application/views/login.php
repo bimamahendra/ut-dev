@@ -23,19 +23,20 @@
                             <input type="password" name="PASSWORD_USERS" class="form-control" id="inputPassword" placeholder="Password" required>
                         </div>
                         <?php
-                            if ($this->session->flashdata('error_login')){
-                                echo '
+                        if ($this->session->flashdata('error_login')) {
+                            echo '
                                     <div class="form-group">
                                         <div class="alert alert-danger" role="alert">
-                                            '.$this->session->flashdata('error_login').'
+                                            ' . $this->session->flashdata('error_login') . '
                                         </div>
                                     </div>
                                 ';
-                            }
+                        }
                         ?>
                         <div class="form-group">
                             <button class="btn btn-warning btn-block" type="submit">Login</button>
                         </div>
+                        <a class="text-secondary" href="<?= base_url(); ?>">Kembali ke halaman utama</a>
                     </form>
                 </div>
             </div>

@@ -13,26 +13,24 @@
             <div class="card p-3 mb-4">
                 <div class="card-body">
                     <h2 class="card-title mb-3">Register</h2>
-                    <?php 
-                        if($this->session->flashdata('error') !='')
-                        {
-                            echo '<div class="alert alert-danger" role="alert">';
-                            echo $this->session->flashdata('error');
-                            echo '</div>';
-                        }
-                    ?>                    
-                    <?php 
-                        if($this->session->flashdata('success_register') !='')
-                        {
-                            echo '<div class="alert alert-info" role="alert">';
-                            echo $this->session->flashdata('success_register');
-                            echo '</div>';
-                        }
+                    <?php
+                    if ($this->session->flashdata('error') != '') {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $this->session->flashdata('error');
+                        echo '</div>';
+                    }
+                    ?>
+                    <?php
+                    if ($this->session->flashdata('success_register') != '') {
+                        echo '<div class="alert alert-info" role="alert">';
+                        echo $this->session->flashdata('success_register');
+                        echo '</div>';
+                    }
                     ?>
                     <form action="<?= site_url('user/register') ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Nama Lengkap" name="NAMA_USERS" required>
-                        </div>                        
+                        </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="USER_USERS" placeholder="NRP" required>
                         </div>
@@ -76,9 +74,10 @@
                             </div>
                         </div>
                         <input type="hidden" name="STAT_USERS" value="0" />
-                        <div>
+                        <div class="mb-2">
                             <button class="btn btn-warning btn-block" type="submit">Register</button>
                         </div>
+                        <a class="text-secondary" href="<?= base_url(); ?>">Kembali ke halaman utama</a>
                     </form>
                 </div>
             </div>
