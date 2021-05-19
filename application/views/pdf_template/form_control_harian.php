@@ -279,7 +279,7 @@
 	<div>
 		<table style="width:80%; text-align:left;">
 			<tr>
-				<td style="width: 15%">Kedatangan Jam</td>
+				<td style="width: 25%">Kedatangan Jam</td>
 				<td style="width: 5%">:</td>
 				<td>
 					<?php
