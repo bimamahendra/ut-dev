@@ -277,14 +277,14 @@
                             <td class="border-1 text-align-left pl-min">'.$item->NOMOR_EXT.'</td>
                             <td class="border-1 text-align-left pl-min">'.$item->EXIST_EXT.'</td>
                             <td class="border-1 text-align-left pl-min">'.$item->BARU_EXT.'</td>
-                            <td class="border-1 border-left-bold">'.($item->CONTACT_EXT == '1' ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[0] == true ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[1] == true ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[2] == true ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[3] == true ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[4] == true ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[5] == true ? 'V' : '').'</td>
-                            <td class="border-1">'.($ct[6] == true ? 'V' : '').'</td>
+                            <td class="border-1 border-left-bold">'.($ct[0] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[1] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[2] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[3] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[4] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[5] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[6] == '1' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[7] == '1' ? 'V' : '').'</td>
                         </tr>
                     ';
                     $no++;
