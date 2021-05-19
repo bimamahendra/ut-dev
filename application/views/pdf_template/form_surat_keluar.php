@@ -225,8 +225,8 @@
 		<table style="width:95%; text-align:left; font-size: 12px; padding-top: 1px; padding-right:1px;">
 			<tr>
 				<td style="width: 60%;">Kepada Yth :</td>
-                <td style="width: 60%;"></td>
-                <td style="width: 20%; text-align:right;">
+                <td style="width: 50%;"></td>
+                <td style="width: 30%; text-align:right;">
 					<?php
 						$date 		= date_create($list[0]->TGLOUT_JALAN);
 						echo 'Jakarta, '.date_format($date, 'j').' '.$getMonth[date_format($date, 'n')].' '.date_format($date, 'Y');
