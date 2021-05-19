@@ -267,6 +267,7 @@
             <?php
                 $no = 1;
                 foreach($list as $item){
+                    $ct = explode(';', $item->CONTACT_EXT);
                     echo '
                         <tr>
                             <td class="border-1">'.$no.'</td>
@@ -274,16 +275,16 @@
                             <td class="border-1 text-align-left pl-min">'.$item->NRP_EXT.'</td>
                             <td class="border-1 text-align-left pl-min">'.$item->JABATAN_EXT.'</td>
                             <td class="border-1 text-align-left pl-min">'.$item->NOMOR_EXT.'</td>
-                            <td class="border-1 text-align-left pl-min">'.($item->EXIST_EXT == '1'? $item->FASILITAS_EXT : '').'</td>
-                            <td class="border-1 text-align-left pl-min">'.($item->EXIST_EXT == '2'? $item->FASILITAS_EXT : '').'</td>
+                            <td class="border-1 text-align-left pl-min">'.$item->EXIST_EXT.'</td>
+                            <td class="border-1 text-align-left pl-min">'.$item->BARU_EXT.'</td>
                             <td class="border-1 border-left-bold">'.($item->CONTACT_EXT == '1' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '2' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '3' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '4' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '5' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '6' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '7' ? 'V' : '').'</td>
-                            <td class="border-1">'.($item->CONTACT_EXT == '8' ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[0] == true ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[1] == true ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[2] == true ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[3] == true ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[4] == true ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[5] == true ? 'V' : '').'</td>
+                            <td class="border-1">'.($ct[6] == true ? 'V' : '').'</td>
                         </tr>
                     ';
                     $no++;
