@@ -148,6 +148,7 @@
 		.thd {
 			border: 0px solid black;
 			border-collapse: collapse;
+			table-layout:fixed;
 			text-align: center;
 			width: 66,6%;
 			font-size: 10px;
