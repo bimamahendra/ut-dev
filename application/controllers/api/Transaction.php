@@ -20,7 +20,7 @@ class Transaction extends RestController {
                     $trans = $this->db->get_where('V_TRANSACTION', ['ID_USERS' => $user[0]->ID_USERS], $limit)->result();
                 }else{
                     $limitQuery = $limit != '' ? 'LIMIT '.$limit : ''; 
-                    $trans      = $this->db->query("SELECT * FROM V_TRANSACTION_APPROVAL WHERE ROLE_APP = '".$user[0]->ROLE_USERS."' AND (CONFIRM_STATE_TRANS = '".$user[0]->ROLE_USERS."' OR ISAPPROVE_APP IS NOT NULL) AND STAT_TRANS NOT IN('0', '3') ".$limitQuery." ORDER BY TS_TRANS DESC")->result();
+                    $trans      = $this->db->query("SELECT * FROM V_TRANSACTION_APPROVAL WHERE ROLE_APP = '".$user[0]->ROLE_USERS."' AND (CONFIRM_STATE_TRANS = '".$user[0]->ROLE_USERS."' OR ISAPPROVE_APP IS NOT NULL) AND STAT_TRANS NOT IN('0', '3') ORDER BY TS_TRANS DESC ".$limitQuery."")->result();
                     
                     $x = 0;
                     if($trans != null){
