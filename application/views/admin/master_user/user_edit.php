@@ -1,4 +1,9 @@
 <!-- Begin Page Content -->
+<?php    
+    if(empty($this->session->userdata('ROLE_USERS')) || $this->session->userdata('ROLE_USERS') != 'Admin GA'){
+        redirect('login');
+    }
+?>
 <div class="container-fluid">
 
     <!-- Page Heading -->
