@@ -33,9 +33,18 @@ class FormExtension extends RestController {
                     $storeDetNA['NRP_EXT']          = $item['nrp'];
                     $storeDetNA['JABATAN_EXT']      = $item['div'];
                     $storeDetNA['NOMOR_EXT']        = $item['noExtension'];
-                    $storeDetNA['EXIST_EXT']        = $item['jenPermintaan'];
-                    $storeDetNA['FASILITAS_EXT']    = $item['fasilitas'];
-                    $storeDetNA['CONTACT_EXT']      = $item['ct'];
+                    $storeDetNA['EXIST_EXT']        = $item['aksesExisting'];
+                    $storeDetNA['BARU_EXT']         = $item['aksesBaru'];
+
+                    $ct =  $item['ct']['principle'].';';
+                    $ct .= $item['ct']['uthi'].';';
+                    $ct .= $item['ct']['cabang'].';';
+                    $ct .= $item['ct']['partner'].';';
+                    $ct .= $item['ct']['customer'].';';
+                    $ct .= $item['ct']['vendor'].';';
+                    $ct .= $item['ct']['subCont'].';';
+                    $ct .= $item['ct']['hotel'];
+                    $storeDetNA['CONTACT_EXT']  = $ct;
                     $this->db->insert('DETAIL_EXTENSION', $storeDetNA);
                 }
                 
@@ -48,7 +57,7 @@ class FormExtension extends RestController {
                     }
                 }
                 
-                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'portrait']);
+                $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $idTrans, 'orientation' => 'landscape']);
                 $this->db->where('ID_TRANS', $idTrans)->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
                 $this->pusherjs->push();
                 $this->response(['status' => true, 'message' => 'Data berhasil ditambahkan'], 200);

@@ -90,7 +90,7 @@ class Transaction extends RestController {
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
                             
                             $orientation = 'portrait';
-                            if($transaction[0]->NAMA_FORM == 'Identifikasi'){
+                            if($transaction[0]->NAMA_FORM == 'Identifikasi' || $transaction[0]->NAMA_FORM == 'Permintaan Extension dan Akses'){
                                 $orientation = 'landscape';
                             }
                             $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);
@@ -112,7 +112,7 @@ class Transaction extends RestController {
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
 
                             $orientation = 'portrait';
-                            if($transaction[0]->NAMA_FORM == 'Identifikasi'){
+                            if($transaction[0]->NAMA_FORM == 'Identifikasi' || $transaction[0]->NAMA_FORM == 'Permintaan Extension dan Akses'){
                                 $orientation = 'landscape';
                             }
                             $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => $orientation]);
