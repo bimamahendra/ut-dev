@@ -43,7 +43,7 @@ class FormExtension extends RestController {
                     $ct .= $item['ct']['customer'].';';
                     $ct .= $item['ct']['vendor'].';';
                     $ct .= $item['ct']['subCont'].';';
-                    $ct .= $item['ct']['hotel'];
+                    $ct .= $item['ct']['hotel'].';';
                     $storeDetNA['CONTACT_EXT']  = $ct;
                     $this->db->insert('DETAIL_EXTENSION', $storeDetNA);
                 }
