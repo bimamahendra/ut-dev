@@ -1,4 +1,9 @@
 <!-- Begin Page Content -->
+<?php    
+    if(empty($this->session->userdata('ROLE_USERS')) || $this->session->userdata('ROLE_USERS') != 'Admin GA'){
+        redirect('login');
+    }
+?>
 <div class="container-fluid">
     <!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity: 1;position:absolute;right:0;z-index:1;" data-delay="2000">
         <div class="toast-header text-success">
