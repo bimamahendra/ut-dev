@@ -290,11 +290,11 @@
 					<?php
 					if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
 						echo '
-								<td class="thc-td2">( ' . $approvals[0]->NAMA_USERS . ' )</td>
+								( ' . $approvals[0]->NAMA_USERS . ' )
 							';
 					} else {
 						echo '
-								<td class="thc-td2">(.......................)</td>
+								(.......................)
 							';
 					}
 					?>
