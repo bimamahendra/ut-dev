@@ -24,7 +24,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                         Total DN</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">1.270.623.750</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($total,0,',','.') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -37,7 +37,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Total Received DN</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">861.423.750</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($rcvtotal,0,',','.') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                         Total Overdue DN</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">409.200.000</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($ovdtotal,0,',','.') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -239,21 +239,37 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        <tr>    
                                                             <td>DN Terbit</td>
-                                                            <td>Rp. 452,223</td>
-                                                            <td>Rp. 409,200</td>
-                                                            <td>Rp. 409,200</td>
-                                                            <td>Rp. 0</td>
-                                                            <td>Rp. 0</td>
+                                                            <?php
+                                                                $bulan = 1;
+                                                                for($bulan = 1; $bulan <= 5; $bulan++){
+                                                                    $html = '<td>Rp. 0</td>';
+                                                                    foreach($monthly as $item){
+                                                                        if($bulan == $item->BULAN){
+                                                                            $html = '<td> Rp. '.number_format($item->TOTAL,0,',','.').'</td>';
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    echo $html;
+                                                                }
+                                                            ?>
                                                         </tr>
                                                         <tr>
                                                             <td>Payment Received</td>
-                                                            <td>Rp. 0</td>
-                                                            <td>Rp. 452,223</td>
-                                                            <td>Rp. 409,200</td>
-                                                            <td>Rp. 204,600</td>
-                                                            <td>Rp. 204,600</td>
+                                                            <?php
+                                                                $bulan = 1;
+                                                                for($bulan = 1; $bulan <= 5; $bulan++){
+                                                                    $html = '<td>Rp. 0</td>';
+                                                                    foreach($received as $item){
+                                                                        if($bulan == $item->BULAN){
+                                                                            $html = '<td> Rp. '.number_format($item->TOTAL,0,',','.').'</td>';
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    echo $html;
+                                                                }
+                                                            ?>
                                                         </tr>
                                                     </tbody>
                                                 </table>
