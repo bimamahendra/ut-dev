@@ -263,8 +263,8 @@
 			<tbody>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">1</td>
-					<td class="tg-5r9a" colspan="3">
-						<img src="<?= $list[0]->IMG_LAYOUT?>" width="300px">
+					<td class="tg-5r9a" colspan="3" style="text-align: center;">
+						<img src="<?= $list[0]->IMG_LAYOUT?>" width="300px" style="z-index: -1;">
 					</td>
 					<td class="tg-5r9a"><?= $list[0]->KET_LAYOUT ?></td>
 				</tr>				
