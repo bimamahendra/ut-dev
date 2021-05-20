@@ -24,7 +24,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                         Total DN</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($total,0,',','.') ?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= 'Rp. '.number_format($total,0,',','.') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -37,7 +37,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Total Received DN</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($rcvtotal,0,',','.') ?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= 'Rp. '.number_format($rcvtotal,0,',','.') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                         Total Overdue DN</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($ovdtotal,0,',','.') ?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= 'Rp. '.number_format($ovdtotal,0,',','.') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                         Total Overdue pass due 2 years</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 0</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,6 +87,9 @@
                                         </span>
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-warning"></i> Received
+                                        </span>                                        
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-light"></i> Progress
                                         </span>
                                     </div>
                                 </div>
@@ -150,7 +153,7 @@
                                                 <canvas class="mb-5" id="myAreaChart"></canvas>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div><br>
                                     <hr class="invisible my-5 ">
                                     <div class="row">
                                         <div class="col-12">
@@ -166,28 +169,29 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>2020</td>
-                                                            <td>204.600.000</td>
-                                                            <td>656.823.750</td>
-                                                            <td>0</td>
-                                                            <td>861.423.750</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2021</td>
-                                                            <td>0</td>
-                                                            <td>0</td>
-                                                            <td>409.200.000</td>
-                                                            <td>409.200.000</td>
-                                                        </tr>
+                                                        <?php 
+                                                            $grandTotal = 0;
+                                                            foreach($tahunan as $items){
+                                                                echo'
+                                                                    <tr>
+                                                                        <td>'.$items->TAHUN.'</td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td>Rp. '.number_format($items->TOTAL,0,',','.').'</td>
+                                                                    </tr>
+                                                                ';
+                                                                $grandTotal = $grandTotal + $items->TOTAL;
+                                                            };
+                                                        ?>
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <th>Grand Total</th>
-                                                            <th>204.600.000</th>
-                                                            <th>656.823.750</th>
-                                                            <th>409.200.000</th>
-                                                            <th>1.270.623.750</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th><?= 'Rp. '.number_format($grandTotal,0,',','.') ?></th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -224,6 +228,7 @@
                                         </div>
                                     </div>
                                     <hr class="invisible my-5 ">
+                                    <br><br>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive mt-5">

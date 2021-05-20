@@ -82,17 +82,18 @@ class DebitNoteController extends CI_Controller
 
     public function vDNMonitor(){
         $datas['debitnotes'] = $this->DebitNote->getAll(['STAT_DEBITNOTE' => 6]);
-        $datas['total'] = $this->DebitNote->getdn();
-        $datas['ovdtotal'] = $this->DebitNote->getovddn();
-        $datas['rcvtotal'] = $this->DebitNote->getrcvdn();
-        $datas['monthly'] = $this->DebitNote->getmonthlydn();
-        $datas['received'] = $this->DebitNote->getBulanFinishDN();
+        $datas['total']      = $this->DebitNote->getdn();
+        $datas['ovdtotal']   = $this->DebitNote->getovddn();
+        $datas['rcvtotal']   = $this->DebitNote->getrcvdn();
+        $datas['monthly']    = $this->DebitNote->getmonthlydn();
+        $datas['tahunan']    = $this->DebitNote->getTahunanDN();
+        $datas['received']   = $this->DebitNote->getBulanFinishDN();
 
         $this->load->view('template/admin_dn/header');
 		$this->load->view('template/admin_dn/sidebar');
 		$this->load->view('template/admin_dn/topbar');
 		$this->load->view('admin_dn/master_dn/dn_dashboard', $datas);
-		$this->load->view('template/admin_dn/footer');
+		$this->load->view('template/admin_dn/monitoringfooter',$datas);
     }
 
 
