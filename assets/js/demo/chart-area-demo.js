@@ -37,35 +37,6 @@ var myLineChart = new Chart(ctx, {
     }
 });
 
-var monthlyDetailChart = document.getElementById("monthlyDetailChart");
-var monthlyDetail = new Chart(monthlyDetailChart, {
-    type: 'bar',
-    data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-        datasets: [{
-            label: 'DN Terbit',
-            data: [452223, 409200, 409200, 0, 0],
-            backgroundColor: 'rgba(211, 84, 0,1.0)',
-            borderColor: 'rgba(211, 84, 0,1.0)',
-            borderWidth: 1
-        }, {
-            label: 'Payment Received',
-            data: [0, 452223, 409200, 204600, 204600],
-            backgroundColor: 'rgba(241, 196, 15,1.0)',
-            borderColor: 'rgba(241, 196, 15,1.0)',
-            borderWidth: 1
-        }],
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            }
-        }
-    }
-});
-
 var dnAgingChart = document.getElementById("dnAgingChart");
 var dnAging = new Chart(dnAgingChart, {
     type: 'bar',

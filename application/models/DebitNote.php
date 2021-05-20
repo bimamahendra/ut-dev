@@ -31,10 +31,20 @@ class DebitNote extends CI_Model{
         $result = $this->db->query($sql)->result();
         return $result;
     }
+    public function getTahunanDN(){
+        $sql = "SELECT 
+            SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, 
+            YEAR(TGLPESANAN_DEBITNOTE) as TAHUN
+            FROM DEBITNOTE 
+            WHERE STAT_DEBITNOTE = 6
+            GROUP BY YEAR(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
     public function getBulanFinishDN(){
         $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN
         FROM DEBITNOTE WHERE STAT_DEBITNOTE = 6
-      GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
         $result = $this->db->query($sql)->result();
         return $result;
     }
