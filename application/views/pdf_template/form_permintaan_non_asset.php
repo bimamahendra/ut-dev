@@ -346,6 +346,16 @@
 						';
 					}
 
+					if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+						echo '
+							<td>( ' . $approvals[2]->NAMA_USERS . ' )</td>
+						';
+					} else {
+						echo '
+							<td>(................................................)</td>
+						';
+					}
+
 					if ($approvals[1]->ROLE_APP == "Department Head" && $approvals[1]->ISAPPROVE_APP == "1") {
 						echo '
 							<td class="thd-td2">( ' . $approvals[1]->NAMA_USERS . ' )</td>
@@ -356,15 +366,6 @@
 						';
 					}
 
-					if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
-						echo '
-							<td>( ' . $approvals[2]->NAMA_USERS . ' )</td>
-						';
-					} else {
-						echo '
-							<td>(................................................)</td>
-						';
-					}
 				?>
 			</tr>
             <tr>
