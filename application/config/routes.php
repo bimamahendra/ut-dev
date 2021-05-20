@@ -124,6 +124,7 @@ $route['debitnote/rejected']                = 'DebitNoteController/vDNRejected';
 $route['debitnote/progress']                = 'DebitNoteController/vDNProgress';
 $route['debitnote/overdue']                 = 'DebitNoteController/vDNOverdue';
 $route['debitnote/finished']                = 'DebitNoteController/vDNFinished';
+$route['debitnote/dashboard']               = 'DebitNoteController/vDNMonitor';
 $route['debitnote/store']                   = 'DebitNoteController/store';
 $route['debitnote/downloadTemplate']        = 'DebitNoteController/downloadTemplate';
 $route['debitnote/generateDN']              = 'DebitNoteController/generateDN';

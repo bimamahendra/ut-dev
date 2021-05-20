@@ -64,7 +64,7 @@
     </li>
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= site_url('welcome/admin_dn_dashboard'); ?>">
+        <a class="nav-link" href="<?= site_url('debitnote/dashboard'); ?>">
             <i class="fas fa-tachometer-alt"></i>
             <span>Monitoring DN</span>
         </a>

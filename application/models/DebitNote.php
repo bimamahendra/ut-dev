@@ -16,6 +16,33 @@ class DebitNote extends CI_Model{
         $res    = $this->db->get_where('DEBITNOTE', $param)->row();
         return $res;
     }
+    public function getdn(){
+        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE";
+        $result = $this->db->query($sql);
+        return $result->row()->total;
+    }
+    public function getovddn(){
+        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=5";
+        $result = $this->db->query($sql);
+        return $result->row()->total;
+    }
+    public function getmonthlydn(){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN FROM DEBITNOTE GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getBulanFinishDN(){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN
+        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 6
+      GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getrcvdn(){
+        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=6";
+        $result = $this->db->query($sql);
+        return $result->row()->total;
+    }
     public function getReminder($param){
         if(!empty($param['whereIn'])){
             $this->db->where_in($param['whereIn']['table'], $param['whereIn']['values']);
