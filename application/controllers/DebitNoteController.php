@@ -148,6 +148,7 @@ class DebitNoteController extends CI_Controller
                     $data['DPP_DEBITNOTE']              = str_replace(',', '', $arrSpreadsheet[$i][19]);
                     $data['PPN_DEBITNOTE']              = str_replace(',', '', $arrSpreadsheet[$i][20]);
                     $data['GRANDTOTAL_DEBITNOTE']       = str_replace(',', '', $arrSpreadsheet[$i][21]);
+                    $data['TIPE_DEBITNOTE']             = $arrSpreadsheet[$i][22];
                     array_push($dataStore, $data);
                 }
                 $this->DebitNote->insertBatch($dataStore);
