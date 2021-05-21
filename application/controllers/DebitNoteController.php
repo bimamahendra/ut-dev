@@ -88,6 +88,9 @@ class DebitNoteController extends CI_Controller
         $datas['monthly']    = $this->DebitNote->getmonthlydn();
         $datas['tahunan']    = $this->DebitNote->getTahunanDN();
         $datas['received']   = $this->DebitNote->getBulanFinishDN();
+        $datas['topTenants'] = $this->DebitNote->getTopTenantsDN();
+        $datas['agingTiga']  = $this->DebitNote->getAgingTigaPuluh();
+        $datas['agingEnam']  = $this->DebitNote->getAgingEnamPuluh();
 
         $this->load->view('template/admin_dn/header');
 		$this->load->view('template/admin_dn/sidebar');

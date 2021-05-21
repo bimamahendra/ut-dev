@@ -19,7 +19,18 @@
                     $terbitData[] = (int) $items->TOTAL;
                 };
                 $terbitData = json_encode($terbitData);
-                var_dump($terbitData);
+
+                $topTenantsData = [];
+                foreach($topTenants as $items) {
+                    $topTenantsData[] = (int) $items->TOTAL;
+                };
+                $topTenantsData = json_encode($topTenantsData);
+
+                $topTenantsLabel = [];
+                foreach($topTenants as $items) {
+                    $topTenantsLabel[] = $items->NAMAPERUSAHAAN_DEBITNOTE;
+                };
+                $topTenantsLabel = json_encode($topTenantsLabel);
             ?>
         </div>
     </div>
@@ -161,6 +172,65 @@
             }
         }
     }
+    });
+
+    var topTenantChart = document.getElementById("topTenantChart");
+    var topTenant = new Chart(topTenantChart, {
+        type: 'bar',
+        data: {
+            labels: <?= $topTenantsLabel ?>,
+            datasets: [{
+                label: 'Total',
+                data: <?= $topTenantsData ?>,
+                backgroundColor: 'rgba(41, 128, 185,1.0)',
+                borderColor: 'rgba(41, 128, 185,1.0)',
+                borderWidth: 1
+            }],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var dnAgingChart = document.getElementById("dnAgingChart");
+    var dnAging = new Chart(dnAgingChart, {
+        type: 'bar',
+        data: {
+            labels: [">60 Hari", "<30 Hari"],
+            datasets: [{
+                label: 'Total',
+                data: [<?= $agingEnam ?>, <?= $agingTiga ?>],
+                backgroundColor: 'rgba(41, 128, 185,1.0)',
+                borderColor: 'rgba(41, 128, 185,1.0)',
+                borderWidth: 1
+            }],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        min: 0
+                    }
+                }]
+            }
+        }
     });
 </script>
 </body>

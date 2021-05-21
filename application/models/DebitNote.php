@@ -48,10 +48,31 @@ class DebitNote extends CI_Model{
         $result = $this->db->query($sql)->result();
         return $result;
     }
+    public function getTopTenantsDN(){
+        $sql = "SELECT NAMAPERUSAHAAN_DEBITNOTE , SUM(GRANDTOTAL_DEBITNOTE) AS TOTAL 
+        FROM DEBITNOTE d WHERE TGLJATUH_DEBITNOTE + INTERVAL 60 DAY <= NOW() 
+        AND STAT_DEBITNOTE = '5' 
+        GROUP BY NAMAPERUSAHAAN_DEBITNOTE 
+        ORDER BY SUM(GRANDTOTAL_DEBITNOTE) DESC";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
     public function getrcvdn(){
         $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=6";
         $result = $this->db->query($sql);
         return $result->row()->total;
+    }
+    public function getAgingTigaPuluh(){
+        $sql = "SELECT COUNT(*) AS TOTAL 
+        FROM DEBITNOTE d WHERE TGLPUBLISHED_DEBITNOTE + INTERVAL 30 DAY >= NOW()";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getAgingEnamPuluh(){
+        $sql = "SELECT COUNT(*) AS TOTAL 
+        FROM DEBITNOTE d WHERE TGLPUBLISHED_DEBITNOTE + INTERVAL 60 DAY <= NOW()";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
     }
     public function getReminder($param){
         if(!empty($param['whereIn'])){
