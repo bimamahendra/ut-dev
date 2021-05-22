@@ -433,15 +433,15 @@
 					</table>
 				</div>
 			</td>
-			<td style="padding-left: 50px">
+			<td width="50%" style="table-layout: fixed;">
 				<div>
-					<table class="thd">
+					<table class="thd" style="table-layout: fixed;min-width: 100%;">
 						<?php
 						$date = date_create($list[0]->TGLOUT_PVRV);
 						echo '
 								<tr>
-									<td class="thd-tha" style="text=align:left"></td>
-									<td class="thd-tha" style="text=align:left">Jakarta, ' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y') . ' </td>
+									<td width="50%" class="thd-tha" style="text=align:left"></td>
+									<td width="50%" class="thd-tha" style="text=align:left">Jakarta, ' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y') . ' </td>
 								</tr>
 							';
 						?>
@@ -572,12 +572,12 @@
 					</table>
 				</div>
 			</td>
-			<td style="padding-left: 50px">
+			<td width="50%" style="table-layout: fixed;">
 				<div>
-					<table class="thd">
+					<table class="thd" style="table-layout: fixed;min-width: 100%;">
 						<tr>
-							<td class="thd-tha">Menyetujui : </td>
-							<td class="thd-tha">Menyetujui : </td>
+							<td width="50%" class="thd-tha">Menyetujui : </td>
+							<td width="50%" class="thd-tha">Menyetujui : </td>
 						</tr>
 						<tr style="height:300px; min-height:300px;">
 							<td class="thd-td2">
