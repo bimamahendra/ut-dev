@@ -81,16 +81,26 @@ class DebitNoteController extends CI_Controller
     }
 
     public function vDNMonitor(){
-        $datas['debitnotes'] = $this->DebitNote->getAll(['STAT_DEBITNOTE' => 6]);
-        $datas['total']      = $this->DebitNote->getdn();
-        $datas['ovdtotal']   = $this->DebitNote->getovddn();
-        $datas['rcvtotal']   = $this->DebitNote->getrcvdn();
-        $datas['monthly']    = $this->DebitNote->getmonthlydn();
-        $datas['tahunan']    = $this->DebitNote->getTahunanDN();
-        $datas['received']   = $this->DebitNote->getBulanFinishDN();
-        $datas['topTenants'] = $this->DebitNote->getTopTenantsDN();
-        $datas['agingTiga']  = $this->DebitNote->getAgingTigaPuluh();
-        $datas['agingEnam']  = $this->DebitNote->getAgingEnamPuluh();
+        $datas['debitnotes']  = $this->DebitNote->getAll(['STAT_DEBITNOTE' => 6]);
+        $datas['total']       = $this->DebitNote->getdn();
+        $datas['ovdtotal']    = $this->DebitNote->getovddn();
+        $datas['rcvtotal']    = $this->DebitNote->getrcvdn();
+        $datas['monthly']     = $this->DebitNote->getmonthlydn();
+        $datas['rentCharge']  = $this->DebitNote->getRentCharge();
+        $datas['rentOverdue'] = $this->DebitNote->getRentOverdue();
+        $datas['utilCharge'] = $this->DebitNote->getUtilCharge();
+        $datas['utilOverdue'] = $this->DebitNote->getUtilOverdue();
+        $datas['tahunan']     = $this->DebitNote->getTahunanDN();
+        $datas['tahunan2020'] = $this->DebitNote->getTahunanDN2020();
+        $datas['tahunan2022'] = $this->DebitNote->getTahunanDN2022();
+        $datas['tahunan2023'] = $this->DebitNote->getTahunanDN2023();
+        $datas['tahunan2024'] = $this->DebitNote->getTahunanDN2024();
+        $datas['tahunan2025'] = $this->DebitNote->getTahunanDN2025();
+        $datas['totalTahunan']= $this->DebitNote->grandTotal();
+        $datas['received']    = $this->DebitNote->getBulanFinishDN();
+        $datas['topTenants']  = $this->DebitNote->getTopTenantsDN();
+        $datas['agingTiga']   = $this->DebitNote->getAgingTigaPuluh();
+        $datas['agingEnam']   = $this->DebitNote->getAgingEnamPuluh();
 
         $this->load->view('template/admin_dn/header');
 		$this->load->view('template/admin_dn/sidebar');

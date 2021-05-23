@@ -17,12 +17,19 @@ class DebitNote extends CI_Model{
         return $res;
     }
     public function getdn(){
-        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE";
+        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total 
+                FROM DEBITNOTE WHERE STAT_DEBITNOTE = 5 
+                OR STAT_DEBITNOTE = 6";
         $result = $this->db->query($sql);
         return $result->row()->total;
     }
     public function getovddn(){
         $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=5";
+        $result = $this->db->query($sql);
+        return $result->row()->total;
+    }    
+    public function getrcvdn(){
+        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=6";
         $result = $this->db->query($sql);
         return $result->row()->total;
     }
@@ -31,13 +38,114 @@ class DebitNote extends CI_Model{
         $result = $this->db->query($sql)->result();
         return $result;
     }
+    public function getUtilCharge(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND 
+        (TIPE_DEBITNOTE = 'Listrik' OR TIPE_DEBITNOTE = 'Service')";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getUtilOverdue(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 5 AND 
+        (TIPE_DEBITNOTE = 'Listrik' OR TIPE_DEBITNOTE = 'Service')";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getRentCharge(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND TIPE_DEBITNOTE = 'Rent'";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getRentOverdue(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 5 AND TIPE_DEBITNOTE = 'Rent'";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getTahunanDN2020(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2020
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
     public function getTahunanDN(){
         $sql = "SELECT 
-            SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, 
-            YEAR(TGLPESANAN_DEBITNOTE) as TAHUN
-            FROM DEBITNOTE 
-            WHERE STAT_DEBITNOTE = 6
-            GROUP BY YEAR(TGLPESANAN_DEBITNOTE)";
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2021
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getTahunanDN2022(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2022
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getTahunanDN2023(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2023
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getTahunanDN2024(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2024
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getTahunanDN2025(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2025
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }    
+    public function grandTotal(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
+        TIPE_DEBITNOTE as TIPE
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6
+        GROUP BY TIPE_DEBITNOTE";
         $result = $this->db->query($sql)->result();
         return $result;
     }
@@ -50,17 +158,12 @@ class DebitNote extends CI_Model{
     }
     public function getTopTenantsDN(){
         $sql = "SELECT NAMAPERUSAHAAN_DEBITNOTE , SUM(GRANDTOTAL_DEBITNOTE) AS TOTAL 
-        FROM DEBITNOTE d WHERE TGLJATUH_DEBITNOTE + INTERVAL 60 DAY <= NOW() 
-        AND STAT_DEBITNOTE = '5' 
+        FROM DEBITNOTE d WHERE TGLPUBLISHED_DEBITNOTE + INTERVAL 60 DAY >= NOW() 
+        AND STAT_DEBITNOTE = '6' 
         GROUP BY NAMAPERUSAHAAN_DEBITNOTE 
         ORDER BY SUM(GRANDTOTAL_DEBITNOTE) DESC";
         $result = $this->db->query($sql)->result();
         return $result;
-    }
-    public function getrcvdn(){
-        $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=6";
-        $result = $this->db->query($sql);
-        return $result->row()->total;
     }
     public function getAgingTigaPuluh(){
         $sql = "SELECT COUNT(*) AS TOTAL 
