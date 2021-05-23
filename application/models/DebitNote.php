@@ -34,7 +34,9 @@ class DebitNote extends CI_Model{
         return $result->row()->total;
     }
     public function getmonthlydn(){
-        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN FROM DEBITNOTE GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN 
+        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6
+        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
         $result = $this->db->query($sql)->result();
         return $result;
     }

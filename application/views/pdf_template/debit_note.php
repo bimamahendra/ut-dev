@@ -208,12 +208,7 @@
         <table class="border-collapse w-100 valign-middle mb-med table-layout-fixed text-regular-sm">
             <tr>
                 <td width="50%">Kepada (Sold To) :</td>
-                <td width="50%" class="text-align-justify border-1" rowspan="4" style="font-size: 8px;">
-                    Nota Debit ini berlaku sebagai Faktur Pajak sesuai ketentuan dalam pasal 05 Peraturan Dirjen Pajak
-                    Nomor 24/PJ/2012 tanggal 22 November 2012 dan S-6285/WPJ.19/KP.01/ 2011 tanggal 10 Agustus 2011
-                    (This debit note acts as a tax debit note according to the terms under chapter 05 of the Tax Directorate
-                    General Regula on No. 24/PJ/2012 dated on November 22nd 2012 and S-6285/WPJ.19/KP.01/2011
-                    dated on August 10th 2011).
+                <td width="50%" class="text-align-justify" rowspan="4" style="font-size: 8px;">
                 </td>
             </tr>
             <tr>
@@ -299,15 +294,6 @@
         <table class="border-collapse w-100 mb-med table-layout-fixed text-regular-sm">
             <tr>
                 <td width="50%" style="font-size: 8px;">
-                    Ketentuan pembayaran : <br>
-                    - Jumlah total harga termasuk PPN yang tercantum dalam faktur adalah berdasarkan pesanan <br>
-                    - Pembayaran dengan menggunakan cek/giro harus mencantumkan nama PT United Tractors Tbk <br>
-                    - Pembayaran dengan mengunakan transfer harus mencantumkan nomor dan nama pelanggan <br>
-                    - Rincian nomor invoice yang dibayar harus dicantumkan <br>
-                    - Pembayaran harga jual/penggantian dilakukan dalam original currency atau dalam Rupiah dengan menggunakan kurs <span style="color: red;">jual Bank Indonesia pada saat dana diterima.</span> <br>
-                    - Pembayaran PPN dalam rupiah atau dalam original currancy dengan menggunakan kurs pajak sesuai tanggal faktur. <br>
-                    - Pembayaran dengan transfer ditujukan ke <strong>PT UNITED TRACTORS Tbk : IDR ke BANK PERMATA Cabang : KELAPA GADING PERMAI Account : 0.200.330.02.1</strong> <br>
-                    - Bagi Pelanggan yang mengiku Financing program ketentuan pembayaran mengiku ketentuan pembayaran dari bank.
                 </td>
                 <td width="50%" class="valign-top">
                     <table class="w-100 table-layout-fixed text-regular-sm pl-min">
@@ -318,9 +304,9 @@
                         </tr>
                         <tr>
                             <td class="pl-min text-align-right" style="font-size: 8px;"><strong style="color: royalblue;">POTONGAN HARGA</strong></td>
-                            <td class="text-align-center"></td><?= number_format($list[0]->POTHARGA_DEBITNOTE) ?>
+                            <td class="text-align-center"></td>
                 </td>
-                <td class="text-align-center"></td>
+                <td class="text-align-center"><?= number_format($list[0]->POTHARGA_DEBITNOTE) ?></td>
             </tr>
             <tr>
                 <td class="pl-min text-align-right" style="font-size: 8px;"><strong>UANG MUKA (UM) YANG TELAH DITERIMA</strong></td>
@@ -359,30 +345,30 @@
         <table class="border-collapse w-100 mb-med table-layout-fixed text-regular-sm">
             <tr>
                 <td width="50%" class="valign-top">
-                    <table class="border-collapse w-100 mb-med table-layout-fixed border-1" style="font-size: 8px;">
+                    <table class="border-collapse w-100 mb-med table-layout-fixed" style="font-size: 8px;">
                         <tr>
-                            <td width="33.33%" class="pl-min">TARIF</td>
-                            <td width="33.33%">DPP</td>
-                            <td width="33.33%">PPn BM</td>
+                            <td width="33.33%" class="pl-min"></td>
+                            <td width="33.33%"></td>
+                            <td width="33.33%"></td>
                         </tr>
                         <tr>
-                            <td class="pl-min">...........%</td>
-                            <td>Rp. ..........</td>
-                            <td>Rp. .........</td>
+                            <td class="pl-min"></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                     <table class="border-collapse w-100 mb-med table-layout-fixed" style="font-size: 8px;">
                         <tr>
-                            <td width="20%">Lembar putih</td>
-                            <td width="80%">: Untuk Pembeli BKP/Penerima JKP sebagai buk Pajak Masukan,</td>
+                            <td width="20%"></td>
+                            <td width="80%"></td>
                         </tr>
                         <tr>
-                            <td>Lembar merah</td>
-                            <td>: Untuk Penjual BKP/Pemberi JKP sebagai buk Pajak Keluaran,</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>Lembar kuning</td>
-                            <td>: Salinan tambahan.</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </td>
@@ -391,21 +377,21 @@
                         <tr>
                             <td>
                                 <?php
-                                $date         = date_create($list[0]->TGLOUT_DEBITNOTE);
-                                echo 'Jakarta, ' . date_format($date, 'j F Y');
+                                    $date         = date_create($list[0]->TGLOUT_DEBITNOTE);
+                                    echo 'Jakarta, ' . date_format($date, 'j F Y');
                                 ?>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <?php
-                                if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
-                                    echo '
-                                            <img src="' . $approvals[0]->PATH_TTD . '" width="75px" height="75px" />
-                                        ';
-                                } else {
-                                    echo ' ';
-                                }
+                                    if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                                        echo '
+                                                <img src="' . $approvals[0]->PATH_TTD . '" width="75px" height="75px" />
+                                            ';
+                                    } else {
+                                        echo ' ';
+                                    }
                                 ?>
                             </td>
                         </tr>
@@ -413,15 +399,15 @@
                             <td>
                                 <strong>
                                     <?php
-                                    if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
-                                        echo '
-                                                ( ' . $approvals[0]->NAMA_USERS . ' )
-                                            ';
-                                    } else {
-                                        echo '
-                                                (................................................)
-                                            ';
-                                    }
+                                        if ($approvals[0]->ROLE_APP == "Department Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+                                            echo '
+                                                    ( ' . $approvals[0]->NAMA_USERS . ' )
+                                                ';
+                                        } else {
+                                            echo '
+                                                    (................................................)
+                                                ';
+                                        }
                                     ?>
                                 </strong>
                             </td>
@@ -435,6 +421,9 @@
                 </td>
             </tr>
         </table>
+        <p class="text-align-center mb-med">
+            <img src="<?= base_url('assets/img/debitnote/footer.png'); ?>">
+        </p>
     </div>
 </body>
 
