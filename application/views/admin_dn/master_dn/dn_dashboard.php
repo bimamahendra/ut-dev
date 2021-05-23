@@ -87,9 +87,6 @@
                                         </span>
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-warning"></i> Received
-                                        </span>                                        
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-light"></i> Progress
                                         </span>
                                     </div>
                                 </div>
@@ -169,28 +166,143 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php 
-                                                            $grandTotal = 0;
-                                                            foreach($tahunan as $items){
+                                                        <?php
+                                                            if(!empty($tahunan2020)){
+                                                                $tahun = ""; $listrik = 0; $rent = 0; $service = 0; $grandTotal = 0;
+                                                                foreach($tahunan2020 as $items){
+                                                                    $tahun = $items->TAHUN;
+                                                                    if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
                                                                 echo'
                                                                     <tr>
-                                                                        <td>'.$items->TAHUN.'</td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td>Rp. '.number_format($items->TOTAL,0,',','.').'</td>
+                                                                        <td>'.$tahun.'</td>
+                                                                        <td>Rp. '.number_format($listrik,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($rent,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($service,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($grandTotal,0,',','.').'</td>
                                                                     </tr>
                                                                 ';
+                                                            };                                                             
+
+                                                            if(!empty($tahunan)){
+                                                            $tahun = ""; $listrik = 0; $rent = 0; $service = 0; $grandTotal = 0;
+                                                            foreach($tahunan as $items){
+                                                                $tahun = $items->TAHUN;
+                                                                if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
                                                                 $grandTotal = $grandTotal + $items->TOTAL;
+                                                            }
+                                                            echo'
+                                                                <tr>
+                                                                    <td>'.$tahun.'</td>
+                                                                    <td>Rp. '.number_format($listrik,0,',','.').'</td>
+                                                                    <td>Rp. '.number_format($rent,0,',','.').'</td>
+                                                                    <td>Rp. '.number_format($service,0,',','.').'</td>
+                                                                    <td>Rp. '.number_format($grandTotal,0,',','.').'</td>
+                                                                </tr>
+                                                            ';   
+                                                            };
+                                                            
+                                                            if(!empty($tahunan2022)){
+                                                                $tahun = ""; $listrik = 0; $rent = 0; $service = 0; $grandTotal = 0;
+                                                                foreach($tahunan2022 as $items){
+                                                                    $tahun = $items->TAHUN;
+                                                                    if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo'
+                                                                    <tr>
+                                                                        <td>'.$tahun.'</td>
+                                                                        <td>Rp. '.number_format($listrik,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($rent,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($service,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($grandTotal,0,',','.').'</td>
+                                                                    </tr>
+                                                                ';
+                                                            };
+
+                                                            if(!empty($tahunan2023)){
+                                                                $tahun = ""; $listrik = 0; $rent = 0; $service = 0; $grandTotal = 0;
+                                                                foreach($tahunan2023 as $items){
+                                                                    $tahun = $items->TAHUN;
+                                                                    if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo'
+                                                                    <tr>
+                                                                        <td>'.$tahun.'</td>
+                                                                        <td>Rp. '.number_format($listrik,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($rent,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($service,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($grandTotal,0,',','.').'</td>
+                                                                    </tr>
+                                                                ';
+                                                            };
+
+                                                            if(!empty($tahunan2024)){
+                                                                $tahun = ""; $listrik = 0; $rent = 0; $service = 0; $grandTotal = 0;
+                                                                foreach($tahunan2024 as $items){
+                                                                    $tahun = $items->TAHUN;
+                                                                    if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo'
+                                                                    <tr>
+                                                                        <td>'.$tahun.'</td>
+                                                                        <td>Rp. '.number_format($listrik,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($rent,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($service,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($grandTotal,0,',','.').'</td>
+                                                                    </tr>
+                                                                ';
+                                                            };
+
+                                                            if(!empty($tahunan2025)){
+                                                                $tahun = ""; $listrik = 0; $rent = 0; $service = 0; $grandTotal = 0;
+                                                                foreach($tahunan2025 as $items){
+                                                                    $tahun = $items->TAHUN;
+                                                                    if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                    if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo'
+                                                                    <tr>
+                                                                        <td>'.$tahun.'</td>
+                                                                        <td>Rp. '.number_format($listrik,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($rent,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($service,0,',','.').'</td>
+                                                                        <td>Rp. '.number_format($grandTotal,0,',','.').'</td>
+                                                                    </tr>
+                                                                ';
                                                             };
                                                         ?>
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
+                                                            <?php
+                                                            $grandTotal = 0; $listrik = 0; $rent = 0; $service = 0;
+                                                            foreach($totalTahunan as $items){
+                                                                if($items->TIPE == 'Listrik'){ $listrik = $items->TOTAL; };
+                                                                if($items->TIPE == 'Rent'){ $rent = $items->TOTAL; };
+                                                                if($items->TIPE == 'Service'){ $service = $items->TOTAL; };
+                                                                $grandTotal = $grandTotal + $items->TOTAL;
+                                                            }
+                                                            ?>
                                                             <th>Grand Total</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
+                                                            <th><?= 'Rp. '.number_format($listrik,0,',','.') ?></th>                                                            
+                                                            <th><?= 'Rp. '.number_format($rent,0,',','.') ?></th>
+                                                            <th><?= 'Rp. '.number_format($service,0,',','.') ?></th>
                                                             <th><?= 'Rp. '.number_format($grandTotal,0,',','.') ?></th>
                                                         </tr>
                                                     </tfoot>
