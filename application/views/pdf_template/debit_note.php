@@ -294,6 +294,15 @@
         <table class="border-collapse w-100 mb-med table-layout-fixed text-regular-sm">
             <tr>
                 <td width="50%" style="font-size: 8px;">
+                    Ketentuan pembayaran : <br>
+                    - Jumlah total harga termasuk PPN yang tercantum dalam faktur adalah berdasarkan pesanan <br>
+                    - Pembayaran dengan menggunakan cek/giro harus mencantumkan nama PT United Tractors Tbk <br>
+                    - Pembayaran dengan mengunakan transfer harus mencantumkan nomor dan nama pelanggan <br>
+                    - Rincian nomor invoice yang dibayar harus dicantumkan <br>
+                    - Pembayaran harga jual/penggantian dilakukan dalam original currency atau dalam Rupiah dengan menggunakan kurs <span style="color: red;">jual Bank Indonesia pada saat dana diterima.</span> <br>
+                    - Pembayaran PPN dalam rupiah atau dalam original currancy dengan menggunakan kurs pajak sesuai tanggal faktur. <br>
+                    - Pembayaran dengan transfer ditujukan ke <strong>PT UNITED TRACTORS Tbk : IDR ke BANK PERMATA Cabang : KELAPA GADING PERMAI Account : 0.200.330.02.1</strong> <br>
+                    - Bagi Pelanggan yang mengiku Financing program ketentuan pembayaran mengiku ketentuan pembayaran dari bank.
                 </td>
                 <td width="50%" class="valign-top">
                     <table class="w-100 table-layout-fixed text-regular-sm pl-min">
@@ -347,28 +356,28 @@
                 <td width="50%" class="valign-top">
                     <table class="border-collapse w-100 mb-med table-layout-fixed" style="font-size: 8px;">
                         <tr>
-                            <td width="33.33%" class="pl-min"></td>
-                            <td width="33.33%"></td>
-                            <td width="33.33%"></td>
+                            <td width="33.33%" class="pl-min">TARIF</td>
+                            <td width="33.33%">DPP</td>
+                            <td width="33.33%">PPn BM</td>
                         </tr>
                         <tr>
-                            <td class="pl-min"></td>
-                            <td></td>
-                            <td></td>
+                            <td class="pl-min">...........%</td>
+                            <td>Rp. ..........</td>
+                            <td>Rp. .........</td>
                         </tr>
                     </table>
                     <table class="border-collapse w-100 mb-med table-layout-fixed" style="font-size: 8px;">
                         <tr>
-                            <td width="20%"></td>
-                            <td width="80%"></td>
+                            <td width="20%">Lembar putih</td>
+                            <td width="80%">: Untuk Pembeli BKP/Penerima JKP sebagai buk Pajak Masukan,</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td>Lembar merah</td>
+                            <td>: Untuk Penjual BKP/Pemberi JKP sebagai buk Pajak Keluaran,</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td>Lembar kuning</td>
+                            <td>: Salinan tambahan.</td>
                         </tr>
                     </table>
                 </td>
