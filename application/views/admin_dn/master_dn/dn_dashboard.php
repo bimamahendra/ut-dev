@@ -4,6 +4,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Monitoring Debit Note</h1>
+        <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false">Toggle All</button>
     </div>
 
     <!-- Content Row -->
@@ -73,21 +74,23 @@
                         </div>
                         <div class="col-12">
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <a href="#collapseReceivedOverdue" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseReceivedOverdue">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Overdue | --%</h6>
-                                </div>
+                                </a>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="overdueChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-danger"></i> Overdue
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Received
-                                        </span>
+                                <div class="collapse multi-collapse" id="collapseReceivedOverdue">
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4 pb-2">
+                                            <canvas id="overdueChart"></canvas>
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-danger"></i> Overdue
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-success"></i> Received
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -97,49 +100,51 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <a href="#collapseAchievementPaymentReceived" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseAchievementPaymentReceived">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Achievement Payment Received</h6>
-                                </div>
+                                </a>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 col-md-4">
-                                            <div class="chart-pie pt-4 pb-2">
-                                                <canvas id="sewaBangunanChart"></canvas>
+                                <div class="collapse multi-collapse" id="collapseAchievementPaymentReceived">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 col-md-4">
+                                                <div class="chart-pie pt-4 pb-2">
+                                                    <canvas id="sewaBangunanChart"></canvas>
+                                                </div>
+                                                <div class="mt-4 text-center small">
+                                                    <span class="mr-2">
+                                                        <i class="fas fa-circle text-secondary"></i> Not yet
+                                                    </span>
+                                                    <span class="mr-2">
+                                                        <i class="fas fa-circle text-warning"></i> Done
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="mt-4 text-center small">
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-secondary"></i> Not yet
-                                                </span>
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-warning"></i> Done
-                                                </span>
+                                            <div class="col-12 col-md-4">
+                                                <div class="chart-pie pt-4 pb-2">
+                                                    <canvas id="utilityChart"></canvas>
+                                                </div>
+                                                <div class="mt-4 text-center small">
+                                                    <span class="mr-2">
+                                                        <i class="fas fa-circle text-secondary"></i> Not yet
+                                                    </span>
+                                                    <span class="mr-2">
+                                                        <i class="fas fa-circle text-warning"></i> Done
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="chart-pie pt-4 pb-2">
-                                                <canvas id="utilityChart"></canvas>
-                                            </div>
-                                            <div class="mt-4 text-center small">
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-secondary"></i> Not yet
-                                                </span>
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-warning"></i> Done
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="chart-pie pt-4 pb-2">
-                                                <canvas id="othersChart"></canvas>
-                                            </div>
-                                            <div class="mt-4 text-center small">
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-secondary"></i> Not yet
-                                                </span>
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-warning"></i> Done
-                                                </span>
+                                            <div class="col-12 col-md-4">
+                                                <div class="chart-pie pt-4 pb-2">
+                                                    <canvas id="othersChart"></canvas>
+                                                </div>
+                                                <div class="mt-4 text-center small">
+                                                    <span class="mr-2">
+                                                        <i class="fas fa-circle text-secondary"></i> Not yet
+                                                    </span>
+                                                    <span class="mr-2">
+                                                        <i class="fas fa-circle text-warning"></i> Done
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -152,54 +157,55 @@
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <a href="#collapsePaymentReceived" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapsePaymentReceived">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Payment Received</h6>
-                                </div>
+                                </a>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="chart-area mb-5 p-5">
-                                                <canvas class="mb-5" id="myAreaChart"></canvas>
+                                <div class="collapse multi-collapse" id="collapsePaymentReceived">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="chart-area mb-5 p-5">
+                                                    <canvas class="mb-5" id="myAreaChart"></canvas>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div><br>
-                                    <hr class="invisible my-5 ">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="table-responsive mt-5">
-                                                <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tahun</th>
-                                                            <th>Listrik</th>
-                                                            <th>Rent</th>
-                                                            <th>Service</th>
-                                                            <th>Grand Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        if (!empty($tahunan2020)) {
-                                                            $tahun = "";
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            $grandTotal = 0;
-                                                            foreach ($tahunan2020 as $items) {
-                                                                $tahun = $items->TAHUN;
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
-                                                            echo '
+                                        </div><br>
+                                        <hr class="invisible my-5 ">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive mt-5">
+                                                    <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tahun</th>
+                                                                <th>Listrik</th>
+                                                                <th>Rent</th>
+                                                                <th>Service</th>
+                                                                <th>Grand Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            if (!empty($tahunan2020)) {
+                                                                $tahun = "";
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                $grandTotal = 0;
+                                                                foreach ($tahunan2020 as $items) {
+                                                                    $tahun = $items->TAHUN;
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo '
                                                                     <tr>
                                                                         <td>' . $tahun . '</td>
                                                                         <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
@@ -208,28 +214,28 @@
                                                                         <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                     </tr>
                                                                 ';
-                                                        };
+                                                            };
 
-                                                        if (!empty($tahunan)) {
-                                                            $tahun = "";
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            $grandTotal = 0;
-                                                            foreach ($tahunan as $items) {
-                                                                $tahun = $items->TAHUN;
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
-                                                            echo '
+                                                            if (!empty($tahunan)) {
+                                                                $tahun = "";
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                $grandTotal = 0;
+                                                                foreach ($tahunan as $items) {
+                                                                    $tahun = $items->TAHUN;
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo '
                                                                 <tr>
                                                                     <td>' . $tahun . '</td>
                                                                     <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
@@ -238,28 +244,28 @@
                                                                     <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                 </tr>
                                                             ';
-                                                        };
+                                                            };
 
-                                                        if (!empty($tahunan2022)) {
-                                                            $tahun = "";
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            $grandTotal = 0;
-                                                            foreach ($tahunan2022 as $items) {
-                                                                $tahun = $items->TAHUN;
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
-                                                            echo '
+                                                            if (!empty($tahunan2022)) {
+                                                                $tahun = "";
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                $grandTotal = 0;
+                                                                foreach ($tahunan2022 as $items) {
+                                                                    $tahun = $items->TAHUN;
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo '
                                                                     <tr>
                                                                         <td>' . $tahun . '</td>
                                                                         <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
@@ -268,28 +274,28 @@
                                                                         <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                     </tr>
                                                                 ';
-                                                        };
+                                                            };
 
-                                                        if (!empty($tahunan2023)) {
-                                                            $tahun = "";
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            $grandTotal = 0;
-                                                            foreach ($tahunan2023 as $items) {
-                                                                $tahun = $items->TAHUN;
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
-                                                            echo '
+                                                            if (!empty($tahunan2023)) {
+                                                                $tahun = "";
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                $grandTotal = 0;
+                                                                foreach ($tahunan2023 as $items) {
+                                                                    $tahun = $items->TAHUN;
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo '
                                                                     <tr>
                                                                         <td>' . $tahun . '</td>
                                                                         <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
@@ -298,28 +304,28 @@
                                                                         <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                     </tr>
                                                                 ';
-                                                        };
+                                                            };
 
-                                                        if (!empty($tahunan2024)) {
-                                                            $tahun = "";
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            $grandTotal = 0;
-                                                            foreach ($tahunan2024 as $items) {
-                                                                $tahun = $items->TAHUN;
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
-                                                            echo '
+                                                            if (!empty($tahunan2024)) {
+                                                                $tahun = "";
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                $grandTotal = 0;
+                                                                foreach ($tahunan2024 as $items) {
+                                                                    $tahun = $items->TAHUN;
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo '
                                                                     <tr>
                                                                         <td>' . $tahun . '</td>
                                                                         <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
@@ -328,28 +334,28 @@
                                                                         <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                     </tr>
                                                                 ';
-                                                        };
+                                                            };
 
-                                                        if (!empty($tahunan2025)) {
-                                                            $tahun = "";
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            $grandTotal = 0;
-                                                            foreach ($tahunan2025 as $items) {
-                                                                $tahun = $items->TAHUN;
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
-                                                            echo '
+                                                            if (!empty($tahunan2025)) {
+                                                                $tahun = "";
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                $grandTotal = 0;
+                                                                foreach ($tahunan2025 as $items) {
+                                                                    $tahun = $items->TAHUN;
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                echo '
                                                                     <tr>
                                                                         <td>' . $tahun . '</td>
                                                                         <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
@@ -358,37 +364,38 @@
                                                                         <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                     </tr>
                                                                 ';
-                                                        };
-                                                        ?>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <?php
-                                                            $grandTotal = 0;
-                                                            $listrik = 0;
-                                                            $rent = 0;
-                                                            $service = 0;
-                                                            foreach ($totalTahunan as $items) {
-                                                                if ($items->TIPE == 'Listrik') {
-                                                                    $listrik = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Rent') {
-                                                                    $rent = $items->TOTAL;
-                                                                };
-                                                                if ($items->TIPE == 'Service') {
-                                                                    $service = $items->TOTAL;
-                                                                };
-                                                                $grandTotal = $grandTotal + $items->TOTAL;
-                                                            }
+                                                            };
                                                             ?>
-                                                            <th>Grand Total</th>
-                                                            <th><?= 'Rp. ' . number_format($listrik, 0, ',', '.') ?></th>
-                                                            <th><?= 'Rp. ' . number_format($rent, 0, ',', '.') ?></th>
-                                                            <th><?= 'Rp. ' . number_format($service, 0, ',', '.') ?></th>
-                                                            <th><?= 'Rp. ' . number_format($grandTotal, 0, ',', '.') ?></th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <?php
+                                                                $grandTotal = 0;
+                                                                $listrik = 0;
+                                                                $rent = 0;
+                                                                $service = 0;
+                                                                foreach ($totalTahunan as $items) {
+                                                                    if ($items->TIPE == 'Listrik') {
+                                                                        $listrik = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Rent') {
+                                                                        $rent = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Service') {
+                                                                        $service = $items->TOTAL;
+                                                                    };
+                                                                    $grandTotal = $grandTotal + $items->TOTAL;
+                                                                }
+                                                                ?>
+                                                                <th>Grand Total</th>
+                                                                <th><?= 'Rp. ' . number_format($listrik, 0, ',', '.') ?></th>
+                                                                <th><?= 'Rp. ' . number_format($rent, 0, ',', '.') ?></th>
+                                                                <th><?= 'Rp. ' . number_format($service, 0, ',', '.') ?></th>
+                                                                <th><?= 'Rp. ' . number_format($grandTotal, 0, ',', '.') ?></th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -409,69 +416,71 @@
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <a href="#collapseMonthlyDetail" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseMonthlyDetail">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Monthly Detail</h6>
-                                </div>
+                                </a>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="chart-area mb-5 p-5">
-                                                <canvas class="mb-5" id="monthlyDetailChart"></canvas>
+                                <div class="collapse multi-collapse" id="collapseMonthlyDetail">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="chart-area mb-5 p-5">
+                                                    <canvas class="mb-5" id="monthlyDetailChart"></canvas>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr class="invisible my-5 ">
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="table-responsive mt-5">
-                                                <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>Jan</th>
-                                                            <th>Feb</th>
-                                                            <th>Mar</th>
-                                                            <th>Apr</th>
-                                                            <th>May</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>DN Terbit</td>
-                                                            <?php
-                                                            $bulan = 1;
-                                                            for ($bulan = 1; $bulan <= 5; $bulan++) {
-                                                                $html = '<td>Rp. 0</td>';
-                                                                foreach ($monthly as $item) {
-                                                                    if ($bulan == $item->BULAN) {
-                                                                        $html = '<td> Rp. ' . number_format($item->TOTAL, 0, ',', '.') . '</td>';
-                                                                        break;
+                                        <hr class="invisible my-5 ">
+                                        <br><br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive mt-5">
+                                                    <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Jan</th>
+                                                                <th>Feb</th>
+                                                                <th>Mar</th>
+                                                                <th>Apr</th>
+                                                                <th>May</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>DN Terbit</td>
+                                                                <?php
+                                                                $bulan = 1;
+                                                                for ($bulan = 1; $bulan <= 5; $bulan++) {
+                                                                    $html = '<td>Rp. 0</td>';
+                                                                    foreach ($monthly as $item) {
+                                                                        if ($bulan == $item->BULAN) {
+                                                                            $html = '<td> Rp. ' . number_format($item->TOTAL, 0, ',', '.') . '</td>';
+                                                                            break;
+                                                                        }
                                                                     }
+                                                                    echo $html;
                                                                 }
-                                                                echo $html;
-                                                            }
-                                                            ?>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Payment Received</td>
-                                                            <?php
-                                                            $bulan = 1;
-                                                            for ($bulan = 1; $bulan <= 5; $bulan++) {
-                                                                $html = '<td>Rp. 0</td>';
-                                                                foreach ($received as $item) {
-                                                                    if ($bulan == $item->BULAN) {
-                                                                        $html = '<td> Rp. ' . number_format($item->TOTAL, 0, ',', '.') . '</td>';
-                                                                        break;
+                                                                ?>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Payment Received</td>
+                                                                <?php
+                                                                $bulan = 1;
+                                                                for ($bulan = 1; $bulan <= 5; $bulan++) {
+                                                                    $html = '<td>Rp. 0</td>';
+                                                                    foreach ($received as $item) {
+                                                                        if ($bulan == $item->BULAN) {
+                                                                            $html = '<td> Rp. ' . number_format($item->TOTAL, 0, ',', '.') . '</td>';
+                                                                            break;
+                                                                        }
                                                                     }
+                                                                    echo $html;
                                                                 }
-                                                                echo $html;
-                                                            }
-                                                            ?>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                                ?>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -483,20 +492,22 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <a href="#collapseDNAging" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseDNAging">
                                     <h6 class="m-0 font-weight-bold text-gray-800">DN Aging and Top Tenants</h6>
-                                </div>
+                                </a>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <div class="chart-bar mb-5 p-5">
-                                                <canvas class="mb-5" id="dnAgingChart"></canvas>
+                                <div class="collapse multi-collapse" id="collapseDNAging">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="chart-bar mb-5 p-5">
+                                                    <canvas class="mb-5" id="dnAgingChart"></canvas>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <div class="chart-bar mb-5 p-5">
-                                                <canvas class="mb-5" id="topTenantChart"></canvas>
+                                            <div class="col-12 col-md-6">
+                                                <div class="chart-bar mb-5 p-5">
+                                                    <canvas class="mb-5" id="topTenantChart"></canvas>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
