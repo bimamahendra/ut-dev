@@ -45,7 +45,7 @@ class DebitNote extends CI_Model{
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
         FROM DEBITNOTE 
         WHERE STAT_DEBITNOTE = 6 AND 
-        (TIPE_DEBITNOTE = 'Listrik' OR TIPE_DEBITNOTE = 'Service')";        
+        (TIPE_DEBITNOTE = 'Telefon' OR TIPE_DEBITNOTE = 'Listrik' OR TIPE_DEBITNOTE = 'Air')";        
         $result = $this->db->query($sql);
         return $result->row()->TOTAL;
     }
@@ -54,7 +54,7 @@ class DebitNote extends CI_Model{
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
         FROM DEBITNOTE 
         WHERE STAT_DEBITNOTE = 5 AND 
-        (TIPE_DEBITNOTE = 'Listrik' OR TIPE_DEBITNOTE = 'Service')";        
+        (TIPE_DEBITNOTE = 'Telefon' OR TIPE_DEBITNOTE = 'Listrik' OR TIPE_DEBITNOTE = 'Air')";        
         $result = $this->db->query($sql);
         return $result->row()->TOTAL;
     }
@@ -62,16 +62,31 @@ class DebitNote extends CI_Model{
         $sql = "SELECT 
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
         FROM DEBITNOTE 
-        WHERE STAT_DEBITNOTE = 6 AND TIPE_DEBITNOTE = 'Rent'";        
+        WHERE STAT_DEBITNOTE = 6 AND (TIPE_DEBITNOTE = 'Rent' OR TIPE_DEBITNOTE = 'Service')";        
         $result = $this->db->query($sql);
         return $result->row()->TOTAL;
     }
     public function getRentOverdue(){
         $sql = "SELECT 
-        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
-        TIPE_DEBITNOTE as TIPE
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
         FROM DEBITNOTE 
-        WHERE STAT_DEBITNOTE = 5 AND TIPE_DEBITNOTE = 'Rent'";        
+        WHERE STAT_DEBITNOTE = 5 AND (TIPE_DEBITNOTE = 'Rent' OR TIPE_DEBITNOTE = 'Service')";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getOthersCharge(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND (TIPE_DEBITNOTE = 'Others')";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getOthersOverdue(){
+        $sql = "SELECT 
+        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 5 AND (TIPE_DEBITNOTE = 'Others')";        
         $result = $this->db->query($sql);
         return $result->row()->TOTAL;
     }
