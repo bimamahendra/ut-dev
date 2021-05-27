@@ -268,11 +268,12 @@
             }],
         },
         options: {
+            showAllTooltips: true,
             maintainAspectRatio: false,
             tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
+                backgroundColor: "rgb(255, 255, 255)",
+                bodyFontColor: "rgb(37, 40, 43)",
+                borderColor: 'rgb(37, 40, 43)',
                 borderWidth: 1,
                 xPadding: 15,
                 yPadding: 15,
@@ -298,11 +299,12 @@
             }],
         },
         options: {
+            showAllTooltips: true,
             maintainAspectRatio: false,
             tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
+                backgroundColor: "rgb(255, 255, 255)",
+                bodyFontColor: "rgb(37, 40, 43)",
+                borderColor: "rgb(37, 40, 43)",
                 borderWidth: 1,
                 xPadding: 15,
                 yPadding: 15,
@@ -332,11 +334,12 @@
             }],
         },
         options: {
+            showAllTooltips: true,
             maintainAspectRatio: false,
             tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
+                backgroundColor: "rgb(255, 255, 255)",
+                bodyFontColor: "rgb(37, 40, 43)",
+                borderColor: "rgb(37, 40, 43)",
                 borderWidth: 1,
                 xPadding: 15,
                 yPadding: 15,
@@ -366,11 +369,12 @@
             }],
         },
         options: {
+            showAllTooltips: true,
             maintainAspectRatio: false,
             tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
+                backgroundColor: "rgb(255, 255, 255)",
+                bodyFontColor: "rgb(37, 40, 43)",
+                borderColor: "rgb(37, 40, 43)",
                 borderWidth: 1,
                 xPadding: 15,
                 yPadding: 15,
@@ -387,6 +391,117 @@
         },
     });
 
+    var paymentReceivedChart = document.getElementById("paymentReceivedChart");
+    var paymentReceived = new Chart(paymentReceivedChart, {
+        type: 'bar',
+        data: {
+            labels: [
+                <?php if (!empty($tahunan2020)) {
+                    echo $t2020 . ',';
+                }; ?>
+                <?php if (!empty($tahunan)) {
+                    echo $t2021 . ',';
+                }; ?>
+                <?php if (!empty($tahunan2022)) {
+                    echo $t2022 . ',';
+                }; ?>
+                <?php if (!empty($tahunan2023)) {
+                    echo $t2023 . ',';
+                }; ?>
+                <?php if (!empty($tahunan2024)) {
+                    echo $t2024 . ',';
+                }; ?>
+                <?php if (!empty($tahunan2025)) {
+                    echo $t2025 . ',';
+                }; ?>
+            ],
+            datasets: [{
+                label: 'Listrik',
+                data: [
+                    <?php if (!empty($tahunan2020)) {
+                        echo $tahunan2020Total[0] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan)) {
+                        echo $tahunan2021Total[0] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2022)) {
+                        echo $tahunan2022Total[0] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2023)) {
+                        echo $tahunan2023Total[0] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2024)) {
+                        echo $tahunan2024Total[0] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2025)) {
+                        echo $tahunan2025Total[0] . ',';
+                    } ?>
+                ],
+                backgroundColor: 'rgba(49, 176, 87, 1)',
+                borderColor: 'rgba(49, 176, 87, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Rent',
+                data: [
+                    <?php if (!empty($tahunan2020)) {
+                        echo $tahunan2020Total[1] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan)) {
+                        echo $tahunan2021Total[1] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2022)) {
+                        echo $tahunan2022Total[1] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2023)) {
+                        echo $tahunan2023Total[1] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2024)) {
+                        echo $tahunan2024Total[1] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2025)) {
+                        echo $tahunan2025Total[1] . ',';
+                    } ?>
+                ],
+                backgroundColor: 'rgba(56, 139, 242, 1)',
+                borderColor: 'rgba(56, 139, 242, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Service',
+                data: [
+                    <?php if (!empty($tahunan2020)) {
+                        echo $tahunan2020Total[2] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan)) {
+                        echo $tahunan2021Total[2] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2022)) {
+                        echo $tahunan2022Total[2] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2023)) {
+                        echo $tahunan2023Total[2] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2024)) {
+                        echo $tahunan2024Total[2] . ',';
+                    } ?>
+                    <?php if (!empty($tahunan2025)) {
+                        echo $tahunan2025Total[2] . ',';
+                    } ?>
+                ],
+                backgroundColor: 'rgba(252, 131, 56, 1)',
+                borderColor: 'rgba(252, 131, 56, 1)',
+                borderWidth: 1
+            }],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+
     var monthlyDetailChart = document.getElementById("monthlyDetailChart");
     var monthlyDetail = new Chart(monthlyDetailChart, {
         type: 'bar',
@@ -395,14 +510,14 @@
             datasets: [{
                 label: 'DN Terbit',
                 data: <?= $terbitData ?>,
-                backgroundColor: 'rgba(211, 84, 0,1.0)',
-                borderColor: 'rgba(211, 84, 0,1.0)',
+                backgroundColor: 'rgba(252, 131, 56, 1)',
+                borderColor: 'rgba(252, 131, 56, 1)',
                 borderWidth: 1
             }, {
                 label: 'Payment Received',
                 data: <?= $receivedData ?>,
-                backgroundColor: 'rgba(241, 196, 15,1.0)',
-                borderColor: 'rgba(241, 196, 15,1.0)',
+                backgroundColor: 'rgba(49, 176, 87, 1)',
+                borderColor: 'rgba(49, 176, 87, 1)',
                 borderWidth: 1
             }],
         },
@@ -484,113 +599,45 @@
         }
     });
 
-    var ctx = document.getElementById("myAreaChart");
-    var myLineChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if (!empty($tahunan2020)) {
-                    echo $t2020 . ',';
-                }; ?>
-                <?php if (!empty($tahunan)) {
-                    echo $t2021 . ',';
-                }; ?>
-                <?php if (!empty($tahunan2022)) {
-                    echo $t2022 . ',';
-                }; ?>
-                <?php if (!empty($tahunan2023)) {
-                    echo $t2023 . ',';
-                }; ?>
-                <?php if (!empty($tahunan2024)) {
-                    echo $t2024 . ',';
-                }; ?>
-                <?php if (!empty($tahunan2025)) {
-                    echo $t2025 . ',';
-                }; ?>
-            ],
-            datasets: [{
-                label: 'Listrik',
-                data: [
-                    <?php if (!empty($tahunan2020)) {
-                        echo $tahunan2020Total[0] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan)) {
-                        echo $tahunan2021Total[0] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2022)) {
-                        echo $tahunan2022Total[0] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2023)) {
-                        echo $tahunan2023Total[0] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2024)) {
-                        echo $tahunan2024Total[0] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2025)) {
-                        echo $tahunan2025Total[0] . ',';
-                    } ?>
-                ],
-                backgroundColor: 'rgba(41, 128, 185,1.0)',
-                borderColor: 'rgba(41, 128, 185,1.0)',
-                borderWidth: 1
-            }, {
-                label: 'Rent',
-                data: [
-                    <?php if (!empty($tahunan2020)) {
-                        echo $tahunan2020Total[1] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan)) {
-                        echo $tahunan2021Total[1] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2022)) {
-                        echo $tahunan2022Total[1] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2023)) {
-                        echo $tahunan2023Total[1] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2024)) {
-                        echo $tahunan2024Total[1] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2025)) {
-                        echo $tahunan2025Total[1] . ',';
-                    } ?>
-                ],
-                backgroundColor: 'rgba(230, 126, 34,1.0)',
-                borderColor: 'rgba(230, 126, 34,1.0)',
-                borderWidth: 1
-            }, {
-                label: 'Service',
-                data: [
-                    <?php if (!empty($tahunan2020)) {
-                        echo $tahunan2020Total[2] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan)) {
-                        echo $tahunan2021Total[2] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2022)) {
-                        echo $tahunan2022Total[2] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2023)) {
-                        echo $tahunan2023Total[2] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2024)) {
-                        echo $tahunan2024Total[2] . ',';
-                    } ?>
-                    <?php if (!empty($tahunan2025)) {
-                        echo $tahunan2025Total[2] . ',';
-                    } ?>
-                ],
-                backgroundColor: 'rgba(127, 140, 141,1.0)',
-                borderColor: 'rgba(127, 140, 141,1.0)',
-                borderWidth: 1
-            }],
+    Chart.pluginService.register({
+        beforeRender: function(chart) {
+            if (chart.config.options.showAllTooltips) {
+                // create an array of tooltips
+                // we can't use the chart tooltip because there is only one tooltip per chart
+                chart.pluginTooltips = [];
+                chart.config.data.datasets.forEach(function(dataset, i) {
+                    chart.getDatasetMeta(i).data.forEach(function(sector, j) {
+                        chart.pluginTooltips.push(new Chart.Tooltip({
+                            _chart: chart.chart,
+                            _chartInstance: chart,
+                            _data: chart.data,
+                            _options: chart.options.tooltips,
+                            _active: [sector]
+                        }, chart));
+                    });
+                });
+                // turn off normal tooltips
+                chart.options.tooltips.enabled = false;
+            }
         },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
+        afterDraw: function(chart, easing) {
+            if (chart.config.options.showAllTooltips) {
+                // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+                if (!chart.allTooltipsOnce) {
+                    if (easing !== 1)
+                        return;
+                    chart.allTooltipsOnce = true;
                 }
+                // turn on tooltips
+                chart.options.tooltips.enabled = true;
+                Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
+                    tooltip.initialize();
+                    tooltip.update();
+                    // we don't actually need this since we are not animating tooltips
+                    tooltip.pivot();
+                    tooltip.transition(easing).draw();
+                });
+                chart.options.tooltips.enabled = false;
             }
         }
     });
