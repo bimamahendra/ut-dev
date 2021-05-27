@@ -31,6 +31,15 @@
                 $cUtilOverdue = (int) ($utilOverdue / ($utilCharge + $utilOverdue) * 100);
             };
 
+            $cOthersCharge = 0;
+            $cOthersOverdue = 0;
+            if (!empty($othersCharge)) {
+                $cOthersCharge = (int) ($othersCharge / ($othersCharge + $othersOverdue) * 100);
+            };
+            if (!empty($othersOverdue)) {
+                $cOthersOverdue = (int) ($othersOverdue / ($othersCharge + $othersOverdue) * 100);
+            };
+
             if (!empty($tahunan2020)) {
                 $t2020 = "2020";
                 $tahunan2020Total[0] = 0;
@@ -362,7 +371,7 @@
         data: {
             labels: ["Not yet", "Done"],
             datasets: [{
-                data: [<?= $cUtilOverdue ?>, <?= $cUtilCharge ?>],
+                data: [<?= $cOthersOverdue ?>, <?= $cOthersCharge ?>],
                 backgroundColor: ['rgba(229, 42, 51, 1)', 'rgba(252, 131, 56, 1)'],
                 hoverBackgroundColor: ['rgba(229, 42, 51, 1)', 'rgba(252, 131, 56, 1)'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",

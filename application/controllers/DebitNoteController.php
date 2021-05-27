@@ -88,8 +88,10 @@ class DebitNoteController extends CI_Controller
         $datas['monthly']     = $this->DebitNote->getmonthlydn();
         $datas['rentCharge']  = $this->DebitNote->getRentCharge();
         $datas['rentOverdue'] = $this->DebitNote->getRentOverdue();
-        $datas['utilCharge'] = $this->DebitNote->getUtilCharge();
+        $datas['utilCharge']  = $this->DebitNote->getUtilCharge();
         $datas['utilOverdue'] = $this->DebitNote->getUtilOverdue();
+        $datas['othersCharge']= $this->DebitNote->getOthersCharge();
+        $datas['othersOverdue']= $this->DebitNote->getOthersOverdue();
         $datas['tahunan']     = $this->DebitNote->getTahunanDN();
         $datas['tahunan2020'] = $this->DebitNote->getTahunanDN2020();
         $datas['tahunan2022'] = $this->DebitNote->getTahunanDN2022();

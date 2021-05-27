@@ -75,7 +75,15 @@
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseReceivedOverdue" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseReceivedOverdue">
-                                    <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Overdue | --%</h6>
+                                    <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Overdue | 
+                                    <?php
+                                    $cReceived = 0;
+                                    if (!empty($rcvtotal)) {
+                                        $cReceived = (int) ($rcvtotal / $total * 100);
+                                    };
+
+                                    echo $cReceived.'%';
+                                    ?></h6>
                                 </a>
                                 <!-- Card Body -->
                                 <div class="collapse multi-collapse" id="collapseReceivedOverdue">
