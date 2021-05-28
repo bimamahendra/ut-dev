@@ -137,7 +137,6 @@
                         $dnEmail                    = $item->EMAIL_DEBITNOTE;
                         $dn['dataHtml'][$dnEmail]   = array();
                         $dn['attach'][$dnEmail]     = array();
-                        $dn['emaill']                = $dnEmail;
                         $tenants[$dnEmail]          = $idTenant; 
                         array_push($dn['email'], $dnEmail);
                     }
@@ -149,7 +148,7 @@
                     $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
                     $email['subject']   = 'United Tractors: Payment Reminder';
-                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item], $tenants[$item['emaill']]);
+                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item], $tenants[$item]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
@@ -177,7 +176,6 @@
                         $dnEmail                    = $item->EMAIL_DEBITNOTE;
                         $dn['dataHtml'][$dnEmail]   = array();
                         $dn['attach'][$dnEmail]     = array();
-                        $dn['emaill']               = $dnEmail;
                         $tenants[$dnEmail]          = $idTenant; 
                         array_push($dn['email'], $dnEmail);
                     }
@@ -189,7 +187,7 @@
                     $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
                     $email['subject']   = 'United Tractors: Overdue Payment Confirmation';
-                    $email['message']   = $this->htmlPaymentOverdue($dn['dataHtml'][$item], $tenants[$item['emaill']]);
+                    $email['message']   = $this->htmlPaymentOverdue($dn['dataHtml'][$item], $tenants[$item]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
