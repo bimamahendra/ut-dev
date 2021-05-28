@@ -216,4 +216,9 @@ class Welcome extends CI_Controller
 		$this->load->view('admin_dn/master_dn/dn_dashboard');
 		$this->load->view('template/admin_dn/footer');
 	}
+
+	public function display_for_tenant()
+	{
+		$this->load->view('tenant/displayfortenant');
+	}
 }
