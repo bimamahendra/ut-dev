@@ -173,9 +173,13 @@
             $topTenantsLabel = json_encode($topTenantsLabel);
 
             $cAgingEnam = 0;
+            $cAgingTigaEnam = 0;
             $cAgingTiga = 0;
             if (!empty($agingEnam)) {
                 $cAgingEnam = $agingEnam;
+            };            
+            if (!empty($agingTigaEnam)) {
+                $cAgingTigaEnam = $agingTigaEnam;
             };
             if (!empty($agingTiga)) {
                 $cAgingTiga = $agingTiga;
@@ -580,7 +584,7 @@
             labels: ["<30 Hari", "30-60 Hari", ">60 Hari"],
             datasets: [{
                 label: 'Total',
-                data: [<?= $cAgingTiga ?>, 55, <?= $cAgingEnam ?>],
+                data: [<?= $cAgingTiga ?>, <?= $cAgingTigaEnam ?>, <?= $cAgingEnam ?>],
                 backgroundColor: 'rgba(41, 128, 185,1.0)',
                 borderColor: 'rgba(41, 128, 185,1.0)',
                 borderWidth: 1
