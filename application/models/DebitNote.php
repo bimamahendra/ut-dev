@@ -184,13 +184,28 @@ class DebitNote extends CI_Model{
     }
     public function getAgingTigaPuluh(){
         $sql = "SELECT COUNT(*) AS TOTAL 
-        FROM DEBITNOTE d WHERE TGLPUBLISHED_DEBITNOTE + INTERVAL 30 DAY >= NOW()";        
+        FROM DEBITNOTE WHERE 
+        TGLFAKTUR_DEBITNOTE + INTERVAL 30 DAY > NOW() AND
+        STAT_DEBITNOTE = 4";        
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
+    public function getAgingTigaEnam(){
+        $sql = "SELECT COUNT(*) AS TOTAL 
+        FROM DEBITNOTE
+        WHERE 
+        TGLFAKTUR_DEBITNOTE + INTERVAL 30 DAY <= NOW() AND
+        TGLFAKTUR_DEBITNOTE + INTERVAL 60 DAY >= NOW() AND
+        STAT_DEBITNOTE = 5";        
         $result = $this->db->query($sql);
         return $result->row()->TOTAL;
     }
     public function getAgingEnamPuluh(){
         $sql = "SELECT COUNT(*) AS TOTAL 
-        FROM DEBITNOTE d WHERE TGLPUBLISHED_DEBITNOTE + INTERVAL 60 DAY <= NOW()";        
+        FROM DEBITNOTE 
+        WHERE 
+        TGLFAKTUR_DEBITNOTE + INTERVAL 60 DAY < NOW() AND
+        STAT_DEBITNOTE = 5";        
         $result = $this->db->query($sql);
         return $result->row()->TOTAL;
     }
