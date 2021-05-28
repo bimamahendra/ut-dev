@@ -20,6 +20,9 @@
 
         public function sendEmail(){
             $param    = $_POST;
+
+            $debitnote = $this->DebitNote->get(['ID_DEBITNOTE' => $param['ID_DEBITNOTE']]);
+            $idTenant  = $this->checkTenant($debitnote->NAMAPERUSAHAAN_DEBITNOTE);
             
             $date = date('Y-m-d');
             $dnDateEnd = date_create($param['TGLJATUH_DEBITNOTE']);
@@ -56,7 +59,7 @@
                     $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
                     $email['subject']   = 'United Tractors: Payment Reminder';
-                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
+                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item], $idTenant);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
@@ -69,6 +72,7 @@
             $dn = $this->db->where_in('ID_DEBITNOTE', $param)->get('DEBITNOTE')->result();
 
             foreach($dn as $key){
+                $idTenant = $this->checkTenant($key->NAMAPERUSAHAAN_DEBITNOTE);
                 $date = date('Y-m-d');
                 $dnDateEnd = date_create($key->TGLJATUH_DEBITNOTE);
                 $dnDateEnd = date_format($dnDateEnd, 'Y-m-d');
@@ -104,7 +108,7 @@
                         $email['from']      = 'PT United Tractors Tbk';
                         $email['to']        = $item;
                         $email['subject']   = 'United Tractors: Payment Reminder';
-                        $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
+                        $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item], $idTenant);
                         $email['attach']    = $dn['attach'][$item];
                         $this->send($email);
                     }
@@ -125,12 +129,16 @@
             if($debitNotes != null){
                 $dnEmail            = '';
                 $dn['email']        = array();
+                $tenants            = array();
 
                 foreach ($debitNotes as $item) {
                     if($dnEmail != $item->EMAIL_DEBITNOTE){
+                        $idTenant                   = $this->checkTenant($item->NAMAPERUSAHAAN_DEBITNOTE);
                         $dnEmail                    = $item->EMAIL_DEBITNOTE;
                         $dn['dataHtml'][$dnEmail]   = array();
                         $dn['attach'][$dnEmail]     = array();
+                        $dn['email']                = $dnEmail;
+                        $tenants[$dnEmail]          = $idTenant; 
                         array_push($dn['email'], $dnEmail);
                     }
                     array_push($dn['dataHtml'][$dnEmail], $item);
@@ -141,7 +149,7 @@
                     $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
                     $email['subject']   = 'United Tractors: Payment Reminder';
-                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item]);
+                    $email['message']   = $this->htmlPaymentProgress($dn['dataHtml'][$item], $tenants[$item['email']]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
@@ -161,9 +169,11 @@
             if($debitNotes != null){
                 $dnEmail            = '';
                 $dn['email']        = array();
+                $tenants            = array();
 
                 foreach ($debitNotes as $item) {
                     if($dnEmail != $item->EMAIL_DEBITNOTE){
+                        $idTenant                   = $this->checkTenant($item->NAMAPERUSAHAAN_DEBITNOTE);
                         $dnEmail                    = $item->EMAIL_DEBITNOTE;
                         $dn['dataHtml'][$dnEmail]   = array();
                         $dn['attach'][$dnEmail]     = array();
@@ -177,7 +187,7 @@
                     $email['from']      = 'PT United Tractors Tbk';
                     $email['to']        = $item;
                     $email['subject']   = 'United Tractors: Overdue Payment Confirmation';
-                    $email['message']   = $this->htmlPaymentOverdue($dn['dataHtml'][$item]);
+                    $email['message']   = $this->htmlPaymentOverdue($dn['dataHtml'][$item], $tenants[$item['email']]);
                     $email['attach']    = $dn['attach'][$item];
                     $this->send($email);
                 }
@@ -204,7 +214,15 @@
             }
         }
 
-        public function htmlPaymentProgress($param){
+        public function checkTenant($name){
+            $tenant = $this->db->get_where('DEBITNOTE_TENANT', ['NAMA_TENANT' => strtoupper($name)])->row();
+            if($tenant == null){
+                $this->db->insert('DEBITNOTE_TENANT', ['ID_TENANT' => substr(md5(time()), 0, 8), 'NAMA_TENANT' => strtoupper($name)]);
+            }
+            return $tenant = $this->db->get_where('DEBITNOTE_TENANT', ['NAMA_TENANT' => strtoupper($name)])->row()->ID_TENANT;
+        }
+
+        public function htmlPaymentProgress($param, $idTenant){
             $html = '
                 <p>Attn: Mr/Mrs PT United Tractors Tbk</p>
                 <p>Dear Sir/Madam,</p>
@@ -270,6 +288,7 @@
                 <div>If the payment has already been made please disregard this reminder and kindly inform us the proof of the payment.</div>
                 <div></div>
                 <div>Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a></div>
+                <div>Check your debitnote with this link <a href="ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1">ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1"</a></div>
                 <div>Thank you for your kind attention and coorperation.</div>
                 <br>
                 <div>Sincerely,</div>
@@ -279,7 +298,7 @@
             return $html;
         }
 
-        public function htmlPaymentOverdue($param){
+        public function htmlPaymentOverdue($param, $idTenant){
             $html = '
                 <p>Attn: Mr/Mrs PT United Tractors Tbk</p>
                 <p>Dear Sir/Madam,</p>
@@ -344,6 +363,7 @@
                 <div>If the payment has already been made please disregard this reminder and kindly inform us the proof of the payment.</div>
                 <div></div>
                 <div>Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a></div>
+                <div>Check your debitnote with this link <a href="ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1">ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1"</a></div>
                 <div>Thank you for your kind attention and coorperation.</div>
                 <br>
                 <div>Sincerely,</div>

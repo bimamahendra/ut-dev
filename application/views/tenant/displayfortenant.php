@@ -234,11 +234,16 @@
     <table class="border-collapse w-100 valign-middle mb-med table-layout-fixed text-regular-md">
             <tr>
                 <td width="11%">PERUSAHAAN</td>
-                <td width="80%">: ...</td>
+                <td width="80%">: <?= $debitnotes[0]->NAMAPERUSAHAAN_DEBITNOTE?></td>
             </tr>
             <tr>
                 <td>STATUS</td>
-                <td>: ...</td>
+                <td>: 
+                    <select id="filterStatus">
+                        <option value="1" <?= $stat == '1' ? 'selected' : ''?>>Outstanding Payment</option>
+                        <option value="2" <?= $stat == '2' ? 'selected' : ''?>>Finished Payment</option>
+                    </select>
+                </td>
             </tr>
     </table>
     <table class="tg" width="100%" style="border-color: black;">
@@ -257,25 +262,47 @@
             <td class="tg-5rbv ch">Barang/Jasa Kena Pajak</td>
             <td class="tg-5rbv ch">Grand Total</td>
         </tr>
-        <tr>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-            <td class="tg-5rba">...</td>
-        </tr>
+        <?php
+            foreach ($debitnotes as $item) {
+                $tglNow         = date_create(date('Y-m-d'));
+                $tglPesanan     = date_create($item->TGLPESANAN_DEBITNOTE);
+                $tglFaktur      = date_create($item->TGLFAKTUR_DEBITNOTE);
+                $tglJatuh       = date_create($item->TGLJATUH_DEBITNOTE);
+                $tglPublished   = date_create($item->TGLPUBLISHED_DEBITNOTE);
+
+                $tglSisa = date_diff($tglNow, $tglPublished);
+
+                if($tglSisa->format('%a') < 30){
+                    $kategoriAr = '<30 hari';
+                }else if($tglSisa->format('%a') < 60){
+                    $kategoriAr = '30 - 60 hari';
+                }else{
+                    $kategoriAr = '>60 hari';
+                }
+
+                echo '
+                    <tr>
+                        <td class="tg-5rba">'.$item->TIPE_DEBITNOTE.'</td>
+                        <td class="tg-5rba">'.date_format($tglPesanan, 'Y').'</td>
+                        <td class="tg-5rba">'.$item->NOPESANAN_DEBITNOTE.'</td>
+                        <td class="tg-5rba">'.date_format($tglFaktur, 'd M Y').'</td>
+                        <td class="tg-5rba">'.date_format($tglJatuh, 'd M Y').'</td>
+                        <td class="tg-5rba">'.$tglSisa->format('%a').'</td>
+                        <td class="tg-5rba">'.$kategoriAr.'</td>
+                        <td class="tg-5rba">'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                        <td class="tg-5rba">'.date_format($tglPesanan, 'd M Y').'</td>
+                        <td class="tg-5rba">'.$item->MATAUANG.'</td>
+                        <td class="tg-5rba">'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
+                        <td class="tg-5rba">'.$item->BARANGJASA_DEBITNOTE.'</td>
+                        <td class="tg-5rba">'.number_format($item->GRANDTOTAL_DEBITNOTE).'</td>
+                    </tr>
+                ';
+            }
+        ?>
     </table>
     <br>
     <br>
-    <p style="font-size:20px;">Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <br> <u>admgeneralaffairs@unitedtractors.com</u>.</p>
+    <p style="font-size:20px;">Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <br> <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a>.</p>
     <p style="font-size:20px;">Thank you for your kind attention and cooperation.</p>
     <p style="font-size:20px;">Sincerely,</p>
     <p style="font-size:24px;"><strong>PT United Tractors Tbk</strong></p>
@@ -283,5 +310,15 @@
     </tr>
     <table>
 </div>
+<script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
+<script>
+    $('#filterStatus').change( function(){
+        const basePage = '<?= site_url('tenant/')?>'
+        const idTenant = '<?= $debitnotes[0]->ID_TENANT?>'
+        const stat     = $('#filterStatus').val()
+
+        window.location.replace(`${basePage}/${idTenant}/${stat}`)
+    })
+</script>
 </body>
 </html>

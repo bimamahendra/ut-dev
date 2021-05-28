@@ -141,5 +141,9 @@ $route['email/sendEmailMulti']              = 'EmailingController/sendEmailMulti
 $route['email/remindProgress/(:any)']       = 'EmailingController/paymentProgress/$1';
 $route['email/remindOverdue/(:any)']        = 'EmailingController/paymentOverdue/$1';
 
+// Tenant Display
+$route['tenant/(:any)/(:any)']              = 'TenantDisplayController/display/$1/$2';
+$route['tenant/ajxStatus']                  = 'TenantDisplayController/ajxStatus';
+
 //Snack
 $route['snack/(:any)']                      = 'SnackController/vSnack/$1';
