@@ -6,7 +6,7 @@
             return $res;
         }
         public function get($param){
-            $res    = $this->db->get_where('V_DEBITNOTE_TENANT', $param)->result();
+            $res    = $this->db->get_where('V_DEBITNOTE_TENANT', $param)->row();
             return $res;
         }
         public function insert($param){

@@ -234,7 +234,7 @@
     <table class="border-collapse w-100 valign-middle mb-med table-layout-fixed text-regular-md">
             <tr>
                 <td width="11%">PERUSAHAAN</td>
-                <td width="80%">: <?= $debitnotes[0]->NAMAPERUSAHAAN_DEBITNOTE?></td>
+                <td width="80%">: <?= $company->NAMAPERUSAHAAN_DEBITNOTE ?></td>
             </tr>
             <tr>
                 <td>STATUS</td>
@@ -314,7 +314,7 @@
 <script>
     $('#filterStatus').change( function(){
         const basePage = '<?= site_url('tenant/')?>'
-        const idTenant = '<?= $debitnotes[0]->ID_TENANT?>'
+        const idTenant = '<?= $company->ID_TENANT?>'
         const stat     = $('#filterStatus').val()
 
         window.location.replace(`${basePage}/${idTenant}/${stat}`)
