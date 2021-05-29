@@ -124,6 +124,9 @@ $route['debitnote/rejected']                = 'DebitNoteController/vDNRejected';
 $route['debitnote/progress']                = 'DebitNoteController/vDNProgress';
 $route['debitnote/overdue']                 = 'DebitNoteController/vDNOverdue';
 $route['debitnote/finished']                = 'DebitNoteController/vDNFinished';
+$route['debitnote/reversed']                = 'DebitNoteController/vDNReversed';
+$route['debitnote/edit/(:any)']             = 'DebitNoteController/edit/$1';
+$route['debitnote/update']                  = 'DebitNoteController/update';
 $route['debitnote/dashboard']               = 'DebitNoteController/vDNMonitor';
 $route['debitnote/store']                   = 'DebitNoteController/store';
 $route['debitnote/downloadTemplate']        = 'DebitNoteController/downloadTemplate';
@@ -134,6 +137,10 @@ $route['debitnote/finish']            	    = 'DebitNoteController/finish';
 $route['debitnote/finishMulti']            	= 'DebitNoteController/finishMulti';
 $route['debitnote/updateProgress']          = 'DebitNoteController/updateProgress';
 $route['debitnote/downloadPdf']             = 'DebitNoteController/downloadPdf';
+$route['debitnote/destroyDN']               = 'DebitNoteController/destroyDN';
+$route['debitnote/destroyMultiDN']          = 'DebitNoteController/destroyMultiDN';
+$route['debitnote/reverseDN']               = 'DebitNoteController/reverseDN';
+$route['debitnote/reverseMultiDN']          = 'DebitNoteController/reverseMultiDN';
 
 // Emailing
 $route['email/sendEmail']                   = 'EmailingController/sendEmail';

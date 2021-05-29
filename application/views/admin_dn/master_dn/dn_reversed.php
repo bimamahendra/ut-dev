@@ -3,21 +3,17 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Debit Note (Rejected)</h1>
+        <h1 class="h3 mb-0 text-gray-800">Debit Note (Reversed)</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Debit Note (Rejected)</h6>
+                <h6 class="m-0 font-weight-bold text-warning mb-2">Daftar Debit Note (Reversed)</h6>
                 <div>
                     <button class="btn btn-sm btn-info shadow-sm" id="downloadMultiple" data-toggle="modal" data-target="#mdlDownloadMulti" disabled>
                         <i class="fas fa-download"></i>
                         Download Multiple
-                    </button>
-                    <button class="btn btn-sm btn-danger shadow-sm" id="reverseMultiple" data-toggle="modal" data-target="#mdlReverseMulti" disabled>
-                        <i class="fas fa-undo"></i>
-                        Reverse Multiple
                     </button>
                 </div>
             </div>
@@ -36,10 +32,10 @@
                             </th>
                             <th>No. Faktur</th>
                             <th>Tanggal Faktur</th>
-                            <th>Tanggal Jatuh Tempo</th>
                             <th>No. Faktur Pajak</th>
                             <th>Nama Perusahaan</th>
                             <th>Barang / Jasa Kena Pajak</th>
+                            <th>Catatan Reverse</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -58,10 +54,10 @@
                                         </td>
                                         <td>' . $item->NOFAKTUR_DEBITNOTE . '</td>
                                         <td>' . date_format(date_create($item->TGLFAKTUR_DEBITNOTE), 'j F Y') . '</td>
-                                        <td>' . date_format(date_create($item->TGLJATUH_DEBITNOTE), 'j F Y') . '</td>
                                         <td>' . $item->NOFAKTURPAJAK_DEBITNOTE . '</td>
                                         <td>' . $item->NAMAPERUSAHAAN_DEBITNOTE . '</td>
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
+                                        <td>' . $item->CATATANREVERSE_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">                                            
                                                 <button type="button" data-toggle="modal" data-id="'.$item->PATH_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDownload" class="btn btn-info btn-sm rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
@@ -69,9 +65,6 @@
                                                 </button> 
                                                 <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
-                                                </button>                                                
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_DEBITNOTE . '" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlReverse" class="btn btn-danger btn-sm ml-1 rounded mdlReverse" data-tooltip="tooltip" data-placement="top" title="Reverse">
-                                                    <i class="fa fa-undo"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -143,66 +136,6 @@
         </div>
     </div>
 </div>
-<!-- Modal Reverse -->
-<div class="modal fade" id="mdlReverse" tabindex="-1" aria-labelledby="mdlReverse" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mdlReject">Reverse Debit Note?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Anda akan me reverse Debit Note dengan No. Faktur <span id="mdlReverse_item"></span> ?
-                </p>
-                <form action="<?= site_url('debitnote/reverseDN') ?>" method="post">
-                <div class="form-group">
-                    <label>Catatan</label>
-                    <textarea class="form-control" name="CATATANREVERSE_DEBITNOTE" required></textarea>
-                </div>
-            </div>        
-            <div class="modal-footer">
-                <input type="hidden" id="mdlReverse_itemId" name="ID_DEBITNOTE" />
-                <input type="hidden" id="" name="page" value="rejected" />
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-danger">Reverse</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Reverse Multiple -->
-<div class="modal fade" id="mdlReverseMulti" tabindex="-1" aria-labelledby="mdlReverse" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mdlGenerate">Reverse Debit Note?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Anda akan men-reverse <span id="mdlReverseMulti_count"></span> debitnote
-                </p>
-                <form action="<?= site_url('debitnote/reverseMultiDN') ?>" method="post">
-                <div class="form-group">
-                    <label>Catatan</label>
-                    <textarea class="form-control" name="CATATANREVERSE_DEBITNOTE" required></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <input type="hidden" id="mdlReverseMulti_itemId" name="ID_DEBITNOTE" />
-                    <input type="hidden" id="" name="page" value="rejected" />
-                    <button type="submit" class="btn btn-danger">Reverse</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal View PDF -->
 <div class="modal fade" id="mdlView" tabindex="-1" aria-labelledby="mdlView" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -264,17 +197,9 @@
         $('#mdlDownload_item').html(name)
         $('#mdlDownload_id').val(id)
     })
-    $('#tableTransaction tbody').on('click', '.mdlReverse', function() {
+    $('#tableTransaction tbody').on('click', '.mdlReject', function() {
         const id = $(this).data("id")
-        const name = $(this).data('name')
-        $('#mdlReverse_item').html(name)
-        $('#mdlReverse_itemId').val(id)
-    })
-    $('#reverseMultiple').click(function() {
-        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
-        $('#mdlReverseMulti_count').html(dnIds.length)
-        $('#mdlReverseMulti_itemId').val(dnIds.toString())
-        
+        $('#mdlReject_id').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")
@@ -300,12 +225,9 @@
     })
     const buttonMultipleAvailable = () => {
         const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
-        if(isChecked){
+        if(isChecked)
             $('#downloadMultiple').attr('disabled', false)
-            $('#reverseMultiple').attr('disabled', false)
-        }else{
+        else
             $('#downloadMultiple').attr('disabled', true)
-            $('#reverseMultiple').attr('disabled', true)
-        }
     }
 </script>

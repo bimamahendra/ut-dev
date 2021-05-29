@@ -71,6 +71,14 @@
         </a>
     </li>
 
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= site_url('debitnote/reversed'); ?>">
+            <i class="fas fa-book-open"></i>
+            <span>DN - Reversed</span>
+        </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
