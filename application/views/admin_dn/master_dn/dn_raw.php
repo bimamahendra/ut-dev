@@ -23,6 +23,10 @@
                         <i class="fas fa-exchange-alt"></i>
                         Generate Multiple
                     </button>
+                    <button class="btn btn-sm btn-danger shadow-sm" id="deleteMultiple" data-toggle="modal" data-target="#mdlDeleteMulti" disabled>
+                        <i class="fas fa-trash"></i>
+                        Delete Multiple
+                    </button>
                 </div>
             </div>
         </div>
@@ -71,10 +75,10 @@
                                                 <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlGenerate" class="btn btn-success btn-sm rounded mdlGenerate" data-tooltip="tooltip" data-placement="top" title="Generate">
                                                     <i class="fas fa-exchange-alt"></i>
                                                 </button>
-                                                <a href="' . base_url("welcome/admin_dn_raw_edit") . '" class="btn btn-primary btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                                <a href="' . base_url("debitnote/edit/".$item->ID_DEBITNOTE) . '" class="btn btn-primary btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="#" data-name="#" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
@@ -174,6 +178,32 @@
         </div>
     </div>
 </div>
+<!-- Modal Delete Multiple -->
+<div class="modal fade" id="mdlDeleteMulti" tabindex="-1" aria-labelledby="mdlGenerate" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlDeleteMulti">Hapus Debit Note?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda akan menghapus <span id="mdlDeleteMulti_count"></span> debitnote
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="<?= site_url('debitnote/destroyMultiDN') ?>" method="post">
+                    <input type="hidden" id="mdlDeleteMulti_itemId" name="ID_DEBITNOTE" />
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal Delete -->
 <div class="modal fade" id="mdlDelete" tabindex="-1" aria-labelledby="mdlDelete" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -192,8 +222,8 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="#" method="post">
-                    <input type="hidden" id="mdlDelete_itemId" name="ID_MAPPING" />
+                <form action="<?= site_url('debitnote/destroyDN')?>" method="post">
+                    <input type="hidden" id="mdlDelete_itemId" name="ID_DEBITNOTE" />
                     <button type="submit" class="btn btn-danger">Hapus</button>
                 </form>
             </div>
@@ -217,9 +247,11 @@
         const id = $(this).data("id")
         $('#mdlApprove_id').val(id)
     })
-    $('#tableTransaction tbody').on('click', '.mdlReject', function() {
+    $('#tableTransaction tbody').on('click', '.mdlDelete', function() {
         const id = $(this).data("id")
-        $('#mdlReject_id').val(id)
+        const name = $(this).data("name")
+        $('#mdlDelete_item').html(name)
+        $('#mdlDelete_itemId').val(id)
     })
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")
@@ -237,6 +269,12 @@
         $('#mdlGenerateMulti_itemId').val(dnIds.toString())
         
     })
+    $('#deleteMultiple').click(function() {
+        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        $('#mdlDeleteMulti_count').html(dnIds.length)
+        $('#mdlDeleteMulti_itemId').val(dnIds.toString())
+        
+    })
     $('#checkAll').change(function(){
         const isChecked = $(this).prop('checked')
         if(isChecked){
@@ -251,9 +289,12 @@
     })
     const buttonMultipleAvailable = () => {
         const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
-        if(isChecked)
+        if(isChecked){
             $('#downloadMultiple').attr('disabled', false)
-        else
+            $('#deleteMultiple').attr('disabled', false)
+        }else{
             $('#downloadMultiple').attr('disabled', true)
+            $('#deleteMultiple').attr('disabled', true)
+        }
     }
 </script>

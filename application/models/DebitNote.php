@@ -235,11 +235,19 @@ class DebitNote extends CI_Model{
         return true;
     }
     public function updateStatusMulti($param){
-        $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS']]);
+        if(!empty($param['CATATANREVERSE_DEBITNOTE'])){
+            $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS'], 'CATATANREVERSE_DEBITNOTE' => $param['CATATANREVERSE_DEBITNOTE']]);
+        }else{
+            $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS']]);
+        }
         return true;
     }
     public function delete($param){
         $this->db->where($param)->delete('DEBITNOTE');
+        return true;
+    }
+    public function deleteMulti($param){
+        $this->db->where_in('ID_DEBITNOTE', $param)->delete('DEBITNOTE');
         return true;
     }
 

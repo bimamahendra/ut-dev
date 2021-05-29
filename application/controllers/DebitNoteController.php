@@ -79,6 +79,15 @@ class DebitNoteController extends CI_Controller
 		$this->load->view('admin_dn/master_dn/dn_finished', $datas);
 		$this->load->view('template/admin_dn/footer');
     }
+    public function vDNReversed(){
+        $datas['debitnotes'] = $this->DebitNote->getAll(['STAT_DEBITNOTE' => 7]);
+
+		$this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn_reversed', $datas);
+		$this->load->view('template/admin_dn/footer');
+    }
 
     public function vDNMonitor(){
         $datas['debitnotes']   = $this->DebitNote->getAll(['STAT_DEBITNOTE' => 6]);
@@ -171,16 +180,46 @@ class DebitNoteController extends CI_Controller
         }
         redirect('debitnote');
     }
+    public function edit($idDebitNote){
+        $datas['debitnote'] = $this->DebitNote->get(['ID_DEBITNOTE' => $idDebitNote]);
+
+        $this->load->view('template/admin_dn/header');
+		$this->load->view('template/admin_dn/sidebar');
+		$this->load->view('template/admin_dn/topbar');
+		$this->load->view('admin_dn/master_dn/dn_raw_edit', $datas);
+		$this->load->view('template/admin_dn/footer');
+    }
     public function update(){
         $datas = $_POST;
         
-        $this->Form->update($datas);
-        redirect('form');
+        $this->DebitNote->update($datas);
+        redirect('debitnote');
     }
-    public function destroy(){
-        $datas = $_POST;
-        $this->Form->delete($datas);
-        redirect('form');
+    public function destroyDN(){
+        $this->DebitNote->delete(['ID_DEBITNOTE' => $_POST['ID_DEBITNOTE']]);
+        redirect('debitnote');
+    }
+    public function destroyMultiDN(){
+        $this->DebitNote->deleteMulti(explode(',', $_POST['ID_DEBITNOTE']));
+        redirect('debitnote');
+    }
+    public function reverseDN(){
+        $datas                      = $_POST;
+        $datas['STAT_DEBITNOTE']    = '7';
+        
+        $page = $datas['page'];
+        unset($datas['page']);
+
+        $this->DebitNote->update($datas);
+        redirect('debitnote/'.$page);
+    }
+    public function reverseMultiDN(){
+        $datas['ID_DEBITNOTES']             = explode(',', $_POST['ID_DEBITNOTE']);
+        $datas['STATUS']                    = '7';
+        $datas['CATATANREVERSE_DEBITNOTE']  = $_POST['CATATANREVERSE_DEBITNOTE'];
+
+        $this->DebitNote->updateStatusMulti($datas);
+        redirect('debitnote/'.$_POST['page']);
     }
     public function finish(){
         $datas = $_POST;
