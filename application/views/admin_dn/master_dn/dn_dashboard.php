@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Monitoring Debit Note</h1>
-        <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false">Collapse</button>
+        <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false">Show All</button>
     </div>
 
     <!-- Content Row -->
@@ -75,18 +75,18 @@
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseReceivedOverdue" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseReceivedOverdue">
-                                    <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Overdue | 
-                                    <?php
-                                    $cReceived = 0;
-                                    if (!empty($rcvtotal)) {
-                                        $cReceived = (int) ($rcvtotal / $total * 100);
-                                    };
+                                    <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Overdue |
+                                        <?php
+                                        $cReceived = 0;
+                                        if (!empty($rcvtotal)) {
+                                            $cReceived = (int) ($rcvtotal / $total * 100);
+                                        };
 
-                                    echo $cReceived.'%';
-                                    ?></h6>
+                                        echo $cReceived . '%';
+                                        ?></h6>
                                 </a>
                                 <!-- Card Body -->
-                                <div class="collapse multi-collapse" id="collapseReceivedOverdue">
+                                <div class="collapse multi-collapse show" id="collapseReceivedOverdue">
                                     <div class="card-body">
                                         <div class="chart-pie pt-4 pb-2">
                                             <canvas id="overdueChart"></canvas>
@@ -112,7 +112,7 @@
                                     <h6 class="m-0 font-weight-bold text-gray-800">Achievement Payment Received</h6>
                                 </a>
                                 <!-- Card Body -->
-                                <div class="collapse multi-collapse" id="collapseAchievementPaymentReceived">
+                                <div class="collapse multi-collapse show" id="collapseAchievementPaymentReceived">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 col-md-4">
@@ -169,7 +169,7 @@
                                     <h6 class="m-0 font-weight-bold text-gray-800">Payment Received</h6>
                                 </a>
                                 <!-- Card Body -->
-                                <div class="collapse multi-collapse" id="collapsePaymentReceived">
+                                <div class="collapse multi-collapse show" id="collapsePaymentReceived">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
@@ -428,7 +428,7 @@
                                     <h6 class="m-0 font-weight-bold text-gray-800">Monthly Detail</h6>
                                 </a>
                                 <!-- Card Body -->
-                                <div class="collapse multi-collapse" id="collapseMonthlyDetail">
+                                <div class="collapse multi-collapse show" id="collapseMonthlyDetail">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
@@ -504,7 +504,7 @@
                                     <h6 class="m-0 font-weight-bold text-gray-800">DN Aging and Top Tenants</h6>
                                 </a>
                                 <!-- Card Body -->
-                                <div class="collapse multi-collapse" id="collapseDNAging">
+                                <div class="collapse multi-collapse show" id="collapseDNAging">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 col-md-6">
