@@ -94,21 +94,18 @@ class DebitNoteController extends CI_Controller
         $datas['total']        = $this->DebitNote->getdn();
         $datas['ovdtotal']     = $this->DebitNote->getovddn();
         $datas['rcvtotal']     = $this->DebitNote->getrcvdn();
-        $datas['monthly']      = $this->DebitNote->getmonthlydn();
+        $datas['monthly']      = $this->DebitNote->getmonthlydn1();
+        $datas['received']     = $this->DebitNote->getBulanFinishDN1();
         $datas['rentCharge']   = $this->DebitNote->getRentCharge();
         $datas['rentOverdue']  = $this->DebitNote->getRentOverdue();
         $datas['utilCharge']   = $this->DebitNote->getUtilCharge();
         $datas['utilOverdue']  = $this->DebitNote->getUtilOverdue();
         $datas['othersCharge'] = $this->DebitNote->getOthersCharge();
         $datas['othersOverdue']= $this->DebitNote->getOthersOverdue();
+        $datas['year_list']    = $this->DebitNote->getYearDN();
         $datas['tahunan']      = $this->DebitNote->getTahunanDN();
         $datas['tahunan2020']  = $this->DebitNote->getTahunanDN2020();
-        $datas['tahunan2022']  = $this->DebitNote->getTahunanDN2022();
-        $datas['tahunan2023']  = $this->DebitNote->getTahunanDN2023();
-        $datas['tahunan2024']  = $this->DebitNote->getTahunanDN2024();
-        $datas['tahunan2025']  = $this->DebitNote->getTahunanDN2025();
         $datas['totalTahunan'] = $this->DebitNote->grandTotal();
-        $datas['received']     = $this->DebitNote->getBulanFinishDN();
         $datas['topTenants']   = $this->DebitNote->getTopTenantsDN();
         $datas['agingTiga']    = $this->DebitNote->getAgingTigaPuluh();
         $datas['agingTigaEnam']= $this->DebitNote->getAgingTigaEnam();
@@ -119,9 +116,7 @@ class DebitNoteController extends CI_Controller
 		$this->load->view('template/admin_dn/topbar');
 		$this->load->view('admin_dn/master_dn/dn_dashboard', $datas);
 		$this->load->view('template/admin_dn/monitoringfooter',$datas);
-    }
-
-
+    }    
 
     public function vDNEdit($id){
     }
@@ -313,5 +308,188 @@ class DebitNoteController extends CI_Controller
                 }
             }
         }
+    }
+
+    public function MonthlyDNChart(){
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = "";
+
+        $terbitData = "";
+        $receivedData = "";
+        $bar_graph = "";
+
+        $monthly = $this->DebitNote->getmonthlydn($year);
+        $received = $this->DebitNote->getBulanFinishDN($year);
+        
+        $bulan = 1;
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            foreach ($monthly as $item) {
+                if ($bulan == $item->BULAN) {
+                    $terbitData .= '"' . $item->TOTAL . '",';
+                    break;
+                }else if($item->BULAN > $bulan){
+                    $terbitData .= '"' . 0 . '",';
+                    break;
+                }
+            }
+        }
+        $terbitData = substr($terbitData, 0, -1);
+
+        $bulan = 1;
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            foreach ($received as $item) {
+                if ($bulan == $item->BULAN) {
+                    $receivedData .= '"' . $item->TOTAL . '",';
+                    break;
+                }else if($item->BULAN > $bulan){
+                    $receivedData .= '"' . 0 . '",';
+                    break;
+                }
+            }
+        }
+        $receivedData = substr($receivedData, 0, -1);
+
+        $bar_graph = '
+        <canvas id="graph" data-settings=
+        \'{
+            "type": "bar",
+            "data":{
+                "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", 
+                "Aug", "Sep", "Oct", "Nov", "Des"],
+                "datasets":[{
+                    "label": "DN Terbit",
+                    "backgroundColor": "rgba(252, 131, 56, 1)",
+                    "borderColor": "rgba(252, 131, 56, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$terbitData.']
+                },{
+                    "label": "Payment Received",
+                    "backgroundColor": "rgba(49, 176, 87, 1)",
+                    "borderColor": "rgba(49, 176, 87, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$receivedData.']
+                }]
+            },
+            "options":{
+                "legend":{
+                    "display": true
+                }
+            }
+        }\'
+        ></canvas>';
+
+        echo $bar_graph;
+    }
+
+    public function PaymentDNChart(){
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = "";
+        
+        $tahunSebelum = $year-1;
+        $pay_graph = "";
+
+        $tahunPilihanData = $this->DebitNote->getPaymentDN($year);
+        $tahunPilihan = [];
+        for($i = 0; $i<=5 ;$i++){
+            $tahunPilihan[$i] = 0;
+        };
+        foreach ($tahunPilihanData as $items) {
+            if ($items->TIPE == 'Listrik') {
+                $tahunPilihan[0] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Rent') {
+                $tahunPilihan[1] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Service') {
+                $tahunPilihan[2] = $items->TOTAL;
+            };            
+            if ($items->TIPE == 'Air') {
+                $tahunPilihan[3] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Telefon') {
+                $tahunPilihan[4] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Others') {
+                $tahunPilihan[5] = $items->TOTAL;
+            };
+        };
+
+        $tahunSebelumData = $this->DebitNote->getPaymentDN($tahunSebelum);
+        $tahunBefore = [];
+        for($i = 0; $i<=5 ;$i++){
+            $tahunBefore[$i] = 0;
+        };
+        foreach ($tahunSebelumData as $items) {
+            if ($items->TIPE == 'Listrik') {
+                $tahunBefore[0] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Rent') {
+                $tahunBefore[1] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Service') {
+                $tahunBefore[2] = $items->TOTAL;
+            };            
+            if ($items->TIPE == 'Air') {
+                $tahunBefore[3] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Telefon') {
+                $tahunBefore[4] = $items->TOTAL;
+            };
+            if ($items->TIPE == 'Others') {
+                $tahunBefore[5] = $items->TOTAL;
+            };
+        };
+
+        $pay_graph = '
+        <canvas id="payGraph" data-settings=
+        \'{
+            "type": "bar",
+            "data":{
+                "labels": ['.$tahunSebelum.', '.$year.'],
+                "datasets":[{
+                    "label": "Listrik",
+                    "backgroundColor": "rgba(55, 126, 87, 1)",
+                    "borderColor": "rgba(55, 126, 87, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$tahunBefore[0].','.$tahunPilihan[0].']
+                },{
+                    "label": "Rent",
+                    "backgroundColor": "rgba(49, 176, 155, 1)",
+                    "borderColor": "rgba(49, 176, 155, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$tahunBefore[1].','.$tahunPilihan[1].']
+                },{
+                    "label": "Service",
+                    "backgroundColor": "rgba(252, 131, 56, 1)",
+                    "borderColor": "rgba(252, 131, 56, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$tahunBefore[2].','.$tahunPilihan[2].']
+                },{
+                    "label": "Air",
+                    "backgroundColor": "rgba(56, 139, 242, 1)",
+                    "borderColor": "rgba(56, 139, 242, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$tahunBefore[3].','.$tahunPilihan[3].']
+                },{
+                    "label": "Telefon",
+                    "backgroundColor": "rgba(155, 176, 87, 1)",
+                    "borderColor": "rgba(155, 176, 87, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$tahunBefore[4].','.$tahunPilihan[4].']
+                },{
+                    "label": "Others",
+                    "backgroundColor": "rgba(155, 176, 155, 1)",
+                    "borderColor": "rgba(155, 176, 155, 1)",                    
+                    "borderWidth": "1",
+                    "data": ['.$tahunBefore[5].','.$tahunPilihan[5].']
+                }]
+            },
+            "options":{
+                "legend":{
+                    "display": true
+                }
+            }
+        }\'
+        ></canvas>';
+
+        echo $pay_graph;
     }
 }
