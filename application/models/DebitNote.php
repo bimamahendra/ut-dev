@@ -32,14 +32,7 @@ class DebitNote extends CI_Model{
         $sql = "SELECT sum(GRANDTOTAL_DEBITNOTE) as total FROM DEBITNOTE WHERE STAT_DEBITNOTE=6";
         $result = $this->db->query($sql);
         return $result->row()->total;
-    }
-    public function getmonthlydn(){
-        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN 
-        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6
-        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
-        $result = $this->db->query($sql)->result();
-        return $result;
-    }
+    }    
     public function getUtilCharge(){
         $sql = "SELECT 
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
@@ -112,50 +105,17 @@ class DebitNote extends CI_Model{
         $result = $this->db->query($sql)->result();
         return $result;
     }
-    public function getTahunanDN2022(){
+    public function getPaymentDN($param){
         $sql = "SELECT 
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
         YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
         TIPE_DEBITNOTE as TIPE
         FROM DEBITNOTE 
-        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2022
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = '$param'
         GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
         $result = $this->db->query($sql)->result();
         return $result;
     }
-    public function getTahunanDN2023(){
-        $sql = "SELECT 
-        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
-        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
-        TIPE_DEBITNOTE as TIPE
-        FROM DEBITNOTE 
-        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2023
-        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
-        $result = $this->db->query($sql)->result();
-        return $result;
-    }
-    public function getTahunanDN2024(){
-        $sql = "SELECT 
-        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
-        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
-        TIPE_DEBITNOTE as TIPE
-        FROM DEBITNOTE 
-        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2024
-        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
-        $result = $this->db->query($sql)->result();
-        return $result;
-    }
-    public function getTahunanDN2025(){
-        $sql = "SELECT 
-        SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
-        YEAR(TGLFAKTUR_DEBITNOTE) as TAHUN,
-        TIPE_DEBITNOTE as TIPE
-        FROM DEBITNOTE 
-        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = 2025
-        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE), TIPE_DEBITNOTE";
-        $result = $this->db->query($sql)->result();
-        return $result;
-    }    
     public function grandTotal(){
         $sql = "SELECT 
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL,
@@ -166,10 +126,40 @@ class DebitNote extends CI_Model{
         $result = $this->db->query($sql)->result();
         return $result;
     }
-    public function getBulanFinishDN(){
-        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN
-        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 6
+    public function getmonthlydn($param){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN 
+        FROM DEBITNOTE WHERE YEAR(TGLFAKTUR_DEBITNOTE) = '$param' AND 
+        (STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6)
         GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getBulanFinishDN($param){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN
+        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = '$param'
+        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getmonthlydn1(){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN 
+        FROM DEBITNOTE WHERE
+        (STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6)
+        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getBulanFinishDN1(){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN
+        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 6 
+        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $result = $this->db->query($sql)->result();
+        return $result;
+    }
+    public function getYearDN(){
+        $sql = "SELECT YEAR(TGLFAKTUR_DEBITNOTE) as YEAR
+        FROM DEBITNOTE
+        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE) DESC";
         $result = $this->db->query($sql)->result();
         return $result;
     }

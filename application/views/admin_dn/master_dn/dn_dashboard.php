@@ -170,14 +170,27 @@
                                 </a>
                                 <!-- Card Body -->
                                 <div class="collapse multi-collapse show" id="collapsePaymentReceived">
-                                    <div class="card-body">
+                                    <div class="card-body"> 
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <select class="custom-select" id="pilYear">
+                                                    <?php
+                                                        foreach($year_list as $items){
+                                                            echo '<option value="'.$items->YEAR.'">'.$items->YEAR.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>                  
+                                            </div>
+                                        </div>                                   
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="chart-area mb-5 p-5">
-                                                    <canvas class="mb-5" id="paymentReceivedChart"></canvas>
-                                                </div>
+                                                    <div class="mb-5" id="paymentRecGraph">
+                                                    <!-- Bar Graph Goes Here -->
+                                                    </div>    
+                                                </div>                                        
                                             </div>
-                                        </div><br>
+                                        </div><br><br>
                                         <hr class="invisible my-5 ">
                                         <div class="row">
                                             <div class="col-12">
@@ -189,6 +202,9 @@
                                                                 <th>Listrik</th>
                                                                 <th>Rent</th>
                                                                 <th>Service</th>
+                                                                <th>Air</th>
+                                                                <th>Telefon</th>
+                                                                <th>Others</th>
                                                                 <th>Grand Total</th>
                                                             </tr>
                                                         </thead>
@@ -199,6 +215,9 @@
                                                                 $listrik = 0;
                                                                 $rent = 0;
                                                                 $service = 0;
+                                                                $air = 0;
+                                                                $telefon = 0;
+                                                                $others = 0;
                                                                 $grandTotal = 0;
                                                                 foreach ($tahunan2020 as $items) {
                                                                     $tahun = $items->TAHUN;
@@ -211,6 +230,15 @@
                                                                     if ($items->TIPE == 'Service') {
                                                                         $service = $items->TOTAL;
                                                                     };
+                                                                    if ($items->TIPE == 'Air') {
+                                                                        $air = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Telefon') {
+                                                                        $telefon = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Others') {
+                                                                        $others = $items->TOTAL;
+                                                                    };
                                                                     $grandTotal = $grandTotal + $items->TOTAL;
                                                                 }
                                                                 echo '
@@ -219,6 +247,9 @@
                                                                         <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
                                                                         <td>Rp. ' . number_format($rent, 0, ',', '.') . '</td>
                                                                         <td>Rp. ' . number_format($service, 0, ',', '.') . '</td>
+                                                                        <td>Rp. ' . number_format($air, 0, ',', '.') . '</td>
+                                                                        <td>Rp. ' . number_format($telefon, 0, ',', '.') . '</td>
+                                                                        <td>Rp. ' . number_format($others, 0, ',', '.') . '</td>
                                                                         <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                     </tr>
                                                                 ';
@@ -229,6 +260,9 @@
                                                                 $listrik = 0;
                                                                 $rent = 0;
                                                                 $service = 0;
+                                                                $air = 0;
+                                                                $telefon = 0;
+                                                                $others = 0;
                                                                 $grandTotal = 0;
                                                                 foreach ($tahunan as $items) {
                                                                     $tahun = $items->TAHUN;
@@ -241,6 +275,15 @@
                                                                     if ($items->TIPE == 'Service') {
                                                                         $service = $items->TOTAL;
                                                                     };
+                                                                    if ($items->TIPE == 'Air') {
+                                                                        $air = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Telefon') {
+                                                                        $telefon = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Others') {
+                                                                        $others = $items->TOTAL;
+                                                                    };
                                                                     $grandTotal = $grandTotal + $items->TOTAL;
                                                                 }
                                                                 echo '
@@ -249,130 +292,13 @@
                                                                     <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
                                                                     <td>Rp. ' . number_format($rent, 0, ',', '.') . '</td>
                                                                     <td>Rp. ' . number_format($service, 0, ',', '.') . '</td>
+                                                                    <td>Rp. ' . number_format($air, 0, ',', '.') . '</td>
+                                                                    <td>Rp. ' . number_format($telefon, 0, ',', '.') . '</td>
+                                                                    <td>Rp. ' . number_format($others, 0, ',', '.') . '</td>
                                                                     <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                 </tr>
                                                             ';
-                                                            };
-
-                                                            if (!empty($tahunan2022)) {
-                                                                $tahun = "";
-                                                                $listrik = 0;
-                                                                $rent = 0;
-                                                                $service = 0;
-                                                                $grandTotal = 0;
-                                                                foreach ($tahunan2022 as $items) {
-                                                                    $tahun = $items->TAHUN;
-                                                                    if ($items->TIPE == 'Listrik') {
-                                                                        $listrik = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Rent') {
-                                                                        $rent = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Service') {
-                                                                        $service = $items->TOTAL;
-                                                                    };
-                                                                    $grandTotal = $grandTotal + $items->TOTAL;
-                                                                }
-                                                                echo '
-                                                                    <tr>
-                                                                        <td>' . $tahun . '</td>
-                                                                        <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($rent, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($service, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
-                                                                    </tr>
-                                                                ';
-                                                            };
-
-                                                            if (!empty($tahunan2023)) {
-                                                                $tahun = "";
-                                                                $listrik = 0;
-                                                                $rent = 0;
-                                                                $service = 0;
-                                                                $grandTotal = 0;
-                                                                foreach ($tahunan2023 as $items) {
-                                                                    $tahun = $items->TAHUN;
-                                                                    if ($items->TIPE == 'Listrik') {
-                                                                        $listrik = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Rent') {
-                                                                        $rent = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Service') {
-                                                                        $service = $items->TOTAL;
-                                                                    };
-                                                                    $grandTotal = $grandTotal + $items->TOTAL;
-                                                                }
-                                                                echo '
-                                                                    <tr>
-                                                                        <td>' . $tahun . '</td>
-                                                                        <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($rent, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($service, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
-                                                                    </tr>
-                                                                ';
-                                                            };
-
-                                                            if (!empty($tahunan2024)) {
-                                                                $tahun = "";
-                                                                $listrik = 0;
-                                                                $rent = 0;
-                                                                $service = 0;
-                                                                $grandTotal = 0;
-                                                                foreach ($tahunan2024 as $items) {
-                                                                    $tahun = $items->TAHUN;
-                                                                    if ($items->TIPE == 'Listrik') {
-                                                                        $listrik = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Rent') {
-                                                                        $rent = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Service') {
-                                                                        $service = $items->TOTAL;
-                                                                    };
-                                                                    $grandTotal = $grandTotal + $items->TOTAL;
-                                                                }
-                                                                echo '
-                                                                    <tr>
-                                                                        <td>' . $tahun . '</td>
-                                                                        <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($rent, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($service, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
-                                                                    </tr>
-                                                                ';
-                                                            };
-
-                                                            if (!empty($tahunan2025)) {
-                                                                $tahun = "";
-                                                                $listrik = 0;
-                                                                $rent = 0;
-                                                                $service = 0;
-                                                                $grandTotal = 0;
-                                                                foreach ($tahunan2025 as $items) {
-                                                                    $tahun = $items->TAHUN;
-                                                                    if ($items->TIPE == 'Listrik') {
-                                                                        $listrik = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Rent') {
-                                                                        $rent = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Service') {
-                                                                        $service = $items->TOTAL;
-                                                                    };
-                                                                    $grandTotal = $grandTotal + $items->TOTAL;
-                                                                }
-                                                                echo '
-                                                                    <tr>
-                                                                        <td>' . $tahun . '</td>
-                                                                        <td>Rp. ' . number_format($listrik, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($rent, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($service, 0, ',', '.') . '</td>
-                                                                        <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
-                                                                    </tr>
-                                                                ';
-                                                            };
+                                                            };                                                            
                                                             ?>
                                                         </tbody>
                                                         <tfoot>
@@ -382,6 +308,9 @@
                                                                 $listrik = 0;
                                                                 $rent = 0;
                                                                 $service = 0;
+                                                                $air = 0;
+                                                                $telefon = 0;
+                                                                $others = 0;
                                                                 foreach ($totalTahunan as $items) {
                                                                     if ($items->TIPE == 'Listrik') {
                                                                         $listrik = $items->TOTAL;
@@ -392,6 +321,15 @@
                                                                     if ($items->TIPE == 'Service') {
                                                                         $service = $items->TOTAL;
                                                                     };
+                                                                    if ($items->TIPE == 'Air') {
+                                                                        $air = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Telefon') {
+                                                                        $telefon = $items->TOTAL;
+                                                                    };
+                                                                    if ($items->TIPE == 'Others') {
+                                                                        $others = $items->TOTAL;
+                                                                    };
                                                                     $grandTotal = $grandTotal + $items->TOTAL;
                                                                 }
                                                                 ?>
@@ -399,6 +337,9 @@
                                                                 <th><?= 'Rp. ' . number_format($listrik, 0, ',', '.') ?></th>
                                                                 <th><?= 'Rp. ' . number_format($rent, 0, ',', '.') ?></th>
                                                                 <th><?= 'Rp. ' . number_format($service, 0, ',', '.') ?></th>
+                                                                <th><?= 'Rp. ' . number_format($air, 0, ',', '.') ?></th>
+                                                                <th><?= 'Rp. ' . number_format($telefon, 0, ',', '.') ?></th>
+                                                                <th><?= 'Rp. ' . number_format($others, 0, ',', '.') ?></th>
                                                                 <th><?= 'Rp. ' . number_format($grandTotal, 0, ',', '.') ?></th>
                                                             </tr>
                                                         </tfoot>
@@ -431,14 +372,27 @@
                                 <div class="collapse multi-collapse show" id="collapseMonthlyDetail">
                                     <div class="card-body">
                                         <div class="row">
+                                            <div class="col-2">
+                                                <select class="custom-select" id="selYear">
+                                                    <?php
+                                                        foreach($year_list as $items){
+                                                            echo '<option value="'.$items->YEAR.'">'.$items->YEAR.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>                  
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-12">
                                                 <div class="chart-area mb-5 p-5">
-                                                    <canvas class="mb-5" id="monthlyDetailChart"></canvas>
-                                                </div>
+                                                    <div class="mb-5" id="divGraph">
+                                                    <!-- Bar Graph Goes Here -->
+                                                    </div>    
+                                                </div>                                        
                                             </div>
                                         </div>
                                         <hr class="invisible my-5 ">
-                                        <br><br>
+                                        <br><br>                                        
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="table-responsive mt-5">
@@ -525,9 +479,63 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>      
     </div>
+    <script>
+		$(document).ready(function(){
+			$.ajax({
+				url: "<?= site_url('debitnote/monthlyDNChart')?>",
+				type: "post",
+				data : {
+					year: 2021
+				},
+				success: function(bar_graph){
+					$("#divGraph").html(bar_graph);
+					$("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
+				}
+			});
 
+			$("#selYear").change(function(){
+				$.ajax({
+					url: "<?= site_url('debitnote/monthlyDNChart')?>",
+					type: "post",
+					data : {
+						year: $(this).val()
+					},
+					success: function(bar_graph){
+						$("#divGraph").html(bar_graph);
+						$("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
+					}
+				});
+			});
+
+            $.ajax({
+				url: "<?= site_url('debitnote/paymentDNChart')?>",
+				type: "post",
+				data : {
+					year: 2021
+				},
+				success: function(pay_graph){
+					$("#paymentRecGraph").html(pay_graph);
+					$("#payGraph").chart = new Chart($("#payGraph"),$("#payGraph").data("settings"));
+				}
+			});
+
+			$("#pilYear").change(function(){
+				$.ajax({
+					url: "<?= site_url('debitnote/paymentDNChart')?>",
+					type: "post",
+					data : {
+						year: $(this).val()
+					},
+					success: function(pay_graph){
+						$("#paymentRecGraph").html(pay_graph);
+						$("#payGraph").chart = new Chart($("#payGraph"),$("#payGraph").data("settings"));
+					}
+				});
+			});
+		});
+	</script>
 </div>
 <!-- /.container-fluid -->
 
