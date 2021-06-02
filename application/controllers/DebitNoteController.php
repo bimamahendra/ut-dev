@@ -94,8 +94,6 @@ class DebitNoteController extends CI_Controller
         $datas['total']        = $this->DebitNote->getdn();
         $datas['ovdtotal']     = $this->DebitNote->getovddn();
         $datas['rcvtotal']     = $this->DebitNote->getrcvdn();
-        $datas['monthly']      = $this->DebitNote->getmonthlydn1();
-        $datas['received']     = $this->DebitNote->getBulanFinishDN1();
         $datas['rentCharge']   = $this->DebitNote->getRentCharge();
         $datas['rentOverdue']  = $this->DebitNote->getRentOverdue();
         $datas['utilCharge']   = $this->DebitNote->getUtilCharge();
@@ -311,7 +309,7 @@ class DebitNoteController extends CI_Controller
     }
 
     public function MonthlyDNChart(){
-        isset($_POST["year"]) ? $year = $_POST["year"] : $year = "";
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
 
         $terbitData = "";
         $receivedData = "";
@@ -381,7 +379,7 @@ class DebitNoteController extends CI_Controller
     }
 
     public function PaymentDNChart(){
-        isset($_POST["year"]) ? $year = $_POST["year"] : $year = "";
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
         
         $tahunSebelum = $year-1;
         $pay_graph = "";
@@ -491,5 +489,84 @@ class DebitNoteController extends CI_Controller
         ></canvas>';
 
         echo $pay_graph;
+    }
+
+    public function MonthlyTable(){
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
+
+        $monthly = $this->DebitNote->getmonthlydn($year);
+        $received = $this->DebitNote->getBulanFinishDN($year);
+
+        $terbitData = [];
+        for($i = 0; $i<=11 ;$i++){
+            $terbitData[$i] = 0;
+        };
+        $bulan = 1;
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            foreach ($monthly as $item) {
+                if ($bulan == $item->BULAN) {
+                    $terbitData[$bulan-1] = $item->TOTAL;
+                    break;
+                }else if($item->BULAN > $bulan){
+                    $terbitData[$bulan-1] = 0;
+                    break;
+                }
+            }
+        };
+
+        $receivedData = [];
+        for($i = 0; $i<=11 ;$i++){
+            $receivedData[$i] = 0;
+        };
+        $bulan = 1;
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            foreach ($received as $item) {
+                if ($bulan == $item->BULAN) {
+                    $receivedData[$bulan-1] = $item->TOTAL;
+                    break;
+                }else if($item->BULAN > $bulan){
+                    $receivedData[$bulan-1] = 0;
+                    break;
+                }
+            }
+        };
+
+        $dataList = 
+            '{
+                "data": [
+                    [
+                        "DN Terbit",
+                        "Rp. '.number_format($terbitData[0], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[1], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[2], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[3], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[4], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[5], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[6], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[7], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[8], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[9], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[10], 0, ',', '.').'",
+                        "Rp. '.number_format($terbitData[11], 0, ',', '.').'"
+                    ],
+                    [
+                        "Payment Received",
+                        "Rp. '.number_format($receivedData[0], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[1], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[2], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[3], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[4], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[5], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[6], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[7], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[8], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[9], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[10], 0, ',', '.').'",
+                        "Rp. '.number_format($receivedData[11], 0, ',', '.').'"
+                    ]
+                ]
+            }';
+        
+        echo $dataList;
     }
 }
