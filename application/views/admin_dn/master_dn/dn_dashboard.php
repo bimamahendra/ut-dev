@@ -392,11 +392,11 @@
                                             </div>
                                         </div>
                                         <hr class="invisible my-5 ">
-                                        <br><br>                                        
+                                        <br><br>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive mt-5">
-                                                    <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
+                                                <div class="mt-5">
+                                                    <table class="table table-bordered" id="tabelBulanan" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
                                                                 <th></th>
@@ -405,41 +405,16 @@
                                                                 <th>Mar</th>
                                                                 <th>Apr</th>
                                                                 <th>May</th>
+                                                                <th>Jun</th>
+                                                                <th>Juli</th>
+                                                                <th>Aug</th>
+                                                                <th>Sep</th>
+                                                                <th>Oct</th>
+                                                                <th>Nov</th>
+                                                                <th>Des</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>DN Terbit</td>
-                                                                <?php
-                                                                $bulan = 1;
-                                                                for ($bulan = 1; $bulan <= 5; $bulan++) {
-                                                                    $html = '<td>Rp. 0</td>';
-                                                                    foreach ($monthly as $item) {
-                                                                        if ($bulan == $item->BULAN) {
-                                                                            $html = '<td> Rp. ' . number_format($item->TOTAL, 0, ',', '.') . '</td>';
-                                                                            break;
-                                                                        }
-                                                                    }
-                                                                    echo $html;
-                                                                }
-                                                                ?>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Payment Received</td>
-                                                                <?php
-                                                                $bulan = 1;
-                                                                for ($bulan = 1; $bulan <= 5; $bulan++) {
-                                                                    $html = '<td>Rp. 0</td>';
-                                                                    foreach ($received as $item) {
-                                                                        if ($bulan == $item->BULAN) {
-                                                                            $html = '<td> Rp. ' . number_format($item->TOTAL, 0, ',', '.') . '</td>';
-                                                                            break;
-                                                                        }
-                                                                    }
-                                                                    echo $html;
-                                                                }
-                                                                ?>
-                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -486,9 +461,6 @@
 			$.ajax({
 				url: "<?= site_url('debitnote/monthlyDNChart')?>",
 				type: "post",
-				data : {
-					year: 2021
-				},
 				success: function(bar_graph){
 					$("#divGraph").html(bar_graph);
 					$("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
@@ -512,9 +484,6 @@
             $.ajax({
 				url: "<?= site_url('debitnote/paymentDNChart')?>",
 				type: "post",
-				data : {
-					year: 2021
-				},
 				success: function(pay_graph){
 					$("#paymentRecGraph").html(pay_graph);
 					$("#payGraph").chart = new Chart($("#payGraph"),$("#payGraph").data("settings"));
@@ -534,6 +503,66 @@
 					}
 				});
 			});
+
+            var table;
+
+            table = $('#tabelBulanan').DataTable({                
+                "ajax": {
+                    "url":'<?= site_url('debitnote/monthlyTable') ?>'
+                },
+                "aoColumns" : [   
+                    { sWidth: '7%' },   
+                    { sWidth: '7%' },
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' },
+                    { sWidth: '7%' },
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }, 
+                    { sWidth: '7%' }
+                ],
+                "sScrollX": "100%",
+                "sScrollXInner": "210%"
+            });
+
+            $("#selYear").change(function(){
+				table.destroy();
+                table = $('#tabelBulanan').DataTable({
+                    "ajax": {
+                        "url":'<?= site_url('debitnote/monthlyTable') ?>',
+                        "type" : "POST",
+                        "data" : {
+                            year : $(this).val()
+                        }
+                    },
+                    "aoColumns" : [   
+                        { sWidth: '7%' },   
+                        { sWidth: '7%' },
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' },
+                        { sWidth: '7%' },
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }, 
+                        { sWidth: '7%' }
+                    ],
+                    "sScrollX": "100%",
+                    "sScrollXInner": "210%"
+                    });
+                reload_table();
+			});
+
+            function reload_table(){
+                table.ajax.reload(null, false);
+            }
 		});
 	</script>
 </div>

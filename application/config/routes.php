@@ -143,6 +143,7 @@ $route['debitnote/reverseDN']               = 'DebitNoteController/reverseDN';
 $route['debitnote/reverseMultiDN']          = 'DebitNoteController/reverseMultiDN';
 $route['debitnote/monthlyDNChart']          = 'DebitNoteController/MonthlyDNChart';
 $route['debitnote/paymentDNChart']          = 'DebitNoteController/PaymentDNChart';
+$route['debitnote/monthlyTable']            = 'DebitNoteController/MonthlyTable';
 
 // Emailing
 $route['email/sendEmail']                   = 'EmailingController/sendEmail';
