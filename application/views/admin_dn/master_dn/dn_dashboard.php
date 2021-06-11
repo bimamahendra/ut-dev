@@ -170,25 +170,25 @@
                                 </a>
                                 <!-- Card Body -->
                                 <div class="collapse multi-collapse show" id="collapsePaymentReceived">
-                                    <div class="card-body"> 
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col-2">
                                                 <select class="custom-select" id="pilYear">
                                                     <?php
-                                                        foreach($year_list as $items){
-                                                            echo '<option value="'.$items->YEAR.'">'.$items->YEAR.'</option>';
-                                                        }
+                                                    foreach ($year_list as $items) {
+                                                        echo '<option value="' . $items->YEAR . '">' . $items->YEAR . '</option>';
+                                                    }
                                                     ?>
-                                                </select>                  
+                                                </select>
                                             </div>
-                                        </div>                                   
+                                        </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="chart-area mb-5 p-5">
                                                     <div class="mb-5" id="paymentRecGraph">
-                                                    <!-- Bar Graph Goes Here -->
-                                                    </div>    
-                                                </div>                                        
+                                                        <!-- Bar Graph Goes Here -->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div><br><br>
                                         <hr class="invisible my-5 ">
@@ -298,7 +298,7 @@
                                                                     <td>Rp. ' . number_format($grandTotal, 0, ',', '.') . '</td>
                                                                 </tr>
                                                             ';
-                                                            };                                                            
+                                                            };
                                                             ?>
                                                         </tbody>
                                                         <tfoot>
@@ -375,20 +375,20 @@
                                             <div class="col-2">
                                                 <select class="custom-select" id="selYear">
                                                     <?php
-                                                        foreach($year_list as $items){
-                                                            echo '<option value="'.$items->YEAR.'">'.$items->YEAR.'</option>';
-                                                        }
+                                                    foreach ($year_list as $items) {
+                                                        echo '<option value="' . $items->YEAR . '">' . $items->YEAR . '</option>';
+                                                    }
                                                     ?>
-                                                </select>                  
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="chart-area mb-5 p-5">
                                                     <div class="mb-5" id="divGraph">
-                                                    <!-- Bar Graph Goes Here -->
-                                                    </div>    
-                                                </div>                                        
+                                                        <!-- Bar Graph Goes Here -->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <hr class="invisible my-5 ">
@@ -436,13 +436,16 @@
                                 <div class="collapse multi-collapse show" id="collapseDNAging">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="chart-bar mb-5 p-5">
+                                            <div class="col-8 mx-auto">
+                                                <div class="chart-bar">
                                                     <canvas class="mb-5" id="dnAgingChart"></canvas>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="chart-bar mb-5 p-5">
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-8 mx-auto">
+                                                <div class="chart-bar">
                                                     <canvas class="mb-5" id="topTenantChart"></canvas>
                                                 </div>
                                             </div>
@@ -454,117 +457,167 @@
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>
     </div>
     <script>
-		$(document).ready(function(){
-			$.ajax({
-				url: "<?= site_url('debitnote/monthlyDNChart')?>",
-				type: "post",
-				success: function(bar_graph){
-					$("#divGraph").html(bar_graph);
-					$("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
-				}
-			});
+        $(document).ready(function() {
+            $.ajax({
+                url: "<?= site_url('debitnote/monthlyDNChart') ?>",
+                type: "post",
+                success: function(bar_graph) {
+                    $("#divGraph").html(bar_graph);
+                    $("#graph").chart = new Chart($("#graph"), $("#graph").data("settings"));
+                }
+            });
 
-			$("#selYear").change(function(){
-				$.ajax({
-					url: "<?= site_url('debitnote/monthlyDNChart')?>",
-					type: "post",
-					data : {
-						year: $(this).val()
-					},
-					success: function(bar_graph){
-						$("#divGraph").html(bar_graph);
-						$("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
-					}
-				});
-			});
+            $("#selYear").change(function() {
+                $.ajax({
+                    url: "<?= site_url('debitnote/monthlyDNChart') ?>",
+                    type: "post",
+                    data: {
+                        year: $(this).val()
+                    },
+                    success: function(bar_graph) {
+                        $("#divGraph").html(bar_graph);
+                        $("#graph").chart = new Chart($("#graph"), $("#graph").data("settings"));
+                    }
+                });
+            });
 
             $.ajax({
-				url: "<?= site_url('debitnote/paymentDNChart')?>",
-				type: "post",
-				success: function(pay_graph){
-					$("#paymentRecGraph").html(pay_graph);
-					$("#payGraph").chart = new Chart($("#payGraph"),$("#payGraph").data("settings"));
-				}
-			});
+                url: "<?= site_url('debitnote/paymentDNChart') ?>",
+                type: "post",
+                success: function(pay_graph) {
+                    $("#paymentRecGraph").html(pay_graph);
+                    $("#payGraph").chart = new Chart($("#payGraph"), $("#payGraph").data("settings"));
+                }
+            });
 
-			$("#pilYear").change(function(){
-				$.ajax({
-					url: "<?= site_url('debitnote/paymentDNChart')?>",
-					type: "post",
-					data : {
-						year: $(this).val()
-					},
-					success: function(pay_graph){
-						$("#paymentRecGraph").html(pay_graph);
-						$("#payGraph").chart = new Chart($("#payGraph"),$("#payGraph").data("settings"));
-					}
-				});
-			});
+            $("#pilYear").change(function() {
+                $.ajax({
+                    url: "<?= site_url('debitnote/paymentDNChart') ?>",
+                    type: "post",
+                    data: {
+                        year: $(this).val()
+                    },
+                    success: function(pay_graph) {
+                        $("#paymentRecGraph").html(pay_graph);
+                        $("#payGraph").chart = new Chart($("#payGraph"), $("#payGraph").data("settings"));
+                    }
+                });
+            });
 
             var table;
 
-            table = $('#tabelBulanan').DataTable({                
+            table = $('#tabelBulanan').DataTable({
                 "ajax": {
-                    "url":'<?= site_url('debitnote/monthlyTable') ?>'
+                    "url": '<?= site_url('debitnote/monthlyTable') ?>'
                 },
-                "aoColumns" : [   
-                    { sWidth: '7%' },   
-                    { sWidth: '7%' },
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' },
-                    { sWidth: '7%' },
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }, 
-                    { sWidth: '7%' }
+                "aoColumns": [{
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    }
                 ],
                 "sScrollX": "100%",
                 "sScrollXInner": "210%"
             });
 
-            $("#selYear").change(function(){
-				table.destroy();
+            $("#selYear").change(function() {
+                table.destroy();
                 table = $('#tabelBulanan').DataTable({
                     "ajax": {
-                        "url":'<?= site_url('debitnote/monthlyTable') ?>',
-                        "type" : "POST",
-                        "data" : {
-                            year : $(this).val()
+                        "url": '<?= site_url('debitnote/monthlyTable') ?>',
+                        "type": "POST",
+                        "data": {
+                            year: $(this).val()
                         }
                     },
-                    "aoColumns" : [   
-                        { sWidth: '7%' },   
-                        { sWidth: '7%' },
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' },
-                        { sWidth: '7%' },
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }, 
-                        { sWidth: '7%' }
+                    "aoColumns": [{
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        },
+                        {
+                            sWidth: '7%'
+                        }
                     ],
                     "sScrollX": "100%",
                     "sScrollXInner": "210%"
-                    });
+                });
                 reload_table();
-			});
+            });
 
-            function reload_table(){
+            function reload_table() {
                 table.ajax.reload(null, false);
             }
-		});
-	</script>
+        });
+    </script>
 </div>
 <!-- /.container-fluid -->
 
