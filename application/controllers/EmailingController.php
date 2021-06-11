@@ -288,7 +288,7 @@
                 <div>If the payment has already been made please disregard this reminder and kindly inform us the proof of the payment.</div>
                 <div></div>
                 <div>Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a></div>
-                <div>Check your debitnote with this link <a href="ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1">ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1"</a></div>
+                <div>Check your Debit Note Monitoring <a href="ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1">ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1"</a></div>
                 <div>Thank you for your kind attention and coorperation.</div>
                 <br>
                 <div>Sincerely,</div>
@@ -363,7 +363,7 @@
                 <div>If the payment has already been made please disregard this reminder and kindly inform us the proof of the payment.</div>
                 <div></div>
                 <div>Shall you have any question or further information, please contact us at +62 21 24579999 ext. 16053 or by email to <a href="mailto:admgeneralaffairs@unitedtractors.com">admgeneralaffairs@unitedtractors.com</a></div>
-                <div>Check your debitnote with this link <a href="ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1">ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1"</a></div>
+                <div>Check your Debit Note Monitoring with this link <a href="ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1">ut-dev.bgskr-project.my.id/tenant/'.$idTenant.'/1"</a></div>
                 <div>Thank you for your kind attention and coorperation.</div>
                 <br>
                 <div>Sincerely,</div>
