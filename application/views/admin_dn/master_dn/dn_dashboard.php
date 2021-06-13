@@ -370,18 +370,7 @@
                                 </a>
                                 <!-- Card Body -->
                                 <div class="collapse multi-collapse show" id="collapseMonthlyDetail">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <select class="custom-select" id="selYear">
-                                                    <?php
-                                                    foreach ($year_list as $items) {
-                                                        echo '<option value="' . $items->YEAR . '">' . $items->YEAR . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <div class="card-body">                                        
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="chart-area mb-5 p-5">
@@ -470,7 +459,7 @@
                 }
             });
 
-            $("#selYear").change(function() {
+            $("#pilYear").change(function() {
                 $.ajax({
                     url: "<?= site_url('debitnote/monthlyDNChart') ?>",
                     type: "post",
@@ -557,7 +546,7 @@
                 "sScrollXInner": "210%"
             });
 
-            $("#selYear").change(function() {
+            $("#pilYear").change(function() {
                 table.destroy();
                 table = $('#tabelBulanan').DataTable({
                     "ajax": {
