@@ -7,37 +7,45 @@
             $cReceived = 0;
             $cOverdue = 0;
             if (!empty($rcvtotal)) {
-                $cReceived = (int) ($rcvtotal / $total * 100);
+                $cReceived = (float) ($rcvtotal / $total * 100);
+                $cReceived = round($cReceived, 0);
             };
             if (!empty($rcvtotal)) {
-                $cOverdue = (int) ($ovdtotal / $total * 100);
+                $cOverdue = (float) ($ovdtotal / $total * 100);
+                $cOverdue = round($cOverdue, 0);
             };
 
             $cRentCharge = 0;
             $cRentOverdue = 0;
             if (!empty($rentCharge)) {
-                $cRentCharge = (int) ($rentCharge / ($rentCharge + $rentOverdue) * 100);
+                $cRentCharge = (float) ($rentCharge / ($rentCharge + $rentOverdue) * 100);
+                $cRentCharge = round($cRentCharge, 0);
             };
             if (!empty($rentOverdue)) {
-                $cRentOverdue = (int) ($rentOverdue / ($rentCharge + $rentOverdue) * 100);
+                $cRentOverdue = (float) ($rentOverdue / ($rentCharge + $rentOverdue) * 100);
+                $cRentOverdue = round($cRentOverdue, 0);
             };
 
             $cUtilCharge = 0;
             $cUtilOverdue = 0;
             if (!empty($utilCharge)) {
-                $cUtilCharge = (int) ($utilCharge / ($utilCharge + $utilOverdue) * 100);
+                $cUtilCharge = (float) ($utilCharge / ($utilCharge + $utilOverdue) * 100);
+                $cUtilCharge = round($cUtilCharge, 0);
             };
             if (!empty($utilOverdue)) {
-                $cUtilOverdue = (int) ($utilOverdue / ($utilCharge + $utilOverdue) * 100);
+                $cUtilOverdue = (float) ($utilOverdue / ($utilCharge + $utilOverdue) * 100);
+                $cUtilOverdue = round($cUtilOverdue, 0);
             };
 
             $cOthersCharge = 0;
             $cOthersOverdue = 0;
             if (!empty($othersCharge)) {
-                $cOthersCharge = (int) ($othersCharge / ($othersCharge + $othersOverdue) * 100);
+                $cOthersCharge = (float) ($othersCharge / ($othersCharge + $othersOverdue) * 100);
+                $cOthersCharge = round($cOthersCharge, 0);
             };
             if (!empty($othersOverdue)) {
-                $cOthersOverdue = (int) ($othersOverdue / ($othersCharge + $othersOverdue) * 100);
+                $cOthersOverdue = (float) ($othersOverdue / ($othersCharge + $othersOverdue) * 100);
+                $cOthersOverdue = round($cOthersOverdue, 0);
             };  
 
             $topTenantsData = [];
