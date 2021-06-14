@@ -222,7 +222,7 @@
                     <th width="55%">
                     </th>
 					<th>
-						<img class="valign-middle" src="<?= base_url('assets/img/tenant/logo.png'); ?>" height="80px">
+						<img class="valign-middle" src="<?= base_url('assets/img/tenant/logo-utbm.png'); ?>" height="80px">
 					</th>
 				</tr>
         </table>
