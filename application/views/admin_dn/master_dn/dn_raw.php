@@ -39,6 +39,7 @@
                             <th>
                                 <div class="custom-control custom-checkbox" style="text-align:center;">
                                     <input type="checkbox" class="custom-control-input" id="checkAll">
+                                    <label class="custom-control-label" for="checkAll"></label>
                                 </div>
                             </th>
                             <th>No. Faktur</th>
