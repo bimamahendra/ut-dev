@@ -39,7 +39,6 @@
                             <th>
                                 <div class="custom-control custom-checkbox" style="text-align:center;">
                                     <input type="checkbox" class="custom-control-input" id="checkAll">
-                                    <label class="custom-control-label" for="checkAll">Check</label>
                                 </div>
                             </th>
                             <th>No. Faktur</th>
@@ -60,8 +59,8 @@
                                         <td>' . $no . '</td>
                                         <td>
                                             <div class="custom-control custom-checkbox" style="text-align:center;">
-                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_'.$no.'" value="'.$item->ID_DEBITNOTE.'">
-                                                <label class="custom-control-label" for="chck_'.$no.'"></label>
+                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_' . $no . '" value="' . $item->ID_DEBITNOTE . '">
+                                                <label class="custom-control-label" for="chck_' . $no . '"></label>
                                             </div>
                                         </td>
                                         <td>' . $item->NOFAKTUR_DEBITNOTE . '</td>
@@ -72,13 +71,13 @@
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlGenerate" class="btn btn-success btn-sm rounded mdlGenerate" data-tooltip="tooltip" data-placement="top" title="Generate">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_DEBITNOTE . '" data-name="' . $item->NOFAKTUR_DEBITNOTE . '" data-target="#mdlGenerate" class="btn btn-success btn-sm rounded mdlGenerate" data-tooltip="tooltip" data-placement="top" title="Generate">
                                                     <i class="fas fa-exchange-alt"></i>
                                                 </button>
-                                                <a href="' . base_url("debitnote/edit/".$item->ID_DEBITNOTE) . '" class="btn btn-primary btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
+                                                <a href="' . base_url("debitnote/edit/" . $item->ID_DEBITNOTE) . '" class="btn btn-primary btn-sm rounded mx-1" data-tooltip="tooltip" data-placement="top" title="Ubah">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <button type="button" data-toggle="modal" data-id="'.$item->ID_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_DEBITNOTE . '" data-name="' . $item->NOFAKTUR_DEBITNOTE . '" data-target="#mdlDelete" class="btn btn-danger btn-sm rounded mdlDelete" data-tooltip="tooltip" data-placement="top" title="Hapus">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
@@ -145,7 +144,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <form action="<?= site_url('debitnote/generateDN') ?>" method="post">
                     <input type="hidden" id="mdlGenerate_itemId" name="ID_DEBITNOTE" />
-                    <input type="hidden" name="STAT_DEBITNOTE" value="1"/>
+                    <input type="hidden" name="STAT_DEBITNOTE" value="1" />
                     <button type="submit" class="btn btn-success">Generate</button>
                 </form>
             </div>
@@ -222,7 +221,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('debitnote/destroyDN')?>" method="post">
+                <form action="<?= site_url('debitnote/destroyDN') ?>" method="post">
                     <input type="hidden" id="mdlDelete_itemId" name="ID_DEBITNOTE" />
                     <button type="submit" class="btn btn-danger">Hapus</button>
                 </form>
@@ -264,35 +263,35 @@
         $('#mdlGenerate_itemId').val(id)
     })
     $('#downloadMultiple').click(function() {
-        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        const dnIds = $('.checkItem:checkbox:checked').map((_, elm) => elm.value).get()
         $('#mdlGenerateMulti_count').html(dnIds.length)
         $('#mdlGenerateMulti_itemId').val(dnIds.toString())
-        
+
     })
     $('#deleteMultiple').click(function() {
-        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        const dnIds = $('.checkItem:checkbox:checked').map((_, elm) => elm.value).get()
         $('#mdlDeleteMulti_count').html(dnIds.length)
         $('#mdlDeleteMulti_itemId').val(dnIds.toString())
-        
+
     })
-    $('#checkAll').change(function(){
+    $('#checkAll').change(function() {
         const isChecked = $(this).prop('checked')
-        if(isChecked){
+        if (isChecked) {
             $('.checkItem').prop('checked', true)
-        }else{
+        } else {
             $('.checkItem').prop('checked', false)
         }
         buttonMultipleAvailable()
     })
-    $('.checkItem').change(function(){
+    $('.checkItem').change(function() {
         buttonMultipleAvailable()
     })
     const buttonMultipleAvailable = () => {
-        const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
-        if(isChecked){
+        const isChecked = $('.checkItem:checkbox:checked').prop('checked')
+        if (isChecked) {
             $('#downloadMultiple').attr('disabled', false)
             $('#deleteMultiple').attr('disabled', false)
-        }else{
+        } else {
             $('#downloadMultiple').attr('disabled', true)
             $('#deleteMultiple').attr('disabled', true)
         }

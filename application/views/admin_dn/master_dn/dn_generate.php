@@ -31,7 +31,6 @@
                             <th>
                                 <div class="custom-control custom-checkbox" style="text-align:center;">
                                     <input type="checkbox" class="custom-control-input" id="checkAll">
-                                    <label class="custom-control-label" for="checkAll">Check</label>
                                 </div>
                             </th>
                             <th>No. Faktur</th>
@@ -52,8 +51,8 @@
                                         <td>' . $no . '</td>
                                         <td>
                                             <div class="custom-control custom-checkbox" style="text-align:center;">
-                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_'.$no.'" value="'.$item->ID_DEBITNOTE.'">
-                                                <label class="custom-control-label" for="chck_'.$no.'"></label>
+                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_' . $no . '" value="' . $item->ID_DEBITNOTE . '">
+                                                <label class="custom-control-label" for="chck_' . $no . '"></label>
                                             </div>
                                         </td>
                                         <td>' . $item->NOFAKTUR_DEBITNOTE . '</td>
@@ -64,13 +63,13 @@
                                         <td>' . $item->BARANGJASA_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group"> 
-                                                <button type="button" data-toggle="modal" data-id="'.$item->PATH_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDownload" class="btn btn-info btn-sm rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->PATH_DEBITNOTE . '" data-name="' . $item->NOFAKTUR_DEBITNOTE . '" data-target="#mdlDownload" class="btn btn-info btn-sm rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
                                                     <i class="fas fa-download"></i>
                                                 </button>                                               
                                                 <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
                                                     <i class="fa fa-eye"></i>
                                                 </button>                                                
-                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_DEBITNOTE . '" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlReverse" class="btn btn-danger btn-sm ml-1 rounded mdlReverse" data-tooltip="tooltip" data-placement="top" title="Reverse">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->ID_DEBITNOTE . '" data-name="' . $item->NOFAKTUR_DEBITNOTE . '" data-target="#mdlReverse" class="btn btn-danger btn-sm ml-1 rounded mdlReverse" data-tooltip="tooltip" data-placement="top" title="Reverse">
                                                     <i class="fa fa-undo"></i>
                                                 </button>                                                
                                             </div>
@@ -133,11 +132,11 @@
                     Anda akan me reverse Debit Note dengan No. Faktur <span id="mdlReverse_item"></span> ?
                 </p>
                 <form action="<?= site_url('debitnote/reverseDN') ?>" method="post">
-                <div class="form-group">
-                    <label>Catatan</label>
-                    <textarea class="form-control" name="CATATANREVERSE_DEBITNOTE" required></textarea>
-                </div>
-            </div>        
+                    <div class="form-group">
+                        <label>Catatan</label>
+                        <textarea class="form-control" name="CATATANREVERSE_DEBITNOTE" required></textarea>
+                    </div>
+            </div>
             <div class="modal-footer">
                 <input type="hidden" id="mdlReverse_itemId" name="ID_DEBITNOTE" />
                 <input type="hidden" id="" name="page" value="generated" />
@@ -163,16 +162,16 @@
                     Anda akan men-reverse <span id="mdlReverseMulti_count"></span> debitnote
                 </p>
                 <form action="<?= site_url('debitnote/reverseMultiDN') ?>" method="post">
-                <div class="form-group">
-                    <label>Catatan</label>
-                    <textarea class="form-control" name="CATATANREVERSE_DEBITNOTE" required></textarea>
-                </div>
+                    <div class="form-group">
+                        <label>Catatan</label>
+                        <textarea class="form-control" name="CATATANREVERSE_DEBITNOTE" required></textarea>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <input type="hidden" id="mdlReverseMulti_itemId" name="ID_DEBITNOTE" />
-                    <input type="hidden" id="" name="page" value="generated" />
-                    <button type="submit" class="btn btn-danger">Reverse</button>
+                <input type="hidden" id="mdlReverseMulti_itemId" name="ID_DEBITNOTE" />
+                <input type="hidden" id="" name="page" value="generated" />
+                <button type="submit" class="btn btn-danger">Reverse</button>
                 </form>
             </div>
         </div>
@@ -250,39 +249,39 @@
         $('#mdlReverse_itemId').val(id)
     })
     $('#reverseMultiple').click(function() {
-        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        const dnIds = $('.checkItem:checkbox:checked').map((_, elm) => elm.value).get()
         $('#mdlReverseMulti_count').html(dnIds.length)
         $('#mdlReverseMulti_itemId').val(dnIds.toString())
-        
+
     })
     $('#tableTransaction tbody').on('click', '.mdlView', function() {
         const src = $(this).data("src")
         $('#mdlView_src').attr('src', src);
     })
     $('#downloadMultiple').click(function() {
-        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        const dnIds = $('.checkItem:checkbox:checked').map((_, elm) => elm.value).get()
         $('#mdlDownloadMulti_count').html(dnIds.length)
         $('#mdlDownloadMulti_itemId').val(dnIds.toString())
-        
+
     })
-    $('#checkAll').change(function(){
+    $('#checkAll').change(function() {
         const isChecked = $(this).prop('checked')
-        if(isChecked){
+        if (isChecked) {
             $('.checkItem').prop('checked', true)
-        }else{
+        } else {
             $('.checkItem').prop('checked', false)
         }
         buttonMultipleAvailable()
     })
-    $('.checkItem').change(function(){
+    $('.checkItem').change(function() {
         buttonMultipleAvailable()
     })
     const buttonMultipleAvailable = () => {
-        const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
-        if(isChecked){
+        const isChecked = $('.checkItem:checkbox:checked').prop('checked')
+        if (isChecked) {
             $('#downloadMultiple').attr('disabled', false)
             $('#reverseMultiple').attr('disabled', false)
-        }else{
+        } else {
             $('#downloadMultiple').attr('disabled', true)
             $('#reverseMultiple').attr('disabled', true)
         }
