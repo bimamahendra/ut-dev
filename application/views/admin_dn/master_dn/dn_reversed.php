@@ -27,7 +27,6 @@
                             <th>
                                 <div class="custom-control custom-checkbox" style="text-align:center;">
                                     <input type="checkbox" class="custom-control-input" id="checkAll">
-                                    <label class="custom-control-label" for="checkAll">Check</label>
                                 </div>
                             </th>
                             <th>No. Faktur</th>
@@ -48,8 +47,8 @@
                                         <td>' . $no . '</td>
                                         <td>
                                             <div class="custom-control custom-checkbox" style="text-align:center;">
-                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_'.$no.'" value="'.$item->ID_DEBITNOTE.'">
-                                                <label class="custom-control-label" for="chck_'.$no.'"></label>
+                                                <input type="checkbox" class="custom-control-input checkItem" id="chck_' . $no . '" value="' . $item->ID_DEBITNOTE . '">
+                                                <label class="custom-control-label" for="chck_' . $no . '"></label>
                                             </div>
                                         </td>
                                         <td>' . $item->NOFAKTUR_DEBITNOTE . '</td>
@@ -60,7 +59,7 @@
                                         <td>' . $item->CATATANREVERSE_DEBITNOTE . '</td>
                                         <td>
                                             <div class="btn-group" role="group">                                            
-                                                <button type="button" data-toggle="modal" data-id="'.$item->PATH_DEBITNOTE.'" data-name="'.$item->NOFAKTUR_DEBITNOTE.'" data-target="#mdlDownload" class="btn btn-info btn-sm rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
+                                                <button type="button" data-toggle="modal" data-id="' . $item->PATH_DEBITNOTE . '" data-name="' . $item->NOFAKTUR_DEBITNOTE . '" data-target="#mdlDownload" class="btn btn-info btn-sm rounded mdlDownload" data-tooltip="tooltip" data-placement="top" title="Download">
                                                     <i class="fas fa-download"></i>
                                                 </button> 
                                                 <button type="button" data-toggle="modal" data-src="' . $item->PATH_DEBITNOTE . '" data-target="#mdlView" class="btn btn-primary btn-sm ml-1 rounded mdlView" data-tooltip="tooltip" data-placement="top" title="Detail">
@@ -166,10 +165,12 @@
             width: 'resolve'
         });
         $.ajax({
-            url: '<?= site_url('notif/rAjxDebitnoteAll')?>',
+            url: '<?= site_url('notif/rAjxDebitnoteAll') ?>',
             method: 'post',
-            data: {STAT_DEBITNOTE: '3'},
-            success: function(){
+            data: {
+                STAT_DEBITNOTE: '3'
+            },
+            success: function() {
                 updateNotif()
             }
         })
@@ -206,26 +207,26 @@
         $('#mdlView_src').attr('src', src);
     })
     $('#downloadMultiple').click(function() {
-        const dnIds = $('.checkItem:checkbox:checked').map((_,elm) => elm.value).get()
+        const dnIds = $('.checkItem:checkbox:checked').map((_, elm) => elm.value).get()
         $('#mdlDownloadMulti_count').html(dnIds.length)
         $('#mdlDownloadMulti_itemId').val(dnIds.toString())
-        
+
     })
-    $('#checkAll').change(function(){
+    $('#checkAll').change(function() {
         const isChecked = $(this).prop('checked')
-        if(isChecked){
+        if (isChecked) {
             $('.checkItem').prop('checked', true)
-        }else{
+        } else {
             $('.checkItem').prop('checked', false)
         }
         buttonMultipleAvailable()
     })
-    $('.checkItem').change(function(){
+    $('.checkItem').change(function() {
         buttonMultipleAvailable()
     })
     const buttonMultipleAvailable = () => {
-        const isChecked             = $('.checkItem:checkbox:checked').prop('checked')
-        if(isChecked)
+        const isChecked = $('.checkItem:checkbox:checked').prop('checked')
+        if (isChecked)
             $('#downloadMultiple').attr('disabled', false)
         else
             $('#downloadMultiple').attr('disabled', true)

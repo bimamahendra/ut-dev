@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('debitnote'); ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('debitnote/dashboard'); ?>">
         <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
         <div class="sidebar-brand-text mx-3">United Tractors</div>
     </a>
