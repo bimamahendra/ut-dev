@@ -399,6 +399,10 @@ class DebitNoteController extends CI_Controller
             "options":{
                 "legend":{
                     "display": true
+                },
+                "tooltips": { 
+                    "mode": "label", 
+                    "label": "mylabel" 
                 }
             }
         }\'
