@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Monitoring Debit Note</h1>
-        <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false">Show All</button>
+        <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" id="btnCollapse">Hide All</button>
     </div>
 
     <!-- Content Row -->
@@ -370,7 +370,7 @@
                                 </a>
                                 <!-- Card Body -->
                                 <div class="collapse multi-collapse show" id="collapseMonthlyDetail">
-                                    <div class="card-body">                                        
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="chart-area mb-5 p-5">
@@ -605,6 +605,13 @@
             function reload_table() {
                 table.ajax.reload(null, false);
             }
+
+            $("#btnCollapse").click(function() {
+                if ($(this).hasClass("collapsed"))
+                    $(this).text("Hide All");
+                else
+                    $(this).text("Show All");
+            });
         });
     </script>
 </div>
