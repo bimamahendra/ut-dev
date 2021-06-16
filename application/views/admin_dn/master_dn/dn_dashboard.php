@@ -79,7 +79,8 @@
                                         <?php
                                         $cReceived = 0;
                                         if (!empty($rcvtotal)) {
-                                            $cReceived = (int) ($rcvtotal / $total * 100);
+                                            $cReceived = (float) ($rcvtotal / $total * 100);
+                                            $cReceived = round($cReceived, 0);
                                         };
 
                                         echo $cReceived . '%';

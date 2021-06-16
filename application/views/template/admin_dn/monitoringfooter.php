@@ -152,10 +152,17 @@
                 bodyFontColor: "rgb(37, 40, 43)",
                 borderColor: 'rgb(37, 40, 43)',
                 borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
+                xPadding: 13,
+                yPadding: 13,
                 displayColors: false,
-                caretPadding: 10,
+                caretPadding: -40,
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                    var label = data.labels[tooltipItem.index];
+                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return label + ': ' + val + '%';
+                    }
+                }
             },
             legend: {
                 display: false
@@ -183,10 +190,17 @@
                 bodyFontColor: "rgb(37, 40, 43)",
                 borderColor: "rgb(37, 40, 43)",
                 borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
+                xPadding: 13,
+                yPadding: 13,
                 displayColors: false,
-                caretPadding: 10,
+                caretPadding: -40,
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                    var label = data.labels[tooltipItem.index];
+                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return label + ': ' + val + '%';
+                    }
+                }
             },
             legend: {
                 display: false
@@ -218,10 +232,17 @@
                 bodyFontColor: "rgb(37, 40, 43)",
                 borderColor: "rgb(37, 40, 43)",
                 borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
+                xPadding: 13,
+                yPadding: 13,
                 displayColors: false,
-                caretPadding: 0,
+                caretPadding: -40,
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                    var label = data.labels[tooltipItem.index];
+                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return label + ': ' + val + '%';
+                    }
+                }
             },
             legend: {
                 display: false
@@ -253,10 +274,17 @@
                 bodyFontColor: "rgb(37, 40, 43)",
                 borderColor: "rgb(37, 40, 43)",
                 borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
+                xPadding: 13,
+                yPadding: 13,
                 displayColors: false,
-                caretPadding: 0,
+                caretPadding: -40,
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                    var label = data.labels[tooltipItem.index];
+                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return label + ': ' + val + '%';
+                    }
+                }
             },
             legend: {
                 display: false
@@ -288,11 +316,24 @@
                     position: 'top',
                 }
             },
+            tooltips: { 
+                mode: 'label', 
+                label: 'mylabel', 
+                callbacks: { 
+                    label: function(tooltipItem, data) { 
+                        return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); } 
+                } 
+            },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    min: 0
-                }
+                yAxes: [{ 
+                    ticks: { 
+                    callback: function(label, index, labels) { 
+                        return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+                    }, 
+                    beginAtZero:true, 
+                    fontSize: 12, 
+                    }
+                }]
             },
             title: {
                 display: true,
@@ -321,11 +362,22 @@
                     position: 'top',
                 }
             },
+            tooltips: { 
+                mode: 'label', 
+                label: 'mylabel', 
+                callbacks: { 
+                    label: function(tooltipItem, data) { 
+                        return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); } 
+                } 
+            },
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        min: 0
+                yAxes: [{ 
+                    ticks: { 
+                    callback: function(label, index, labels) { 
+                        return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+                    }, 
+                    beginAtZero:true, 
+                    fontSize: 12, 
                     }
                 }]
             },

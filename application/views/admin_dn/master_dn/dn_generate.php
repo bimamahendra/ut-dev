@@ -110,9 +110,9 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="<?= site_url('debitnote/downloadPdf') ?>" method="post">
+                <form action="<?= site_url('debitnote/downloadPdf') ?>" id="formDownload" method="post">
                     <input type="hidden" id="mdlDownload_id" name="PATH_DEBITNOTE" />
-                    <button type="submit" class="btn btn-success">Download</button>
+                    <button type="submit" class="btn btn-success" onclick="submit_form();", data-dismiss="modal">Download</button>
                 </form>
             </div>
         </div>
@@ -227,6 +227,11 @@
 
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+<script>
+    function submit_form() {
+      document.getElementById('formDownload').submit();
+    }
+</script>
 <script>
     $(document).ready(function() {
         $('.select2').select2({
