@@ -216,8 +216,9 @@
 
         public function checkTenant($name){
             $tenant = $this->db->get_where('DEBITNOTE_TENANT', ['NAMA_TENANT' => strtoupper($name)])->row();
+            $noPelanggan = $this->db->get_where('DEBITNOTE', ['NAMAPERUSAHAAN_DEBITNOTE' => strtoupper($name)])->row()->NOPELANGGAN_DEBITNOTE;
             if($tenant == null){
-                $this->db->insert('DEBITNOTE_TENANT', ['ID_TENANT' => substr(md5(time()), 0, 8), 'NAMA_TENANT' => strtoupper($name)]);
+                $this->db->insert('DEBITNOTE_TENANT', ['ID_TENANT' => $noPelanggan, 'NAMA_TENANT' => strtoupper($name)]);
             }
             return $tenant = $this->db->get_where('DEBITNOTE_TENANT', ['NAMA_TENANT' => strtoupper($name)])->row()->ID_TENANT;
         }
