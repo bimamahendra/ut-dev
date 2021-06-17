@@ -456,7 +456,41 @@
                 type: "post",
                 success: function(bar_graph) {
                     $("#divGraph").html(bar_graph);
-                    $("#graph").chart = new Chart($("#graph"), $("#graph").data("settings"));
+                    var monGraphData = JSON.parse($("#graph").data("settings"));
+                    $("#graph").chart = new Chart($("#graph"), {
+                        type: "bar",
+                        data: monGraphData,
+                        options: {
+                            legend: {
+                                display: true
+                            },
+                            tooltips: {
+                                mode: 'label', 
+                                label: 'mylabel',
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                        return label; 
+                                    }
+                                }
+                            },
+                            scales:{
+                                yAxes: [{
+                                    ticks: { 
+                                        callback: function(label, index, labels) { 
+                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+                                    }, 
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
+                        }
+                    });
                 }
             });
 
@@ -469,7 +503,41 @@
                     },
                     success: function(bar_graph) {
                         $("#divGraph").html(bar_graph);
-                        $("#graph").chart = new Chart($("#graph"), $("#graph").data("settings"));
+                        var monGraphData = JSON.parse($("#graph").data("settings"));
+                        $("#graph").chart = new Chart($("#graph"), {
+                            type: "bar",
+                            data: monGraphData,
+                            options: {
+                                legend: {
+                                    display: true
+                                },
+                                tooltips: {
+                                    mode: 'label', 
+                                    label: 'mylabel',
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                            return label; 
+                                        }
+                                    }
+                                },
+                                scales:{
+                                    yAxes: [{
+                                        ticks: { 
+                                            callback: function(label, index, labels) { 
+                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+                                        }, 
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
                     }
                 });
             });
@@ -479,7 +547,43 @@
                 type: "post",
                 success: function(pay_graph) {
                     $("#paymentRecGraph").html(pay_graph);
-                    $("#payGraph").chart = new Chart($("#payGraph"), $("#payGraph").data("settings"));
+                    var graphData = JSON.parse($("#payGraph").data("settings"));
+                    $("#payGraph").chart = new Chart($("#payGraph"), {
+                        type: "bar",
+                        data: graphData,
+                        options: {
+                            legend: {
+                                display: true
+                            },
+                            tooltips: {
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                        return label; 
+                                    }
+                                }
+                            },
+                            scales:{
+                                xAxes: [{
+                                    stacked:true
+                                }],
+                                yAxes: [{
+                                    stacked: true,
+                                    ticks: { 
+                                        callback: function(label, index, labels) { 
+                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+                                    }, 
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
+                        }
+                    });
                 }
             });
 
@@ -492,7 +596,43 @@
                     },
                     success: function(pay_graph) {
                         $("#paymentRecGraph").html(pay_graph);
-                        $("#payGraph").chart = new Chart($("#payGraph"), $("#payGraph").data("settings"));
+                        var graphData = JSON.parse($("#payGraph").data("settings"));
+                        $("#payGraph").chart = new Chart($("#payGraph"), {
+                            type: "bar",
+                            data: graphData,
+                            options: {
+                                legend: {
+                                    display: true
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                            return label; 
+                                        }
+                                    }
+                                },
+                                scales:{
+                                    xAxes: [{
+                                        stacked:true
+                                    }],
+                                    yAxes: [{
+                                        stacked: true,
+                                        ticks: { 
+                                            callback: function(label, index, labels) { 
+                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
+                                        }, 
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
                     }
                 });
             });
