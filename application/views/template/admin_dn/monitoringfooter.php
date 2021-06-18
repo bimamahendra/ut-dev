@@ -46,7 +46,7 @@
             if (!empty($othersOverdue)) {
                 $cOthersOverdue = (float) ($othersOverdue / ($othersCharge + $othersOverdue) * 100);
                 $cOthersOverdue = round($cOthersOverdue, 0);
-            };  
+            };
 
             $topTenantsData = [];
             foreach ($topTenants as $items) {
@@ -65,7 +65,7 @@
             $cAgingTiga = 0;
             if (!empty($agingEnam)) {
                 $cAgingEnam = $agingEnam;
-            };            
+            };
             if (!empty($agingTigaEnam)) {
                 $cAgingTigaEnam = $agingTigaEnam;
             };
@@ -131,47 +131,67 @@
         console.log("Clicked");
     });
 
-
     var overdueChart = document.getElementById("overdueChart");
     var overdue = new Chart(overdueChart, {
+        plugins: [ChartDataLabels],
         type: 'pie',
         data: {
             labels: ["Overdue", "Received"],
             datasets: [{
                 data: [<?= $cOverdue ?>, <?= $cReceived ?>],
                 backgroundColor: ['rgba(237, 42, 33, 1)', 'rgba(49, 176, 87, 1)'],
-                hoverBackgroundColor: ['rgba(237, 42, 33, 1)', 'rgba(49, 176, 87, 1)'],
-                hoverBorderColor: "rgba(234, 236, 244, 1)",
+                datalabels: {
+                    anchor: 'center'
+                }
             }],
         },
         options: {
-            showAllTooltips: true,
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255, 255, 255)",
-                bodyFontColor: "rgb(37, 40, 43)",
-                borderColor: 'rgb(37, 40, 43)',
-                borderWidth: 1,
-                xPadding: 13,
-                yPadding: 13,
-                displayColors: false,
-                caretPadding: -40,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index];
-                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    return label + ': ' + val + '%';
+            plugins: {
+                datalabels: {
+                    backgroundColor: function(context) {
+                        return context.dataset.backgroundColor;
+                    },
+                    borderColor: 'white',
+                    borderRadius: 25,
+                    borderWidth: 2,
+                    color: 'white',
+                    display: function(context) {
+                        var dataset = context.dataset;
+                        var count = dataset.data.length;
+                        var value = dataset.data[context.dataIndex];
+                        return value > count * 1.5;
+                    },
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 6,
+                    formatter: (val) => {
+                        return val + ' %';
                     }
                 }
             },
-            legend: {
-                display: false
-            }
-        },
+
+            // Core options
+            aspectRatio: 3.5,
+            cutoutPercentage: 32,
+            layout: {
+                padding: 10
+            },
+            elements: {
+                line: {
+                    fill: false
+                },
+                point: {
+                    hoverRadius: 7,
+                    radius: 5
+                }
+            },
+        }
     });
 
     var sewaBangunanChart = document.getElementById("sewaBangunanChart");
     var sewaBangunan = new Chart(sewaBangunanChart, {
+        plugins: [ChartDataLabels],
         type: 'pie',
         data: {
             labels: ["Not yet", "Done"],
@@ -183,37 +203,56 @@
             }],
         },
         options: {
-            showAllTooltips: true,
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255, 255, 255)",
-                bodyFontColor: "rgb(37, 40, 43)",
-                borderColor: "rgb(37, 40, 43)",
-                borderWidth: 1,
-                xPadding: 13,
-                yPadding: 13,
-                displayColors: false,
-                caretPadding: -40,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index];
-                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    return label + ': ' + val + '%';
+            plugins: {
+                datalabels: {
+                    backgroundColor: function(context) {
+                        return context.dataset.backgroundColor;
+                    },
+                    borderColor: 'white',
+                    borderRadius: 25,
+                    borderWidth: 2,
+                    color: 'white',
+                    display: function(context) {
+                        var dataset = context.dataset;
+                        var count = dataset.data.length;
+                        var value = dataset.data[context.dataIndex];
+                        return value > count * 1.5;
+                    },
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 6,
+                    formatter: (val) => {
+                        return val + ' %';
                     }
+                },
+                title: {
+                    display: true,
+                    text: 'Sewa Bangunan'
                 }
             },
-            legend: {
-                display: false
+
+            // Core options
+            aspectRatio: 1,
+            cutoutPercentage: 32,
+            layout: {
+                padding: 10
             },
-            title: {
-                display: true,
-                text: 'Sewa Bangunan'
-            }
-        },
+            elements: {
+                line: {
+                    fill: false
+                },
+                point: {
+                    hoverRadius: 7,
+                    radius: 5
+                }
+            },
+        }
     });
 
     var utilityChart = document.getElementById("utilityChart");
     var utility = new Chart(utilityChart, {
+        plugins: [ChartDataLabels],
         type: 'pie',
         data: {
             labels: ["Not yet", "Done"],
@@ -225,37 +264,56 @@
             }],
         },
         options: {
-            showAllTooltips: true,
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255, 255, 255)",
-                bodyFontColor: "rgb(37, 40, 43)",
-                borderColor: "rgb(37, 40, 43)",
-                borderWidth: 1,
-                xPadding: 13,
-                yPadding: 13,
-                displayColors: false,
-                caretPadding: -40,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index];
-                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    return label + ': ' + val + '%';
+            plugins: {
+                datalabels: {
+                    backgroundColor: function(context) {
+                        return context.dataset.backgroundColor;
+                    },
+                    borderColor: 'white',
+                    borderRadius: 25,
+                    borderWidth: 2,
+                    color: 'white',
+                    display: function(context) {
+                        var dataset = context.dataset;
+                        var count = dataset.data.length;
+                        var value = dataset.data[context.dataIndex];
+                        return value > count * 1.5;
+                    },
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 6,
+                    formatter: (val) => {
+                        return val + ' %';
                     }
+                },
+                title: {
+                    display: true,
+                    text: 'Utility'
                 }
             },
-            legend: {
-                display: false
+
+            // Core options
+            aspectRatio: 1,
+            cutoutPercentage: 32,
+            layout: {
+                padding: 10
             },
-            title: {
-                display: true,
-                text: 'Utilty'
+            elements: {
+                line: {
+                    fill: false
+                },
+                point: {
+                    hoverRadius: 7,
+                    radius: 5
+                }
             }
-        },
+        }
     });
 
     var othersChart = document.getElementById("othersChart");
     var others = new Chart(othersChart, {
+        plugins: [ChartDataLabels],
         type: 'pie',
         data: {
             labels: ["Not yet", "Done"],
@@ -267,34 +325,52 @@
             }],
         },
         options: {
-            showAllTooltips: true,
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255, 255, 255)",
-                bodyFontColor: "rgb(37, 40, 43)",
-                borderColor: "rgb(37, 40, 43)",
-                borderWidth: 1,
-                xPadding: 13,
-                yPadding: 13,
-                displayColors: false,
-                caretPadding: -40,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index];
-                    var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    return label + ': ' + val + '%';
+            plugins: {
+                datalabels: {
+                    backgroundColor: function(context) {
+                        return context.dataset.backgroundColor;
+                    },
+                    borderColor: 'white',
+                    borderRadius: 25,
+                    borderWidth: 2,
+                    color: 'white',
+                    display: function(context) {
+                        var dataset = context.dataset;
+                        var count = dataset.data.length;
+                        var value = dataset.data[context.dataIndex];
+                        return value > count * 1.5;
+                    },
+                    font: {
+                        weight: 'bold'
+                    },
+                    padding: 6,
+                    formatter: (val) => {
+                        return val + ' %';
                     }
+                },
+                title: {
+                    display: true,
+                    text: 'Others'
                 }
             },
-            legend: {
-                display: false
+
+            // Core options
+            aspectRatio: 1,
+            cutoutPercentage: 32,
+            layout: {
+                padding: 10
             },
-            title: {
-                display: true,
-                text: 'Others'
-            }
-        },
-    });   
+            elements: {
+                line: {
+                    fill: false
+                },
+                point: {
+                    hoverRadius: 7,
+                    radius: 5
+                }
+            },
+        }
+    });
 
     var topTenantChart = document.getElementById("topTenantChart");
     var topTenant = new Chart(topTenantChart, {
@@ -316,22 +392,23 @@
                     position: 'top',
                 }
             },
-            tooltips: { 
-                mode: 'label', 
-                label: 'mylabel', 
-                callbacks: { 
-                    label: function(tooltipItem, data) { 
-                        return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); } 
-                } 
+            tooltips: {
+                mode: 'label',
+                label: 'mylabel',
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+                }
             },
             scales: {
-                yAxes: [{ 
-                    ticks: { 
-                    callback: function(label, index, labels) { 
-                        return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-                    }, 
-                    beginAtZero:true, 
-                    fontSize: 12, 
+                yAxes: [{
+                    ticks: {
+                        callback: function(label, index, labels) {
+                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        },
+                        beginAtZero: true,
+                        fontSize: 12,
                     }
                 }]
             },
@@ -362,71 +439,29 @@
                     position: 'top',
                 }
             },
-            tooltips: { 
-                mode: 'label', 
-                label: 'mylabel', 
-                callbacks: { 
-                    label: function(tooltipItem, data) { 
-                        return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); } 
-                } 
+            tooltips: {
+                mode: 'label',
+                label: 'mylabel',
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+                }
             },
             scales: {
-                yAxes: [{ 
-                    ticks: { 
-                    callback: function(label, index, labels) { 
-                        return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-                    }, 
-                    beginAtZero:true, 
-                    fontSize: 12, 
+                yAxes: [{
+                    ticks: {
+                        callback: function(label, index, labels) {
+                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        },
+                        beginAtZero: true,
+                        fontSize: 12,
                     }
                 }]
             },
             title: {
                 display: true,
                 text: 'DN Aging'
-            }
-        }
-    });
-
-    Chart.pluginService.register({
-        beforeRender: function(chart) {
-            if (chart.config.options.showAllTooltips) {
-                // create an array of tooltips
-                // we can't use the chart tooltip because there is only one tooltip per chart
-                chart.pluginTooltips = [];
-                chart.config.data.datasets.forEach(function(dataset, i) {
-                    chart.getDatasetMeta(i).data.forEach(function(sector, j) {
-                        chart.pluginTooltips.push(new Chart.Tooltip({
-                            _chart: chart.chart,
-                            _chartInstance: chart,
-                            _data: chart.data,
-                            _options: chart.options.tooltips,
-                            _active: [sector]
-                        }, chart));
-                    });
-                });
-                // turn off normal tooltips
-                chart.options.tooltips.enabled = false;
-            }
-        },
-        afterDraw: function(chart, easing) {
-            if (chart.config.options.showAllTooltips) {
-                // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                if (!chart.allTooltipsOnce) {
-                    if (easing !== 1)
-                        return;
-                    chart.allTooltipsOnce = true;
-                }
-                // turn on tooltips
-                chart.options.tooltips.enabled = true;
-                Chart.helpers.each(chart.pluginTooltips, function(tooltip) {
-                    tooltip.initialize();
-                    tooltip.update();
-                    // we don't actually need this since we are not animating tooltips
-                    tooltip.pivot();
-                    tooltip.transition(easing).draw();
-                });
-                chart.options.tooltips.enabled = false;
             }
         }
     });
