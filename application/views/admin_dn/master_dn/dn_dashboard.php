@@ -433,7 +433,7 @@
                                 display: true
                             },
                             tooltips: {
-                                mode: 'label', 
+                                mode: 'label',
                                 label: 'mylabel',
                                 callbacks: {
                                     label: function(tooltipItem, data) {
@@ -443,17 +443,17 @@
                                             label += ': ';
                                         }
                                         label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        return label; 
+                                        return label;
                                     }
                                 }
                             },
-                            scales:{
+                            scales: {
                                 yAxes: [{
-                                    ticks: { 
-                                        callback: function(label, index, labels) { 
-                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-                                    }, 
-                                        beginAtZero:true
+                                    ticks: {
+                                        callback: function(label, index, labels) {
+                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                        },
+                                        beginAtZero: true
                                     }
                                 }]
                             }
@@ -480,7 +480,7 @@
                                     display: true
                                 },
                                 tooltips: {
-                                    mode: 'label', 
+                                    mode: 'label',
                                     label: 'mylabel',
                                     callbacks: {
                                         label: function(tooltipItem, data) {
@@ -490,17 +490,17 @@
                                                 label += ': ';
                                             }
                                             label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                            return label; 
+                                            return label;
                                         }
                                     }
                                 },
-                                scales:{
+                                scales: {
                                     yAxes: [{
-                                        ticks: { 
-                                            callback: function(label, index, labels) { 
-                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-                                        }, 
-                                            beginAtZero:true
+                                        ticks: {
+                                            callback: function(label, index, labels) {
+                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                            },
+                                            beginAtZero: true
                                         }
                                     }]
                                 }
@@ -532,21 +532,21 @@
                                             label += ': ';
                                         }
                                         label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        return label; 
+                                        return label;
                                     }
                                 }
                             },
-                            scales:{
+                            scales: {
                                 xAxes: [{
-                                    stacked:true
+                                    stacked: true
                                 }],
                                 yAxes: [{
                                     stacked: true,
-                                    ticks: { 
-                                        callback: function(label, index, labels) { 
-                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-                                    }, 
-                                        beginAtZero:true
+                                    ticks: {
+                                        callback: function(label, index, labels) {
+                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                        },
+                                        beginAtZero: true
                                     }
                                 }]
                             }
@@ -581,21 +581,21 @@
                                                 label += ': ';
                                             }
                                             label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                            return label; 
+                                            return label;
                                         }
                                     }
                                 },
-                                scales:{
+                                scales: {
                                     xAxes: [{
-                                        stacked:true
+                                        stacked: true
                                     }],
                                     yAxes: [{
                                         stacked: true,
-                                        ticks: { 
-                                            callback: function(label, index, labels) { 
-                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-                                        }, 
-                                            beginAtZero:true
+                                        ticks: {
+                                            callback: function(label, index, labels) {
+                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                            },
+                                            beginAtZero: true
                                         }
                                     }]
                                 }

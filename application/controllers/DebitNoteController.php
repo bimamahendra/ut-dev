@@ -543,16 +543,6 @@ class DebitNoteController extends CI_Controller
                     "data": [200000000,300000000],
                     "stack": "Stack 5"
                 }]
-            },
-            "options":{
-                "scales": {
-                    "x": [{
-                        "stacked": true
-                    }],
-                    "y": [{
-                        "stacked": true
-                    }]
-                }
             }
         \'
         ></canvas>';
