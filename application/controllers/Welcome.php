@@ -219,6 +219,7 @@ class Welcome extends CI_Controller
 
 	public function display_for_tenant()
 	{
+		$this->load->view('template/tenant/header');
 		$this->load->view('tenant/displayfortenant');
 	}
 }
