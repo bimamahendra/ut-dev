@@ -465,42 +465,94 @@ class DebitNoteController extends CI_Controller
         \'{
                 "labels": [' . $tahunSebelum . ', ' . $year . '],
                 "datasets":[{
-                    "label": "Listrik",
+                    "label": "Listrik Terbayar",
                     "backgroundColor": "rgba(55, 126, 87, 1)",
                     "borderColor": "rgba(55, 126, 87, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[0] . ',' . $tahunPilihan[0] . ']
+                    "data": [' . $tahunBefore[0] . ',' . $tahunPilihan[0] . '],
+                    "stack": "Stack 0"
                 },{
-                    "label": "Rent",
+                    "label": "Listrik Belum Terbayar",
+                    "borderColor": "rgba(99, 110, 114,1)",                    
+                    "borderWidth": "1",
+                    "data": [200000000,300000000],
+                    "stack": "Stack 0"
+                },{
+                    "label": "Rent Terbayar",
                     "backgroundColor": "rgba(49, 176, 155, 1)",
                     "borderColor": "rgba(49, 176, 155, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[1] . ',' . $tahunPilihan[1] . ']
+                    "data": [' . $tahunBefore[1] . ',' . $tahunPilihan[1] . '],
+                    "stack": "Stack 1"
                 },{
-                    "label": "Service",
+                    "label": "Rent Belum Terbayar",
+                    "borderColor": "rgba(99, 110, 114,1)",                    
+                    "borderWidth": "1",
+                    "data": [200000000,300000000],
+                    "stack": "Stack 1"
+                },{
+                    "label": "Service Terbayar",
                     "backgroundColor": "rgba(252, 131, 56, 1)",
                     "borderColor": "rgba(252, 131, 56, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[2] . ',' . $tahunPilihan[2] . ']
+                    "data": [' . $tahunBefore[2] . ',' . $tahunPilihan[2] . '],
+                    "stack": "Stack 2"
                 },{
-                    "label": "Air",
+                    "label": "Service Belum Terbayar",
+                    "borderColor": "rgba(99, 110, 114,1)",                    
+                    "borderWidth": "1",
+                    "data": [200000000,300000000],
+                    "stack": "Stack 2"
+                },{
+                    "label": "Air Terbayar",
                     "backgroundColor": "rgba(56, 139, 242, 1)",
                     "borderColor": "rgba(56, 139, 242, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[3] . ',' . $tahunPilihan[3] . ']
+                    "data": [' . $tahunBefore[3] . ',' . $tahunPilihan[3] . '],
+                    "stack": "Stack 3"
                 },{
-                    "label": "Telefon",
+                    "label": "Air Belum Terbayar",
+                    "borderColor": "rgba(99, 110, 114,1)",                    
+                    "borderWidth": "1",
+                    "data": [200000000,300000000],
+                    "stack": "Stack 3"
+                },{
+                    "label": "Telepon Terbayar",
                     "backgroundColor": "rgba(155, 176, 87, 1)",
                     "borderColor": "rgba(155, 176, 87, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[4] . ',' . $tahunPilihan[4] . ']
+                    "data": [' . $tahunBefore[4] . ',' . $tahunPilihan[4] . '],
+                    "stack": "Stack 4"
                 },{
-                    "label": "Others",
+                    "label": "Telepon Belum Terbayar",
+                    "borderColor": "rgba(99, 110, 114,1)",                    
+                    "borderWidth": "1",
+                    "data": [200000000,300000000],
+                    "stack": "Stack 4"
+                },{
+                    "label": "Others Terbayar",
                     "backgroundColor": "rgba(155, 176, 155, 1)",
                     "borderColor": "rgba(155, 176, 155, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[5] . ',' . $tahunPilihan[5] . ']
+                    "data": [' . $tahunBefore[5] . ',' . $tahunPilihan[5] . '],
+                    "stack": "Stack 5"
+                },{
+                    "label": "Others Belum Terbayar",
+                    "borderColor": "rgba(99, 110, 114,1)",                    
+                    "borderWidth": "1",
+                    "data": [200000000,300000000],
+                    "stack": "Stack 5"
                 }]
+            },
+            "options":{
+                "scales": {
+                    "x": [{
+                        "stacked": true
+                    }],
+                    "y": [{
+                        "stacked": true
+                    }]
+                }
             }
         \'
         ></canvas>';

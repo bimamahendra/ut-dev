@@ -89,16 +89,8 @@
                                 <!-- Card Body -->
                                 <div class="collapse multi-collapse show" id="collapseReceivedOverdue">
                                     <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2">
+                                        <div class="chart-pie pt-4 pb-2 mb-5">
                                             <canvas id="overdueChart"></canvas>
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle" style="color: rgba(237, 42, 33, 1);"></i> Overdue
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle" style="color: rgba(49, 176, 87, 1);"></i> Received
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -117,42 +109,18 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 col-md-4">
-                                                <div class="chart-pie pt-4 pb-2">
+                                                <div class="chart-pie pt-4 pb-2 mb-5">
                                                     <canvas id="sewaBangunanChart"></canvas>
                                                 </div>
-                                                <div class="mt-4 text-center small">
-                                                    <span class="mr-2">
-                                                        <i class="fas fa-circle" style="color: rgba(229, 42, 51, 1);"></i> Not yet
-                                                    </span>
-                                                    <span class="mr-2">
-                                                        <i class="fas fa-circle" style="color: rgba(49, 176, 87, 1);"></i> Done
-                                                    </span>
-                                                </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <div class="chart-pie pt-4 pb-2">
+                                                <div class="chart-pie pt-4 pb-2 mb-5">
                                                     <canvas id="utilityChart"></canvas>
                                                 </div>
-                                                <div class="mt-4 text-center small">
-                                                    <span class="mr-2">
-                                                        <i class="fas fa-circle" style="color: rgba(229, 42, 51, 1);"></i> Not yet
-                                                    </span>
-                                                    <span class="mr-2">
-                                                        <i class="fas fa-circle" style="color: rgba(56, 139, 242, 1);"></i> Done
-                                                    </span>
-                                                </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <div class="chart-pie pt-4 pb-2">
+                                                <div class="chart-pie pt-4 pb-2 mb-5">
                                                     <canvas id="othersChart"></canvas>
-                                                </div>
-                                                <div class="mt-4 text-center small">
-                                                    <span class="mr-2">
-                                                        <i class="fas fa-circle" style="color: rgba(229, 42, 51, 1);"></i> Not yet
-                                                    </span>
-                                                    <span class="mr-2">
-                                                        <i class="fas fa-circle" style="color: rgba(252, 131, 56, 1);"></i> Done
-                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

@@ -25,7 +25,7 @@
     <link rel="icon" href="<?= base_url('assets/img/favicon/favicon-32x32.png'); ?>" sizes="32x32">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    
+
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
@@ -37,11 +37,8 @@
     <script src="<?= base_url('assets/js/sb-admin-2.min.js'); ?>"></script>
 
     <!-- Page level plugins -->
-    <script src="<?= base_url('assets/vendor/chart.js/Chart.min.js'); ?>"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="<?= base_url('assets/js/demo/chart-area-demo.js'); ?>"></script>
-    <script src="<?= base_url('assets/js/demo/chart-pie-demo.js'); ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0-rc.1/dist/chartjs-plugin-datalabels.min.js"></script>
 
     <!-- Page level plugins -->
     <script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
