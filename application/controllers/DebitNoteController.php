@@ -377,9 +377,8 @@ class DebitNoteController extends CI_Controller
 
         $bar_graph = '
         <canvas id="graph" data-settings=
-        \'{
-            "type": "bar",
-            "data":{
+        \'
+            {
                 "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", 
                 "Aug", "Sep", "Oct", "Nov", "Des"],
                 "datasets":[{
@@ -395,17 +394,8 @@ class DebitNoteController extends CI_Controller
                     "borderWidth": "1",
                     "data": [' . $receivedData . ']
                 }]
-            },
-            "options":{
-                "legend":{
-                    "display": true
-                },
-                "tooltips": { 
-                    "mode": "label", 
-                    "label": "mylabel" 
-                }
             }
-        }\'
+        \'
         ></canvas>';
 
         echo $bar_graph;
@@ -473,8 +463,6 @@ class DebitNoteController extends CI_Controller
         $pay_graph = '
         <canvas id="payGraph" data-settings=
         \'{
-            "type": "bar",
-            "data":{
                 "labels": [' . $tahunSebelum . ', ' . $year . '],
                 "datasets":[{
                     "label": "Listrik Terbayar",
@@ -566,7 +554,7 @@ class DebitNoteController extends CI_Controller
                     }]
                 }
             }
-        }\'
+        \'
         ></canvas>';
 
         echo $pay_graph;
