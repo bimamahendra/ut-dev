@@ -282,4 +282,27 @@ class DebitNote extends CI_Model{
         
         return true;
     }
+
+    public function getReport($tipeDebitnote){
+        $years      = $this->db->get_where('DEBITNOTE_REPORTING_YEARLY_ACTIVE', ['ISACTIVE_REYEACTIVE' => true])->result();
+        $datas      = array();
+        $yearsData  = array();
+        foreach ($years as $item) {
+            array_push($yearsData, $item->YEAR_REYEACTIVE);
+            $datas[$item->YEAR_REYEACTIVE] = $this->db->query('SELECT GRANDTOTAL_DEBITNOTE, TGLBAYAR_DEBITNOTE FROM DEBITNOTE WHERE TIPE_DEBITNOTE = "'.$tipeDebitnote.'" AND YEAR(TGLFAKTUR_DEBITNOTE) = "'.$item->YEAR_REYEACTIVE.'" AND (TGLBAYAR_DEBITNOTE IS NULL OR YEAR(TGLBAYAR_DEBITNOTE) = "'.date('Y').'") ')->result();
+        }
+        return ['debitnotes' => $datas, 'years' => $yearsData];
+    }
+
+    public function getReportSummary($param){
+        return $this->db->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->row();
+    }
+   
+    public function insertReportSummary($param){
+        $this->db->insert('DEBITNOTE_REPORTING_YEARLY', $param);
+    }
+
+    public function updateReportSummary($param){
+        $this->db->where('ID_REPORTINGYEARLY', $param['ID_REPORTINGYEARLY'])->update('DEBITNOTE_REPORTING_YEARLY', $param);
+    }
 }

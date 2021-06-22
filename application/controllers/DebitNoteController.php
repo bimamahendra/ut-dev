@@ -629,4 +629,53 @@ class DebitNoteController extends CI_Controller
 
         echo $dataList;
     }
+    public function updateReport($tipeDebitnote){
+        $res        = $this->DebitNote->getReport($tipeDebitnote);
+        $reports    = array();
+        foreach ($res['years'] as $item) {
+            $reports[$item]['TAHUN_REPORTINGYEARLY']        = $item;
+            $reports[$item]['TIPE_REPORTINGYEARLY']         = $tipeDebitnote;
+            $reports[$item]['TARGET_REPORTINGYEARLY']       = 0;
+            $reports[$item]['TOTAL_REPORTINGYEARLY']        = 0;
+            $reports[$item]['TAHUNBAYAR_REPORTINGYEARLY']   = date('Y');
+            $reports[$item]['TGLSYNC_REPORTINGYEARLY']      = date('Y-m-d H:i:s');
+            foreach ($res['debitnotes'][$item] as $item2) {
+                $reports[$item]['TARGET_REPORTINGYEARLY'] += $item2->GRANDTOTAL_DEBITNOTE;
+                if($item2->TGLBAYAR_DEBITNOTE != null){
+                    $reports[$item]['TOTAL_REPORTINGYEARLY'] += $item2->GRANDTOTAL_DEBITNOTE;
+                }
+            }
+        }
+
+        foreach ($reports as $item) {
+            $filter = array(
+                'TAHUN_REPORTINGYEARLY'         => $item['TAHUN_REPORTINGYEARLY'],
+                'TAHUNBAYAR_REPORTINGYEARLY'    => $item['TAHUNBAYAR_REPORTINGYEARLY'],
+                'TIPE_REPORTINGYEARLY'          => $item['TIPE_REPORTINGYEARLY']
+            );
+            $reportSumm = $this->DebitNote->getReportSummary($filter);
+            if($reportSumm == null){
+                $this->DebitNote->insertReportSummary($reports[$item['TAHUN_REPORTINGYEARLY']]);
+            }else{
+                $reports[$item['TAHUN_REPORTINGYEARLY']]['ID_REPORTINGYEARLY'] = $reportSumm->ID_REPORTINGYEARLY;
+                $this->DebitNote->updateReportSummary($reports[$item['TAHUN_REPORTINGYEARLY']]);
+            }
+        }
+        print_r($reports);
+    }
+    public function updateReportRent(){
+
+    }
+    public function updateReportService(){
+
+    }
+    public function updateReportAir(){
+
+    }
+    public function updateReportTelefon(){
+
+    }
+    public function updateReportOthers(){
+
+    }
 }
