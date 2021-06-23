@@ -282,4 +282,48 @@ class DebitNote extends CI_Model{
         
         return true;
     }
+
+    public function getReport($tipeDebitnote){
+        $years      = $this->getYearSummaryActive();
+        $datas      = array();
+        $yearsData  = array();
+        foreach ($years as $item) {
+            array_push($yearsData, $item->YEAR_REYEACTIVE);
+            $datas[$item->YEAR_REYEACTIVE] = $this->db->query('SELECT GRANDTOTAL_DEBITNOTE, TGLBAYAR_DEBITNOTE FROM DEBITNOTE WHERE TIPE_DEBITNOTE = "'.$tipeDebitnote.'" AND YEAR(TGLFAKTUR_DEBITNOTE) = "'.$item->YEAR_REYEACTIVE.'" AND (TGLBAYAR_DEBITNOTE IS NULL OR YEAR(TGLBAYAR_DEBITNOTE) = "'.date('Y').'") ')->result();
+        }
+        return ['debitnotes' => $datas, 'years' => $yearsData];
+    }
+
+    public function getReportSummary($param){
+        return $this->db->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->row();
+    }
+    public function getSumReportSummaryActive(){
+        return $this->db->query('SELECT TAHUN_REPORTINGYEARLY , SUM(TARGET_REPORTINGYEARLY) AS TARGET_REPORTINGYEARLY, SUM(TOTAL_REPORTINGYEARLY) AS TOTAL_REPORTINGYEARLY
+            FROM DEBITNOTE_REPORTING_YEARLY
+            WHERE TAHUNBAYAR_REPORTINGYEARLY = "'.date('Y').'"
+            GROUP BY TAHUN_REPORTINGYEARLY 
+            ORDER BY TAHUN_REPORTINGYEARLY ASC')->result();
+    }
+   
+    public function insertReportSummary($param){
+        $this->db->insert('DEBITNOTE_REPORTING_YEARLY', $param);
+    }
+
+    public function updateReportSummary($param){
+        $this->db->where('ID_REPORTINGYEARLY', $param['ID_REPORTINGYEARLY'])->update('DEBITNOTE_REPORTING_YEARLY', $param);
+    }
+
+    public function getYearSummaryActive(){
+        return $this->db->get_where('DEBITNOTE_REPORTING_YEARLY_ACTIVE', ['ISACTIVE_REYEACTIVE' => true])->result();
+    }
+
+    public function getYearSummary(){
+        return $this->db->order_by('YEAR_REYEACTIVE', 'desc')->get('DEBITNOTE_REPORTING_YEARLY_ACTIVE')->row();
+    }
+    public function insertYearSummary(){
+        $this->db->insert('DEBITNOTE_REPORTING_YEARLY_ACTIVE', ['YEAR_REYEACTIVE' => date('Y')]);
+    }
+    public function updateYearSummary($param){
+        $this->db->where('YEAR_REYEACTIVE', $param['YEAR_REYEACTIVE'])->update('DEBITNOTE_REPORTING_YEARLY_ACTIVE', $param);
+    }
 }

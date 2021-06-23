@@ -319,23 +319,6 @@ class DebitNoteController extends CI_Controller
         $this->zip->download(date('YmdHis') . '_Download Debitnotes.zip');
     }
 
-    public function updateProgress()
-    {
-        $date = date('Y-m-d');
-        $debitNotes = $this->DebitNote->getAll(['STAT_DEBITNOTE' => '4']);
-
-        if ($debitNotes != null) {
-            foreach ($debitNotes as $item) {
-                $dnDateEnd = date_create($item->TGLJATUH_DEBITNOTE);
-                $dnDateEnd = date_format($dnDateEnd, 'Y-m-d');
-
-                if ($date > $dnDateEnd) {
-                    $this->DebitNote->update(['ID_DEBITNOTE' => $item->ID_DEBITNOTE, 'STAT_DEBITNOTE' => '5']);
-                }
-            }
-        }
-    }
-
     public function MonthlyDNChart()
     {
         isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");

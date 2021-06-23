@@ -135,7 +135,6 @@ $route['debitnote/generateMultiDN']         = 'DebitNoteController/generateMulti
 $route['debitnote/downloadMultiDN']         = 'DebitNoteController/downloadMultiDN';
 $route['debitnote/finish']            	    = 'DebitNoteController/finish';
 $route['debitnote/finishMulti']            	= 'DebitNoteController/finishMulti';
-$route['debitnote/updateProgress']          = 'DebitNoteController/updateProgress';
 $route['debitnote/downloadPdf']             = 'DebitNoteController/downloadPdf';
 $route['debitnote/destroyDN']               = 'DebitNoteController/destroyDN';
 $route['debitnote/destroyMultiDN']          = 'DebitNoteController/destroyMultiDN';
@@ -145,7 +144,13 @@ $route['debitnote/monthlyDNChart']          = 'DebitNoteController/MonthlyDNChar
 $route['debitnote/paymentDNChart']          = 'DebitNoteController/PaymentDNChart';
 $route['debitnote/monthlyTable']            = 'DebitNoteController/MonthlyTable';
 
-// Emailing
+// -- DebitNote Cron Job
+$route['debitnote/updateProgress']          = 'DebitNoteCronJobController/updateProgress';
+$route['debitnote/updateReport/(:any)']     = 'DebitNoteCronJobController/updateReport/$1';
+$route['debitnote/updateYearActive']        = 'DebitNoteCronJobController/updateYearActive';
+$route['debitnote/updateYearFinished']      = 'DebitNoteCronJobController/updateYearFinished';
+
+// Emailing Cron Job
 $route['email/sendEmail']                   = 'EmailingController/sendEmail';
 $route['email/sendEmailMulti']              = 'EmailingController/sendEmailMulti';
 $route['email/remindProgress/(:any)']       = 'EmailingController/paymentProgress/$1';
