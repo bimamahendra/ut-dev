@@ -22,7 +22,7 @@
             $param    = $_POST;
 
             $debitnote = $this->DebitNote->get(['ID_DEBITNOTE' => $param['ID_DEBITNOTE']]);
-            $idTenant  = $this->checkTenant($debitnote->NAMAPERUSAHAAN_DEBITNOTE);
+            $idTenant  = $debitnote->NOPELANGGAN_DEBITNOTE;
             
             $date = date('Y-m-d');
             $dnDateEnd = date_create($param['TGLJATUH_DEBITNOTE']);
@@ -72,7 +72,7 @@
             $dn = $this->db->where_in('ID_DEBITNOTE', $param)->get('DEBITNOTE')->result();
 
             foreach($dn as $key){
-                $idTenant = $this->checkTenant($key->NAMAPERUSAHAAN_DEBITNOTE);
+                $idTenant = $key->NOPELANGGAN_DEBITNOTE;
                 $date = date('Y-m-d');
                 $dnDateEnd = date_create($key->TGLJATUH_DEBITNOTE);
                 $dnDateEnd = date_format($dnDateEnd, 'Y-m-d');
@@ -133,7 +133,7 @@
 
                 foreach ($debitNotes as $item) {
                     if($dnEmail != $item->EMAIL_DEBITNOTE){
-                        $idTenant                   = $this->checkTenant($item->NAMAPERUSAHAAN_DEBITNOTE);
+                        $idTenant                   = $item->NOPELANGGAN_DEBITNOTE;
                         $dnEmail                    = $item->EMAIL_DEBITNOTE;
                         $dn['dataHtml'][$dnEmail]   = array();
                         $dn['attach'][$dnEmail]     = array();
@@ -172,7 +172,7 @@
 
                 foreach ($debitNotes as $item) {
                     if($dnEmail != $item->EMAIL_DEBITNOTE){
-                        $idTenant                   = $this->checkTenant($item->NAMAPERUSAHAAN_DEBITNOTE);
+                        $idTenant                   = $item->NOPELANGGAN_DEBITNOTE;
                         $dnEmail                    = $item->EMAIL_DEBITNOTE;
                         $dn['dataHtml'][$dnEmail]   = array();
                         $dn['attach'][$dnEmail]     = array();
