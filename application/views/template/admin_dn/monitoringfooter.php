@@ -10,7 +10,7 @@
                 $cReceived = (float) ($rcvtotal / $total * 100);
                 $cReceived = round($cReceived, 0);
             };
-            if (!empty($rcvtotal)) {
+            if (!empty($ovdtotal)) {
                 $cOverdue = (float) ($ovdtotal / $total * 100);
                 $cOverdue = round($cOverdue, 0);
             };
