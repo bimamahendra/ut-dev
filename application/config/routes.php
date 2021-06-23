@@ -145,8 +145,10 @@ $route['debitnote/paymentDNChart']          = 'DebitNoteController/PaymentDNChar
 $route['debitnote/monthlyTable']            = 'DebitNoteController/MonthlyTable';
 
 // -- DebitNote Cron Job
-$route['debitnote/updateProgress']          = 'DebitNoteController/updateProgress';
-$route['debitnote/updateReport/(:any)']     = 'DebitNoteController/updateReport/$1';
+$route['debitnote/updateProgress']          = 'DebitNoteCronJobController/updateProgress';
+$route['debitnote/updateReport/(:any)']     = 'DebitNoteCronJobController/updateReport/$1';
+$route['debitnote/updateYearActive']        = 'DebitNoteCronJobController/updateYearActive';
+$route['debitnote/updateYearFinished']      = 'DebitNoteCronJobController/updateYearFinished';
 
 // Emailing Cron Job
 $route['email/sendEmail']                   = 'EmailingController/sendEmail';

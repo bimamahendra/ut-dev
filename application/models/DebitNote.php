@@ -284,7 +284,7 @@ class DebitNote extends CI_Model{
     }
 
     public function getReport($tipeDebitnote){
-        $years      = $this->db->get_where('DEBITNOTE_REPORTING_YEARLY_ACTIVE', ['ISACTIVE_REYEACTIVE' => true])->result();
+        $years      = $this->getYearSummaryActive();
         $datas      = array();
         $yearsData  = array();
         foreach ($years as $item) {
@@ -297,6 +297,13 @@ class DebitNote extends CI_Model{
     public function getReportSummary($param){
         return $this->db->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->row();
     }
+    public function getSumReportSummaryActive(){
+        return $this->db->query('SELECT TAHUN_REPORTINGYEARLY , SUM(TARGET_REPORTINGYEARLY) AS TARGET_REPORTINGYEARLY, SUM(TOTAL_REPORTINGYEARLY) AS TOTAL_REPORTINGYEARLY
+            FROM DEBITNOTE_REPORTING_YEARLY
+            WHERE TAHUNBAYAR_REPORTINGYEARLY = "'.date('Y').'"
+            GROUP BY TAHUN_REPORTINGYEARLY 
+            ORDER BY TAHUN_REPORTINGYEARLY ASC')->result();
+    }
    
     public function insertReportSummary($param){
         $this->db->insert('DEBITNOTE_REPORTING_YEARLY', $param);
@@ -304,5 +311,19 @@ class DebitNote extends CI_Model{
 
     public function updateReportSummary($param){
         $this->db->where('ID_REPORTINGYEARLY', $param['ID_REPORTINGYEARLY'])->update('DEBITNOTE_REPORTING_YEARLY', $param);
+    }
+
+    public function getYearSummaryActive(){
+        return $this->db->get_where('DEBITNOTE_REPORTING_YEARLY_ACTIVE', ['ISACTIVE_REYEACTIVE' => true])->result();
+    }
+
+    public function getYearSummary(){
+        return $this->db->order_by('YEAR_REYEACTIVE', 'desc')->get('DEBITNOTE_REPORTING_YEARLY_ACTIVE')->row();
+    }
+    public function insertYearSummary(){
+        $this->db->insert('DEBITNOTE_REPORTING_YEARLY_ACTIVE', ['YEAR_REYEACTIVE' => date('Y')]);
+    }
+    public function updateYearSummary($param){
+        $this->db->where('YEAR_REYEACTIVE', $param['YEAR_REYEACTIVE'])->update('DEBITNOTE_REPORTING_YEARLY_ACTIVE', $param);
     }
 }
