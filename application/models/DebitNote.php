@@ -142,10 +142,7 @@ class DebitNote extends CI_Model{
         return $result;
     }
     public function getYearDN(){
-        $sql = "SELECT YEAR(TGLFAKTUR_DEBITNOTE) as YEAR
-        FROM DEBITNOTE
-        GROUP BY YEAR(TGLFAKTUR_DEBITNOTE) DESC";
-        $result = $this->db->query($sql)->result();
+        $result = $this->db->order_by('YEAR_REYEACTIVE', 'desc')->get('DEBITNOTE_REPORTING_YEARLY_ACTIVE')->result();
         return $result;
     }
     public function getTopTenantsDN(){
@@ -297,6 +294,11 @@ class DebitNote extends CI_Model{
     public function getReportSummary($param){
         return $this->db->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->row();
     }
+    
+    public function getAllReportSummary($param){
+        return $this->db->order_by('TAHUNBAYAR_REPORTINGYEARLY', 'asc')->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->result();
+    }
+
     public function getSumReportSummaryActive(){
         return $this->db->query('SELECT TAHUN_REPORTINGYEARLY , SUM(TARGET_REPORTINGYEARLY) AS TARGET_REPORTINGYEARLY, SUM(TOTAL_REPORTINGYEARLY) AS TOTAL_REPORTINGYEARLY
             FROM DEBITNOTE_REPORTING_YEARLY

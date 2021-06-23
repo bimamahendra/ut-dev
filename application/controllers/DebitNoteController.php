@@ -387,143 +387,114 @@ class DebitNoteController extends CI_Controller
     public function PaymentDNChart()
     {
         isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
-
-        $tahunSebelum = $year - 1;
         $pay_graph = "";
 
-        $tahunPilihanData = $this->DebitNote->getPaymentDN($year);
-        $tahunPilihan = [];
-        for ($i = 0; $i <= 5; $i++) {
-            $tahunPilihan[$i] = 0;
-        };
-        foreach ($tahunPilihanData as $items) {
-            if ($items->TIPE == 'Listrik') {
-                $tahunPilihan[0] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Rent') {
-                $tahunPilihan[1] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Service') {
-                $tahunPilihan[2] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Air') {
-                $tahunPilihan[3] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Telefon') {
-                $tahunPilihan[4] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Others') {
-                $tahunPilihan[5] = $items->TOTAL;
-            };
-        };
+        $reports                = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
+        $datas['tahun']         = array();
+        $datas['ListrikSisa']   = array();
+        $datas['ListrikTotal']  = array();
+        $datas['RentSisa']      = array();
+        $datas['RentTotal']     = array();
+        $datas['ServiceSisa']   = array();
+        $datas['ServiceTotal']  = array();
+        $datas['AirSisa']       = array();
+        $datas['AirTotal']      = array();
+        $datas['TelefonSisa']   = array();
+        $datas['TelefonTotal']  = array();
+        $datas['OthersSisa']    = array();
+        $datas['OthersTotal']   = array();
 
-        $tahunSebelumData = $this->DebitNote->getPaymentDN($tahunSebelum);
-        $tahunBefore = [];
-        for ($i = 0; $i <= 5; $i++) {
-            $tahunBefore[$i] = 0;
-        };
-        foreach ($tahunSebelumData as $items) {
-            if ($items->TIPE == 'Listrik') {
-                $tahunBefore[0] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Rent') {
-                $tahunBefore[1] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Service') {
-                $tahunBefore[2] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Air') {
-                $tahunBefore[3] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Telefon') {
-                $tahunBefore[4] = $items->TOTAL;
-            };
-            if ($items->TIPE == 'Others') {
-                $tahunBefore[5] = $items->TOTAL;
-            };
-        };
+
+        foreach ($reports as $item) {
+            if(empty($datas['tahun']) || end($datas['tahun']) != $item->TAHUNBAYAR_REPORTINGYEARLY){
+                array_push($datas['tahun'], $item->TAHUNBAYAR_REPORTINGYEARLY);
+            }
+            array_push($datas[$item->TIPE_REPORTINGYEARLY."Total"], $item->TOTAL_REPORTINGYEARLY);
+            array_push($datas[$item->TIPE_REPORTINGYEARLY."Sisa"], $item->TARGET_REPORTINGYEARLY - $item->TOTAL_REPORTINGYEARLY);
+        }
+
 
         $pay_graph = '
         <canvas id="payGraph" data-settings=
         \'{
-                "labels": [' . $tahunSebelum . ', ' . $year . '],
+                "labels": ['.implode(',', $datas['tahun']).'],
                 "datasets":[{
                     "label": "Listrik Terbayar",
                     "backgroundColor": "rgba(55, 126, 87, 1)",
                     "borderColor": "rgba(55, 126, 87, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[0] . ',' . $tahunPilihan[0] . '],
+                    "data": ['.implode(',', $datas['ListrikTotal']).'],
                     "stack": "Stack 0"
                 },{
                     "label": "Listrik Belum Terbayar",
                     "borderColor": "rgba(99, 110, 114,1)",                    
                     "borderWidth": "1",
-                    "data": [200000000,300000000],
+                    "data": ['.implode(',', $datas['ListrikSisa']).'],
                     "stack": "Stack 0"
                 },{
                     "label": "Rent Terbayar",
                     "backgroundColor": "rgba(49, 176, 155, 1)",
                     "borderColor": "rgba(49, 176, 155, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[1] . ',' . $tahunPilihan[1] . '],
+                    "data": ['.implode(',', $datas['RentTotal']).'],
                     "stack": "Stack 1"
                 },{
                     "label": "Rent Belum Terbayar",
                     "borderColor": "rgba(99, 110, 114,1)",                    
                     "borderWidth": "1",
-                    "data": [200000000,300000000],
+                    "data": ['.implode(',', $datas['RentSisa']).'],
                     "stack": "Stack 1"
                 },{
                     "label": "Service Terbayar",
                     "backgroundColor": "rgba(252, 131, 56, 1)",
                     "borderColor": "rgba(252, 131, 56, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[2] . ',' . $tahunPilihan[2] . '],
+                    "data": ['.implode(',', $datas['ServiceTotal']).'],
                     "stack": "Stack 2"
                 },{
                     "label": "Service Belum Terbayar",
                     "borderColor": "rgba(99, 110, 114,1)",                    
                     "borderWidth": "1",
-                    "data": [200000000,300000000],
+                    "data": ['.implode(',', $datas['ServiceSisa']).'],
                     "stack": "Stack 2"
                 },{
                     "label": "Air Terbayar",
                     "backgroundColor": "rgba(56, 139, 242, 1)",
                     "borderColor": "rgba(56, 139, 242, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[3] . ',' . $tahunPilihan[3] . '],
+                    "data": ['.implode(',', $datas['AirTotal']).'],
                     "stack": "Stack 3"
                 },{
                     "label": "Air Belum Terbayar",
                     "borderColor": "rgba(99, 110, 114,1)",                    
                     "borderWidth": "1",
-                    "data": [200000000,300000000],
+                    "data": ['.implode(',', $datas['AirSisa']).'],
                     "stack": "Stack 3"
                 },{
                     "label": "Telepon Terbayar",
                     "backgroundColor": "rgba(155, 176, 87, 1)",
                     "borderColor": "rgba(155, 176, 87, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[4] . ',' . $tahunPilihan[4] . '],
+                    "data": ['.implode(',', $datas['TelefonTotal']).'],
                     "stack": "Stack 4"
                 },{
                     "label": "Telepon Belum Terbayar",
                     "borderColor": "rgba(99, 110, 114,1)",                    
                     "borderWidth": "1",
-                    "data": [200000000,300000000],
+                    "data": ['.implode(',', $datas['TelefonSisa']).'],
                     "stack": "Stack 4"
                 },{
                     "label": "Others Terbayar",
                     "backgroundColor": "rgba(155, 176, 155, 1)",
                     "borderColor": "rgba(155, 176, 155, 1)",                    
                     "borderWidth": "1",
-                    "data": [' . $tahunBefore[5] . ',' . $tahunPilihan[5] . '],
+                    "data": ['.implode(',', $datas['OthersTotal']).'],
                     "stack": "Stack 5"
                 },{
                     "label": "Others Belum Terbayar",
                     "borderColor": "rgba(99, 110, 114,1)",                    
                     "borderWidth": "1",
-                    "data": [200000000,300000000],
+                    "data": ['.implode(',', $datas['OthersSisa']).'],
                     "stack": "Stack 5"
                 }]
             }
@@ -573,6 +544,53 @@ class DebitNoteController extends CI_Controller
                 }
             }
         };
+
+        $dataList =
+            '{
+                "data": [
+                    [
+                        "DN Terbit",
+                        "Rp. ' . number_format($terbitData[0], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[1], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[2], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[3], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[4], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[5], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[6], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[7], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[8], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[9], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[10], 0, ',', '.') . '",
+                        "Rp. ' . number_format($terbitData[11], 0, ',', '.') . '"
+                    ],
+                    [
+                        "Payment Received",
+                        "Rp. ' . number_format($receivedData[0], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[1], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[2], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[3], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[4], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[5], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[6], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[7], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[8], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[9], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[10], 0, ',', '.') . '",
+                        "Rp. ' . number_format($receivedData[11], 0, ',', '.') . '"
+                    ]
+                ]
+            }';
+
+        echo $dataList;
+    }
+    public function Yearly()
+    {
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
+
+        $reports    = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTING_YEARLY' => $year]);
+        $tahunTemp  = '';
+        $dataTable  = '';
+        }
 
         $dataList =
             '{
