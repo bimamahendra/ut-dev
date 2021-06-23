@@ -429,34 +429,11 @@
                         type: "bar",
                         data: monGraphData,
                         options: {
-                            legend: {
-                                display: true
-                            },
-                            tooltips: {
-                                mode: 'label',
-                                label: 'mylabel',
-                                callbacks: {
-                                    label: function(tooltipItem, data) {
-                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        return label;
-                                    }
+                            plugins: {
+                                legend: {
+                                    display: true
                                 }
-                            },
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        callback: function(label, index, labels) {
-                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        },
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
+                            } 
                         }
                     });
                 }
@@ -476,34 +453,11 @@
                             type: "bar",
                             data: monGraphData,
                             options: {
-                                legend: {
-                                    display: true
-                                },
-                                tooltips: {
-                                    mode: 'label',
-                                    label: 'mylabel',
-                                    callbacks: {
-                                        label: function(tooltipItem, data) {
-                                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                                            if (label) {
-                                                label += ': ';
-                                            }
-                                            label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                            return label;
-                                        }
+                                plugins: {
+                                    legend: {
+                                        display: true
                                     }
-                                },
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            callback: function(label, index, labels) {
-                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                            },
-                                            beginAtZero: true
-                                        }
-                                    }]
-                                }
+                                } 
                             }
                         });
                     }
@@ -520,36 +474,18 @@
                         type: "bar",
                         data: graphData,
                         options: {
-                            legend: {
-                                display: true
-                            },
-                            tooltips: {
-                                callbacks: {
-                                    label: function(tooltipItem, data) {
-                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                                        if (label) {
-                                            label += ': ';
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        filter: function(item, chart) {
+                                        return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
                                         }
-                                        label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        return label;
                                     }
+                                },
+                                tooltip: {
+                                    mode: 'x'
                                 }
-                            },
-                            scales: {
-                                xAxes: [{
-                                    stacked: true
-                                }],
-                                yAxes: [{
-                                    stacked: true,
-                                    ticks: {
-                                        callback: function(label, index, labels) {
-                                            return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        },
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
+                            }                            
                         }
                     });
                 }
@@ -569,36 +505,18 @@
                             type: "bar",
                             data: graphData,
                             options: {
-                                legend: {
-                                    display: true
-                                },
-                                tooltips: {
-                                    callbacks: {
-                                        label: function(tooltipItem, data) {
-                                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                                            if (label) {
-                                                label += ': ';
+                                plugins: {
+                                    legend: {
+                                        labels: {
+                                            filter: function(item, chart) {
+                                            return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
                                             }
-                                            label += tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                            return label;
                                         }
+                                    },
+                                    tooltip: {
+                                        mode: 'x'
                                     }
-                                },
-                                scales: {
-                                    xAxes: [{
-                                        stacked: true
-                                    }],
-                                    yAxes: [{
-                                        stacked: true,
-                                        ticks: {
-                                            callback: function(label, index, labels) {
-                                                return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                            },
-                                            beginAtZero: true
-                                        }
-                                    }]
-                                }
+                                }                                
                             }
                         });
                     }
