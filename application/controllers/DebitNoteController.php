@@ -583,48 +583,53 @@ class DebitNoteController extends CI_Controller
 
         echo $dataList;
     }
-    public function Yearly()
+    public function YearlyDetailTable()
     {
         isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
 
-        $reports    = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTING_YEARLY' => $year]);
+        $reports    = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
         $tahunTemp  = '';
-        $dataTable  = '';
+        $datas      = array();
+        foreach ($reports as $item) {
+            if($item->TAHUNBAYAR_REPORTINGYEARLY != $tahunTemp){
+                $tahunTemp = $item->TAHUNBAYAR_REPORTINGYEARLY;
+                $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]            = array();
+                $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]['Year']    = $item->TAHUNBAYAR_REPORTINGYEARLY;
+            }
+            $datas[$item->TAHUNBAYAR_REPORTINGYEARLY][$item->TIPE_REPORTINGYEARLY] = $item->TOTAL_REPORTINGYEARLY;        
         }
+
+        $dataTable = array();
+        foreach ($datas as $item) {
+            $listrik    = (!empty($item['Listrik']) ? $item['Listrik'] : '0');
+            $rent       = (!empty($item['Rent']) ? $item['Rent'] : '0');
+            $service    = (!empty($item['Service']) ? $item['Service'] : '0');
+            $air        = (!empty($item['Air']) ? $item['Air'] : '0');
+            $telefon    = (!empty($item['Telefon']) ? $item['Telefon'] : '0');
+            $others      = (!empty($item['Others']) ? $item['Others'] : '0');
+            $grandTotal = (int)$listrik + (int)$rent + (int)$service + (int)$air + (int)$telefon + (int)$others;
+            
+            $temp = '
+                [
+
+                    "'.$item['Year'].'",
+                    "Rp. '.number_format($listrik, 0, ',', '.').'",
+                    "Rp. '.number_format($rent, 0, ',', '.').'",
+                    "Rp. '.number_format($service, 0, ',', '.').'",
+                    "Rp. '.number_format($air, 0, ',', '.').'",
+                    "Rp. '.number_format($telefon, 0, ',', '.').'",
+                    "Rp. '.number_format($others, 0, ',', '.').'",
+                    "Rp. '.number_format($grandTotal, 0, ',', '.').'"
+                ]
+            ';
+            array_push($dataTable, $temp);
+        }
+
 
         $dataList =
             '{
                 "data": [
-                    [
-                        "DN Terbit",
-                        "Rp. ' . number_format($terbitData[0], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[1], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[2], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[3], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[4], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[5], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[6], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[7], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[8], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[9], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[10], 0, ',', '.') . '",
-                        "Rp. ' . number_format($terbitData[11], 0, ',', '.') . '"
-                    ],
-                    [
-                        "Payment Received",
-                        "Rp. ' . number_format($receivedData[0], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[1], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[2], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[3], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[4], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[5], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[6], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[7], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[8], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[9], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[10], 0, ',', '.') . '",
-                        "Rp. ' . number_format($receivedData[11], 0, ',', '.') . '"
-                    ]
+                    '.implode(',', $dataTable).'
                 ]
             }';
 

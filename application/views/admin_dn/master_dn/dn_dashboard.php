@@ -482,7 +482,8 @@
                 "sScrollXInner": "210%"
             });
 
-            let tableYearly = $('#tableTahunan').DataTable({
+            var tableYearly 
+            tableYearly = $('#tableTahunan').DataTable({
                 "ajax": {
                     "url": '<?= site_url('debitnote/yearlyDetailTable') ?>'
                 },
@@ -490,6 +491,7 @@
 
             $("#pilYear").change(function() {
                 table.destroy();
+                tableYearly.destroy()
                 table = $('#tabelBulanan').DataTable({
                     "ajax": {
                         "url": '<?= site_url('debitnote/monthlyTable') ?>',
@@ -541,6 +543,16 @@
                     "sScrollX": "100%",
                     "sScrollXInner": "210%"
                 });
+
+                tableYearly = $('#tableTahunan').DataTable({
+                    "ajax": {
+                        "url": '<?= site_url('debitnote/yearlyDetailTable') ?>',
+                        "type": "POST",
+                        "data": {
+                            year: $(this).val()
+                        }
+                    },
+                })
                 reload_table();
             });
 
