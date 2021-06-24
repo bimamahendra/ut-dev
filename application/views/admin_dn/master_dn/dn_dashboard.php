@@ -167,6 +167,28 @@
                                                     <table class="table table-bordered" id="tableTahunan" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
+                                                                <th>Target</th>
+                                                                <th>Listrik</th>
+                                                                <th>Rent</th>
+                                                                <th>Service</th>
+                                                                <th>Air</th>
+                                                                <th>Telefon</th>
+                                                                <th>Others</th>
+                                                                <th>Grand Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive mt-5">
+                                                    <table class="table table-bordered" id="tableTahunanDetail" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
                                                                 <th>Tahun</th>
                                                                 <th>Listrik</th>
                                                                 <th>Rent</th>
@@ -179,48 +201,6 @@
                                                         </thead>
                                                         <tbody>
                                                         </tbody>
-                                                        <!-- <tfoot>
-                                                            <tr>
-                                                                <?php
-                                                                $grandTotal = 0;
-                                                                $listrik = 0;
-                                                                $rent = 0;
-                                                                $service = 0;
-                                                                $air = 0;
-                                                                $telefon = 0;
-                                                                $others = 0;
-                                                                foreach ($totalTahunan as $items) {
-                                                                    if ($items->TIPE == 'Listrik') {
-                                                                        $listrik = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Rent') {
-                                                                        $rent = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Service') {
-                                                                        $service = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Air') {
-                                                                        $air = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Telefon') {
-                                                                        $telefon = $items->TOTAL;
-                                                                    };
-                                                                    if ($items->TIPE == 'Others') {
-                                                                        $others = $items->TOTAL;
-                                                                    };
-                                                                    $grandTotal = $grandTotal + $items->TOTAL;
-                                                                }
-                                                                ?>
-                                                                <th>Grand Total</th>
-                                                                <th><?= 'Rp. ' . number_format($listrik, 0, ',', '.') ?></th>
-                                                                <th><?= 'Rp. ' . number_format($rent, 0, ',', '.') ?></th>
-                                                                <th><?= 'Rp. ' . number_format($service, 0, ',', '.') ?></th>
-                                                                <th><?= 'Rp. ' . number_format($air, 0, ',', '.') ?></th>
-                                                                <th><?= 'Rp. ' . number_format($telefon, 0, ',', '.') ?></th>
-                                                                <th><?= 'Rp. ' . number_format($others, 0, ',', '.') ?></th>
-                                                                <th><?= 'Rp. ' . number_format($grandTotal, 0, ',', '.') ?></th>
-                                                            </tr>
-                                                        </tfoot> -->
                                                     </table>
                                                 </div>
                                             </div>
@@ -483,15 +463,29 @@
             });
 
             var tableYearly
-            tableYearly = $('#tableTahunan').DataTable({
+            tableYearly =  $('#tableTahunan').DataTable({
+                "ajax": {
+                    "url": '<?= site_url('debitnote/yearlyTable') ?>'
+                },
+                "bPaginate": false,
+                "info": false,
+                "searching": false
+            })
+
+            var tableYearlyDetail 
+            tableYearlyDetail = $('#tableTahunanDetail').DataTable({
                 "ajax": {
                     "url": '<?= site_url('debitnote/yearlyDetailTable') ?>'
                 },
+                "bPaginate": false,
+                "info": false,
+                "searching": false
             })
 
             $("#pilYear").change(function() {
                 table.destroy();
                 tableYearly.destroy()
+                tableYearlyDetail.destroy()
                 table = $('#tabelBulanan').DataTable({
                     "ajax": {
                         "url": '<?= site_url('debitnote/monthlyTable') ?>',
@@ -544,7 +538,20 @@
                     "sScrollXInner": "210%"
                 });
 
-                tableYearly = $('#tableTahunan').DataTable({
+                tableYearly =  $('#tableTahunan').DataTable({
+                    "ajax": {
+                        "url": '<?= site_url('debitnote/yearlyTable') ?>',
+                        "type": "POST",
+                        "data": {
+                            year: $(this).val()
+                        }
+                    },
+                    "bPaginate": false,
+                    "info": false,
+                    "searching": false
+                })
+                
+                tableYearlyDetail = $('#tableTahunanDetail').DataTable({
                     "ajax": {
                         "url": '<?= site_url('debitnote/yearlyDetailTable') ?>',
                         "type": "POST",
@@ -552,6 +559,9 @@
                             year: $(this).val()
                         }
                     },
+                    "bPaginate": false,
+                    "info": false,
+                    "searching": false
                 })
                 reload_table();
             });

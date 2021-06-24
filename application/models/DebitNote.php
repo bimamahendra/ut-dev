@@ -209,6 +209,8 @@ class DebitNote extends CI_Model{
     public function updateStatusMulti($param){
         if(!empty($param['CATATANREVERSE_DEBITNOTE'])){
             $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS'], 'CATATANREVERSE_DEBITNOTE' => $param['CATATANREVERSE_DEBITNOTE']]);
+        }else if(!empty($param['TGLBAYAR_DEBITNOTE'])){
+            $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS'], 'TGLBAYAR_DEBITNOTE' => $param['TGLBAYAR_DEBITNOTE']]);
         }else{
             $this->db->where_in('ID_DEBITNOTE', $param['ID_DEBITNOTES'])->update('DEBITNOTE', ['STAT_DEBITNOTE' => $param['STATUS']]);
         }
@@ -286,7 +288,7 @@ class DebitNote extends CI_Model{
         $yearsData  = array();
         foreach ($years as $item) {
             array_push($yearsData, $item->YEAR_REYEACTIVE);
-            $datas[$item->YEAR_REYEACTIVE] = $this->db->query('SELECT GRANDTOTAL_DEBITNOTE, TGLBAYAR_DEBITNOTE FROM DEBITNOTE WHERE TIPE_DEBITNOTE = "'.$tipeDebitnote.'" AND YEAR(TGLFAKTUR_DEBITNOTE) = "'.$item->YEAR_REYEACTIVE.'" AND (TGLBAYAR_DEBITNOTE IS NULL OR YEAR(TGLBAYAR_DEBITNOTE) = "'.date('Y').'") ')->result();
+            $datas[$item->YEAR_REYEACTIVE] = $this->db->query('SELECT GRANDTOTAL_DEBITNOTE, TGLBAYAR_DEBITNOTE FROM DEBITNOTE WHERE  STAT_DEBITNOTE IN ("4", "5", "6") AND TIPE_DEBITNOTE = "'.$tipeDebitnote.'" AND YEAR(TGLFAKTUR_DEBITNOTE) = "'.$item->YEAR_REYEACTIVE.'" AND (TGLBAYAR_DEBITNOTE IS NULL OR YEAR(TGLBAYAR_DEBITNOTE) = "'.date('Y').'") ')->result();
         }
         return ['debitnotes' => $datas, 'years' => $yearsData];
     }
@@ -302,7 +304,7 @@ class DebitNote extends CI_Model{
     public function getSumReportSummaryActive(){
         return $this->db->query('SELECT TAHUN_REPORTINGYEARLY , SUM(TARGET_REPORTINGYEARLY) AS TARGET_REPORTINGYEARLY, SUM(TOTAL_REPORTINGYEARLY) AS TOTAL_REPORTINGYEARLY
             FROM DEBITNOTE_REPORTING_YEARLY
-            WHERE TAHUNBAYAR_REPORTINGYEARLY = "'.date('Y').'"
+            WHERE TAHUNBAYAR_REPORTINGYEARLY = "'.((int)date('Y')-1).'"
             GROUP BY TAHUN_REPORTINGYEARLY 
             ORDER BY TAHUN_REPORTINGYEARLY ASC')->result();
     }

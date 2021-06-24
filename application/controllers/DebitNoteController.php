@@ -236,6 +236,7 @@ class DebitNoteController extends CI_Controller
     public function finish()
     {
         $datas = $_POST;
+        $datas['TGLBAYAR_DEBITNOTE'] = date('Y-m-d');
 
         $page = $datas['page'];
         unset($datas['page']);
@@ -248,8 +249,9 @@ class DebitNoteController extends CI_Controller
         $param                  = $_POST;
 
         $page   = $param['page'];
-        $datas['ID_DEBITNOTES'] = explode(',', $_POST['ID_DEBITNOTE']);
-        $datas['STATUS']        = '6';
+        $datas['ID_DEBITNOTES']         = explode(',', $_POST['ID_DEBITNOTE']);
+        $datas['STATUS']                = '6';
+        $datas['TGLBAYAR_DEBITNOTE']    = date('Y-m-d');
 
         $this->DebitNote->updateStatusMulti($datas);
         redirect('debitnote/' . $page);
@@ -583,6 +585,65 @@ class DebitNoteController extends CI_Controller
 
         echo $dataList;
     }
+    public function YearlyTable(){
+        isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
+
+        $reports    = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
+        $tahunTemp  = '';
+        $datas      = array();
+        $target     = 0;
+        $listrik    = 0;
+        $rent       = 0;
+        $service    = 0;
+        $air        = 0;
+        $telefon    = 0;
+        $others     = 0;
+        $others     = 0;
+
+        foreach ($reports as $item) {
+            if($item->TAHUNBAYAR_REPORTINGYEARLY != $tahunTemp){
+                $tahunTemp = $item->TAHUNBAYAR_REPORTINGYEARLY;
+                $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]            = array();
+                $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]['Year']    = $item->TAHUNBAYAR_REPORTINGYEARLY;
+            }
+            if($year == $item->TAHUNBAYAR_REPORTINGYEARLY){
+                $target += $item->TARGET_REPORTINGYEARLY;
+            }
+            $datas[$item->TAHUNBAYAR_REPORTINGYEARLY][$item->TIPE_REPORTINGYEARLY] = $item->TOTAL_REPORTINGYEARLY;        
+        }
+
+
+        foreach ($datas as $item) {
+            $listrik    += (!empty($item['Listrik']) ? $item['Listrik'] : 0);
+            $rent       += (!empty($item['Rent']) ? $item['Rent'] : 0);
+            $service    += (!empty($item['Service']) ? $item['Service'] : 0);
+            $air        += (!empty($item['Air']) ? $item['Air'] : 0);
+            $telefon    += (!empty($item['Telefon']) ? $item['Telefon'] : 0);
+            $others     += (!empty($item['Others']) ? $item['Others'] : 0);
+        }
+
+
+        $dataList =
+            '{
+                "data": [
+                    [
+
+                        "Rp. '.number_format($target, 0, ',', '.').'",
+                        "Rp. '.number_format($listrik, 0, ',', '.').'",
+                        "Rp. '.number_format($rent, 0, ',', '.').'",
+                        "Rp. '.number_format($service, 0, ',', '.').'",
+                        "Rp. '.number_format($air, 0, ',', '.').'",
+                        "Rp. '.number_format($telefon, 0, ',', '.').'",
+                        "Rp. '.number_format($others, 0, ',', '.').'",
+                        "Rp. '.number_format($listrik + $rent + $service + $air + $telefon + $others, 0, ',', '.').'"
+                    ]
+                ]
+            }';
+
+        echo $dataList;
+        // echo json_encode($datas);
+    }
+
     public function YearlyDetailTable()
     {
         isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
