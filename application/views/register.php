@@ -35,7 +35,7 @@
                             <input type="text" class="form-control" name="USER_USERS" placeholder="NRP" required>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" name="NOTELP_USERS" placeholder="Telepon" required>
+                            <input type="tel" class="form-control" name="NOTELP_USERS" placeholder="Telepon" required>
                         </div>
                         <div class="form-group">
                             <select class="custom-select" name="DEPT_USERS" required>

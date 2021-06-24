@@ -168,6 +168,9 @@
                     formatter: (val) => {
                         return val + ' %';
                     }
+                },
+                tooltip: {
+                    enabled: false
                 }
             },
 
@@ -229,6 +232,9 @@
                 title: {
                     display: true,
                     text: 'Sewa Bangunan'
+                },
+                tooltip: {
+                    enabled: false
                 }
             },
 
@@ -290,6 +296,9 @@
                 title: {
                     display: true,
                     text: 'Utility'
+                },
+                tooltip: {
+                    enabled: false
                 }
             },
 
@@ -351,6 +360,9 @@
                 title: {
                     display: true,
                     text: 'Others'
+                },
+                tooltip: {
+                    enabled: false
                 }
             },
 

@@ -25,7 +25,11 @@
     <link rel="icon" href="<?= base_url('assets/img/favicon/favicon-32x32.png'); ?>" sizes="32x32">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    
+
+    <!-- Page level plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0-rc.1/dist/chartjs-plugin-datalabels.min.js"></script>
+
 </head>
 
 <body id="page-top">

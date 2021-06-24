@@ -322,7 +322,7 @@
                                 legend: {
                                     display: true
                                 }
-                            } 
+                            }
                         }
                     });
                 }
@@ -346,7 +346,7 @@
                                     legend: {
                                         display: true
                                     }
-                                } 
+                                }
                             }
                         });
                     }
@@ -367,14 +367,14 @@
                                 legend: {
                                     labels: {
                                         filter: function(item, chart) {
-                                        return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
+                                            return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
                                         }
                                     }
                                 },
                                 tooltip: {
                                     mode: 'x'
                                 }
-                            }                            
+                            }
                         }
                     });
                 }
@@ -398,14 +398,14 @@
                                     legend: {
                                         labels: {
                                             filter: function(item, chart) {
-                                            return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
+                                                return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
                                             }
                                         }
                                     },
                                     tooltip: {
                                         mode: 'x'
                                     }
-                                }                                
+                                }
                             }
                         });
                     }

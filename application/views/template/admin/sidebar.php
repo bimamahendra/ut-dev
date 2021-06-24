@@ -3,8 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
-        <img src="<?= base_url('assets/img/utbm.png'); ?>" class="rounded mx-auto d-block" width="58">
-        <div class="sidebar-brand-text mx-1" style="font-size: 10px !important; text-align: left;">United&nbsp;Tractors Building&nbsp;Management</div>
+        <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
+        <div class="sidebar-brand-text mx-1" style="font-size: 14px !important;">United Tractors</div>
     </a>
 
     <!-- Divider -->
@@ -51,12 +51,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
+    <!-- <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('week'); ?>">
             <i class="fas fa-calendar-alt"></i>
             <span>Tabel Mingguan</span>
         </a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
