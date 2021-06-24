@@ -143,6 +143,7 @@ $route['debitnote/reverseMultiDN']          = 'DebitNoteController/reverseMultiD
 $route['debitnote/monthlyDNChart']          = 'DebitNoteController/MonthlyDNChart';
 $route['debitnote/paymentDNChart']          = 'DebitNoteController/PaymentDNChart';
 $route['debitnote/monthlyTable']            = 'DebitNoteController/MonthlyTable';
+$route['debitnote/yearlyDetailTable']       = 'DebitNoteController/YearlyDetailTable';
 
 // -- DebitNote Cron Job
 $route['debitnote/updateProgress']          = 'DebitNoteCronJobController/updateProgress';
