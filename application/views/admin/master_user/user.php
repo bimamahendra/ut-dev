@@ -111,7 +111,12 @@
             <form action="<?= site_url('user/store') ?>" enctype="multipart/form-data" method="post">
                 <div class="modal-body">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Nama" name="NAMA_USERS" required>
+                        <input type="text" class="form-control" placeholder="Nama Lengkap" name="NAMA_USERS" required>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="col">
+                        <input type="tel" class="form-control" placeholder="Telepon" name="NOTELP_USERS" required>
                     </div>
                 </div>
                 <div class="modal-body">
@@ -144,16 +149,28 @@
                     <div class="col">
                         <select class="custom-select" name="DIV_USERS" required>
                             <option value="" selected>Divisi</option>
-                            <option value="Project Management">Project Management</option>
-                            <option value="General Service & Maintenances Management">General Service & Maintenance Management</option>
-                            <option value="Budget, Asset & Building Management">Budget, Asset & Building Management</option>
+                            <option value="Corporate Finance">Corporate Finance</option>
+                            <option value="Corporate Huma Capital & Corpu">Corporate Huma Capital & Corpu</option>
+                            <option value="Corporate ESR, Security GA dan Communication">Corporate ESR, Security GA dan Communication</option>
+                            <option value="Procurement and Investment">Procurement and Investment</option>
+                            <option value="Corporate Audit">Corporate Audit</option>
+                            <option value="Group Legal">Group Legal</option>
+                            <option value="Digitalization and Differentation">Digitalization and Differentation</option>
+                            <option value="Cosporate Strategy and Technology">Cosporate Strategy and Technology</option>
+                            <option value="Service Division">Service Division</option>
+                            <option value="Parts Division">Parts Division</option>
+                            <option value="Truck Mining Operation">Truck Mining Operation</option>
+                            <option value="Sales Operation Division">Sales Operation Division</option>
+                            <option value="Truck Sales Operation">Truck Sales Operation</option>
+                            <option value="Marketing Division">Marketing Division</option>
+                            <option value="Board of Direction">Board of Direction</option>
                             <option value="Others">Others</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-body">
                     <div class="col">
-                        <input type="text" class="form-control" name="USER_USERS" placeholder="Username" required>
+                        <input type="text" class="form-control" name="USER_USERS" placeholder="NRP" required>
                     </div>
                 </div>
                 <div class="modal-body">
@@ -165,7 +182,7 @@
                 <div class="modal-body" style="padding-left:6%;padding-right:6%;">
                     <div class="col">
                         <input type="file" name="imageTtd" class="custom-file-input" id="image-source" onchange="previewImage();">
-                        <label class="custom-file-label" for="image-source">Unggah Tanda Tangan</label>
+                        <label class="custom-file-label" for="image-source">Upload Signature</label>
                     </div>
                 </div>                
                 <input type="hidden" name="STAT_USERS" value="1" />
