@@ -3,8 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
-        <img src="<?= base_url('assets/img/utbm_asli.png'); ?>" class="rounded mx-auto d-block" width="250">
-        <!-- <div class="sidebar-brand-text mx-1" style="font-size: 10px !important; text-align: left;">United&nbsp;Tractors Building&nbsp;Management</div> -->
+        <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
+        <div class="sidebar-brand-text mx-1" style="font-size: 14px !important;">United Tractors</div>
     </a>
 
     <!-- Divider -->
