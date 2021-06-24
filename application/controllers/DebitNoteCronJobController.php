@@ -58,18 +58,18 @@ class DebitNoteCronJobController extends CI_Controller {
 
     public function updateYearActive(){
         $year = $this->DebitNote->getYearSummary();
-        if((int)$year->YEAR_REYEACTIVE != (int)date('Y')){
+        if($year != null){  
+            if($year->YEAR_REYEACTIVE != date('Y')){
+                $this->DebitNote->insertYearSummary(); 
+            }
+        }else{
             $this->DebitNote->insertYearSummary(); 
         }
-    }
 
-    public function updateYearFinished(){
         $reportSum = $this->DebitNote->getSumReportSummaryActive();
         foreach ($reportSum as $item) {
             if($item->TARGET_REPORTINGYEARLY == $item->TOTAL_REPORTINGYEARLY){
                 $this->DebitNote->updateYearSummary(['YEAR_REYEACTIVE' => $item->TAHUN_REPORTINGYEARLY, 'ISACTIVE_REYEACTIVE' => 0]);
-            }else{
-                $this->DebitNote->updateYearSummary(['YEAR_REYEACTIVE' => $item->TAHUN_REPORTINGYEARLY, 'ISACTIVE_REYEACTIVE' => 1]);
             }
         }
     }
