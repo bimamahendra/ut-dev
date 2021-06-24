@@ -51,12 +51,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
+    <!-- <li class="nav-item active">
         <a class="nav-link" href="<?= site_url('week'); ?>">
             <i class="fas fa-calendar-alt"></i>
             <span>Tabel Mingguan</span>
         </a>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
