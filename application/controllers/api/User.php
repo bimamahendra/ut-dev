@@ -49,6 +49,7 @@ class User extends RestController {
                 $storeUser['NAMA_USERS']    = $param['namaLengkap'];
                 $storeUser['USER_USERS']    = $param['username'];
                 $storeUser['NOTELP_USERS']  = $param['telepon'];
+                $storeUser['ROLE_USERS']    = 'Staff';
                 $storeUser['DEPT_USERS']    = $param['departement'];
                 $storeUser['DIV_USERS']     = $param['division'];
                 $storeUser['PASS_USERS']    = hash('sha256', md5($param['password']));
