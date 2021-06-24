@@ -117,7 +117,6 @@
     </tr>
     <table>
 </div>
-<script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script>
     $('#filterStatus').change( function(){
         const basePage = '<?= site_url('tenant/')?>'
