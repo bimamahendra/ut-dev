@@ -27,6 +27,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
+                        <label for="inputTelp">Telepon</label>
+                        <input type="tel" class="form-control" value="<?= $dataUser[0]->NOTELP_USERS ?>" placeholder="Telepon" name="NOTELP_USERS" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label for="inputRole">Jabatan</label>
                         <select class="custom-select" name="ROLE_USERS" required>
                             <option value="">Jabatan</option>
@@ -57,18 +63,30 @@
                     <div class="form-group col-md-6">
                         <label for="inputDivisi">Divisi</label>
                         <select class="custom-select" name="DIV_USERS" required>
-                            <option value="">Divisi</option>
-                            <option value="Project Management" <?= $dataUser[0]->DIV_USERS == 'Project Management'? 'selected' : 'asd' ?>>Project Management</option>
-                            <option value="General Service & Maintenances Management" <?= $dataUser[0]->DIV_USERS == 'General Service & Maintenances Management'? 'selected' : 'asd' ?>>General Service & Maintenance</option>
-                            <option value="Budget, Asset & Building Management" <?= $dataUser[0]->DIV_USERS == 'Budget, Asset & Building Management'? 'selected' : 'asd' ?>>Budget, Asset & Building Management</option>
+                            <option value="">Divisi</option>                            
+                            <option value="Corporate Finance" <?= $dataUser[0]->DIV_USERS == 'Corporate Finance'? 'selected' : '' ?>>Corporate Finance</option>
+                            <option value="Corporate Huma Capital & Corpu" <?= $dataUser[0]->DIV_USERS == 'Corporate Huma Capital & Corpu'? 'selected' : '' ?>>Corporate Huma Capital & Corpu</option>
+                            <option value="Corporate ESR, Security GA dan Communication" <?= $dataUser[0]->DIV_USERS == 'Corporate ESR, Security GA dan Communication'? 'selected' : '' ?>>Corporate ESR, Security GA dan Communication</option>
+                            <option value="Procurement and Investment" <?= $dataUser[0]->DIV_USERS == 'Procurement and Investment'? 'selected' : '' ?>>Procurement and Investment</option>
+                            <option value="Corporate Audit" <?= $dataUser[0]->DIV_USERS == 'Corporate Audit'? 'selected' : '' ?>>Corporate Audit</option>
+                            <option value="Group Legal" <?= $dataUser[0]->DIV_USERS == 'Group Legal'? 'selected' : '' ?>>Group Legal</option>
+                            <option value="Digitalization and Differentation" <?= $dataUser[0]->DIV_USERS == 'Digitalization and Differentation'? 'selected' : '' ?>>Digitalization and Differentation</option>
+                            <option value="Cosporate Strategy and Technology" <?= $dataUser[0]->DIV_USERS == 'Cosporate Strategy and Technology'? 'selected' : '' ?>>Cosporate Strategy and Technology</option>
+                            <option value="Service Division" <?= $dataUser[0]->DIV_USERS == 'Service Division'? 'selected' : '' ?>>Service Division</option>
+                            <option value="Parts Division" <?= $dataUser[0]->DIV_USERS == 'Parts Division'? 'selected' : '' ?>>Parts Division</option>
+                            <option value="Truck Mining Operation" <?= $dataUser[0]->DIV_USERS == 'Truck Mining Operation'? 'selected' : '' ?>>Truck Mining Operation</option>
+                            <option value="Sales Operation Division" <?= $dataUser[0]->DIV_USERS == 'Sales Operation Division'? 'selected' : '' ?>>Sales Operation Division</option>
+                            <option value="Truck Sales Operation" <?= $dataUser[0]->DIV_USERS == 'Truck Sales Operation'? 'selected' : '' ?>>Truck Sales Operation</option>
+                            <option value="Marketing Division" <?= $dataUser[0]->DIV_USERS == 'Marketing Division'? 'selected' : '' ?>>Marketing Division</option>
+                            <option value="Board of Direction" <?= $dataUser[0]->DIV_USERS == 'Board of Direction'? 'selected' : '' ?>>Board of Direction</option>
                             <option value="Others" <?= $dataUser[0]->DIV_USERS == 'Others'? 'selected' : '' ?>>Others</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputUsername">Username</label>
-                        <input type="text" value="<?= $dataUser[0]->USER_USERS ?>" class="form-control" name="USER_USERS" placeholder="Username" required>
+                        <label for="inputUsername">NRP</label>
+                        <input type="text" value="<?= $dataUser[0]->USER_USERS ?>" class="form-control" name="USER_USERS" placeholder="NRP" required>
                     </div>
                 </div>
                 <!-- <div class="form-row">
