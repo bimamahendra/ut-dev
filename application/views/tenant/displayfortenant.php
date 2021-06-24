@@ -34,10 +34,11 @@
                 <td style="font-size:20px;"> 
                     <div class="dropdown">
                         <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo ($stat == '1' ? 'Outstanding Payment' : 'Finished Payment') ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" value="1" <?= $stat == '1' ? 'selected' : ''?>>Outstanding Payment</a>
-                            <a class="dropdown-item" value="2" <?= $stat == '2' ? 'selected' : ''?>>Finished Payment</a>
+                            <a href="<?= site_url('tenant/'.$company->ID_TENANT.'/1') ?>" class="dropdown-item" value="1">Outstanding Payment</a>
+                            <a href="<?= site_url('tenant/'.$company->ID_TENANT.'/2') ?>" class="dropdown-item" value="2">Finished Payment</a>
                         </div>
                     </div>
                 </td>
@@ -128,8 +129,8 @@
     
     $(document).ready(function() {
                         $('#tableDisplayfortenant').dataTable({
-                            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                            "iDisplayLength": 5
+                            pageLength : 5,
+                            lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']]
                         });
     } );
 </script>
