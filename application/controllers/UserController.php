@@ -73,7 +73,8 @@ class UserController extends CI_Controller
 
             $param                  = $_POST;
             $param['ID_USERS']      = substr(md5(time()), 0, 8);
-            $param['PASS_USERS']    = hash('sha256', md5($param['PASS_USERS']));        
+            $param['PASS_USERS']    = hash('sha256', md5($param['PASS_USERS']));
+            $param['ROLE_USERS']    = 'Staff';        
             $param['PATH_TTD']      = $imageTtd;
 
             $this->User->insert($param);
