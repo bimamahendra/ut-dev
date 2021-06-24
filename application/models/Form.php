@@ -75,12 +75,12 @@ class Form extends CI_Model{
         return $result->row()->JML_PENGGUNA;
     }
     public function getTransDone(){
-        $sql = "SELECT COUNT(ID_TRANS) as TRANS_DONE FROM TRANSACTION WHERE FLAG_TRANS = '2'";
+        $sql = "SELECT COUNT(ID_TRANS) as TRANS_DONE FROM TRANSACTION WHERE STAT_TRANS = '2'";
         $result = $this->db->query($sql);
         return $result->row()->TRANS_DONE;
     }
     public function getTransNot(){
-        $sql = "SELECT COUNT(ID_TRANS) as TRANS_NOT FROM TRANSACTION WHERE FLAG_TRANS = '1'";
+        $sql = "SELECT COUNT(ID_TRANS) as TRANS_NOT FROM TRANSACTION WHERE STAT_TRANS = '1'";
         $result = $this->db->query($sql);
         return $result->row()->TRANS_NOT;
     }
