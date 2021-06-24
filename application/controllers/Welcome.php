@@ -221,5 +221,6 @@ class Welcome extends CI_Controller
 	{
 		$this->load->view('template/tenant/header');
 		$this->load->view('tenant/displayfortenant');
+		$this->load->view('template/footer');
 	}
 }
