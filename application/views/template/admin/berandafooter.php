@@ -1,3 +1,16 @@
+<?php
+    $cSelesai = 0;
+    $cProgres = 0;
+    if (!empty($transDone)) {
+        $cSelesai = (float) ($transDone / ($transDone + $transNot) * 100);
+        $cSelesai = round($cSelesai, 0);
+    };
+    if (!empty($transNot)) {
+        $cProgres = (float) ($transNot / ($transDone + $transNot) * 100);
+        $cProgres = round($cProgres, 0);
+    };
+?>
+
 <script>
     var transaksiChart = document.getElementById("transaksiChart");
     var transaksi = new Chart(transaksiChart, {
@@ -6,7 +19,7 @@
         data: {
             labels: ["Belum Selesai", "Selesai"],
             datasets: [{
-                data: [20, 80],
+                data: [<?= $cProgres ?>, <?= $cSelesai ?>],
                 backgroundColor: ['rgba(237, 42, 33, 1)', 'rgba(49, 176, 87, 1)'],
                 datalabels: {
                     anchor: 'center'

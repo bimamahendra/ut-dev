@@ -64,4 +64,24 @@ class Form extends CI_Model{
 
         return true;
     }
+    public function getJmlForm(){
+        $sql = "SELECT COUNT(ID_MAPPING) as JML_FORM FROM MAPPING";
+        $result = $this->db->query($sql);
+        return $result->row()->JML_FORM;
+    }
+    public function getJmlUser(){
+        $sql = "SELECT COUNT(ID_USERS) as JML_PENGGUNA FROM USERS";
+        $result = $this->db->query($sql);
+        return $result->row()->JML_PENGGUNA;
+    }
+    public function getTransDone(){
+        $sql = "SELECT COUNT(ID_TRANS) as TRANS_DONE FROM TRANSACTION WHERE FLAG_TRANS = '2'";
+        $result = $this->db->query($sql);
+        return $result->row()->TRANS_DONE;
+    }
+    public function getTransNot(){
+        $sql = "SELECT COUNT(ID_TRANS) as TRANS_NOT FROM TRANSACTION WHERE FLAG_TRANS = '1'";
+        $result = $this->db->query($sql);
+        return $result->row()->TRANS_NOT;
+    }
 }
