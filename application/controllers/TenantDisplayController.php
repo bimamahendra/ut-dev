@@ -10,6 +10,7 @@
                 $datas['company']       = $this->TenantDisplay->get(['ID_TENANT' => $id]);          
                 $datas['debitnotes']    = $this->TenantDisplay->getAll(['ID_TENANT' => $id], $stat == '1' ? ['4', '5'] : ['6']);
                 $datas['stat']          = $stat;
+                $this->load->view('template/tenant/header');
                 $this->load->view('tenant/displayfortenant', $datas);
             }
         }
