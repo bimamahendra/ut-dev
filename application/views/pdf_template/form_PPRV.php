@@ -401,7 +401,7 @@
 		</table>
 	</div>
 	<br>
-	<table>
+	<table style="table-layout: fixed;">
 		<tr>
 			<td style="vertical-align: top;" width="50%">
 				<div>
