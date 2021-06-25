@@ -591,7 +591,7 @@ class DebitNoteController extends CI_Controller
         $reports    = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
         $tahunTemp  = '';
         $datas      = array();
-        $target     = 0;
+        $targetTotal= 0;
         $listrik    = 0;
         $rent       = 0;
         $service    = 0;
@@ -606,9 +606,7 @@ class DebitNoteController extends CI_Controller
                 $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]            = array();
                 $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]['Year']    = $item->TAHUNBAYAR_REPORTINGYEARLY;
             }
-            if($year == $item->TAHUNBAYAR_REPORTINGYEARLY){
-                $target += $item->TARGET_REPORTINGYEARLY;
-            }
+            $targetTotal += $item->TARGETTOTAL_REPORTINGYEARLY;
             $datas[$item->TAHUNBAYAR_REPORTINGYEARLY][$item->TIPE_REPORTINGYEARLY] = $item->TOTAL_REPORTINGYEARLY;        
         }
 
@@ -628,7 +626,7 @@ class DebitNoteController extends CI_Controller
                 "data": [
                     [
 
-                        "Rp. '.number_format($target, 0, ',', '.').'",
+                        "Rp. '.number_format($targetTotal, 0, ',', '.').'",
                         "Rp. '.number_format($listrik, 0, ',', '.').'",
                         "Rp. '.number_format($rent, 0, ',', '.').'",
                         "Rp. '.number_format($service, 0, ',', '.').'",
