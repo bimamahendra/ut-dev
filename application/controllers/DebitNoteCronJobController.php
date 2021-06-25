@@ -27,6 +27,7 @@ class DebitNoteCronJobController extends CI_Controller {
         foreach ($res['years'] as $item) {
             $reports[$item]['TAHUN_REPORTINGYEARLY']        = $item;
             $reports[$item]['TIPE_REPORTINGYEARLY']         = $tipeDebitnote;
+            $reports[$item]['TARGETTOTAL_REPORTINGYEARLY']  = $this->DebitNote->getTargetTotalDebitNote(['tipeDebitNote' => $tipeDebitnote, 'tahun' => $item])->TOTAL;
             $reports[$item]['TARGET_REPORTINGYEARLY']       = 0;
             $reports[$item]['TOTAL_REPORTINGYEARLY']        = 0;
             $reports[$item]['TAHUNBAYAR_REPORTINGYEARLY']   = date('Y');

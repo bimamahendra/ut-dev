@@ -498,6 +498,283 @@
             }
         }
     });
+
+    $(document).ready(function() {
+        $.ajax({
+            url: "<?= site_url('debitnote/monthlyDNChart') ?>",
+            type: "post",
+            success: function(bar_graph) {
+                $("#divGraph").html(bar_graph);
+                var monGraphData = JSON.parse($("#graph").data("settings"));
+                $("#graph").chart = new Chart($("#graph"), {
+                    type: "bar",
+                    data: monGraphData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#pilYear").change(function() {
+            $.ajax({
+                url: "<?= site_url('debitnote/monthlyDNChart') ?>",
+                type: "post",
+                data: {
+                    year: $(this).val()
+                },
+                success: function(bar_graph) {
+                    $("#divGraph").html(bar_graph);
+                    var monGraphData = JSON.parse($("#graph").data("settings"));
+                    $("#graph").chart = new Chart($("#graph"), {
+                        type: "bar",
+                        data: monGraphData,
+                        options: {
+                            plugins: {
+                                legend: {
+                                    display: true
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        $.ajax({
+            url: "<?= site_url('debitnote/paymentDNChart') ?>",
+            type: "post",
+            success: function(pay_graph) {
+                $("#paymentRecGraph").html(pay_graph);
+                var graphData = JSON.parse($("#payGraph").data("settings"));
+                $("#payGraph").chart = new Chart($("#payGraph"), {
+                    type: "bar",
+                    data: graphData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    filter: function(item, chart) {
+                                        return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                mode: 'x'
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#pilYear").change(function() {
+            $.ajax({
+                url: "<?= site_url('debitnote/paymentDNChart') ?>",
+                type: "post",
+                data: {
+                    year: $(this).val()
+                },
+                success: function(pay_graph) {
+                    $("#paymentRecGraph").html(pay_graph);
+                    var graphData = JSON.parse($("#payGraph").data("settings"));
+                    $("#payGraph").chart = new Chart($("#payGraph"), {
+                        type: "bar",
+                        data: graphData,
+                        options: {
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        filter: function(item, chart) {
+                                            return !item.text.includes('Listrik Belum Terbayar') && !item.text.includes('Rent Belum Terbayar') && !item.text.includes('Service Belum Terbayar') && !item.text.includes('Air Belum Terbayar') && !item.text.includes('Telepon Belum Terbayar') && !item.text.includes('Others Belum Terbayar');
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    mode: 'x'
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        var table;
+
+        table = $('#tabelBulanan').DataTable({
+            "ajax": {
+                "url": '<?= site_url('debitnote/monthlyTable') ?>'
+            },
+            "aoColumns": [{
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                },
+                {
+                    sWidth: '7%'
+                }
+            ],
+            "sScrollX": "100%",
+            "sScrollXInner": "210%",
+            "searching": false,
+            "info": false,
+            "bPaginate": false
+        });
+
+        var tableYearly
+        tableYearly =  $('#tableTahunan').DataTable({
+            "ajax": {
+                "url": '<?= site_url('debitnote/yearlyTable') ?>'
+            },
+            "bPaginate": false,
+            "info": false,
+            "searching": false
+        })
+
+        var tableYearlyDetail 
+        tableYearlyDetail = $('#tableTahunanDetail').DataTable({
+            "ajax": {
+                "url": '<?= site_url('debitnote/yearlyDetailTable') ?>'
+            },
+            "bPaginate": false,
+            "info": false,
+            "searching": false
+        })
+
+        $("#pilYear").change(function() {
+            table.destroy();
+            tableYearly.destroy()
+            tableYearlyDetail.destroy()
+            table = $('#tabelBulanan').DataTable({
+                "ajax": {
+                    "url": '<?= site_url('debitnote/monthlyTable') ?>',
+                    "type": "POST",
+                    "data": {
+                        year: $(this).val()
+                    }
+                },
+                "aoColumns": [{
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    },
+                    {
+                        sWidth: '7%'
+                    }
+                ],
+                "sScrollX": "100%",
+                "sScrollXInner": "210%",
+                "bPaginate": false,
+                "info": false,
+                "searching": false
+            });
+
+            tableYearly =  $('#tableTahunan').DataTable({
+                "ajax": {
+                    "url": '<?= site_url('debitnote/yearlyTable') ?>',
+                    "type": "POST",
+                    "data": {
+                        year: $(this).val()
+                    }
+                },
+                "bPaginate": false,
+                "info": false,
+                "searching": false
+            })
+            
+            tableYearlyDetail = $('#tableTahunanDetail').DataTable({
+                "ajax": {
+                    "url": '<?= site_url('debitnote/yearlyDetailTable') ?>',
+                    "type": "POST",
+                    "data": {
+                        year: $(this).val()
+                    }
+                },
+                "bPaginate": false,
+                "info": false,
+                "searching": false
+            })
+            reload_table();
+        });
+
+        function reload_table() {
+            table.ajax.reload(null, false);
+        }
+
+        $("#btnCollapse").click(function() {
+            if ($(this).hasClass("collapsed"))
+                $(this).text("Hide All");
+            else
+                $(this).text("Show All");
+        });
+    });
 </script>
 </body>
 

@@ -127,17 +127,19 @@ class DebitNote extends CI_Model{
         return $result;
     }
     public function getmonthlydn($param){
-        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN 
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLFAKTUR_DEBITNOTE) as BULAN 
         FROM DEBITNOTE WHERE YEAR(TGLFAKTUR_DEBITNOTE) = '$param' AND 
-        (STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6)
-        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        (STAT_DEBITNOTE = 4 OR STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6)
+        GROUP BY MONTH(TGLFAKTUR_DEBITNOTE)";
         $result = $this->db->query($sql)->result();
         return $result;
     }
     public function getBulanFinishDN($param){
-        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLPESANAN_DEBITNOTE) as BULAN
-        FROM DEBITNOTE WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = '$param'
-        GROUP BY MONTH(TGLPESANAN_DEBITNOTE)";
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL, MONTH(TGLBAYAR_DEBITNOTE) as BULAN
+        FROM DEBITNOTE 
+        WHERE STAT_DEBITNOTE = 6 AND YEAR(TGLFAKTUR_DEBITNOTE) = '".$param."'
+        GROUP BY MONTH(TGLBAYAR_DEBITNOTE)
+        ORDER BY MONTH(TGLBAYAR_DEBITNOTE) ASC";
         $result = $this->db->query($sql)->result();
         return $result;
     }
@@ -307,6 +309,12 @@ class DebitNote extends CI_Model{
             WHERE TAHUNBAYAR_REPORTINGYEARLY = "'.((int)date('Y')-1).'"
             GROUP BY TAHUN_REPORTINGYEARLY 
             ORDER BY TAHUN_REPORTINGYEARLY ASC')->result();
+    }
+
+    public function getTargetTotalDebitNote($param){
+        return $this->db->query("SELECT SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
+        FROM DEBITNOTE WHERE YEAR(TGLFAKTUR_DEBITNOTE) = '".$param['tahun']."' AND TIPE_DEBITNOTE = '".$param['tipeDebitNote']."' AND
+        (STAT_DEBITNOTE = 4 OR STAT_DEBITNOTE = 5 OR STAT_DEBITNOTE = 6)")->row();
     }
    
     public function insertReportSummary($param){
