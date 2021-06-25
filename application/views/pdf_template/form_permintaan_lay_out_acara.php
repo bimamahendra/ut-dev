@@ -6,12 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FORM PERMINTAAN LAY OUT ACARA</title>
 	<style>
+		.watermark {
+			z-index: 999;
+		}
+
 		.watermark::before {
 			position: absolute;
 			top: 35%;
 			left: 10%;
 			content: "General Affairs Department";
-			z-index: 999;
 			font-size: 80px;
 			transform: rotate(-30deg);
 			color: rgba(0, 0, 0, .15);
@@ -264,7 +267,7 @@
 				<tr>
 					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">1</td>
 					<td class="tg-5r9a" colspan="3" style="text-align: center;">
-						<img src="<?= $list[0]->IMG_LAYOUT ?>" width="300px" style="z-index: -1;position: relative;">
+						<img src="<?= $list[0]->IMG_LAYOUT ?>" width="300px">
 					</td>
 					<td class="tg-5r9a"><?= $list[0]->KET_LAYOUT ?></td>
 				</tr>
