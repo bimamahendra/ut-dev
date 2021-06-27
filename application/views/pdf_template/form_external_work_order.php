@@ -205,13 +205,13 @@
 	<div>
 		<table style="font-size: 14px;">
 			<tr>
-				<td><b>Di instruksikan kepada</b></td>
+				<td>Di instruksikan kepada</td>
 				<td>: <?= $list[0]->INTRUKSIKEPADA_EWO ?></td>
 				<td>Reg.No.</td>
 				<td>: <?= $list[0]->REG_EWO ?>/2012.(fill by GA)</td>
 			</tr>
 			<tr>
-				<td><b>Instruksi Dari</b></td>
+				<td>Instruksi Dari</td>
 				<td style="width: 200px;">: <?= $list[0]->INTRUKSIDARI_EWO ?></td>
 				<td>Request Date</td>
 				<?php
@@ -222,13 +222,13 @@
 				?>
 			</tr>
 			<tr>
-				<td><b>Dept/ Div</b></td>
+				<td>Dept/ Div</td>
 				<td>: <?= $list[0]->DEPTDIV_EWO ?></td>
 				<td>Pages</td>
 				<td>: <?= $list[0]->PAGES_EWO ?></td>
 			</tr>
 			<tr>
-				<td><b>Pekerjaan</b></td>
+				<td>Pekerjaan</td>
 				<td>: <?= $list[0]->PEKERJAAN_EWO ?></td>
 				<td>CC</td>
 				<td>: <?= $list[0]->CC_EWO ?></td>
