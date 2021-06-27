@@ -454,9 +454,7 @@
 						<tr>
 							<td style="width: 7%"><b>Catatan</b></td>
 							<td style="width: 0%"><b>:</b></td>
-							<td>
-								<?= $list[0]->CATATAN_POND ?>
-							</td>
+							<td><?= $list[0]->CATATAN_POND ?></td>
 						</tr>
 						<!-- <tr>
 						<td style="width: 7%"><b></b></td>
