@@ -149,7 +149,7 @@
 	</div>
 	<br>
 	<div style="text-align:center">
-		<h4>FORM PEMBELIAN SNACK</h4>
+		<h4><?= $title_pdf ?></h4>
 	</div>
 	<br />
 	<div>
