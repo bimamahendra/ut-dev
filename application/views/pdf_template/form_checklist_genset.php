@@ -559,7 +559,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-regular-sm"><input type="checkbox" checked> : OK</td>
+                    <td class="text-regular-sm">V : OK</td>
                     <td class="text-regular-sm bg-grey text-align-center border-1">PROBLEM IDENTIFICATION</td>
                     <td class="text-regular-sm bg-grey text-align-center border-1">ROOT CAUSE</td>
                     <td class="text-regular-sm bg-grey text-align-center border-1">CORRECTIVE ACTION</td>
