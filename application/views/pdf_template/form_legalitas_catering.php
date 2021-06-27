@@ -252,7 +252,7 @@
 		</table>
 	</div>
 	<div style="text-align:center;margin-bottom: 8px;">
-		<h5>SYARAT – SYARAT LEGALITAS CATERING YANG DI SURVEY</h5>
+		<h5><?= $title_pdf ?></h5>
 	</div>
 	<div>
 		<table style="width:80%; text-align:left;font-size: 12px;">
