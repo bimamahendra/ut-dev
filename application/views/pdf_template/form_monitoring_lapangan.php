@@ -323,12 +323,12 @@
 					echo '
 							<tr>
 								<td class="tg-5r9a" style="text-align:center">6</td>
-								<td class="tg-5r9a">' . date_format($date6, 'd-m-Y') . '</td>
-								<td class="tg-5r9a">' . $order[5] . '</td>
-								<td class="tg-5r9a">' . $bawa[5] . '</td>
-								<td class="tg-5r9a">' . $kupon[5] . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . date_format($date6, 'd-m-Y') . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $order[5] . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $bawa[5] . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $kupon[5] . '</td>
 								<td class="tg-5r9a" style="text-align: center;"><img src="' . $user->PATH_TTD . '" width="50" height="50" /></td>
-								<td class="tg-5r9a">' . $app0 . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $app0 . '</td>
 								<td class="tg-5r9a" style="text-align: center;">...</td>
 							</tr>
 						';
@@ -339,13 +339,13 @@
 					echo '
 							<tr>
 								<td class="tg-5r9a" style="text-align:center">6</td>
-								<td class="tg-5r9a">' . date_format($date7, 'd-m-Y') . '</td>
-								<td class="tg-5r9a">' . $order[6] . '</td>
-								<td class="tg-5r9a">' . $bawa[6] . '</td>
-								<td class="tg-5r9a">' . $kupon[6] . '</td>
-								<td class="tg-5r9a"><img src="' . $user->PATH_TTD . '" width="50" height="50" /></td>
-								<td class="tg-5r9a">' . $app0 . '</td>
-								<td class="tg-5r9a">...</td>
+								<td class="tg-5r9a" style="text-align:center">' . date_format($date7, 'd-m-Y') . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $order[6] . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $bawa[6] . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $kupon[6] . '</td>
+								<td class="tg-5r9a" style="text-align:center"><img src="' . $user->PATH_TTD . '" width="50" height="50" /></td>
+								<td class="tg-5r9a" style="text-align:center">' . $app0 . '</td>
+								<td class="tg-5r9a" style="text-align:center">...</td>
 							</tr>
 						';
 				}
