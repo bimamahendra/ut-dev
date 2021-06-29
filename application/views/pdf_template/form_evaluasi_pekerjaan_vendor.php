@@ -397,7 +397,7 @@
 			$date = date_create($list[0]->TGLOUT_EVALUASI);
 			echo '
 					<tr>
-						<td class="thd-tha" style="text-align:center;" colspan="3">Jakarta, ' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y') . '</td>
+						<td class="thd-tha" style="text-align:right;" colspan="3">Jakarta, ' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y') . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					</tr>
 				';
 			?>
