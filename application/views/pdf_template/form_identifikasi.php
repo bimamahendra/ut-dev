@@ -9,7 +9,7 @@
 		.watermark::before {
 			position: absolute;
 			top: 35%;
-			left: 18%;
+			left: 23%;
 			content: "General Affairs Department";
 			z-index: 99;
 			font-size: 80px;
@@ -104,7 +104,6 @@
 		.tp {
 			border: 1px solid black;
 			border-collapse: collapse;
-			width: 100%;
 			text-align: left;
 			font-size: 13px;
 			table-layout: fixed;
@@ -114,7 +113,6 @@
 			border: 1px solid black;
 			padding: 3px;
 			border-collapse: collapse;
-			width: 100%;
 			text-align: left;
 		}
 
@@ -122,7 +120,6 @@
 			padding: 3px;
 			border: 1px solid black;
 			border-collapse: collapse;
-			width: 100%;
 			text-align: left;
 		}
 
