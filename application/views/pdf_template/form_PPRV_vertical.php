@@ -140,6 +140,22 @@
             line-height: 1.8em;
         }
 
+        .watermark-next {
+            z-index: 999;
+            position: absolute;
+            top: 35%;
+            left: 10%;
+            text-align: center;
+            line-height: -200px;
+        }
+
+        .watermark-next::before {
+            content: "General Affairs \00000a Department";
+            font-size: 80px;
+            transform: rotate(-30deg);
+            color: rgba(0, 0, 0, .15);
+        }
+
         .wrapper-page {
             page-break-after: always;
         }
@@ -345,6 +361,9 @@
         </table>
     </div>
     <div class="wrapper-page">
+        <div style="width: 1000px; height: auto;padding-left: 50px;position: relative;">
+            <div class="watermark-next"></div>
+        </div>
         <table class="table-layout-fixed w-100 text-regular-sm border-collapse mb-max">
             <tr>
                 <td class="no-border p-min" colspan="3">
