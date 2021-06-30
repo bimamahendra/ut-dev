@@ -588,52 +588,35 @@ class DebitNoteController extends CI_Controller
     public function YearlyTable(){
         isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
 
-        $reports    = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
-        $tahunTemp  = '';
-        $datas      = array();
-        $targetTotal= 0;
-        $listrik    = 0;
-        $rent       = 0;
-        $service    = 0;
-        $air        = 0;
-        $telefon    = 0;
-        $others     = 0;
-        $others     = 0;
+        $reports            = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
+        $tahunTemp          = '';
+        $datas['Listrik']   = 0;
+        $datas['Rent']      = 0;
+        $datas['Service']   = 0;
+        $datas['Air']       = 0;
+        $datas['Telefon']   = 0;
+        $datas['Others']    = 0;
+        
 
         foreach ($reports as $item) {
-            if($item->TAHUNBAYAR_REPORTINGYEARLY != $tahunTemp){
-                $tahunTemp = $item->TAHUNBAYAR_REPORTINGYEARLY;
-                $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]            = array();
-                $datas[$item->TAHUNBAYAR_REPORTINGYEARLY]['Year']    = $item->TAHUNBAYAR_REPORTINGYEARLY;
-            }
-            $targetTotal += $item->TARGETTOTAL_REPORTINGYEARLY;
-            $datas[$item->TAHUNBAYAR_REPORTINGYEARLY][$item->TIPE_REPORTINGYEARLY] = $item->TOTAL_REPORTINGYEARLY;        
+            if($year == $item->TAHUNBAYAR_REPORTINGYEARLY){
+                $datas[$item->TIPE_REPORTINGYEARLY] += $item->TARGET_REPORTINGYEARLY;
+            }  
         }
-
-
-        foreach ($datas as $item) {
-            $listrik    += (!empty($item['Listrik']) ? $item['Listrik'] : 0);
-            $rent       += (!empty($item['Rent']) ? $item['Rent'] : 0);
-            $service    += (!empty($item['Service']) ? $item['Service'] : 0);
-            $air        += (!empty($item['Air']) ? $item['Air'] : 0);
-            $telefon    += (!empty($item['Telefon']) ? $item['Telefon'] : 0);
-            $others     += (!empty($item['Others']) ? $item['Others'] : 0);
-        }
-
 
         $dataList =
             '{
                 "data": [
                     [
 
-                        "Rp. '.number_format($targetTotal, 0, ',', '.').'",
-                        "Rp. '.number_format($listrik, 0, ',', '.').'",
-                        "Rp. '.number_format($rent, 0, ',', '.').'",
-                        "Rp. '.number_format($service, 0, ',', '.').'",
-                        "Rp. '.number_format($air, 0, ',', '.').'",
-                        "Rp. '.number_format($telefon, 0, ',', '.').'",
-                        "Rp. '.number_format($others, 0, ',', '.').'",
-                        "Rp. '.number_format($listrik + $rent + $service + $air + $telefon + $others, 0, ',', '.').'"
+                        "'.$year.'",
+                        "Rp. '.number_format($datas['Listrik'], 0, ',', '.').'",
+                        "Rp. '.number_format($datas['Rent'], 0, ',', '.').'",
+                        "Rp. '.number_format($datas['Service'], 0, ',', '.').'",
+                        "Rp. '.number_format($datas['Air'], 0, ',', '.').'",
+                        "Rp. '.number_format($datas['Telefon'], 0, ',', '.').'",
+                        "Rp. '.number_format($datas['Others'], 0, ',', '.').'",
+                        "Rp. '.number_format($datas['Listrik'] + $datas['Rent'] + $datas['Service'] + $datas['Air'] + $datas['Telefon'] + $datas['Others'], 0, ',', '.').'"
                     ]
                 ]
             }';
@@ -658,15 +641,29 @@ class DebitNoteController extends CI_Controller
             $datas[$item->TAHUNBAYAR_REPORTINGYEARLY][$item->TIPE_REPORTINGYEARLY] = $item->TOTAL_REPORTINGYEARLY;        
         }
 
-        $dataTable = array();
+        $totListrik = 0;
+        $totRent    = 0;
+        $totService = 0;
+        $totAir     = 0;
+        $totTelefon = 0;
+        $totOthers  = 0;
+        $totGrand   = 0;
+        $dataTable  = array();
         foreach ($datas as $item) {
-            $listrik    = (!empty($item['Listrik']) ? $item['Listrik'] : '0');
-            $rent       = (!empty($item['Rent']) ? $item['Rent'] : '0');
-            $service    = (!empty($item['Service']) ? $item['Service'] : '0');
-            $air        = (!empty($item['Air']) ? $item['Air'] : '0');
-            $telefon    = (!empty($item['Telefon']) ? $item['Telefon'] : '0');
-            $others      = (!empty($item['Others']) ? $item['Others'] : '0');
-            $grandTotal = (int)$listrik + (int)$rent + (int)$service + (int)$air + (int)$telefon + (int)$others;
+            $listrik        = (!empty($item['Listrik']) ? $item['Listrik'] : '0');
+            $totListrik     += (!empty($item['Listrik']) ? $listrik : '0');
+            $rent           = (!empty($item['Rent']) ? $item['Rent'] : '0');
+            $totRent        += (!empty($item['Listrik']) ? $rent : '0');
+            $service        = (!empty($item['Service']) ? $item['Service'] : '0');
+            $totService     += (!empty($item['Listrik']) ? $service : '0');
+            $air            = (!empty($item['Air']) ? $item['Air'] : '0');
+            $totAir         += (!empty($item['Listrik']) ? $air : '0');
+            $telefon        = (!empty($item['Telefon']) ? $item['Telefon'] : '0');
+            $totTelefon     += (!empty($item['Listrik']) ? $telefon : '0');
+            $others         = (!empty($item['Others']) ? $item['Others'] : '0');
+            $totOthers      += (!empty($item['Listrik']) ? $others : '0');
+            $grandTotal     = (int)$listrik + (int)$rent + (int)$service + (int)$air + (int)$telefon + (int)$others;
+            $totGrand       += $grandTotal;
             
             $temp = '
                 [
@@ -683,6 +680,21 @@ class DebitNoteController extends CI_Controller
             ';
             array_push($dataTable, $temp);
         }
+
+        $total = '
+            [
+
+                "<b>Total</b>",
+                "<b>Rp. '.number_format($totListrik, 0, ',', '.').'</b>",
+                "<b>Rp. '.number_format($totRent, 0, ',', '.').'</b>",
+                "<b>Rp. '.number_format($totService, 0, ',', '.').'</b>",
+                "<b>Rp. '.number_format($totAir, 0, ',', '.').'</b>",
+                "<b>Rp. '.number_format($totTelefon, 0, ',', '.').'</b>",
+                "<b>Rp. '.number_format($totOthers, 0, ',', '.').'</b>",
+                "<b>Rp. '.number_format($totGrand, 0, ',', '.').'</b>"
+            ]
+        ';
+        array_push($dataTable, $total);
 
 
         $dataList =
