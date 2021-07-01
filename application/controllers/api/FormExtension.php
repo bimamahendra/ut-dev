@@ -15,8 +15,8 @@ class FormExtension extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idExtension    = 'EXT_'.substr(md5(time()."nonasset"), 0, 16);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idExtension    = 'EXT_'.md5(time()."extension");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

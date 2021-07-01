@@ -15,8 +15,8 @@ class FormLayout extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idLayout       = 'LAYOUT_'.substr(md5(time()."layout"), 0, 13);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idLayout       = 'LAYOUT_'.md5(time()."layout");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

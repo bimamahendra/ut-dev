@@ -14,8 +14,8 @@ class FormICAK extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idICAK         = 'ICAK_'.substr(md5(time()."icak"), 0, 15);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idICAK         = 'ICAK_'.md5(time()."icak");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

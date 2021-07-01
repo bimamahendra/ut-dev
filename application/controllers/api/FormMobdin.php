@@ -15,8 +15,8 @@ class FormMobdin extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idMobdin       = 'MOBDIN_'.substr(md5(time()."snack"), 0, 13);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idMobdin       = 'MOBDIN_'.md5(time()."mobdin");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

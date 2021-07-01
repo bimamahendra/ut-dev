@@ -15,8 +15,8 @@ class FormMobpri extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idMobpri       = 'MOBPRI_'.substr(md5(time()."mobpri"), 0, 13);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idMobpri       = 'MOBPRI_'.md5(time()."mobpri");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

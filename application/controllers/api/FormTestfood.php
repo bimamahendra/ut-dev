@@ -15,8 +15,8 @@ class FormTestfood extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idTestfood     = 'TESTFOOD_'.substr(md5(time()."testfood"), 0, 14);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idTestfood     = 'TESTFOOD_'.md5(time()."testfood");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

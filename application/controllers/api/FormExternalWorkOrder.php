@@ -15,8 +15,8 @@ class FormExternalWorkOrder extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idEwo          = 'EWO_'.substr(md5(time()."ewo"), 0, 16);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idEwo          = 'EWO_'.md5(time()."ewo");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];
