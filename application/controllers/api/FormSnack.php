@@ -41,8 +41,8 @@ class FormSnack extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idSnack        = 'SNACK_'.substr(md5(time()."snack"), 0, 14);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idSnack        = 'SNACK_'.md5(time()."snack");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

@@ -15,8 +15,8 @@ class FormIWO extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idIWO = 'IWO_'.substr(md5(time()."IWO"), 0, 16);
+                $idTrans    = 'TRANS_'.md5(time()."trans");
+                $idIWO      = 'IWO_'.md5(time()."IWO");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

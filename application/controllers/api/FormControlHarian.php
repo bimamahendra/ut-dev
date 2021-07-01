@@ -15,8 +15,8 @@ class FormControlHarian extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idControl       = 'CONTROL_'.substr(md5(time()."control"), 0, 13);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idControl       = 'CONTROL_'.md5(time()."control");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];

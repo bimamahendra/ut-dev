@@ -14,8 +14,8 @@ class FormMonitoring extends RestController {
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
-                $idTrans        = 'TRANS_'.substr(md5(time()."trans"), 0, 14);
-                $idMonitoring   = 'MON_'.substr(md5(time()."mon"), 0, 14);
+                $idTrans        = 'TRANS_'.md5(time()."trans");
+                $idMonitoring   = 'MON_'.md5(time()."mon");
                 
                 $storeTransaksi['ID_TRANS']         = $idTrans;
                 $storeTransaksi['ID_USERS']         = $param['idUser'];
