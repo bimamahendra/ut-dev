@@ -603,6 +603,9 @@
                 }
             });
         });
+        function numberWithPoints(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
 
         var table;
 
@@ -674,7 +677,67 @@
             },
             "bPaginate": false,
             "info": false,
-            "searching": false
+            "searching": false,
+            "footerCallback": function( tfoot, data, start, end, display ) {
+                var api = this.api();
+
+                $( api.column( 1 ).footer() ).html(
+                    api.column( 1 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+                $( api.column( 2 ).footer() ).html(
+                    api.column( 2 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+                $( api.column( 3 ).footer() ).html(
+                    api.column( 3 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+                $( api.column( 4 ).footer() ).html(
+                    api.column( 4 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+                $( api.column( 5 ).footer() ).html(
+                    api.column( 5 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+                $( api.column( 6 ).footer() ).html(
+                    api.column( 6 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+                $( api.column( 7 ).footer() ).html(
+                    api.column( 7 ).data().reduce( function ( a, b ) {
+                        const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                        const total = parseInt(valA) + parseInt(valB)
+                        return `Rp. ${numberWithPoints(total)}` ;
+                    }, 0 )
+                );
+            }
         })
 
         $("#pilYear").change(function() {
@@ -759,7 +822,69 @@
                 },
                 "bPaginate": false,
                 "info": false,
-                "searching": false
+                "searching": false,
+                "footerCallback": function( tfoot, data, start, end, display ) {
+                    var api = this.api();
+
+                    $( api.column( 1 ).footer() ).html(
+                        api.column( 1 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+
+                            
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                    $( api.column( 2 ).footer() ).html(
+                        api.column( 2 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                    $( api.column( 3 ).footer() ).html(
+                        api.column( 3 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                    $( api.column( 4 ).footer() ).html(
+                        api.column( 4 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                    $( api.column( 5 ).footer() ).html(
+                        api.column( 5 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                    $( api.column( 6 ).footer() ).html(
+                        api.column( 6 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                    $( api.column( 7 ).footer() ).html(
+                        api.column( 7 ).data().reduce( function ( a, b ) {
+                            const valA  = a.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const valB  = b.toString().replace('Rp. ', '').replace('.', '').replace('.', '');
+                            const total = parseInt(valA) + parseInt(valB)
+                            return `Rp. ${numberWithPoints(total)}` ;
+                        }, 0 )
+                    );
+                }
             })
             reload_table();
         });
