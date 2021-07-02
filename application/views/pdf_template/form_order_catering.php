@@ -266,7 +266,7 @@
 			<tr>
 				<td style="width: 7%"><b>Catatan</b></td>
 				<td style="width: 0%"><b>:</b></td>
-				<td>
+				<td style="text-align: left;">
 					<?= $list[0]->CATATAN_ORDER?>
 				</td>
 			</tr>
