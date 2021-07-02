@@ -23,8 +23,9 @@ class FormOrderCatering extends RestController {
                 $storeTransaksi['ID_MAPPING']       = $param['idMapping'];
                 $this->db->insert('TRANSACTION', $storeTransaksi);
 
-                $storeOrder['ID_ORDER']          = $idOrder;
-                $storeOrder['ID_TRANS']          = $idTrans;
+                $storeOrder['ID_ORDER']             = $idOrder;
+                $storeOrder['ID_TRANS']             = $idTrans;
+                $storeOrder['CATATAN_ORDER']        = $param['catatan'];
                 $this->db->insert('FORM_ORDER', $storeOrder);
 
                 foreach($param['detOrder'] as $item){
