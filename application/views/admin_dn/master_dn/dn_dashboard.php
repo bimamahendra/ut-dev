@@ -201,6 +201,16 @@
                                                         </thead>
                                                         <tbody>
                                                         </tbody>
+                                                        <tfoot>
+                                                            <th>Total</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tfoot>
                                                     </table>
                                                 </div>
                                             </div>

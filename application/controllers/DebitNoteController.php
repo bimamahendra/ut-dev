@@ -597,11 +597,16 @@ class DebitNoteController extends CI_Controller
         $datas['Telefon']   = 0;
         $datas['Others']    = 0;
         
-
+        $loop = 1;
         foreach ($reports as $item) {
-            if($year == $item->TAHUNBAYAR_REPORTINGYEARLY){
-                $datas[$item->TIPE_REPORTINGYEARLY] += $item->TARGET_REPORTINGYEARLY;
-            }  
+            if($tahunTemp != $item->TAHUNBAYAR_REPORTINGYEARLY){
+                $tahunTemp = $item->TAHUNBAYAR_REPORTINGYEARLY;
+                if($loop == 6){
+                    break;
+                }
+            }
+            $datas[$item->TIPE_REPORTINGYEARLY] += $item->TARGET_REPORTINGYEARLY;
+            $loop++;
         }
 
         $dataList =
@@ -680,22 +685,6 @@ class DebitNoteController extends CI_Controller
             ';
             array_push($dataTable, $temp);
         }
-
-        $total = '
-            [
-
-                "<b>Total</b>",
-                "<b>Rp. '.number_format($totListrik, 0, ',', '.').'</b>",
-                "<b>Rp. '.number_format($totRent, 0, ',', '.').'</b>",
-                "<b>Rp. '.number_format($totService, 0, ',', '.').'</b>",
-                "<b>Rp. '.number_format($totAir, 0, ',', '.').'</b>",
-                "<b>Rp. '.number_format($totTelefon, 0, ',', '.').'</b>",
-                "<b>Rp. '.number_format($totOthers, 0, ',', '.').'</b>",
-                "<b>Rp. '.number_format($totGrand, 0, ',', '.').'</b>"
-            ]
-        ';
-        array_push($dataTable, $total);
-
 
         $dataList =
             '{
