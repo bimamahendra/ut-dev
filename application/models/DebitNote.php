@@ -303,6 +303,7 @@ class DebitNote extends CI_Model{
         if(empty($param['ORDER_DESC'])){
             $res = $this->db->order_by('TAHUNBAYAR_REPORTINGYEARLY', 'asc')->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->result();
         }else{
+            unset($param['ORDER_DESC']);
             $res = $this->db->order_by('TAHUNBAYAR_REPORTINGYEARLY', 'desc')->get_where('DEBITNOTE_REPORTING_YEARLY', $param)->result();
         }
         return $res;

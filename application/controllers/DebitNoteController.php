@@ -588,7 +588,7 @@ class DebitNoteController extends CI_Controller
     public function YearlyTable(){
         isset($_POST["year"]) ? $year = $_POST["year"] : $year = date("Y");
 
-        $reports            = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year]);
+        $reports            = $this->DebitNote->getAllReportSummary(['TAHUN_REPORTINGYEARLY' => $year, 'ORDER_DESC' => 'DESC']);
         $tahunTemp          = '';
         $datas['Listrik']   = 0;
         $datas['Rent']      = 0;
@@ -597,15 +597,12 @@ class DebitNoteController extends CI_Controller
         $datas['Telefon']   = 0;
         $datas['Others']    = 0;
         
-        $loop = 1;
+        $loop = 0;
         foreach ($reports as $item) {
-            if($tahunTemp != $item->TAHUNBAYAR_REPORTINGYEARLY){
-                $tahunTemp = $item->TAHUNBAYAR_REPORTINGYEARLY;
-                if($loop == 6){
-                    break;
-                }
+            if($loop == 6){
+                break;
             }
-            $datas[$item->TIPE_REPORTINGYEARLY] += $item->TARGET_REPORTINGYEARLY;
+            $datas[$item->TIPE_REPORTINGYEARLY] += $item->TARGETTOTAL_REPORTINGYEARLY;
             $loop++;
         }
 
