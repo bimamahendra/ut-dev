@@ -264,10 +264,9 @@
 	<div>
 		<table style="width:80%; text-align:left; font-size: 12px;">
 			<tr>
-				<td style="width: 7%"><b>Catatan</b></td>
-				<td style="width: 0%"><b>:</b></td>
-				<td style="text-align: left;">
-					<?= $list[0]->CATATAN_ORDER?>
+				<td>
+					<b>Catatan :</b> &nbsp;
+					<?= $list[0]->CATATAN_ORDER ?>
 				</td>
 			</tr>
 		</table>
