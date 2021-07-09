@@ -64,46 +64,46 @@
                             <th>Barang/Jasa Kena Pajak</th>
                             <th>Grand Total</th>
                         </tr>
-                        <?php
-                        foreach ($debitnotes as $item) {
-                            $tglNow         = date_create(date('Y-m-d'));
-                            $tglPesanan     = date_create($item->TGLPESANAN_DEBITNOTE);
-                            $tglFaktur      = date_create($item->TGLFAKTUR_DEBITNOTE);
-                            $tglJatuh       = date_create($item->TGLJATUH_DEBITNOTE);
-                            $tglPublished   = date_create($item->TGLPUBLISHED_DEBITNOTE);
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($debitnotes as $item) {
+                                $tglNow         = date_create(date('Y-m-d'));
+                                $tglPesanan     = date_create($item->TGLPESANAN_DEBITNOTE);
+                                $tglFaktur      = date_create($item->TGLFAKTUR_DEBITNOTE);
+                                $tglJatuh       = date_create($item->TGLJATUH_DEBITNOTE);
+                                $tglPublished   = date_create($item->TGLPUBLISHED_DEBITNOTE);
 
-                            $tglSisa = date_diff($tglNow, $tglPublished);
+                                $tglSisa = date_diff($tglNow, $tglPublished);
 
-                            if($tglSisa->format('%a') < 30){
-                                $kategoriAr = '<30 hari';
-                            }else if($tglSisa->format('%a') < 60){
-                                $kategoriAr = '30 - 60 hari';
-                            }else{
-                                $kategoriAr = '>60 hari';
-                            }
+                                if($tglSisa->format('%a') < 30){
+                                    $kategoriAr = '<30 hari';
+                                }else if($tglSisa->format('%a') < 60){
+                                    $kategoriAr = '30 - 60 hari';
+                                }else{
+                                    $kategoriAr = '>60 hari';
+                                }
 
-                            echo '
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>'.$item->TIPE_DEBITNOTE.'</td>
-                            <td>'.date_format($tglPesanan, 'Y').'</td>
-                            <td>'.$item->NOPESANAN_DEBITNOTE.'</td>
-                            <td>'.date_format($tglFaktur, 'd M Y').'</td>
-                            <td>'.date_format($tglJatuh, 'd M Y').'</td>
-                            <td>'.$tglSisa->format('%a').'</td>
-                            <td>'.$kategoriAr.'</td>
-                            <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
-                            <td>'.date_format($tglPesanan, 'd M Y').'</td>
-                            <td>'.$item->MATAUANG.'</td>
-                            <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
-                            <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
-                            <td>'.number_format($item->GRANDTOTAL_DEBITNOTE).'</td>
-                        </tr>
-                    </tbody>
-                                    ';
-                            }
-                        ?>
+                                echo '
+                                    <tr>
+                                        <td>'.$item->TIPE_DEBITNOTE.'</td>
+                                        <td>'.date_format($tglPesanan, 'Y').'</td>
+                                        <td>'.$item->NOPESANAN_DEBITNOTE.'</td>
+                                        <td>'.date_format($tglFaktur, 'd M Y').'</td>
+                                        <td>'.date_format($tglJatuh, 'd M Y').'</td>
+                                        <td>'.$tglSisa->format('%a').'</td>
+                                        <td>'.$kategoriAr.'</td>
+                                        <td>'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                                        <td>'.date_format($tglPesanan, 'd M Y').'</td>
+                                        <td>'.$item->MATAUANG.'</td>
+                                        <td>'.$item->NAMAPERUSAHAAN_DEBITNOTE.'</td>
+                                        <td>'.$item->BARANGJASA_DEBITNOTE.'</td>
+                                        <td>'.number_format($item->GRANDTOTAL_DEBITNOTE).'</td>
+                                    </tr>
+                                ';
+                                }
+                            ?>
+                        </tbody>
                 </table>
             </div>
     </div>
@@ -128,10 +128,10 @@
     });
     
     $(document).ready(function() {
-                        $('#tableDisplayfortenant').dataTable({
-                            pageLength : 5,
-                            lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']]
-                        });
+        $('#tableDisplayfortenant').dataTable({
+            pageLength : 5,
+            lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']]
+        });
     } );
 </script>
 </div>
