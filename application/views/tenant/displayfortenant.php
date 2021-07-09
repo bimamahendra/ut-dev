@@ -87,7 +87,7 @@
                                 echo '
                                     <tr>
                                         <td>'.$item->TIPE_DEBITNOTE.'</td>
-                                        <td>'.date_format($tglPesanan, 'Y').'</td>
+                                        <td>'.date_format($tglFaktur, 'Y').'</td>
                                         <td>'.$item->NOPESANAN_DEBITNOTE.'</td>
                                         <td>'.date_format($tglFaktur, 'd M Y').'</td>
                                         <td>'.date_format($tglJatuh, 'd M Y').'</td>
