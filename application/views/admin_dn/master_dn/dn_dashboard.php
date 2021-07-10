@@ -75,7 +75,7 @@
                         <div class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseReceivedOverdue" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseReceivedOverdue">
-                                    <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Overdue |
+                                    <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Unreceived |
                                         <?php
                                         $cReceived = 0;
                                         if (!empty($rcvtotal)) {
@@ -163,7 +163,8 @@
                                         <hr class="invisible my-5 ">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive mt-5">
+                                                <h6 class="mb-0 mt-1 font-weight-bold">DN Payment</h6>
+                                                <div class="table-responsive mt-1">
                                                     <table class="table table-bordered" id="tableTahunan" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
@@ -185,7 +186,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive mt-5">
+                                                <h6 class="mb-0 mt-3 font-weight-bold">DN Received</h6>
+                                                <div class="table-responsive mt-1">
                                                     <table class="table table-bordered" id="tableTahunanDetail" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
@@ -317,7 +319,7 @@
         </div>
     </div>
     <script>
-        
+
     </script>
 </div>
 <!-- /.container-fluid -->
