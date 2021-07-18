@@ -30,8 +30,8 @@
                                     <label class="custom-control-label" for="checkAll"></label>
                                 </div>
                             </th>
-                            <th>No. Faktur</th>
-                            <th>Tanggal Faktur</th>
+                            <th>No. DN</th>
+                            <th>Tanggal DN</th>
                             <th>No. Faktur Pajak</th>
                             <th>Nama Perusahaan</th>
                             <th>Barang / Jasa Kena Pajak</th>
