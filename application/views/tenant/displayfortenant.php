@@ -53,7 +53,7 @@
                             <th>Tipe DN</th>
                             <th>Tahun DN</th>
                             <th>No. DN</th>
-                            <th>Tanggal Faktur</th>
+                            <th>Tanggal DN</th>
                             <th>Tanggal Jatuh Tempo</th>
                             <th>AR Aging</th>
                             <th>Kategori AR Aging</th>
@@ -88,7 +88,7 @@
                                     <tr>
                                         <td>'.$item->TIPE_DEBITNOTE.'</td>
                                         <td>'.date_format($tglFaktur, 'Y').'</td>
-                                        <td>'.$item->NOPESANAN_DEBITNOTE.'</td>
+                                        <td>'.$item->NOFAKTUR_DEBITNOTE.'</td>
                                         <td>'.date_format($tglFaktur, 'd M Y').'</td>
                                         <td>'.date_format($tglJatuh, 'd M Y').'</td>
                                         <td>'.$tglSisa->format('%a').'</td>

@@ -252,7 +252,7 @@
                 $html .= '
                     <tr>
                         <td style="text-align: center;">'.$no.'</td>
-                        <td style="text-align: center;">'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                        <td style="text-align: center;">'.$item->NOFAKTUR_DEBITNOTE.'</td>
                         <td style="text-align: center;">'.date_format($dateInvoice, 'j F Y').'</td>
                         <td> '.$item->BARANGJASA_DEBITNOTE.' </td>
                         <td style="text-align: center;">'.$item->MATAUANG.'</td>
@@ -328,7 +328,7 @@
                 $html .= '
                     <tr>
                         <td style="text-align: center;">'.$no.'</td>
-                        <td style="text-align: center;">'.$item->NOFAKTURPAJAK_DEBITNOTE.'</td>
+                        <td style="text-align: center;">'.$item->NOFAKTUR_DEBITNOTE.'</td>
                         <td style="text-align: center;">'.date_format($dateInvoice, 'j F Y').'</td>
                         <td> '.$item->BARANGJASA_DEBITNOTE.' </td>
                         <td style="text-align: center;">'.$item->MATAUANG.'</td>
