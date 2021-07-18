@@ -31,9 +31,9 @@
                         foreach ($notifs as $item) {
                             $date = date_create($item->TSUPDATE_APP);
                             if($item->STAT_DEBITNOTE == '2'){
-                                $labelStatus = 'No Faktur '.$item->NOFAKTUR_DEBITNOTE.' Disetujui!';
+                                $labelStatus = 'No DN '.$item->NOFAKTUR_DEBITNOTE.' Disetujui!';
                             }else if($item->STAT_DEBITNOTE == '3'){
-                                $labelStatus = 'No Faktur '.$item->NOFAKTUR_DEBITNOTE.' Ditolak!';
+                                $labelStatus = 'No DN '.$item->NOFAKTUR_DEBITNOTE.' Ditolak!';
                             }
 
                             echo '
