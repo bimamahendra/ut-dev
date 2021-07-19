@@ -53,6 +53,7 @@
                             <option value="PICG" <?= $form[0]->SECTION_FORM == 'PICG'? 'selected' : '' ?>>PIC Gudang</option>
                             <option value="PICA" <?= $form[0]->SECTION_FORM == 'PICA'? 'selected' : '' ?>>PIC Admin</option>
                             <option value="PICM" <?= $form[0]->SECTION_FORM == 'PICM'? 'selected' : '' ?>>PIC Maintenance</option>
+                            <option value="PICC" <?= $form[0]->SECTION_FORM == 'PICC'? 'selected' : '' ?>>PIC Catering</option>
                             <option value="Section Head" <?= $form[0]->SECTION_FORM == 'Section Head'? 'selected' : '' ?>>Section Head</option>
                             <option value="Department Head" <?= $form[0]->SECTION_FORM == 'Department Head'? 'selected' : '' ?>>Department Head</option>
                             <option value="Division Head" <?= $form[0]->SECTION_FORM == 'Division Head'? 'selected' : '' ?>>Division Head</option>
