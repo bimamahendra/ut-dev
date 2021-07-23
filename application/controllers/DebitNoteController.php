@@ -368,9 +368,9 @@ class DebitNoteController extends CI_Controller
         };
         
         // DN Aging
-        $cAgingEnam     = (!empty($datas['agingTiga']) ? $datas['agingTiga'] : 0);
+        $cAgingTiga     = (!empty($datas['agingTiga']) ? $datas['agingTiga'] : 0);
         $cAgingTigaEnam = (!empty($datas['agingTigaEnam']) ? $datas['agingTigaEnam'] : 0);
-        $cAgingTiga     = (!empty($datas['agingEnam']) ? $datas['agingEnam'] : 0);
+        $cAgingEnam     = (!empty($datas['agingEnam']) ? $datas['agingEnam'] : 0);
 
         // Top Tenants
         $topTenantsData = [];
