@@ -5,8 +5,11 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Monitoring Debit Note</h1>
         <div>
-            <button class="btn btn-success" type="button">Download Dashboard</button>
-            <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" id="btnCollapse">Hide All</button>
+            <form action="<?= site_url('debitnote/downloadExcel')?>" method="post">
+                <button type="submit" class="btn btn-success" type="button">Download Dashboard</button>
+                <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" id="btnCollapse">Hide All</button>
+                <input type="hidden" name="year" id="yearReport" />
+            </form>
         </div>
     </div>
 
@@ -135,7 +138,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-12">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" id="paymentReceived">
                                 <!-- Card Header - Dropdown -->
                                 <a href="#collapsePaymentReceived" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapsePaymentReceived">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Payment Received</h6>
@@ -321,9 +324,6 @@
             </div>
         </div>
     </div>
-    <script>
-
-    </script>
 </div>
 <!-- /.container-fluid -->
 
