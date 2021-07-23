@@ -8,7 +8,7 @@
             <form action="<?= site_url('debitnote/downloadExcel')?>" method="post">
                 <button type="submit" class="btn btn-success" type="button">Download Dashboard</button>
                 <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" id="btnCollapse">Hide All</button>
-                <input type="hidden" name="year" id="yearReport" />
+                <input type="hidden" name="year" value="<?= date('Y')?>" id="yearReport" />
             </form>
         </div>
     </div>
