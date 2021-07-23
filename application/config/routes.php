@@ -145,6 +145,7 @@ $route['debitnote/paymentDNChart']          = 'DebitNoteController/PaymentDNChar
 $route['debitnote/monthlyTable']            = 'DebitNoteController/MonthlyTable';
 $route['debitnote/yearlyTable']             = 'DebitNoteController/YearlyTable';
 $route['debitnote/yearlyDetailTable']       = 'DebitNoteController/YearlyDetailTable';
+$route['debitnote/downloadExcel']           = 'DebitNoteController/downloadExcel';
 
 // -- DebitNote Cron Job
 $route['debitnote/updateProgress']          = 'DebitNoteCronJobController/updateProgress';

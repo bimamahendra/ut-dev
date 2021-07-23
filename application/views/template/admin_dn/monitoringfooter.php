@@ -741,6 +741,7 @@
         })
 
         $("#pilYear").change(function() {
+            $('#yearReport').val($(this).val())
             table.destroy();
             tableYearly.destroy()
             tableYearlyDetail.destroy()
@@ -899,6 +900,30 @@
             else
                 $(this).text("Show All");
         });
+
+        // export pdf
+        // $('#printPdf').click(() => {
+        //     // printDiv()
+        //     javascript:window.print();
+        // })
+        // function printDiv() {
+        //     var divToPrint = $('#paymentReceived');
+        //     var newWin=window.open('','Print-Window');
+
+        //     newWin.document.open();
+        //     newWin.document.write(`
+        //         <html>
+        //             <body onload="window.print()">
+        //                 ${divToPrint.html()}
+
+                        
+        //             </body>
+                    
+        //         </html>
+        //     `);
+        //     newWin.document.close();
+        //     setTimeout(function(){newWin.close();},10);
+        // }
     });
 </script>
 </body>
