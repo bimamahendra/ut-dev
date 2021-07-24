@@ -106,6 +106,7 @@ class DebitNoteController extends CI_Controller
         $datas['total']        = $this->DebitNote->getdn();
         $datas['ovdtotal']     = $this->DebitNote->getovddn();
         $datas['rcvtotal']     = $this->DebitNote->getrcvdn();
+        $datas['ovdTwoYear']   = $this->DebitNote->getOvdPassTwoYear();
         $datas['rentCharge']   = $this->DebitNote->getRentCharge();
         $datas['rentOverdue']  = $this->DebitNote->getRentOverdue();
         $datas['utilCharge']   = $this->DebitNote->getUtilCharge();
@@ -276,6 +277,7 @@ class DebitNoteController extends CI_Controller
         $datas['total']         = $this->DebitNote->getdn();
         $datas['ovdtotal']      = $this->DebitNote->getovddn();
         $datas['rcvtotal']      = $this->DebitNote->getrcvdn();
+        $datas['ovdTwoYear']    = $this->DebitNote->getOvdPassTwoYear();
         $datas['rentCharge']    = $this->DebitNote->getRentCharge();
         $datas['rentOverdue']   = $this->DebitNote->getRentOverdue();
         $datas['utilCharge']    = $this->DebitNote->getUtilCharge();
@@ -436,7 +438,7 @@ class DebitNoteController extends CI_Controller
         $sheet->setCellValue('B4', $datas['total'])->getStyle('B4')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
         $sheet->setCellValue('B5', $datas['rcvtotal'])->getStyle('B5')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
         $sheet->setCellValue('B6', $datas['ovdtotal'])->getStyle('B6')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('B7', '0')->getStyle('B7')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('B7', $datas['ovdTwoYear'])->getStyle('B7')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
         // Recevied & Unreceived
         $sheet->setCellValue('A9', 'Received & Unreceived')->getStyle('A9')->applyFromArray($styleHeading2);
         $sheet->setCellValue('A10', '')->getStyle('A10')->applyFromArray($styleTitle);

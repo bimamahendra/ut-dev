@@ -33,6 +33,11 @@ class DebitNote extends CI_Model{
         $result = $this->db->query($sql);
         return $result->row()->total;
     }    
+    public function getOvdPassTwoYear(){
+        $sql = "SELECT SUM(GRANDTOTAL_DEBITNOTE) AS TOTAL FROM DEBITNOTE WHERE TGLJATUH_DEBITNOTE + INTERVAL 2 YEAR <= NOW() AND STAT_DEBITNOTE = '5'";
+        $result = $this->db->query($sql);
+        return $result->row()->TOTAL;
+    }
     public function getUtilCharge(){
         $sql = "SELECT 
         SUM(GRANDTOTAL_DEBITNOTE) as TOTAL
