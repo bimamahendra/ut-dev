@@ -31,12 +31,28 @@ class FormPerbaikan extends RestController {
                 $storePermohonan['DIV_PEMOHON']         = $param['divisi'];
                 $storePermohonan['EXT_PEMOHON']         = $param['extension'];
                 $storePermohonan['NAMA_PENERIMA']       = $param['namaDiterima'];
-                $storePermohonan['TT_PENERIMA']         = $param['troubTicket'];
                 $storePermohonan['JENIS_PERBAIKAN']     = $param['jenisPerbaikan'];
                 $storePermohonan['ALASAN_PERBAIKAN']    = $param['alasan'];
                 $storePermohonan['DIKERJAKAN']          = $param['dikerjakanOleh'];
                 $storePermohonan['EST_WAKTU']           = $param['estWaktu'];
                 $storePermohonan['EST_BIAYA']           = $param['estBiaya'];
+
+                $ttPenerima = $this->db->order_by('TGLOUT_PERMOHONAN', 'desc')->get('FORM_PERMOHONAN')->row();
+                if($ttPenerima != null){
+                    $dateTT  = substr($ttPenerima->TT_PENERIMA, 0,8);
+                    $noRegis = substr($ttPenerima->TT_PENERIMA, 8);
+                    $dateNow = date('Ymd');
+                    if($dateTT != $dateNow){
+                        $dateTT  = $dateNow;
+                        $noRegis = '001';
+                    }else{
+                        $noRegis = sprintf("%03d", (int)++$noRegis);
+                    }
+                    $ttPenerima = $dateTT.$noRegis;
+                }else{
+                    $ttPenerima = date('Ymd').'001';
+                }
+                $storePermohonan['TT_PENERIMA'] = $ttPenerima;
                 $this->db->insert('FORM_PERMOHONAN', $storePermohonan);
                 
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
