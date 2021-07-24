@@ -23,15 +23,17 @@ class FormLayout extends RestController {
                 $storeTransaksi['ID_MAPPING']       = $param['idMapping'];
                 $this->db->insert('TRANSACTION', $storeTransaksi);
 
-                $storeLayout['ID_LAYOUT']        = $idLayout;
-                $storeLayout['ID_TRANS']         = $idTrans;
-                $storeLayout['NAMA_LAYOUT']      = $param['namaAcara'];
-                $storeLayout['TGL_LAYOUT']       = $param['tgl'];
-                $storeLayout['JAM_LAYOUT']       = $param['jam'];
-                $storeLayout['PESERTA_LAYOUT']   = $param['peserta'];
-                $storeLayout['LOKASI_LAYOUT']    = $param['lokasi'];
-                $storeLayout['BIAYA_LAYOUT']     = $param['biaya'];
-                $storeLayout['KET_LAYOUT']       = $param['keterangan'];
+                $storeLayout['ID_LAYOUT']           = $idLayout;
+                $storeLayout['ID_TRANS']            = $idTrans;
+                $storeLayout['NAMA_LAYOUT']         = $param['namaAcara'];
+                $storeLayout['TGL_LAYOUT']          = $param['tgl'];
+                $storeLayout['JAM_LAYOUT']          = $param['jam'];
+                $storeLayout['TGLSELESAI_LAYOUT']   = $param['tglSelesai'];
+                $storeLayout['JAMSELESAI_LAYOUT']   = $param['jamSelesai'];
+                $storeLayout['PESERTA_LAYOUT']      = $param['peserta'];
+                $storeLayout['LOKASI_LAYOUT']       = $param['lokasi'];
+                $storeLayout['BIAYA_LAYOUT']        = $param['biaya'];
+                $storeLayout['KET_LAYOUT']          = $param['keterangan'];
                 $this->db->insert('FORM_LAYOUT', $storeLayout);
                 
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
