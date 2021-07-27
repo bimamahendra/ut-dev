@@ -244,6 +244,13 @@
 						echo '' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
 						?>
 					</th>
+					<th class="tg-5rbv" style="text-align:left">
+						Tanggal Selesai :
+						<?php
+						$date 		= date_create($list[0]->TGL_LAYOUT);
+						echo '' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
+						?>
+					</th>
 					<th class="tg-5rbv" style="text-align:left">Jumlah peserta : <?= $list[0]->PESERTA_LAYOUT ?></th>
 					<th class="tg-5rbv" rowspan="3">KETERANGAN</th>
 				</tr>
@@ -257,16 +264,23 @@
 						?>
 					</td>
 					<td class="tg-5rbv" style="text-align:left">
+						Jam Selesai :
+						<?php
+						$time = date_create($list[0]->JAM_LAYOUT);
+						echo date_format($time, 'H:i');
+						?>
+					</td>
+					<td class="tg-5rbv" style="text-align:left">
 						Beban biaya : <?= number_format($list[0]->BIAYA_LAYOUT, 0, ',', '.') ?></td>
 				</tr>
 				<tr>
-					<td class="tg-5rbv" style="text-align:center" colspan="3">GAMBAR / LAY OUT ACARA</td>
+					<td class="tg-5rbv" style="text-align:center" colspan="4">GAMBAR / LAY OUT ACARA</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center; padding-top: 20px; padding-bottom: 20px;">1</td>
-					<td class="tg-5r9a" colspan="3" style="text-align: center;">
+					<td class="tg-5r9a" colspan="4" style="text-align: center;">
 						<img src="<?= $list[0]->IMG_LAYOUT ?>" width="300px">
 					</td>
 					<td class="tg-5r9a"><?= $list[0]->KET_LAYOUT ?></td>
