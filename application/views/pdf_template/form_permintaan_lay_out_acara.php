@@ -247,7 +247,7 @@
 					<th class="tg-5rbv" style="text-align:left">
 						Tanggal Selesai :
 						<?php
-						$date 		= date_create($list[0]->TGL_LAYOUT);
+						$date 		= date_create($list[0]->TGLSELESAI_LAYOUT);
 						echo '' . date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y');
 						?>
 					</th>
@@ -266,7 +266,7 @@
 					<td class="tg-5rbv" style="text-align:left">
 						Jam Selesai :
 						<?php
-						$time = date_create($list[0]->JAM_LAYOUT);
+						$time = date_create($list[0]->JAMSELESAI_LAYOUT);
 						echo date_format($time, 'H:i');
 						?>
 					</td>
