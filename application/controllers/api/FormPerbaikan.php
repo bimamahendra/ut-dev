@@ -30,12 +30,14 @@ class FormPerbaikan extends RestController {
                 $storePermohonan['NAMA_PEMOHON']        = $param['namaDari'];
                 $storePermohonan['DIV_PEMOHON']         = $param['divisi'];
                 $storePermohonan['EXT_PEMOHON']         = $param['extension'];
-                $storePermohonan['NAMA_PENERIMA']       = $param['namaDiterima'];
                 $storePermohonan['JENIS_PERBAIKAN']     = $param['jenisPerbaikan'];
                 $storePermohonan['ALASAN_PERBAIKAN']    = $param['alasan'];
                 $storePermohonan['DIKERJAKAN']          = $param['dikerjakanOleh'];
                 $storePermohonan['EST_WAKTU']           = $param['estWaktu'];
                 $storePermohonan['EST_BIAYA']           = $param['estBiaya'];
+
+                $namaPenerima = $this->db->select('NAMA_USERS')->where('ROLE_USERS', 'PICA')->where_not_in("USER_USERS", ['pica'])->get('USERS')->row();
+                $storePermohonan['NAMA_PENERIMA']       = ($namaPenerima != null ? $namaPenerima->NAMA_USERS : '');
 
                 $ttPenerima = $this->db->order_by('TGLOUT_PERMOHONAN', 'desc')->get('FORM_PERMOHONAN')->row();
                 if($ttPenerima != null){
