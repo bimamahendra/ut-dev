@@ -1,8 +1,8 @@
 <!-- Main Content -->
 <div id="content">
     <?php
-        $notifs         = $this->db->where_in('STAT_DEBITNOTE', ['2','3'])->order_by('TSUPDATE_APP', 'desc')->get_where('V_DEBITNOTE_APPROVAL_GET', ['IS_SEEN' => '0'], 5)->result();
-        $notifCount     = $this->db->where_in('STAT_DEBITNOTE', ['2','3'])->get_where('V_DEBITNOTE_APPROVAL_GET', ['IS_SEEN' => '0'])->num_rows();
+    $notifs         = $this->db->where_in('STAT_DEBITNOTE', ['2', '3'])->order_by('TSUPDATE_APP', 'desc')->get_where('V_DEBITNOTE_APPROVAL_GET', ['IS_SEEN' => '0'], 5)->result();
+    $notifCount     = $this->db->where_in('STAT_DEBITNOTE', ['2', '3'])->get_where('V_DEBITNOTE_APPROVAL_GET', ['IS_SEEN' => '0'])->num_rows();
     ?>
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -20,7 +20,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell fa-fw"></i>
                     <!-- Counter - Alerts -->
-                    <span class="badge badge-danger badge-counter"><?= $notifCount?></span>
+                    <span class="badge badge-danger badge-counter"><?= $notifCount ?></span>
                 </a>
                 <!-- Dropdown - Alerts -->
                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -28,39 +28,39 @@
                         Alerts Center
                     </h6>
                     <?php
-                        foreach ($notifs as $item) {
-                            $date = date_create($item->TSUPDATE_APP);
-                            if($item->STAT_DEBITNOTE == '2'){
-                                $labelStatus = 'No DN '.$item->NOFAKTUR_DEBITNOTE.' Disetujui!';
-                            }else if($item->STAT_DEBITNOTE == '3'){
-                                $labelStatus = 'No DN '.$item->NOFAKTUR_DEBITNOTE.' Ditolak!';
-                            }
+                    foreach ($notifs as $item) {
+                        $date = date_create($item->TSUPDATE_APP);
+                        if ($item->STAT_DEBITNOTE == '2') {
+                            $labelStatus = 'No DN ' . $item->NOFAKTUR_DEBITNOTE . ' Disetujui!';
+                        } else if ($item->STAT_DEBITNOTE == '3') {
+                            $labelStatus = 'No DN ' . $item->NOFAKTUR_DEBITNOTE . ' Ditolak!';
+                        }
 
-                            echo '
-                                <a class="dropdown-item d-flex align-items-center" href="'.site_url('notif/readDebitnoteAll/'.$item->STAT_DEBITNOTE).'">
+                        echo '
+                                <a class="dropdown-item d-flex align-items-center" href="' . site_url('notif/readDebitnoteAll/' . $item->STAT_DEBITNOTE) . '">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">'.date_format($date, 'd-M-Y').'</div>
+                                        <div class="small text-gray-500">' . date_format($date, 'd-M-Y') . '</div>
                                         <span class="font-weight-bold">
-                                            '.$labelStatus.'
+                                            ' . $labelStatus . '
                                         </span>
                                     </div>
                                 </a>
                             ';
-                        }
-                        if($notifCount != '0'){
-                            echo '
-                                <a class="dropdown-item text-center small text-gray-500" href="'.site_url('notif/readDebitnoteAll/'.$notifs[0]->STAT_DEBITNOTE).'">Show All Alerts</a>
+                    }
+                    if ($notifCount != '0') {
+                        echo '
+                                <a class="dropdown-item text-center small text-gray-500" href="' . site_url('notif/readDebitnoteAll/' . $notifs[0]->STAT_DEBITNOTE) . '">Show All Alerts</a>
                                 ';
-                            }else{
-                                echo '
+                    } else {
+                        echo '
                                     <a class="dropdown-item text-center small text-gray-500"> No Notification</a>
                                 ';
-                        }
+                    }
                     ?>
                 </div>
             </li>
@@ -75,19 +75,6 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Settings
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Activity Log
-                    </a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout

@@ -5,10 +5,11 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Monitoring Debit Note</h1>
         <div>
-            <form action="<?= site_url('debitnote/downloadExcel')?>" method="post">
-                <button type="submit" class="btn btn-success" type="button">Download Dashboard</button>
+            <form action="<?= site_url('debitnote/downloadExcel') ?>" method="post">
+                <button type="submit" class="btn btn-danger" type="button"><i class="fas fa-file-download"></i> PDF</button>
+                <button type="submit" class="btn btn-success" type="button"><i class="fas fa-file-download"></i> Excel</button>
                 <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" id="btnCollapse">Hide All</button>
-                <input type="hidden" name="year" value="<?= date('Y')?>" id="yearReport" />
+                <input type="hidden" name="year" value="<?= date('Y') ?>" id="yearReport" />
             </form>
         </div>
     </div>
