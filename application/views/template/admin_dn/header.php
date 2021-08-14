@@ -30,6 +30,70 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0-rc.1/dist/chartjs-plugin-datalabels.min.js"></script>
 
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <script type="text/javascript">
+        window.html2canvas = html2canvas;
+        window.jsPDF = window.jspdf.jsPDF;
+
+        function makePDF(){
+            var doc = new jsPDF();
+            html2canvas(document.querySelector("#capture"),{
+                allowTaint:true,
+                useCORS: true,
+                scale: 4
+            }).then(canvas => {               
+                var img = canvas.toDataURL("image/jpeg");
+                doc.addImage(img,'JPEG',5,7,200,45);
+            });
+            html2canvas(document.querySelector("#capture2"),{
+                allowTaint:true,
+                useCORS: true,
+                scale: 4
+            }).then(canvas => {               
+                var img = canvas.toDataURL("image/jpeg");
+                doc.addImage(img,'JPEG',5,52,200,80);
+            });
+            html2canvas(document.querySelector("#capture3"),{
+                allowTaint:true,
+                useCORS: true,
+                scale: 4
+            }).then(canvas => {               
+                var img = canvas.toDataURL("image/jpeg");
+                doc.addImage(img,'JPEG',5,133,200,82);
+                doc.addPage();
+            });
+            html2canvas(document.querySelector("#capture4"),{
+                allowTaint:true,
+                useCORS: true,
+                scale: 4
+            }).then(canvas => {               
+                var img = canvas.toDataURL("image/jpeg");
+                doc.addImage(img,'JPEG',5,7,200,150);
+                doc.addPage();
+            });            
+            html2canvas(document.querySelector("#capture5"),{
+                allowTaint:true,
+                useCORS: true,
+                scale: 4
+            }).then(canvas => {               
+                var img = canvas.toDataURL("image/jpeg");
+                doc.addImage(img,'JPEG',5,7,200,145);
+                doc.addPage();
+            });
+            html2canvas(document.querySelector("#capture6"),{
+                allowTaint:true,
+                useCORS: true,
+                scale: 4
+            }).then(canvas => {               
+                var img = canvas.toDataURL("image/jpeg");
+                doc.addImage(img,'JPEG',5,7,200,190);
+                doc.save('DEBITNOTE_REPORT.pdf');
+            });
+        }
+    </script>
 </head>
 
 <body id="page-top">

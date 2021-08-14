@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">Monitoring Debit Note</h1>
         <div>
             <form action="<?= site_url('debitnote/downloadExcel') ?>" method="post">
-                <button type="submit" class="btn btn-danger" type="button"><i class="fas fa-file-download"></i> PDF</button>
+                <button class="btn btn-danger" type="button" id="btnPdf" onclick="makePDF()"><i class="fas fa-file-download"></i> PDF</button>
                 <button type="submit" class="btn btn-success" type="button"><i class="fas fa-file-download"></i> Excel</button>
                 <button class="btn btn-warning" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" id="btnCollapse">Hide All</button>
                 <input type="hidden" name="year" value="<?= date('Y') ?>" id="yearReport" />
@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12">
+                        <div id="capture" class="col-12">
                             <div class="row">
                                 <div class="col-6 col-md-6 mb-4 mr-0">
                                     <div class="card border-left-primary shadow h-100 py-2">
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div id="capture2" class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseReceivedOverdue" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseReceivedOverdue">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Received &amp; Unreceived |
@@ -106,7 +106,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-12">
+                        <div id="capture3" class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseAchievementPaymentReceived" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseAchievementPaymentReceived">
                                     <h6 class="m-0 font-weight-bold text-gray-800">Achievement Payment Received</h6>
@@ -138,7 +138,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-12">
+                        <div id="capture6" class="col-12">
                             <div class="card shadow mb-4" id="paymentReceived">
                                 <!-- Card Header - Dropdown -->
                                 <a href="#collapsePaymentReceived" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapsePaymentReceived">
@@ -239,7 +239,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12">
+                        <div id="capture4" class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <a href="#collapseMonthlyDetail" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseMonthlyDetail">
@@ -293,7 +293,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-12">
+                        <div id="capture5" class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseDNAging" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseDNAging">
                                     <h6 class="m-0 font-weight-bold text-gray-800">DN Aging and Top Tenants</h6>
