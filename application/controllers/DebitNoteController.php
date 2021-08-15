@@ -428,7 +428,7 @@ class DebitNoteController extends CI_Controller
         $sheet->getColumnDimension('M')->setWidth(20);
 
         // === WRITE DATA ===
-        $sheet->setCellValue('A1', 'DEBIT NOTE REPORTING | '.date('j F Y'))->getStyle('A1')->applyFromArray($styleHeading1);
+        $sheet->setCellValue('A1', 'DEBIT NOTE REPORT | '.date('j F Y'))->getStyle('A1')->applyFromArray($styleHeading1);
         // Account Recevables
         $sheet->setCellValue('A3', 'Account Receivables')->getStyle('A3')->applyFromArray($styleHeading2);
         $sheet->setCellValue('A4', 'Total DN')->getStyle('A4')->applyFromArray($styleTitle);
@@ -639,7 +639,7 @@ class DebitNoteController extends CI_Controller
             $i++;
         }
         
-        $fileName = 'DEBITNOTE_REPORTING_'.date('j F Y');
+        $fileName = 'DEBITNOTE_REPORT_'.date('j F Y');
         $writer = new Xlsx($spreadsheet);
         
         header('Content-Type: application/vnd.ms-excel'); // generate excel file

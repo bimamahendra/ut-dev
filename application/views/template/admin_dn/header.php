@@ -45,7 +45,7 @@
             doc.addImage("<?= base_url('assets/img/debitnote/header.png'); ?>",'JPEG',2,0);
             doc.setFont("helvetica", "bold");
             doc.setFontSize(12);
-            doc.text(`DEBIT NOTE REPORTING | ${dateNow}`, 110, 35);
+            doc.text(`DEBIT NOTE REPORT | ${dateNow}`, 110, 35);
 
             html2canvas(document.querySelector("#capture"),{
                 allowTaint:true,
@@ -53,7 +53,7 @@
                 scale: 4
             }).then(canvas => {               
                 var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,43,200,45);
+                doc.addImage(img,'JPEG',5,43,200,0);
 
                 html2canvas(document.querySelector("#capture2"),{
                 allowTaint:true,
@@ -61,7 +61,7 @@
                 scale: 4
                 }).then(canvas => {               
                     var img = canvas.toDataURL("image/jpeg");
-                    doc.addImage(img,'JPEG',5,91,200,78);
+                    doc.addImage(img,'JPEG',5,91,200,0);
 
                     html2canvas(document.querySelector("#capture3"),{
                         allowTaint:true,
@@ -69,7 +69,7 @@
                         scale: 4
                     }).then(canvas => {               
                         var img = canvas.toDataURL("image/jpeg");
-                        doc.addImage(img,'JPEG',5,172,200,82);
+                        doc.addImage(img,'JPEG',5,174,200,0);
                         doc.addPage();
 
                         html2canvas(document.querySelector("#capture4"),{
@@ -78,7 +78,7 @@
                             scale: 4
                         }).then(canvas => {               
                             var img = canvas.toDataURL("image/jpeg");
-                            doc.addImage(img,'JPEG',5,7,200,190);
+                            doc.addImage(img,'JPEG',5,7,200,0);
                             doc.addPage();
 
                             html2canvas(document.querySelector("#capture5"),{
@@ -87,7 +87,7 @@
                                 scale: 4
                             }).then(canvas => {               
                                 var img = canvas.toDataURL("image/jpeg");
-                                doc.addImage(img,'JPEG',5,7,200,150);
+                                doc.addImage(img,'JPEG',5,7,200,0);
                                 doc.addPage();
 
                                 html2canvas(document.querySelector("#capture6"),{
@@ -96,8 +96,8 @@
                                     scale: 4
                                 }).then(canvas => {               
                                     var img = canvas.toDataURL("image/jpeg");
-                                    doc.addImage(img,'JPEG',5,7,200,145);
-                                    doc.save(`DEBITNOTE_REPORTING_${dateNow}.pdf`);
+                                    doc.addImage(img,'JPEG',5,7,200,0);
+                                    doc.save(`DEBITNOTE_REPORT_${dateNow}.pdf`);
                                 });
                             });   
                         });  
