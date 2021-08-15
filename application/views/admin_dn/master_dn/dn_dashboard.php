@@ -22,6 +22,11 @@
                     <h6 class="m-0 font-weight-bold text-warning">Account Receivables</h6>
                 </div>
                 <div class="card-body">
+                    <div class="row" hidden>
+                        <div id="headerCapture" class="col-12" style="margin-bottom: 1.5rem;text-align: center;">
+                            <img src="<?= base_url('assets/img/debitnote/header.png'); ?>">
+                        </div>
+                    </div>
                     <div class="row">
                         <div id="capture" class="col-12">
                             <div class="row">
@@ -138,7 +143,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div id="capture6" class="col-12">
+                        <div id="capture4" class="col-12">
                             <div class="card shadow mb-4" id="paymentReceived">
                                 <!-- Card Header - Dropdown -->
                                 <a href="#collapsePaymentReceived" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapsePaymentReceived">
@@ -239,7 +244,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div id="capture4" class="col-12">
+                        <div id="capture5" class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <a href="#collapseMonthlyDetail" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseMonthlyDetail">
@@ -293,7 +298,7 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div id="capture5" class="col-12">
+                        <div id="capture6" class="col-12">
                             <div class="card shadow mb-4">
                                 <a href="#collapseDNAging" class="card-header py-3 d-flex flex-row align-items-center justify-content-between" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseDNAging">
                                     <h6 class="m-0 font-weight-bold text-gray-800">DN Aging and Top Tenants</h6>
