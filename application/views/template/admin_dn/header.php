@@ -40,58 +40,120 @@
 
         function makePDF(){
             var doc = new jsPDF();
+            const date = new Date();
+            const dateNow = getFullDate(date);
+            doc.addImage("<?= base_url('assets/img/debitnote/header.png'); ?>",'JPEG',2,0);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(12);
+            doc.text(`DEBIT NOTE REPORTING | ${dateNow}`, 110, 35);
+
             html2canvas(document.querySelector("#capture"),{
                 allowTaint:true,
                 useCORS: true,
                 scale: 4
             }).then(canvas => {               
                 var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,7,200,45);
-            });
-            html2canvas(document.querySelector("#capture2"),{
+                doc.addImage(img,'JPEG',5,43,200,45);
+
+                html2canvas(document.querySelector("#capture2"),{
                 allowTaint:true,
                 useCORS: true,
                 scale: 4
-            }).then(canvas => {               
-                var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,52,200,80);
+                }).then(canvas => {               
+                    var img = canvas.toDataURL("image/jpeg");
+                    doc.addImage(img,'JPEG',5,91,200,78);
+
+                    html2canvas(document.querySelector("#capture3"),{
+                        allowTaint:true,
+                        useCORS: true,
+                        scale: 4
+                    }).then(canvas => {               
+                        var img = canvas.toDataURL("image/jpeg");
+                        doc.addImage(img,'JPEG',5,172,200,82);
+                        doc.addPage();
+
+                        html2canvas(document.querySelector("#capture4"),{
+                            allowTaint:true,
+                            useCORS: true,
+                            scale: 4
+                        }).then(canvas => {               
+                            var img = canvas.toDataURL("image/jpeg");
+                            doc.addImage(img,'JPEG',5,7,200,190);
+                            doc.addPage();
+
+                            html2canvas(document.querySelector("#capture5"),{
+                                allowTaint:true,
+                                useCORS: true,
+                                scale: 4
+                            }).then(canvas => {               
+                                var img = canvas.toDataURL("image/jpeg");
+                                doc.addImage(img,'JPEG',5,7,200,150);
+                                doc.addPage();
+
+                                html2canvas(document.querySelector("#capture6"),{
+                                    allowTaint:true,
+                                    useCORS: true,
+                                    scale: 4
+                                }).then(canvas => {               
+                                    var img = canvas.toDataURL("image/jpeg");
+                                    doc.addImage(img,'JPEG',5,7,200,145);
+                                    doc.save(`REPORTING_DEBITNOTE_${dateNow}.pdf`);
+                                });
+                            });   
+                        });  
+                    });
+                });
             });
-            html2canvas(document.querySelector("#capture3"),{
-                allowTaint:true,
-                useCORS: true,
-                scale: 4
-            }).then(canvas => {               
-                var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,133,200,82);
-                doc.addPage();
-            });
-            html2canvas(document.querySelector("#capture4"),{
-                allowTaint:true,
-                useCORS: true,
-                scale: 4
-            }).then(canvas => {               
-                var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,7,200,150);
-                doc.addPage();
-            });            
-            html2canvas(document.querySelector("#capture5"),{
-                allowTaint:true,
-                useCORS: true,
-                scale: 4
-            }).then(canvas => {               
-                var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,7,200,145);
-                doc.addPage();
-            });
-            html2canvas(document.querySelector("#capture6"),{
-                allowTaint:true,
-                useCORS: true,
-                scale: 4
-            }).then(canvas => {               
-                var img = canvas.toDataURL("image/jpeg");
-                doc.addImage(img,'JPEG',5,7,200,190);
-                doc.save('DEBITNOTE_REPORT.pdf');
-            });
+        }
+        const getFullDate = (dateObj) => {
+            const date  = dateObj.getDate()
+            const month = getMonthName(dateObj.getMonth())
+            const year  = dateObj.getFullYear()
+
+            return `${date} ${month} ${year}`
+        }
+
+        const getMonthName = (month) => {
+            let res
+            switch(month){
+                case 0:
+                    res = "January"
+                    break;
+                case 1:
+                    res = "February"
+                    break;
+                case 2:
+                    res = "March"
+                    break;
+                case 3:
+                    res = "April"
+                    break;
+                case 4:
+                    res = "May"
+                    break;
+                case 5:
+                    res = "June"
+                    break;
+                case 6:
+                    res = "July"
+                    break;
+                case 7:
+                    res = "August"
+                    break;
+                case 8:
+                    res = "September"
+                    break;
+                case 9:
+                    res = "October"
+                    break;
+                case 10:
+                    res = "November"
+                    break;
+                case 11:
+                    res = "December"
+                    break;
+            }
+            return res
         }
     </script>
 </head>
