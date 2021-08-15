@@ -427,112 +427,120 @@ class DebitNoteController extends CI_Controller
         $sheet->getColumnDimension('L')->setWidth(20);
         $sheet->getColumnDimension('M')->setWidth(20);
 
+        // HEADER
+        $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+        $drawing->setName('Paid');
+        $drawing->setDescription('Paid');
+        $drawing->setPath("assets/img/debitnote/header.png"); /* put your path and image here */
+        $drawing->setCoordinates('A1');
+        $drawing->setWorksheet($sheet);
+        $sheet->setCellValue('A6', 'DEBIT NOTE REPORT | '.date('j F Y'))->getStyle('A6')->applyFromArray($styleHeading1);
+
         // === WRITE DATA ===
-        $sheet->setCellValue('A1', 'DEBIT NOTE REPORT | '.date('j F Y'))->getStyle('A1')->applyFromArray($styleHeading1);
         // Account Recevables
-        $sheet->setCellValue('A3', 'Account Receivables')->getStyle('A3')->applyFromArray($styleHeading2);
-        $sheet->setCellValue('A4', 'Total DN')->getStyle('A4')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A5', 'Total Received DN')->getStyle('A5')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A6', 'Total Overdue DN')->getStyle('A6')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A7', 'Total Overdue pass due 2 years')->getStyle('A7')->applyFromArray($styleTitle);
-        $sheet->setCellValue('B4', $datas['total'])->getStyle('B4')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('B5', $datas['rcvtotal'])->getStyle('B5')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('B6', $datas['ovdtotal'])->getStyle('B6')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('B7', $datas['ovdTwoYear'])->getStyle('B7')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('A8', 'Account Receivables')->getStyle('A8')->applyFromArray($styleHeading2);
+        $sheet->setCellValue('A9', 'Total DN')->getStyle('A9')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A10', 'Total Received DN')->getStyle('A10')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A11', 'Total Overdue DN')->getStyle('A11')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A12', 'Total Overdue pass due 2 years')->getStyle('A12')->applyFromArray($styleTitle);
+        $sheet->setCellValue('B9', $datas['total'])->getStyle('B9')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('B10', $datas['rcvtotal'])->getStyle('B10')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('B11', $datas['ovdtotal'])->getStyle('B11')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('B12', $datas['ovdTwoYear'])->getStyle('B12')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
         // Recevied & Unreceived
-        $sheet->setCellValue('A9', 'Received & Unreceived')->getStyle('A9')->applyFromArray($styleHeading2);
-        $sheet->setCellValue('A10', '')->getStyle('A10')->applyFromArray($styleTitle);
-        $sheet->setCellValue('B10', 'Total')->getStyle('B10')->applyFromArray($styleTitle);
-        $sheet->setCellValue('C10', 'Percentage %')->getStyle('C10')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A11', 'Received')->getStyle('A11')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A12', 'Overdue')->getStyle('A12')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A14', 'Received & Unreceived')->getStyle('A14')->applyFromArray($styleHeading2);
+        $sheet->setCellValue('A15', '')->getStyle('A15')->applyFromArray($styleTitle);
+        $sheet->setCellValue('B15', 'Total')->getStyle('B15')->applyFromArray($styleTitle);
+        $sheet->setCellValue('C15', 'Percentage %')->getStyle('C15')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A16', 'Received')->getStyle('A16')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A17', 'Overdue')->getStyle('A17')->applyFromArray($styleTitle);
         
         $cReceived = (!empty($datas['rcvtotal']) ? $datas['rcvtotal'] : 0);
-        $sheet->setCellValue('B11', $cReceived)->getStyle('B11')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C11', '=ROUND((B11/B4) * 100, 0)')->getStyle('C11')->applyFromArray($styleContentCenter);
+        $sheet->setCellValue('B16', $cReceived)->getStyle('B16')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C16', '=ROUND((B16/B9) * 100, 0)')->getStyle('C16')->applyFromArray($styleContentCenter);
         
         $cOverdue = (!empty($datas['ovdtotal']) ? $datas['ovdtotal'] : 0);
-        $sheet->setCellValue('B12', $cOverdue)->getStyle('B12')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C12', '=ROUND((B12/B4) * 100, 0)')->getStyle('C12')->applyFromArray($styleContentCenter);
+        $sheet->setCellValue('B17', $cOverdue)->getStyle('B17')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C17', '=ROUND((B17/B9) * 100, 0)')->getStyle('C17')->applyFromArray($styleContentCenter);
 
         // Achivement Payment Received
-        $sheet->setCellValue('A14', 'Achievement Payment Received')->getStyle('A14')->applyFromArray($styleHeading2);
-        $sheet->setCellValue('A15', 'Sewa Bangunan')->getStyle('A15')->applyFromArray($styleHeading3);
-        $sheet->setCellValue('A16', '')->getStyle('A16')->applyFromArray($styleTitle);
-        $sheet->setCellValue('B16', 'Total')->getStyle('B16')->applyFromArray($styleTitle);
-        $sheet->setCellValue('C16', 'Percentage %')->getStyle('C16')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A17', 'Done')->getStyle('A17')->applyFromArray($styleTitle);
-        $sheet->setCellValue('A18', 'Not Yet')->getStyle('A18')->applyFromArray($styleTitle);
-
-        $cRentCharge = (!empty($datas['rentCharge']) ? $datas['rentCharge'] : 0);
-        $sheet->setCellValue('B17', $cRentCharge)->getStyle('B17')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C17', '=ROUND('.(float) ($datas['rentCharge'] / ($datas['rentCharge'] + $datas['rentOverdue']) * 100).', 0)')->getStyle('C17')->applyFromArray($styleContentCenter);
-        
-        $cRentOverdue = (!empty($datas['rentOverdue']) ? $datas['rentOverdue'] : 0);
-        $sheet->setCellValue('B18', $cRentOverdue)->getStyle('B18')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C18', '=ROUND('.(float) ($datas['rentOverdue'] / ($datas['rentCharge'] + $datas['rentOverdue']) * 100).', 0)')->getStyle('C18')->applyFromArray($styleContentCenter);
-
-        $sheet->setCellValue('A20', 'Utility')->getStyle('A20')->applyFromArray($styleHeading3);
+        $sheet->setCellValue('A19', 'Achievement Payment Received')->getStyle('A19')->applyFromArray($styleHeading2);
+        $sheet->setCellValue('A20', 'Sewa Bangunan')->getStyle('A20')->applyFromArray($styleHeading3);
         $sheet->setCellValue('A21', '')->getStyle('A21')->applyFromArray($styleTitle);
         $sheet->setCellValue('B21', 'Total')->getStyle('B21')->applyFromArray($styleTitle);
         $sheet->setCellValue('C21', 'Percentage %')->getStyle('C21')->applyFromArray($styleTitle);
         $sheet->setCellValue('A22', 'Done')->getStyle('A22')->applyFromArray($styleTitle);
         $sheet->setCellValue('A23', 'Not Yet')->getStyle('A23')->applyFromArray($styleTitle);
 
-        $cUtilCharge = (!empty($datas['utilCharge']) ? $datas['utilCharge'] : 0);
-        $sheet->setCellValue('B22', $cUtilCharge)->getStyle('B22')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C22', '=ROUND('.(float) ($datas['utilCharge'] / ($datas['utilCharge'] + $datas['utilOverdue']) * 100).', 0)')->getStyle('C22')->applyFromArray($styleContentCenter);
-
-        $cUtilOverdue = (!empty($datas['utilOverdue']) ? $datas['utilOverdue'] : 0);
-        $sheet->setCellValue('B23', $cUtilOverdue)->getStyle('B23')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C23', '=ROUND('.(float) ($datas['utilOverdue'] / ($datas['utilCharge'] + $datas['utilOverdue']) * 100).', 0)')->getStyle('C23')->applyFromArray($styleContentCenter);
+        $cRentCharge = (!empty($datas['rentCharge']) ? $datas['rentCharge'] : 0);
+        $sheet->setCellValue('B22', $cRentCharge)->getStyle('B22')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C22', '=ROUND('.(float) ($datas['rentCharge'] / ($datas['rentCharge'] + $datas['rentOverdue']) * 100).', 0)')->getStyle('C22')->applyFromArray($styleContentCenter);
         
-        $sheet->setCellValue('A25', 'Others')->getStyle('A25')->applyFromArray($styleHeading3);
+        $cRentOverdue = (!empty($datas['rentOverdue']) ? $datas['rentOverdue'] : 0);
+        $sheet->setCellValue('B23', $cRentOverdue)->getStyle('B23')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C23', '=ROUND('.(float) ($datas['rentOverdue'] / ($datas['rentCharge'] + $datas['rentOverdue']) * 100).', 0)')->getStyle('C23')->applyFromArray($styleContentCenter);
+
+        $sheet->setCellValue('A25', 'Utility')->getStyle('A25')->applyFromArray($styleHeading3);
         $sheet->setCellValue('A26', '')->getStyle('A26')->applyFromArray($styleTitle);
         $sheet->setCellValue('B26', 'Total')->getStyle('B26')->applyFromArray($styleTitle);
         $sheet->setCellValue('C26', 'Percentage %')->getStyle('C26')->applyFromArray($styleTitle);
         $sheet->setCellValue('A27', 'Done')->getStyle('A27')->applyFromArray($styleTitle);
         $sheet->setCellValue('A28', 'Not Yet')->getStyle('A28')->applyFromArray($styleTitle);
 
+        $cUtilCharge = (!empty($datas['utilCharge']) ? $datas['utilCharge'] : 0);
+        $sheet->setCellValue('B27', $cUtilCharge)->getStyle('B27')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C27', '=ROUND('.(float) ($datas['utilCharge'] / ($datas['utilCharge'] + $datas['utilOverdue']) * 100).', 0)')->getStyle('C27')->applyFromArray($styleContentCenter);
+
+        $cUtilOverdue = (!empty($datas['utilOverdue']) ? $datas['utilOverdue'] : 0);
+        $sheet->setCellValue('B28', $cUtilOverdue)->getStyle('B28')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C28', '=ROUND('.(float) ($datas['utilOverdue'] / ($datas['utilCharge'] + $datas['utilOverdue']) * 100).', 0)')->getStyle('C28')->applyFromArray($styleContentCenter);
+        
+        $sheet->setCellValue('A30', 'Others')->getStyle('A30')->applyFromArray($styleHeading3);
+        $sheet->setCellValue('A31', '')->getStyle('A31')->applyFromArray($styleTitle);
+        $sheet->setCellValue('B31', 'Total')->getStyle('B31')->applyFromArray($styleTitle);
+        $sheet->setCellValue('C31', 'Percentage %')->getStyle('C31')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A32', 'Done')->getStyle('A32')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A33', 'Not Yet')->getStyle('A33')->applyFromArray($styleTitle);
+
         $cOthersCharge = (!empty($datas['othersCharge']) ? $datas['othersCharge'] : 0);
-        $sheet->setCellValue('B27', $cOthersCharge)->getStyle('B27')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C27', '=ROUND('.(float) ($datas['othersCharge'] / ($datas['othersCharge'] + $datas['othersOverdue']) * 100).', 0)')->getStyle('C27')->applyFromArray($styleContentCenter);
+        $sheet->setCellValue('B32', $cOthersCharge)->getStyle('B32')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C32', '=ROUND('.(float) ($datas['othersCharge'] / ($datas['othersCharge'] + $datas['othersOverdue']) * 100).', 0)')->getStyle('C32')->applyFromArray($styleContentCenter);
         
         $cOthersOverdue = (!empty($datas['othersOverdue']) ? $datas['othersOverdue'] : 0);
-        $sheet->setCellValue('B28', $cOthersOverdue)->getStyle('B28')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C28', '=ROUND('.(float) ($datas['othersOverdue'] / ($datas['othersCharge'] + $datas['othersOverdue']) * 100).', 0)')->getStyle('C28')->applyFromArray($styleContentCenter);
+        $sheet->setCellValue('B33', $cOthersOverdue)->getStyle('B33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C33', '=ROUND('.(float) ($datas['othersOverdue'] / ($datas['othersCharge'] + $datas['othersOverdue']) * 100).', 0)')->getStyle('C33')->applyFromArray($styleContentCenter);
         // Payment Received Yearly
-        $sheet->setCellValue('A30', 'Payment Received Yearly | '.$year)->getStyle('A30')->applyFromArray($styleHeading2);
-        $sheet->setCellValue('A31', 'DN Payment')->getStyle('A31')->applyFromArray($styleHeading3);
-        $sheet->setCellValue('A32', 'Target')->getStyle('A32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('B32', 'Listrik')->getStyle('B32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('C32', 'Rent')->getStyle('C32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('D32', 'Service')->getStyle('D32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('E32', 'Air')->getStyle('E32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('F32', 'Telefon')->getStyle('F32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('G32', 'Others')->getStyle('G32')->applyFromArray($styleTitle);
-        $sheet->setCellValue('H32', 'Grand Total')->getStyle('H32')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A35', 'Payment Received Yearly | '.$year)->getStyle('A35')->applyFromArray($styleHeading2);
+        $sheet->setCellValue('A36', 'DN Payment')->getStyle('A36')->applyFromArray($styleHeading3);
+        $sheet->setCellValue('A37', 'Target')->getStyle('A37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('B37', 'Listrik')->getStyle('B37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('C37', 'Rent')->getStyle('C37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('D37', 'Service')->getStyle('D37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('E37', 'Air')->getStyle('E37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('F37', 'Telefon')->getStyle('F37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('G37', 'Others')->getStyle('G37')->applyFromArray($styleTitle);
+        $sheet->setCellValue('H37', 'Grand Total')->getStyle('H37')->applyFromArray($styleTitle);
         
-        $sheet->setCellValue('A33', $year)->getStyle('A33')->applyFromArray($styleContentCenter);
-        $sheet->setCellValue('B33', $datas['yearly']['Listrik'])->getStyle('B33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('C33', $datas['yearly']['Rent'])->getStyle('C33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('D33', $datas['yearly']['Service'])->getStyle('D33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('E33', $datas['yearly']['Air'])->getStyle('E33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('F33', $datas['yearly']['Telefon'])->getStyle('F33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('G33', $datas['yearly']['Others'])->getStyle('G33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
-        $sheet->setCellValue('H33', $datas['yearly']['GrandTotal'])->getStyle('H33')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('A38', $year)->getStyle('A38')->applyFromArray($styleContentCenter);
+        $sheet->setCellValue('B38', $datas['yearly']['Listrik'])->getStyle('B38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('C38', $datas['yearly']['Rent'])->getStyle('C38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('D38', $datas['yearly']['Service'])->getStyle('D38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('E38', $datas['yearly']['Air'])->getStyle('E38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('F38', $datas['yearly']['Telefon'])->getStyle('F38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('G38', $datas['yearly']['Others'])->getStyle('G38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+        $sheet->setCellValue('H38', $datas['yearly']['GrandTotal'])->getStyle('H38')->applyFromArray($styleContent)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
         
-        $sheet->setCellValue('A35', 'DN Received')->getStyle('A35')->applyFromArray($styleHeading3);
-        $sheet->setCellValue('A36', 'Tahun')->getStyle('A36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('B36', 'Listrik')->getStyle('B36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('C36', 'Rent')->getStyle('C36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('D36', 'Service')->getStyle('D36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('E36', 'Air')->getStyle('E36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('F36', 'Telefon')->getStyle('F36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('G36', 'Others')->getStyle('G36')->applyFromArray($styleTitle);
-        $sheet->setCellValue('H36', 'Grand Total')->getStyle('H36')->applyFromArray($styleTitle);
+        $sheet->setCellValue('A40', 'DN Received')->getStyle('A40')->applyFromArray($styleHeading3);
+        $sheet->setCellValue('A41', 'Tahun')->getStyle('A41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('B41', 'Listrik')->getStyle('B41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('C41', 'Rent')->getStyle('C41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('D41', 'Service')->getStyle('D41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('E41', 'Air')->getStyle('E41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('F41', 'Telefon')->getStyle('F41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('G41', 'Others')->getStyle('G41')->applyFromArray($styleTitle);
+        $sheet->setCellValue('H41', 'Grand Total')->getStyle('H41')->applyFromArray($styleTitle);
 
-        $lastRow = 36;
+        $lastRow = 41;
         foreach ($yearlyDetail as $item) {
             ++$lastRow;
             $listrik                                    = (!empty($item['Listrik']) ? $item['Listrik'] : '0');
