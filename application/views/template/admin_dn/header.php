@@ -97,7 +97,7 @@
                                 }).then(canvas => {               
                                     var img = canvas.toDataURL("image/jpeg");
                                     doc.addImage(img,'JPEG',5,7,200,145);
-                                    doc.save(`REPORTING_DEBITNOTE_${dateNow}.pdf`);
+                                    doc.save(`DEBITNOTE_REPORTING_${dateNow}.pdf`);
                                 });
                             });   
                         });  

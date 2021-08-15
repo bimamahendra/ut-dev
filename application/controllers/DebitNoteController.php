@@ -639,7 +639,7 @@ class DebitNoteController extends CI_Controller
             $i++;
         }
         
-        $fileName = 'REPORTING_DEBITNOTE_'.date('j F Y');
+        $fileName = 'DEBITNOTE_REPORTING_'.date('j F Y');
         $writer = new Xlsx($spreadsheet);
         
         header('Content-Type: application/vnd.ms-excel'); // generate excel file
