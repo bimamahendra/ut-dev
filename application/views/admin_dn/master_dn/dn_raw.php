@@ -31,6 +31,29 @@
             </div>
         </div>
         <div class="card-body">
+            <?php
+                if(!empty($this->session->flashdata('success'))){
+                    echo '
+                        <div class="alert alert-success" role="alert">
+                            Selamat debit note berhasil ditambahkan !
+                        </div>
+                    ';        
+                }
+                if(!empty($this->session->flashdata('error'))){
+                    echo '
+                        <div class="alert alert-danger" role="alert">
+                           '.$this->session->flashdata('error').'
+                        </div>
+                    ';        
+                }
+                if(!empty($this->session->flashdata('errorDuplicate')) && $this->session->flashdata('errorDuplicate') != null){
+                    echo '
+                        <div class="alert alert-danger" role="alert">
+                            Oops, debit note dengan no dn <b>'.implode(', ', $this->session->flashdata('errorDuplicate')).'</b> telah terdaftar.
+                        </div>
+                    ';        
+                }
+            ?>
             <div class="table-responsive">
                 <table class="table table-bordered" id="tableTransaction" width="100%" cellspacing="0">
                     <thead>
