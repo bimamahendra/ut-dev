@@ -189,7 +189,9 @@ class DebitNoteController extends CI_Controller
                         $this->session->set_flashdata('success', true);
                     }
                 }
-                $this->DebitNote->insertBatch($dataStore);
+                if($dataStore != null){
+                    $this->DebitNote->insertBatch($dataStore);
+                }
             } else {
                 echo $this->upload->display_errors();
                 $this->session->set_flashdata('error', $this->upload->display_errors());
