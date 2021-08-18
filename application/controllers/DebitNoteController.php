@@ -152,40 +152,50 @@ class DebitNoteController extends CI_Controller
                 $date = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value);
 
                 $dataStore = array();
+                $noDnDuplicate = array();
                 for ($i = 4; $i < $highestRow; $i++) {
-                    $date = date_create($arrSpreadsheet[$i][1]);
+                    $noDn = $arrSpreadsheet[$i][0];
 
-                    $data['ID_DEBITNOTE']               = 'DN_' . md5(time() . $this->getRandString(5));
-                    $data['NOFAKTUR_DEBITNOTE']         = $arrSpreadsheet[$i][0];
-                    $data['TGLFAKTUR_DEBITNOTE']        = date('Y-m-d', strtotime($arrSpreadsheet[$i][1]));
-                    $data['TGLJATUH_DEBITNOTE']         = date('Y-m-d', strtotime($arrSpreadsheet[$i][2]));
-                    $data['NOFAKTURPAJAK_DEBITNOTE']    = $arrSpreadsheet[$i][3];
-                    $data['KURSPAJAK_DEBITNOTE']        = $arrSpreadsheet[$i][4];
-                    $data['NOPELANGGAN_DEBITNOTE']      = $arrSpreadsheet[$i][5];
-                    $data['EMAIL_DEBITNOTE']            = $arrSpreadsheet[$i][6];
-                    $data['NOPESANAN_DEBITNOTE']        = $arrSpreadsheet[$i][7];
-                    $data['TGLPESANAN_DEBITNOTE']       = date('Y-m-d', strtotime($arrSpreadsheet[$i][8]));
-                    $data['MATAUANG']                   = $arrSpreadsheet[$i][9];
-                    $data['NAMAPERUSAHAAN_DEBITNOTE']   = $arrSpreadsheet[$i][10];
-                    $data['ALAMATPERUSAHAAN_DEBITNOTE'] = $arrSpreadsheet[$i][11];
-                    $data['NPWP_DEBITNOTE']             = $arrSpreadsheet[$i][12];
-                    $data['BARANGJASA_DEBITNOTE']       = $arrSpreadsheet[$i][13];
-                    $data['HARGAJUAL_DEBITNOTE']        = str_replace(',', '', $arrSpreadsheet[$i][14]);
-                    $data['TOTHARGAJUAL_DEBITNOTE']     = str_replace(',', '', $arrSpreadsheet[$i][15]);
-                    $data['POTHARGA_DEBITNOTE']         = str_replace(',', '', $arrSpreadsheet[$i][16]);
-                    $data['UANGMUKA_DEBITNOTE']         = str_replace(',', '', $arrSpreadsheet[$i][17]);
-                    $data['HARGAPOTONGAN_DEBITNOTE']    = str_replace(',', '', $arrSpreadsheet[$i][18]);
-                    $data['DPP_DEBITNOTE']              = str_replace(',', '', $arrSpreadsheet[$i][19]);
-                    $data['PPN_DEBITNOTE']              = str_replace(',', '', $arrSpreadsheet[$i][20]);
-                    $data['GRANDTOTAL_DEBITNOTE']       = str_replace(',', '', $arrSpreadsheet[$i][21]);
-                    $data['TIPE_DEBITNOTE']             = $arrSpreadsheet[$i][22];
-                    array_push($dataStore, $data);
+                    $dn = $this->db->query("SELECT NOFAKTUR_DEBITNOTE FROM DEBITNOTE WHERE STAT_DEBITNOTE IN('0', '1', '2', '3', '4', '5', '6') AND NOFAKTUR_DEBITNOTE = '".$noDn."' AND YEAR(TGLFAKTUR_DEBITNOTE) = '".date('Y', strtotime($arrSpreadsheet[$i][1]))."' ")->result();
+                    
+                    if($dn != null){
+                        array_push($noDnDuplicate, $dn[0]->NOFAKTUR_DEBITNOTE);
+                    }else{
+                        $data['ID_DEBITNOTE']               = 'DN_' . md5(time() . $this->getRandString(5));
+                        $data['NOFAKTUR_DEBITNOTE']         = $arrSpreadsheet[$i][0];
+                        $data['TGLFAKTUR_DEBITNOTE']        = date('Y-m-d', strtotime($arrSpreadsheet[$i][1]));
+                        $data['TGLJATUH_DEBITNOTE']         = date('Y-m-d', strtotime($arrSpreadsheet[$i][2]));
+                        $data['NOFAKTURPAJAK_DEBITNOTE']    = $arrSpreadsheet[$i][3];
+                        $data['KURSPAJAK_DEBITNOTE']        = $arrSpreadsheet[$i][4];
+                        $data['NOPELANGGAN_DEBITNOTE']      = $arrSpreadsheet[$i][5];
+                        $data['EMAIL_DEBITNOTE']            = $arrSpreadsheet[$i][6];
+                        $data['NOPESANAN_DEBITNOTE']        = $arrSpreadsheet[$i][7];
+                        $data['TGLPESANAN_DEBITNOTE']       = date('Y-m-d', strtotime($arrSpreadsheet[$i][8]));
+                        $data['MATAUANG']                   = $arrSpreadsheet[$i][9];
+                        $data['NAMAPERUSAHAAN_DEBITNOTE']   = $arrSpreadsheet[$i][10];
+                        $data['ALAMATPERUSAHAAN_DEBITNOTE'] = $arrSpreadsheet[$i][11];
+                        $data['NPWP_DEBITNOTE']             = $arrSpreadsheet[$i][12];
+                        $data['BARANGJASA_DEBITNOTE']       = $arrSpreadsheet[$i][13];
+                        $data['HARGAJUAL_DEBITNOTE']        = str_replace(',', '', $arrSpreadsheet[$i][14]);
+                        $data['TOTHARGAJUAL_DEBITNOTE']     = str_replace(',', '', $arrSpreadsheet[$i][15]);
+                        $data['POTHARGA_DEBITNOTE']         = str_replace(',', '', $arrSpreadsheet[$i][16]);
+                        $data['UANGMUKA_DEBITNOTE']         = str_replace(',', '', $arrSpreadsheet[$i][17]);
+                        $data['HARGAPOTONGAN_DEBITNOTE']    = str_replace(',', '', $arrSpreadsheet[$i][18]);
+                        $data['DPP_DEBITNOTE']              = str_replace(',', '', $arrSpreadsheet[$i][19]);
+                        $data['PPN_DEBITNOTE']              = str_replace(',', '', $arrSpreadsheet[$i][20]);
+                        $data['GRANDTOTAL_DEBITNOTE']       = str_replace(',', '', $arrSpreadsheet[$i][21]);
+                        $data['TIPE_DEBITNOTE']             = $arrSpreadsheet[$i][22];
+                        array_push($dataStore, $data);
+                        $this->session->set_flashdata('success', true);
+                    }
                 }
                 $this->DebitNote->insertBatch($dataStore);
             } else {
                 echo $this->upload->display_errors();
+                $this->session->set_flashdata('error', $this->upload->display_errors());
             }
         }
+        $this->session->set_flashdata('errorDuplicate', $noDnDuplicate);
         redirect('debitnote');
     }
     public function edit($idDebitNote)
