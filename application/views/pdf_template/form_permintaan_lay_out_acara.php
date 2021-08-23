@@ -271,7 +271,7 @@
 						?>
 					</td>
 					<td class="tg-5rbv" style="text-align:left">
-						Beban biaya : <?= number_format($list[0]->BIAYA_LAYOUT, 0, ',', '.') ?></td>
+						Beban biaya : <?= $list[0]->BIAYA_LAYOUT ?></td>
 				</tr>
 				<tr>
 					<td class="tg-5rbv" style="text-align:center" colspan="4">GAMBAR / LAY OUT ACARA</td>
