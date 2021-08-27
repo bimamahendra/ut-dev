@@ -123,7 +123,7 @@ class FormPVRV extends RestController {
     
     function upload_file($username){
         $date = date('Ymd');
-        $newPath = './uploads/assets/dokpend/'.$username.'/'.$date.'/';
+        $newPath = './uploads/assets/dokpend/pvrv/'.$username.'/'.$date.'/';
         if(!is_dir($newPath)){
             mkdir($newPath, 0777, TRUE);
         }
@@ -142,7 +142,7 @@ class FormPVRV extends RestController {
 
             $upname = $ups['file_name'];
 
-            return ['link' => base_url('/uploads/assets/dokpend/'.$username.'/'.$date.'/'.$upname), 'fileName' => $upname];
+            return ['link' => base_url('/uploads/assets/dokpend/pvrv/'.$username.'/'.$date.'/'.$upname), 'fileName' => $upname];
         }             
     }
 }
