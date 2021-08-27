@@ -311,7 +311,7 @@
 				</td>
 				<td class="thd-td2">
 					<?php
-					if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+					if (!empty($approvals[2]->ROLE_APP) && $approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
 						echo '
 									<img src="' . $approvals[2]->PATH_TTD . '" width="100px" height="100px" />
 								';
@@ -350,7 +350,7 @@
 						';
 				}
 
-				if ($approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
+				if (!empty($approvals[2]->ROLE_APP) && $approvals[2]->ROLE_APP == "Division Head" && $approvals[2]->ISAPPROVE_APP == "1") {
 					echo '
 							<td>( ' . $approvals[2]->NAMA_USERS . ' )</td>
 						';
