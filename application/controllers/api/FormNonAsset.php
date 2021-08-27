@@ -41,7 +41,9 @@ class FormNonAsset extends RestController {
                 $flow = $this->db->get_where('FLOW', ['ID_MAPPING' => $mapping[0]->ID_MAPPING])->result_array();
                 for($i = 1; $i <= 15; $i++){
                     if(!empty($flow[0]['APP_'.$i]) && $flow[0]['APP_'.$i] != null){
-                        $this->db->insert('DETAIL_APPROVAL', ['ID_TRANS' => $idTrans, 'ROLE_APP' => $flow[0]['APP_'.$i]]);
+                        if($param['isDivApprov'] == "2" && $flow[0]['APP_'.$i != "Division Head"]){
+                            $this->db->insert('DETAIL_APPROVAL', ['ID_TRANS' => $idTrans, 'ROLE_APP' => $flow[0]['APP_'.$i]]);
+                        }
                     }else if($flow[0]['APP_1'] == null){
                         $this->db->where('ID_TRANS', $idTrans)->update('TRANSACTION', ['STAT_TRANS' => '2']);
                     }
