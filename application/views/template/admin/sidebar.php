@@ -3,8 +3,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('dashboard'); ?>">
-        <img src="<?= base_url('assets/img/logo.png'); ?>" class="rounded mx-auto d-block" width="55">
-        <div class="sidebar-brand-text mx-1" style="font-size: 14px !important;">United Tractors</div>
+        <img src="<?= base_url('assets/img/logo_baru.png'); ?>" class="rounded mx-auto d-block" width="180">
     </a>
 
     <!-- Divider -->
