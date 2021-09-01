@@ -559,7 +559,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-regular-sm">V : OK</td>
+                    <td class="text-regular-sm">V : Baik</td>
                     <td class="text-regular-sm bg-grey text-align-center border-1">PROBLEM IDENTIFICATION</td>
                     <td class="text-regular-sm bg-grey text-align-center border-1">ROOT CAUSE</td>
                     <td class="text-regular-sm bg-grey text-align-center border-1">CORRECTIVE ACTION</td>
@@ -577,7 +577,7 @@
                     <td class="border-1 p-min"><?= $list[0]->STATUS_GENSET ?></td>
                 </tr>
                 <tr>
-                    <td class="text-regular-sm">S : Service/ ganti</td>
+                    <td class="text-regular-sm">S : Service / ganti</td>
                     <td class="border-1 p-min"></td>
                     <td class="border-1 p-min"></td>
                     <td class="border-1 p-min"></td>
