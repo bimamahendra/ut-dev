@@ -419,7 +419,7 @@
         </table>
         <p class="text-align-left">
             V : OK / Normal <br>
-            X : No OK/Perbaikan
+            X : No OK / Perbaikan
         </p>
         <table class="border-1 border-collapse absolute pos-right table-layout-fixed" style="width: 400px;">
             <tr>
@@ -459,6 +459,9 @@
                 <td class="border-1 p-min">Section Head</td>
             </tr>
         </table>
+    </div>
+    <div class="wrapper-page">
+        <img src="https://via.placeholder.com/500">
     </div>
 </body>
 
