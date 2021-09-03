@@ -121,6 +121,21 @@ class Transaction extends RestController {
                                 $this->response(['status' => false, 'message' => 'Gagal generate form'], 200);
                             }
                             $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated)]);
+                            
+                            // if form iwo then feedback for user
+                            if($transaction[0]->NAMA_FORM == 'Internal Work Order'){ 
+                                $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
+                                $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "4" WHERE ID_TRANS = "'.$param['idTrans'].'"');
+                                
+                                // notif applicant successfull and request feedback
+                                $userReceiveNotifs = $this->db->get_where('USERS', ['ID_USERS' => $transaction[0]->ID_USERS])->result_array();
+                                $notif['title']     = 'Info Pengajuan Form';
+                                $notif['message']   = 'Pengajuan Form '.$transaction[0]->NAMA_FORM.' Telah Disetujui & Isikan Feedback Anda';
+                                $notif['regisIds']  = $userReceiveNotifs;
+                                $this->notification->push($notif);
+
+                                $this->response(['status' => true, 'message' => 'Data berhasil disetujui'], 200);
+                            } 
 
                             $this->db->where(['ID_TRANS' => $param['idTrans'], 'ROLE_APP' => $user[0]->ROLE_USERS])->update('DETAIL_APPROVAL', ['ID_USERS' => $user[0]->ID_USERS, 'ISAPPROVE_APP' => '1', 'KETERANGAN' => $param['keterangan']]);
                             $this->db->query('UPDATE TRANSACTION SET FLAG_TRANS = FLAG_TRANS+1, STAT_TRANS = "2" WHERE ID_TRANS = "'.$param['idTrans'].'"');
@@ -156,5 +171,19 @@ class Transaction extends RestController {
         }else{
             $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
         }
+    }
+
+    public function feedbackIWO_post(){
+        $param = $this->post();
+
+        if(!empty($param['idTrans']) && !empty($param['statPekerjaan']) && !empty($param['kualPekerjaan']) && !empty($param['kualPekerjaan']) && !empty($param['ketPekerjaan'])){
+            $updateIWO['ID_TRANS']              = $param['idTrans'];
+            $updateIWO['STATUS_PEKERJAAN']      = $param['statPekerjaan'];
+            $updateIWO['KUALITAS_PEKERJAAN']    = $param['kualPekerjaan'];
+            $updateIWO['KET_PEKERJAAN']         = $param['ketPekerjaan'];
+            $this->db->where('ID_TRANS', $updateIWO['ID_TRANS'])->update('FORM_IWO', $updateIWO);
+            $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
+            $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated), 'STAT_TRANS' => "2"]);
+        }        
     }
 }
