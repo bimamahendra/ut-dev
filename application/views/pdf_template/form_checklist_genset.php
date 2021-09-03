@@ -627,6 +627,9 @@
             </tr>
         </table>
     </div>
+    <div class="wrapper-page">
+		<img src="<?= $list[0]->PIC?>" style="max-width: 800px; display: block; margin-left: auto; margin-right: auto;" alt="">
+	</div>
 </body>
 
 </html>
