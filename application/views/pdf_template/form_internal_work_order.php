@@ -388,7 +388,7 @@
 				</td>
 				<td class="thd-td2">
 					<?php
-						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1" && $list[0]->STAT_PEKERJAAN != null) {
 							echo '
 								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
 							';
@@ -437,11 +437,11 @@
 			<tbody>
                 <tr>
                     <td class="tg-5r9a" style="text-align:left;" rowspan="2">
-                        <input type="checkbox" id="checkbox_status1">
+                        <input type="checkbox" id="checkbox_status1" <?= $list[0]->STAT_PEKERJAAN == "1" ? 'checked' : ''?> >
 						<label for="checkbox_status1">Selesai</label>
                     </td>    
                     <td class="tg-5r9a" style="text-align:left;" rowspan="2">
-                        <input type="checkbox" id="checkbox_status1">
+                        <input type="checkbox" id="checkbox_status1" <?= $list[0]->STAT_PEKERJAAN == "2" ? 'checked' : ''?>>
 						<label for="checkbox_status1">Pending</label>
                     </td>
                     <td class="tg-5r9a" style="text-align:center; width: 15%">Puas</td>
@@ -449,9 +449,9 @@
                     <td class="tg-5r9a" style="text-align:center; width: 15%">Tidak Puas</td>
                 </tr>
                 <tr>
-					<td class="tg-5r9a" style="text-align:center;">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
-                    <td class="tg-5r9a" style="text-align:center;">...</td>
+					<td class="tg-5r9a" style="text-align:center;"><?= $list[0]->KUALITAS_PEKERJAAN == "1" ? 'V' : ''?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= $list[0]->KUALITAS_PEKERJAAN == "2" ? 'V' : ''?></td>
+                    <td class="tg-5r9a" style="text-align:center;"><?= $list[0]->KUALITAS_PEKERJAAN == "3" ? 'V' : ''?></td>
 				</tr>
 			</tbody>
 		</table>
@@ -462,12 +462,21 @@
 				<tr>
 					<th class="tg-5rbv" style="text-align:left; width: 61%;">Keterangan:</th>
                     <th class="tg-5rbv" style="text-align:center; width: 25%;" rowspan="3">Tanda tangan user</th>
-                    <th class="tg-5rbv" style="text-align:left;  width: 25%;" rowspan="3"></th>
+                    <th class="tg-5rbv" style="text-align:left;  width: 25%;" rowspan="3">
+						<?php
+							if($list[0]->STAT_PEKERJAAN != null){
+								echo '
+									<img src="'.$user->PATH_TTD.'" width="75px" height="75px" />
+								';
+							}
+						
+						?>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="tg-5r9a" style="text-align:left; width:60%;">...</td>
+					<td class="tg-5r9a" style="text-align:left; width:60%;"><?= $list[0]->KET_PEKERJAAN?></td>
 				</tr>
                 <tr>
 					<td class="tg-5r9a" style="text-align:left; width:60%;">...</td>
