@@ -184,6 +184,10 @@ class Transaction extends RestController {
             $this->db->where('ID_TRANS', $updateIWO['ID_TRANS'])->update('FORM_IWO', $updateIWO);
             $resLinkGenerated = $this->ContentPdf->generate(['idTrans' => $param['idTrans'], 'orientation' => 'portrait']);
             $this->db->where('ID_TRANS', $param['idTrans'])->update('TRANSACTION', ['PATH_TRANS' => base_url($resLinkGenerated), 'STAT_TRANS' => "2"]);
-        }        
+
+            $this->response(['status' => true, 'message' => 'Berhasil memasukkan feedback pada form IWO'], 200);
+        }else{
+            $this->response(['status' => false, 'message' => 'Parameter tidak cocok'], 200);
+        }
     }
 }
