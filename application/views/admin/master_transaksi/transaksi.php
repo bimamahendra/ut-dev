@@ -56,6 +56,8 @@
                                 $status = 'Selesai';
                             } else if ($item->STAT_TRANS == '3') {
                                 $status = 'Ditolak';
+                            } else if($item->STAT_TRANS == '4'){
+                                $status = 'Menunggu Feedback';
                             }
                             $date = date_create($item->TS_TRANS);
 

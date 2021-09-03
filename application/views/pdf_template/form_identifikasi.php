@@ -362,28 +362,62 @@
 	<div class="wrapper-page">
 		<div class="container-item">
 			<table class="table-layout-fixed w-100" style="vertical-align: top;">
+				<?php
+					$listImg 	= explode(';', $list[0]->ATTACHMENT_IDENTIFIKASI);
+					$listKetImg = explode(';', $list[0]->KETATTACHMENT_IDENTIFIKASI);
+				?>
 				<tr>
 					<td width="30%">
-						<img src="https://via.placeholder.com/250"><br>
-						<span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda eos tempora mollitia nulla laboriosam, reprehenderit iste provident maiores laborum atque molestiae nihil doloremque eligendi voluptatem?</span>
+						<?php
+							if(!empty($listImg[0])){
+								echo '
+									<img src="'.$listImg[0].'" /><br>
+									<span>'.!empty($listKetImg[0]) ? $listKetImg[0] : ''.'</span>
+								';
+							}
+						?>
 					</td>
 					<td width="30%">
-						<img src="https://via.placeholder.com/250"><br>
-						<span>Ini tulisan 2</span>
+						<?php
+							if(!empty($listImg[1])){
+								echo '
+									<img src="'.$listImg[1].'" /><br>
+									<span>'.!empty($listKetImg[1]) ? $listKetImg[1] : ''.'</span>
+								';
+							}
+						?>
 					</td>
 					<td width="30%">
-						<img src="https://via.placeholder.com/250"><br>
-						<span>Ini tulisan 3</span>
+						<?php
+							if(!empty($listImg[2])){
+								echo '
+									<img src="'.$listImg[2].'" /><br>
+									<span>'.!empty($listKetImg[2]) ? $listKetImg[2] : ''.'</span>
+								';
+							}
+						?>
 					</td>
 				</tr>
 				<tr>
 					<td width="30%">
-						<img src="https://via.placeholder.com/250"><br>
-						<span>Ini tulisan 4</span>
+						<?php
+							if(!empty($listImg[3])){
+								echo '
+									<img src="'.$listImg[3].'" /><br>
+									<span>'.!empty($listKetImg[3]) ? $listKetImg[3] : ''.'</span>
+								';
+							}
+						?>
 					</td>
 					<td width="30%">
-						<img src="https://via.placeholder.com/250"><br>
-						<span>Ini tulisan 5</span>
+						<?php
+							if(!empty($listImg[4])){
+								echo '
+									<img src="'.$listImg[4].'" /><br>
+									<span>'.!empty($listKetImg[4]) ? $listKetImg[4] : ''.'</span>
+								';
+							}
+						?>
 					</td>
 				</tr>
 			</table>

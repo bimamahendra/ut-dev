@@ -173,10 +173,10 @@ class Transaction extends RestController {
         }
     }
 
-    public function feedbackIWO_post(){
-        $param = $this->post();
+    public function feedbackIWO_put(){
+        $param = $this->put();
 
-        if(!empty($param['idTrans']) && !empty($param['statPekerjaan']) && !empty($param['kualPekerjaan']) && !empty($param['kualPekerjaan']) && !empty($param['ketPekerjaan'])){
+        if(!empty($param['idTrans']) && !empty($param['statPekerjaan']) && !empty($param['kualPekerjaan']) && !empty($param['ketPekerjaan'])){
             $updateIWO['ID_TRANS']              = $param['idTrans'];
             $updateIWO['STATUS_PEKERJAAN']      = $param['statPekerjaan'];
             $updateIWO['KUALITAS_PEKERJAAN']    = $param['kualPekerjaan'];
