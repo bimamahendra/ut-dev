@@ -25,7 +25,6 @@ class FormIWO extends RestController {
 
                 $storeIWO['ID_IWO']             = $idIWO;
                 $storeIWO['ID_TRANS']           = $idTrans;
-                $storeIWO['TT_IWO']             = $param['troubTicket'];
                 $storeIWO['TGL_IWO']            = $param['tgl'];
                 $storeIWO['MULAI_IWO']          = $param['tglMulai'];
                 $storeIWO['SELESAI_IWO']        = $param['tglSelesai'];
@@ -36,6 +35,23 @@ class FormIWO extends RestController {
                 $storeIWO['JENIS_PERBAIKAN']    = $param['jenPerbaikan']['pengBaru'].';'.$param['jenPerbaikan']['pengSebagian'].';'.$param['jenPerbaikan']['perbaikan'];
                 $storeIWO['KET_PERBAIKAN']      = $param['ketPerbaikan'];
                 $storeIWO['ALASAN_PERBAIKAN']   = $param['alsnPerbaikan'];
+
+                $ttIWO = $this->db->order_by('TGLOUT_IWO', 'desc')->get('FORM_IWO')->row();
+                if($ttIWO != null){
+                    $dateTT  = substr($ttIWO->TT_IWO, 0,8);
+                    $noRegis = substr($ttIWO->TT_IWO, 8);
+                    $dateNow = date('Ymd');
+                    if($dateTT != $dateNow){
+                        $dateTT  = $dateNow;
+                        $noRegis = '001';
+                    }else{
+                        $noRegis = sprintf("%03d", (int)++$noRegis);
+                    }
+                    $ttIWO = $dateTT.$noRegis;
+                }else{
+                    $ttIWO = date('Ymd').'001';
+                }
+                $storeIWO['TT_IWO'] = $ttIWO;
                 $this->db->insert('FORM_IWO', $storeIWO);
 
                 foreach($param['detKebutuhan'] as $item){
