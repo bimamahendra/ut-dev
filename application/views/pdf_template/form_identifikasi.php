@@ -224,11 +224,15 @@
 			height: 600px;
 			width: 900px;
 			margin-top: 10px;
-			background-color: orange;
 		}
 
 		.table-layout-fixed {
 			table-layout: fixed;
+		}
+
+		.item {
+			margin-right: 10px !important;
+			margin-bottom: 10px !important;
 		}
 	</style>
 </head>
@@ -363,61 +367,71 @@
 		<div class="container-item">
 			<table class="table-layout-fixed w-100" style="vertical-align: top;">
 				<?php
-					$listImg 	= explode(';', $list[0]->ATTACHMENT_IDENTIFIKASI);
-					$listKetImg = explode(';', $list[0]->KETATTACHMENT_IDENTIFIKASI);
+				$listImg 	= explode(';', $list[0]->ATTACHMENT_IDENTIFIKASI);
+				$listKetImg = explode(';', $list[0]->KETATTACHMENT_IDENTIFIKASI);
 				?>
 				<tr>
 					<td width="30%">
-						<?php
-							if(!empty($listImg[0])){
-								echo '
-									<img src="'.$listImg[0].'" /><br>
-									<span>'.!empty($listKetImg[0]) ? $listKetImg[0] : ''.'</span>
-								';
+						<div class="item">
+							<?php
+							if (!empty($listImg[0])) {
+							?>
+								<img width="300" height="300" src="<?= $listImg[0] ?>" alt=""> <br>
+								<span><?= !empty($listKetImg[0]) ? $listKetImg[0] : '' ?></span>
+							<?php
 							}
-						?>
+							?>
+						</div>
 					</td>
 					<td width="30%">
-						<?php
-							if(!empty($listImg[1])){
-								echo '
-									<img src="'.$listImg[1].'" /><br>
-									<span>'.!empty($listKetImg[1]) ? $listKetImg[1] : ''.'</span>
-								';
+						<div class="item">
+							<?php
+							if (!empty($listImg[1])) {
+							?>
+								<img width="300" height="300" src="<?= $listImg[1] ?>" alt=""> <br>
+								<span><?= !empty($listKetImg[1]) ? $listKetImg[1] : '' ?></span>
+							<?php
 							}
-						?>
+							?>
+						</div>
 					</td>
 					<td width="30%">
-						<?php
-							if(!empty($listImg[2])){
-								echo '
-									<img src="'.$listImg[2].'" /><br>
-									<span>'.!empty($listKetImg[2]) ? $listKetImg[2] : ''.'</span>
-								';
+						<div class="item">
+							<?php
+							if (!empty($listImg[2])) {
+							?>
+								<img width="300" height="300" src="<?= $listImg[2] ?>" alt=""> <br>
+								<span><?= !empty($listKetImg[2]) ? $listKetImg[2] : '' ?></span>
+							<?php
 							}
-						?>
+							?>
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<td width="30%">
-						<?php
-							if(!empty($listImg[3])){
-								echo '
-									<img src="'.$listImg[3].'" /><br>
-									<span>'.!empty($listKetImg[3]) ? $listKetImg[3] : ''.'</span>
-								';
+						<div class="item">
+							<?php
+							if (!empty($listImg[3])) {
+							?>
+								<img width="300" height="300" src="<?= $listImg[3] ?>" alt=""> <br>
+								<span><?= !empty($listKetImg[3]) ? $listKetImg[3] : '' ?></span>
+							<?php
 							}
-						?>
+							?>
+						</div>
 					</td>
 					<td width="30%">
-						<?php
-							if(!empty($listImg[4])){
-								echo '
-									<img src="'.$listImg[4].'" /><br>
-									<span>'.!empty($listKetImg[4]) ? $listKetImg[4] : ''.'</span>
-								';
+						<div class="item">
+							<?php
+							if (!empty($listImg[4])) {
+							?>
+								<img width="300" height="300" src="<?= $listImg[4] ?>" alt=""> <br>
+								<span><?= !empty($listKetImg[4]) ? $listKetImg[4] : '' ?></span>
+							<?php
 							}
-						?>
+							?>
+						</div>
 					</td>
 				</tr>
 			</table>
