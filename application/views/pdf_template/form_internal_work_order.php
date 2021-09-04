@@ -461,16 +461,13 @@
 			<thead>
 				<tr>
 					<th class="tg-5rbv" style="text-align:left; width: 61%;">Keterangan:</th>
-                    <th class="tg-5rbv" style="text-align:center; width: 25%;" rowspan="2">Tanda tangan user</th>
-                    <th class="tg-5rbv" style="text-align:left;  width: 25%;" rowspan="2"><?= $list[0]->STATUS_PEKERJAAN != null ? '<img src="'.$user->PATH_TTD.'" width="25px" height="25px" />' : '' ?></th>
+                    <th class="tg-5rbv" style="text-align:center; width: 25%;" rowspan="3">Tanda tangan user</th>
+                    <th class="tg-5rbv" style="text-align:left;  width: 25%;" rowspan="3"><?= $list[0]->STATUS_PEKERJAAN != null ? '<img src="'.$user->PATH_TTD.'" width="25px" height="25px" />' : '' ?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="tg-5r9a" style="text-align:left; width:60%;"><?= $list[0]->KET_PEKERJAAN?></td>
-				</tr>
-                <tr>
-					<td class="tg-5r9a" style="text-align:left; width:60%;">...</td>
 				</tr>
 			</tbody>
 		</table>
