@@ -382,7 +382,7 @@
 					<td class="tg-5rbv" style="text-align:left; width: 5%"><b>8</b></td>
 					<td class="tg-5rbv" style="text-align:left; width: 30%"><b>Kesimpulan</b></td>
 					<td class="tg-5rbv" style="text-align:center; width: 5%"><b>:</b></td>
-					<td class="tg-5r9a"><?= $list[0]->KESIMPULAN ?></td>
+					<td class="tg-5r9a"><b><?= $list[0]->KESIMPULAN ?></b></td>
 				</tr>
 			</tbody>
 		</table>
