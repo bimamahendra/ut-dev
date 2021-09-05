@@ -508,7 +508,7 @@
 		</div>
 	</div>
 	<div class="wrapper-page">
-		<img src="https://via.placeholder.com/500">
+		<img src="<?= $list[0]->PIC?>" style="max-width: 600px; display: block; margin-left: auto; margin-right: auto;" alt="">
 	</div>
 </body>
 
