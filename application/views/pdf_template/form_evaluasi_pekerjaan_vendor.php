@@ -248,7 +248,10 @@
 		<h5><?= $title_pdf ?></h5>
 	</div>
 	<div style="text-align:center">
-		<h6>Periode : <?= $list[0]->PERIODE ?></h6>
+		<h6>Periode : <?php 
+		$date = date_create($list[0]->PERIODE); 
+		echo ''. date_format($date, 'j') . ' ' . $getMonth[date_format($date, 'n')] . ' ' . date_format($date, 'Y') . '';
+		?></h6>
 	</div>
 	<br>
 	<br>
