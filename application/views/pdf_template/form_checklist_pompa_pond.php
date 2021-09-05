@@ -288,7 +288,7 @@
 				<tr>
 					<td>Lokasi</td>
 					<td>:</td>
-					<td>hatimu</td>
+					<td><?= $list[0]->LOKASI_POND ?></td>
 				</tr>
 			</table>
 		</div>

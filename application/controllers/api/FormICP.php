@@ -10,7 +10,7 @@ class FormICP extends RestController {
     }
     public function index_post(){
         $param = $this->post();
-        if(!empty($param['idUser']) && !empty($param['idMapping'])){
+        if(!empty($param['idUser']) && !empty($param['idMapping']) && !empty($param['lokasi'])){
             $user       = $this->db->get_where('USERS', ['ID_USERS' => $param['idUser']])->result();
             $mapping    = $this->db->get_where('MAPPING', ['ID_MAPPING' => $param['idMapping']])->result();
             if($user != null && $mapping != null){
@@ -24,11 +24,8 @@ class FormICP extends RestController {
                 
                 $storeICP['ID_POND']        = $idICP;
                 $storeICP['ID_TRANS']       = $idTrans;
-                $storeICP['TGL_POND']       = $param['tgl'];
-                $storeICP['PONDA_POND']     = $param['pondA'];
-                $storeICP['PONDB_POND']     = $param['pondB'];
-                $storeICP['PONDC_POND']     = $param['pondC'];
-                $storeICP['PONDD_POND']     = $param['pondD'];
+                $storeICP['TGL_POND']       = $param['tgl'];                
+                $storeICP['LOKASI_POND']    = $param['lokasi']; 
                 $storeICP['CATATAN_POND']   = $param['catatan'];
 
                 $arr = array();
