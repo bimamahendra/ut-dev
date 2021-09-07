@@ -30,9 +30,25 @@ class FormEvaluasi extends RestController {
                 $storeEvaluasi['NAMA_PEKERJAAN']   = $param['namaPekerjaan'];
                 $storeEvaluasi['SPK_EVALUASI']     = $param['spkNo'];
                 $storeEvaluasi['TGL_SPK']          = $param['tglSpk'];
-                $storeEvaluasi['TT_EVALUASI']      = $param['referensi']['troubTicket'];
                 $storeEvaluasi['EWO_EVALUASI']     = $param['referensi']['ewo'];
                 $storeEvaluasi['KESIMPULAN']       = $param['kesimpulan'];
+
+                $ttEVALUASI = $this->db->order_by('TGLOUT_EVALUASI', 'desc')->get('FORM_EVALUASI')->row();
+                if($ttEVALUASI != null){
+                    $dateTT  = substr($ttEVALUASI->TT_EVALUASI, 0,8);
+                    $noRegis = substr($ttEVALUASI->TT_EVALUASI, 8);
+                    $dateNow = date('Ymd');
+                    if($dateTT != $dateNow){
+                        $dateTT  = $dateNow;
+                        $noRegis = '001';
+                    }else{
+                        $noRegis = sprintf("%03d", (int)++$noRegis);
+                    }
+                    $ttEVALUASI = $dateTT.$noRegis;
+                }else{
+                    $ttEVALUASI = date('Ymd').'001';
+                }
+                $storeEvaluasi['TT_EVALUASI'] = $ttEVALUASI;
 
                 $arr = array();
                 foreach ($param['hasilPenilaian'] as $item) {
