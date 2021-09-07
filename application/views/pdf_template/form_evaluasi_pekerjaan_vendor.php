@@ -303,7 +303,13 @@
 					<td class="tg-5r9a" style="text-align:left; width: 5%"></td>
 					<td class="tg-5r9a" style="text-align:right; width: 30%">WO External No</td>
 					<td class="tg-5r9a" style="text-align:center; width: 5%">:</td>
-					<td class="tg-5r9a"><?= $list[0]->EWO_EVALUASI ?></td>
+					<td class="tg-5r9a"><?php 
+							if($list[0]->EWO_EVALUASI == 0){
+								echo '-';
+							}else{
+								echo ''.$list[0]->EWO_EVALUASI.'';
+							}; 						
+						?></td>						
 				</tr>
 				<tr>
 					<td class="tg-5rbv" style="text-align:left; width: 5%"><b>6</b></td>
