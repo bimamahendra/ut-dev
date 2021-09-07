@@ -428,7 +428,7 @@
 					</td>
 					<td class="thd-td2">
 						<?php
-						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1" && $list[0]->STATUS_PEKERJAAN != null) {
+						if ($approvals[0]->ROLE_APP == "Section Head" && $approvals[0]->ISAPPROVE_APP == "1") {
 							echo '
 								<img src="' . $approvals[0]->PATH_TTD . '" width="100px" height="100px" />
 							';

@@ -249,26 +249,34 @@
 			<tbody>
 				<?php
 				$tgl1 = '-'; $tgl2 = '-'; $tgl3 = '-'; $tgl4 = '-'; $tgl5 = '-'; $tgl6 = '-'; $tgl7 = '-';
+				$ttd1 = ' '; $ttd2 = ' '; $ttd3 = ' '; $ttd4 = ' '; $ttd5 = ' '; $ttd6 = ' '; $ttd7 = ' '; 
 				if($list[0]->TGLCEK1_MONITORING != '0000-00-00'){
 					$tgl1 = date_format(date_create($list[0]->TGLCEK1_MONITORING), 'd-m-Y');
+					$ttd1 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};
 				if($list[0]->TGLCEK2_MONITORING != '0000-00-00'){
 					$tgl2 = date_format(date_create($list[0]->TGLCEK2_MONITORING), 'd-m-Y');
+					$ttd2 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};
 				if($list[0]->TGLCEK3_MONITORING != '0000-00-00'){
 					$tgl3 = date_format(date_create($list[0]->TGLCEK3_MONITORING), 'd-m-Y');
+					$ttd3 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};	
 				if($list[0]->TGLCEK4_MONITORING != '0000-00-00'){
 					$tgl4 = date_format(date_create($list[0]->TGLCEK4_MONITORING), 'd-m-Y');
+					$ttd4 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};
 				if($list[0]->TGLCEK5_MONITORING != '0000-00-00'){
 					$tgl5 = date_format(date_create($list[0]->TGLCEK5_MONITORING), 'd-m-Y');
+					$ttd5 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};		
 				if($list[0]->TGLCEK6_MONITORING != '0000-00-00'){
 					$tgl6 = date_format(date_create($list[0]->TGLCEK6_MONITORING), 'd-m-Y');
+					$ttd6 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};	
 				if($list[0]->TGLCEK7_MONITORING != '0000-00-00'){
 					$tgl7 = date_format(date_create($list[0]->TGLCEK7_MONITORING), 'd-m-Y');
+					$ttd7 = '<img src="<?= $user->PATH_TTD ?>" width="50" height="50" />';
 				};
 
 				$order = explode(';', $list[0]->JML_ORDER);
@@ -289,8 +297,8 @@
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[0] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[0] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[0] ?></td>
-					<td class="tg-5r9a" style="text-align: center;"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
-					<td class="tg-5r9a" style="text-align: center;"><?= $app0 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $ttd1 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?php ($tgl1 == '-' ? ' ' :  $app0) ?></td>
 					<td class="tg-5r9a" style="text-align: center;">...</td>
 				</tr>
 				<tr>
@@ -299,8 +307,8 @@
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[1] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[1] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[1] ?></td>
-					<td class="tg-5r9a" style="text-align: center;"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
-					<td class="tg-5r9a" style="text-align: center;"><?= $app0 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $ttd2 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?php ($tgl2 == '-' ? ' ' :  $app0) ?></td>
 					<td class="tg-5r9a" style="text-align: center;">...</td>
 				</tr>
 				<tr>
@@ -309,8 +317,8 @@
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[2] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[2] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[2] ?></td>
-					<td class="tg-5r9a" style="text-align: center;"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
-					<td class="tg-5r9a" style="text-align: center;"><?= $app0 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $ttd3 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?php ($tgl3 == '-' ? ' ' :  $app0) ?></td>
 					<td class="tg-5r9a" style="text-align: center;">...</td>
 				</tr>
 				<tr>
@@ -319,8 +327,8 @@
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[3] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[3] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[3] ?></td>
-					<td class="tg-5r9a" style="text-align: center;"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
-					<td class="tg-5r9a" style="text-align: center;"><?= $app0 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $ttd4 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?php ($tgl4 == '-' ? ' ' :  $app0) ?></td>
 					<td class="tg-5r9a" style="text-align: center;">...</td>
 				</tr>
 				<tr>
@@ -329,8 +337,8 @@
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[4] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[4] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[4] ?></td>
-					<td class="tg-5r9a" style="text-align: center;"><img src="<?= $user->PATH_TTD ?>" width="50" height="50" /></td>
-					<td class="tg-5r9a" style="text-align: center;"><?= $app0 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $ttd5 ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?php ($tgl5 == '-' ? ' ' :  $app0) ?></td>
 					<td class="tg-5r9a" style="text-align: center;">...</td>
 				</tr>
 				<?php
@@ -342,8 +350,8 @@
 								<td class="tg-5r9a" style="text-align:center">' . $order[5] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $bawa[5] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $kupon[5] . '</td>
-								<td class="tg-5r9a" style="text-align: center;"><img src="' . $user->PATH_TTD . '" width="50" height="50" /></td>
-								<td class="tg-5r9a" style="text-align:center">' . $app0 . '</td>
+								<td class="tg-5r9a" style="text-align: center;">'. $ttd6 .'</td>
+								<td class="tg-5r9a" style="text-align:center">' . ($tgl6 == '-' ? ' ' :  $app0) . '</td>
 								<td class="tg-5r9a" style="text-align: center;">...</td>
 							</tr>
 						';
@@ -358,8 +366,8 @@
 								<td class="tg-5r9a" style="text-align:center">' . $order[6] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $bawa[6] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $kupon[6] . '</td>
-								<td class="tg-5r9a" style="text-align:center"><img src="' . $user->PATH_TTD . '" width="50" height="50" /></td>
-								<td class="tg-5r9a" style="text-align:center">' . $app0 . '</td>
+								<td class="tg-5r9a" style="text-align:center">'. $ttd7 .'</td>
+								<td class="tg-5r9a" style="text-align:center">' . ($tgl7 == '-' ? ' ' :  $app0) . '</td>
 								<td class="tg-5r9a" style="text-align:center">...</td>
 							</tr>
 						';
