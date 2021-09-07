@@ -248,13 +248,28 @@
 			</thead>
 			<tbody>
 				<?php
-				$date = date_create($list[0]->TGLCEK1_MONITORING);
-				$date2 = date_create($list[0]->TGLCEK2_MONITORING);
-				$date3 = date_create($list[0]->TGLCEK3_MONITORING);
-				$date4 = date_create($list[0]->TGLCEK4_MONITORING);
-				$date5 = date_create($list[0]->TGLCEK5_MONITORING);
-				$date6 = date_create($list[0]->TGLCEK6_MONITORING);
-				$date7 = date_create($list[0]->TGLCEK7_MONITORING);
+				$tgl1 = '-'; $tgl2 = '-'; $tgl3 = '-'; $tgl4 = '-'; $tgl5 = '-'; $tgl6 = '-'; $tgl7 = '-';
+				if($list[0]->TGLCEK1_MONITORING != '0000-00-00'){
+					$tgl1 = date_format(date_create($list[0]->TGLCEK1_MONITORING), 'd-m-Y');
+				};
+				if($list[0]->TGLCEK2_MONITORING != '0000-00-00'){
+					$tgl2 = date_format(date_create($list[0]->TGLCEK2_MONITORING), 'd-m-Y');
+				};
+				if($list[0]->TGLCEK3_MONITORING != '0000-00-00'){
+					$tgl3 = date_format(date_create($list[0]->TGLCEK3_MONITORING), 'd-m-Y');
+				};	
+				if($list[0]->TGLCEK4_MONITORING != '0000-00-00'){
+					$tgl4 = date_format(date_create($list[0]->TGLCEK4_MONITORING), 'd-m-Y');
+				};
+				if($list[0]->TGLCEK5_MONITORING != '0000-00-00'){
+					$tgl5 = date_format(date_create($list[0]->TGLCEK5_MONITORING), 'd-m-Y');
+				};		
+				if($list[0]->TGLCEK6_MONITORING != '0000-00-00'){
+					$tgl6 = date_format(date_create($list[0]->TGLCEK6_MONITORING), 'd-m-Y');
+				};	
+				if($list[0]->TGLCEK7_MONITORING != '0000-00-00'){
+					$tgl7 = date_format(date_create($list[0]->TGLCEK7_MONITORING), 'd-m-Y');
+				};
 
 				$order = explode(';', $list[0]->JML_ORDER);
 				$bawa  = explode(';', $list[0]->ACT_BAWA);
@@ -270,7 +285,7 @@
 				?>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center">1</td>
-					<td class="tg-5r9a" style="text-align: center;"><?= date_format($date, 'd-m-Y'); ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $tgl1 ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[0] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[0] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[0] ?></td>
@@ -280,7 +295,7 @@
 				</tr>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center">2</td>
-					<td class="tg-5r9a" style="text-align: center;"><?= date_format($date2, 'd-m-Y'); ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $tgl2 ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[1] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[1] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[1] ?></td>
@@ -290,7 +305,7 @@
 				</tr>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center">3</td>
-					<td class="tg-5r9a" style="text-align: center;"><?= date_format($date3, 'd-m-Y'); ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $tgl3 ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[2] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[2] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[2] ?></td>
@@ -300,7 +315,7 @@
 				</tr>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center">4</td>
-					<td class="tg-5r9a" style="text-align: center;"><?= date_format($date4, 'd-m-Y'); ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $tgl4 ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[3] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[3] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[3] ?></td>
@@ -310,7 +325,7 @@
 				</tr>
 				<tr>
 					<td class="tg-5r9a" style="text-align:center">5</td>
-					<td class="tg-5r9a" style="text-align: center;"><?= date_format($date5, 'd-m-Y'); ?></td>
+					<td class="tg-5r9a" style="text-align: center;"><?= $tgl5 ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $order[4] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $bawa[4] ?></td>
 					<td class="tg-5r9a" style="text-align: center;"><?= $kupon[4] ?></td>
@@ -323,7 +338,7 @@
 					echo '
 							<tr>
 								<td class="tg-5r9a" style="text-align:center">6</td>
-								<td class="tg-5r9a" style="text-align:center">' . date_format($date6, 'd-m-Y') . '</td>
+								<td class="tg-5r9a" style="text-align:center">' . $tgl6 . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $order[5] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $bawa[5] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $kupon[5] . '</td>
@@ -338,8 +353,8 @@
 				if ($order[6] != '-') {
 					echo '
 							<tr>
-								<td class="tg-5r9a" style="text-align:center">6</td>
-								<td class="tg-5r9a" style="text-align:center">' . date_format($date7, 'd-m-Y') . '</td>
+								<td class="tg-5r9a" style="text-align:center">7</td>
+								<td class="tg-5r9a" style="text-align:center">' . $tgl7 . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $order[6] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $bawa[6] . '</td>
 								<td class="tg-5r9a" style="text-align:center">' . $kupon[6] . '</td>

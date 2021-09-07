@@ -232,6 +232,13 @@
             <?php
             $no = 1;
             foreach ($list as $item) {
+                $status = '';
+                if($item->STATUS_PERBAIKAN == 1){
+                    $status = 'Pending';
+                }else{
+                    $status = 'Selesai';
+                };
+
                 echo '
                      <tr>
                           <td class="border-1 p-min">' . $no . '</td>
@@ -241,7 +248,7 @@
                           <td class="border-1 p-min">' . $item->USER_PERBAIKAN . '</td>
                           <td class="border-1 p-min">' . $item->PIC_PERBAIKAN . '</td>
                           <td class="border-1 p-min">' . $item->DURASI_PERBAIKAN . '</td>
-                          <td class="border-1 p-min">' . $item->STATUS_PERBAIKAN . '</td>
+                          <td class="border-1 p-min">' . $status . '</td>
                      </tr>
 					';
                 $no++;
